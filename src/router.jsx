@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "./pages/layout/RootLayout";
 
-import BuyerInfo from "./pages/buyer/BuyerInfo";
-import BuyerLoginPage from "./pages/buyer/BuyerLoginPage";
-import LoginLayout from "./pages/layout/LoginLayout";
-import BuyerLayout from "./pages/layout/BuyerLayout";
+import LoginLayout from "./buyer/pages/layout/LoginLayout";
+import RootLayout from "./buyer/pages/layout/RootLayout";
+import BuyerInfoPage from "./buyer/pages/BuyerInfoPage";
+import BuyerLoginPage from "./buyer/pages/BuyerLoginPage";
+import BuyerLayout from "./buyer/pages/layout/BuyerLayout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout></RootLayout>,
+    element: <RootLayout />,
     // children: [
     //   {
     //     path: "",
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <BuyerInfo />,
+        element: <BuyerInfoPage />,
       },
     ],
   },

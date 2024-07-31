@@ -18,8 +18,14 @@ export const changePassword = async () => {
   return buyerClient.patch(`/buyer/profile/pw`);
 };
 
-export const changeImage = async () => {
-    return buyerClient.patch(`/buyer/profile/image`);
+export const changeImage = async (token, file) => {
+  console.log("들어오나?");
+    return buyerClient.patch(`/buyer/profile/image`,{file}, {
+      headers : {
+        Authorization : `Bearer ${token}`,
+        "Content-Type": "multipart/form-data"
+      }
+    });
   };
 
 export const changeProfile = async () => {

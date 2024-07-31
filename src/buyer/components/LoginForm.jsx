@@ -1,7 +1,8 @@
 import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
-import { loginBuyer } from "../../api/v1/auth/auth";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+import { loginBuyer } from "../../api/v1/auth/auth";
+import "./css/BuyerCss.css";
 const LoginForm = () => {
   const navigate = useNavigate();
   const handleLogin = async (e) => {
