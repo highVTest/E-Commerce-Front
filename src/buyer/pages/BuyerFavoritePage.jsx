@@ -1,5 +1,13 @@
+import BuyerFavoriteContainer from "../components/BuyerFavoriteContainer";
+import BuyerFavoriteForm from "../components/BuyerFavoriteForm";
+import "../components/css/BuyerCss.css";
+
 const BuyerFavoritePage = () => {
-  return <div>찜 목록 페이지</div>;
+  return (
+    <div className="buyer-page">
+      <BuyerFavoriteContainer></BuyerFavoriteContainer>
+    </div>
+  );
 };
 
 export default BuyerFavoritePage;

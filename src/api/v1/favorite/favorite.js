@@ -1,5 +1,4 @@
-import { buyerClient } from "../client";
-import { apiClient } from "./client";
+import { apiClient } from "../client";
 
 
 export const favoriteManagement = async (productId) => {
