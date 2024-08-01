@@ -1,5 +1,7 @@
-import { buyerClient } from "../client";
-// import { apiClient } from "./client";
+// import { buyerClient } from "../client";
+
+import { apiClient } from "../client";
+
 
 
 export const loginSeller = async () => {
@@ -7,7 +9,7 @@ export const loginSeller = async () => {
 };
 
 export const loginBuyer = async (email,password) => {
-  return buyerClient.post(`/login/buyer`,{email,password});
+  return apiClient.post(`/login/buyer`,{email,password});
 };
 
 export const sendMail = async () => {

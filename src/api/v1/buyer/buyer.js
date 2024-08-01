@@ -1,26 +1,31 @@
-import { buyerClient } from "../client";
-// import { apiClient } from "./client";
+import { apiClient } from "../client";
+
 
 
 export const signUp = async () => {
-  return buyerClient.post(`/buyer/user_signup`);
+  return apiClient.post(`/buyer/user_signup`);
 };
 
 export const getMyProfile = async (token) => {
-    return buyerClient.get(`/buyer/profile`, {
+    return apiClient.get(`/buyer/profile`, {
       headers : {
         Authorization : `Bearer ${token}`
       }
     });
   };
 
-export const changePassword = async () => {
-  return buyerClient.patch(`/buyer/profile/pw`);
+export const changePassword = async (token, currentPW, newPW, confirmPW) => {
+    
+  return apiClient.patch(`/buyer/profile/pw`, {currentPW,newPW,confirmPW},{
+    headers : {
+      Authorization : `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  });
 };
 
 export const changeImage = async (token, file) => {
-  console.log("들어오나?");
-    return buyerClient.patch(`/buyer/profile/image`,{file}, {
+  return apiClient.patch(`/buyer/profile/image`,{file}, {
       headers : {
         Authorization : `Bearer ${token}`,
         "Content-Type": "multipart/form-data"
@@ -28,6 +33,12 @@ export const changeImage = async (token, file) => {
     });
   };
 
-export const changeProfile = async () => {
-    return buyerClient.patch(`/buyer/profile`);
+export const changeProfile = async (token,nickname, address, phoneNumber) => {
+  
+    return apiClient.patch(`/buyer/profile`, {nickname,phoneNumber,address},{
+      headers : {
+        Authorization : `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
 };

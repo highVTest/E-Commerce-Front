@@ -5,6 +5,8 @@ import RootLayout from "./buyer/pages/layout/RootLayout";
 import BuyerInfoPage from "./buyer/pages/BuyerInfoPage";
 import BuyerLoginPage from "./buyer/pages/BuyerLoginPage";
 import BuyerLayout from "./buyer/pages/layout/BuyerLayout";
+import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage";
+import BuyerCartPage from "./buyer/pages/BuyerCartPage";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <BuyerInfoPage />,
+      },
+      {
+        path: "favorite",
+        element: <BuyerFavoritePage />,
+      },
+      {
+        path: "cart",
+        element: <BuyerCartPage></BuyerCartPage>,
       },
     ],
   },

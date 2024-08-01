@@ -13,6 +13,7 @@
     "@mantine/core": "^7.11.2",
     "@mantine/dropzone": "^7.11.2",
     "@mantine/hooks": "^7.11.2",
+    "@mantine/modals": "^7.11.2",
     "axios": "^1.7.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
