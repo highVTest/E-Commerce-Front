@@ -55,12 +55,12 @@ export const router = createBrowserRouter([
     element: <ProductLayout></ProductLayout>,
     children: [
       {
-        path: "",
-        element: <ProductPage></ProductPage>,
+        path: ":id",
+        element: <ProductOnePage></ProductOnePage>,
       },
       {
-        path: "page",
-        element: <ProductOnePage></ProductOnePage>,
+        path: "",
+        element: <ProductPage></ProductPage>,
       },
     ],
   },

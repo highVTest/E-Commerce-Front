@@ -8,18 +8,10 @@ import {
   Text,
 } from "@mantine/core";
 import { AiFillHeart } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProductOnePage from "../pages/ProductOnePage";
 
 const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
-  const navigate = useNavigate();
-
-  const handleProductPage = (productId) => {
-    console.log(productId);
-    // navigate(`/product/page`); // 상품페이지에 값을 넣어주려면 어캐하지?
-    ProductOnePage(productId);
-  };
-
   const handleHeart = (productId) => {
     buyerChangeFavorite(productId);
     // console.log(productId);
@@ -28,57 +20,55 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
   return (
     <>
       <SimpleGrid cols={3}>
-        {favorites.map((favorite) => (
-          <Card
-            key={favorite.productId}
-            shadow="sm"
-            padding="lg"
-            radius="md"
-            withBorder
-            style={{ height: 300 }}
-          >
-            <Card.Section>
-              <Image
-                src={
-                  favorite?.productImageUrl
-                    ? favorite.productImageUrl
-                    : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                }
-                height={160}
-                alt="Norway"
-              />
-            </Card.Section>
-
-            <Stack
-              h={300}
-              bg="var(--mantine-color-body)"
-              align="stretch"
-              justify="center"
-              gap="md"
+        {favorites.map((favorite) => {
+          return (
+            <Card
+              key={favorite.productId}
+              shadow="sm"
+              padding="lg"
+              radius="md"
+              withBorder
             >
-              <Text fw={500}>상품명 : {favorite.productName}</Text>
+              <Card.Section>
+                <Image
+                  radius="md"
+                  src={favorite.productImageUrl}
+                  h={160}
+                  fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                />
+              </Card.Section>
 
-              <Group justify="space-between">
-                <Text size="sm" c="dimmed">
-                  가격 : {favorite.productPrice}
-                </Text>
-                <div onClick={() => handleHeart(favorite.productId)}>
-                  <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
-                </div>
-              </Group>
-
-              <Button
-                color="blue"
-                fullWidth
-                mt="md"
-                radius="md"
-                onClick={() => handleProductPage(favorite.productId)}
+              <Stack
+                // h={150}
+                bg="var(--mantine-color-body)"
+                align="stretch"
+                justify="center"
+                gap="md"
+                mt="sm"
               >
-                상품 페이지 바로가기
-              </Button>
-            </Stack>
-          </Card>
-        ))}
+                <Text fw={500}>상품명 : {favorite.productName}</Text>
+
+                <Group justify="space-between">
+                  <Text size="sm" c="dimmed">
+                    가격 : {favorite.productPrice}
+                  </Text>
+                  <div onClick={() => handleHeart(favorite.productId)}>
+                    <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
+                  </div>
+                </Group>
+
+                <Link
+                  to={`/product/${favorite.productId}`}
+                  style={{ marginTop: 0 }}
+                >
+                  <Button color="blue" fullWidth mt="md" radius="md">
+                    상품 페이지 바로가기
+                  </Button>
+                </Link>
+              </Stack>
+            </Card>
+          );
+        })}
       </SimpleGrid>
     </>
   );

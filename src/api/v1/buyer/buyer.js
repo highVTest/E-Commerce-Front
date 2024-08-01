@@ -14,9 +14,9 @@ export const getMyProfile = async (token) => {
     });
   };
 
-export const changePassword = async (token, currentPW, newPW, confirmPW) => {
-    
-  return apiClient.patch(`/buyer/profile/pw`, {currentPW,newPW,confirmPW},{
+export const changePassword = async (token, currentPassword, newPassword, confirmNewPassword) => {
+  
+  return apiClient.patch(`/buyer/profile/pw`, {currentPassword,newPassword,confirmNewPassword},{
     headers : {
       Authorization : `Bearer ${token}`,
       "Content-Type": "application/json"
