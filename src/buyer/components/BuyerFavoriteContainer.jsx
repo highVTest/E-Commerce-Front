@@ -10,10 +10,7 @@ const BuyerFavoriteContainer = () => {
   const buyerGetFavorite = async () => {
     const data = await getFavorites(token);
 
-    console.log(data);
-    console.log(data.data);
     setFavorites(data.data);
-    console.log("favorites >> ", favorites);
   };
 
   useEffect(() => {

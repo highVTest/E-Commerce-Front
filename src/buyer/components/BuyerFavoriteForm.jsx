@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import { getFavorites } from "../../api/v1/favorite/favorite";
 import {
-  Badge,
   Button,
   Card,
   Group,
@@ -10,16 +7,17 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
+import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import ProductOnePage from "../pages/ProductOnePage";
 
 const BuyerFavoriteForm = ({ favorites }) => {
   const navigate = useNavigate();
 
   const handleProductPage = (productId) => {
-    // e.preventDefault();
-
-    console.log(productId);
-    navigate(`/product/${productId}`);
+    // console.log(productId);
+    navigate(`/product/page`); // 상품페이지에 값을 넣어주려면 어캐하지?
+    // ProductOnePage(productId);
   };
 
   return (
@@ -37,9 +35,9 @@ const BuyerFavoriteForm = ({ favorites }) => {
             <Card.Section>
               <Image
                 src={
-                  favorite?.productImageUrl == ""
-                    ? favorite.productImageUrl
-                    : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                  favorite?.productImageUrl
+                    ? "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                    : favorite.productImageUrl
                 }
                 height={160}
                 alt="Norway"
@@ -54,16 +52,19 @@ const BuyerFavoriteForm = ({ favorites }) => {
               gap="md"
             >
               <Text fw={500}>상품명 : {favorite.productName}</Text>
-              <Text size="sm" c="dimmed">
-                가격 : {favorite.productPrice}
-              </Text>
+
+              <Group justify="space-between">
+                <Text size="sm" c="dimmed">
+                  가격 : {favorite.productPrice}
+                </Text>
+                <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
+              </Group>
 
               <Button
                 color="blue"
                 fullWidth
                 mt="md"
                 radius="md"
-                // type="submit"
                 onClick={() => handleProductPage(favorite.productId)}
               >
                 상품 페이지 바로가기

@@ -7,6 +7,9 @@ import BuyerLoginPage from "./buyer/pages/BuyerLoginPage";
 import BuyerLayout from "./buyer/pages/layout/BuyerLayout";
 import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage";
 import BuyerCartPage from "./buyer/pages/BuyerCartPage";
+import ProductLayout from "./buyer/pages/layout/ProductLayout";
+import ProductPage from "./buyer/pages/ProductPage";
+import ProductOnePage from "./buyer/pages/ProductOnePage";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +47,20 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <BuyerCartPage></BuyerCartPage>,
+      },
+    ],
+  },
+  {
+    path: "/product",
+    element: <ProductLayout></ProductLayout>,
+    children: [
+      {
+        path: "",
+        element: <ProductPage></ProductPage>,
+      },
+      {
+        path: "page",
+        element: <ProductOnePage></ProductOnePage>,
       },
     ],
   },
