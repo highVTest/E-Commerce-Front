@@ -11,18 +11,23 @@ import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import ProductOnePage from "../pages/ProductOnePage";
 
-const BuyerFavoriteForm = ({ favorites }) => {
+const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
   const navigate = useNavigate();
 
   const handleProductPage = (productId) => {
+    console.log(productId);
+    // navigate(`/product/page`); // 상품페이지에 값을 넣어주려면 어캐하지?
+    ProductOnePage(productId);
+  };
+
+  const handleHeart = (productId) => {
+    buyerChangeFavorite(productId);
     // console.log(productId);
-    navigate(`/product/page`); // 상품페이지에 값을 넣어주려면 어캐하지?
-    // ProductOnePage(productId);
   };
 
   return (
     <>
-      <SimpleGrid cols={3} style={{ backgroundColor: "red" }}>
+      <SimpleGrid cols={3}>
         {favorites.map((favorite) => (
           <Card
             key={favorite.productId}
@@ -36,8 +41,8 @@ const BuyerFavoriteForm = ({ favorites }) => {
               <Image
                 src={
                   favorite?.productImageUrl
-                    ? "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                    : favorite.productImageUrl
+                    ? favorite.productImageUrl
+                    : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                 }
                 height={160}
                 alt="Norway"
@@ -57,7 +62,9 @@ const BuyerFavoriteForm = ({ favorites }) => {
                 <Text size="sm" c="dimmed">
                   가격 : {favorite.productPrice}
                 </Text>
-                <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
+                <div onClick={() => handleHeart(favorite.productId)}>
+                  <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
+                </div>
               </Group>
 
               <Button
