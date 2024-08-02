@@ -19,12 +19,13 @@ nav {
   text-align: center;
 }
 
-.circle{
+.circle {
     width: 100px;
     height: 100px;
     border-radius: 50px;
     background-color: yellow;
     margin: 20px;
+}
 nav a {
   margin: 0 1rem;
   text-decoration: none;
