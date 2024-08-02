@@ -2,7 +2,7 @@ import { apiClient } from "../client";
 
 
 export const updateShopInfo = async (token,description,shopImage) => {
-  return apiClient.patch(`/sellerInfo/myShopInfo`,{description,shopImage:''},{
+  return apiClient.patch(`/sellerInfo/myShopInfo`,{description,shopImage},{
     headers:{
       Authorization : `Bearer ${token}`,
       "Content-Type": "application/json"
@@ -10,7 +10,7 @@ export const updateShopInfo = async (token,description,shopImage) => {
   });
 };
 
-export const updateSellerInfo = async () => {
+export const updateSellerInfo = async (token,nickname,phoneNumber,address) => {
     return apiClient.patch(`/sellerInfo/myInfo`,{nickname,/*profile,img*/phoneNumber,address},{
       headers:{
         Authorization : `Bearer ${token}`,
