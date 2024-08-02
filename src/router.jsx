@@ -6,6 +6,13 @@ import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
 import UploadPage from "./loginandreview/pages/UploadPage.jsx";
 import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
+import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
+import BuyerCartPage from "./buyer/pages/BuyerCartPage.jsx";
+import ProductLayout from "./buyer/pages/layout/ProductLayout.jsx";
+import ProductOnePage from "./buyer/pages/ProductOnePage.jsx";
+import ProductPage from "./buyer/pages/ProductPage.jsx";
+import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
+import BuyerLayout from "./buyer/pages/layout/BuyerLayout.jsx";
 
 
 export const router= createBrowserRouter([
