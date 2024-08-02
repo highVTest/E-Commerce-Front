@@ -19,7 +19,7 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
 
   return (
     <>
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={3} style={{ paddingTop: 150 }}>
         {favorites.map((favorite) => {
           return (
             <Card

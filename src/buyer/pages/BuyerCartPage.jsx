@@ -1,5 +1,11 @@
+import BuyerCartContainer from "../components/BuyerCartContainer";
+
 const BuyerCartPage = () => {
-  return <div>장바구니 페이지</div>;
+  return (
+    <div className="buyer-page">
+      <BuyerCartContainer></BuyerCartContainer>
+    </div>
+  );
 };
 
 export default BuyerCartPage;

@@ -48,6 +48,11 @@ const BuyerInfoForm = ({
     const address = formData.get("address");
     const phone = formData.get("phone");
 
+    if (nickname.length == 0) {
+      alert("닉네임을 입력해주세요!");
+      return;
+    }
+
     await buyerChangeProfile(nickname, address, phone);
     window.location.reload();
   };

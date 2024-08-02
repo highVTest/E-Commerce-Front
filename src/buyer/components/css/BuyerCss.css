@@ -20,7 +20,7 @@
 
     width: 800px;
     margin: auto;
-    height: 100vh;
+    /* height: 100vh; */
 }
 .profile-image {
     margin-left : 50px;    
