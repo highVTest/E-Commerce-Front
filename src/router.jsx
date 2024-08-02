@@ -45,5 +45,37 @@ export const router= createBrowserRouter([
         path:'/review',
         element: <ReviewPage/>,
     },
-
+  {
+    path: "/buyer",
+    element: <BuyerLayout></BuyerLayout>,
+    children: [
+      {
+        path: "",
+        element: <BuyerInfoPage />,
+      },
+      {
+        path: "favorite",
+        element: <BuyerFavoritePage />,
+      },
+      {
+        path: "cart",
+        element: <BuyerCartPage></BuyerCartPage>,
+      },
+    ],
+  },
+  {
+    path: "/product",
+    element: <ProductLayout></ProductLayout>,
+    children: [
+      {
+        path: ":id",
+        element: <ProductOnePage></ProductOnePage>,
+      },
+      {
+        path: "",
+        element: <ProductPage></ProductPage>,
+      },
+    ],
+  },
 ]);
+

@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 1000px;
+    background-color: floralwhite;
+    padding:20px;
+    border-radius: 15px;
+}
+
+.chart{
+background-color: aliceblue;
+padding:20px;
+
+margin:15px;
+border-radius: 15px;
+}
+
+.latest-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.p-list, .o-list{
+    background-color: azure;
+    min-width: 500px;
+    padding:20px;
+    
+    margin:15px;
+    border-radius: 15px;
+}
