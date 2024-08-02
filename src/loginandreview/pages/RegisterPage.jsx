@@ -1,6 +1,6 @@
 
-import "../index.css"
-import RegisterForm from "../components/login/RegisterForm.jsx";
+import "../../index.css"
+import RegisterForm from "../../loginandreview/components/login/RegisterForm.jsx";
 import {Link} from "react-router-dom";
 
 const RegisterPage = () => {

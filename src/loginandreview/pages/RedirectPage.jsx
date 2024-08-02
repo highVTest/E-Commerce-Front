@@ -1,7 +1,7 @@
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 import axios from "axios";
-import {REDIRECT_URI} from "../constants.js";
+import {REDIRECT_URI} from "../../constants.js";
 
 const RedirectPage = () => {
     const [searchParams] = useSearchParams();

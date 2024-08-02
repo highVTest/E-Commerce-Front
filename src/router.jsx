@@ -1,9 +1,12 @@
 import {createBrowserRouter} from "react-router-dom";
-import RootLayout from "./pages/RootLayout.jsx";
-import LoginLayout from "./pages/LoginLayout.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx";
-import RedirectPage from "./pages/RedirectPage.jsx";
+import RootLayout from "./loginandreview/pages/RootLayout.jsx";
+import LoginLayout from "./loginandreview/pages/LoginLayout.jsx";
+import LoginPage from "./loginandreview/pages/LoginPage.jsx";
+import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
+import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
+import UploadPage from "./loginandreview/pages/UploadPage.jsx";
+import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
+
 
 export const router= createBrowserRouter([
     {
@@ -34,4 +37,13 @@ export const router= createBrowserRouter([
         path:"/redirect",
         element: <RedirectPage />,
     },
+    {
+        path: '/upload',
+        element: <UploadPage/>,
+    },
+    {
+        path:'/review',
+        element: <ReviewPage/>,
+    },
+
 ]);
