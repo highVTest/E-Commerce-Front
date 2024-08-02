@@ -1,9 +1,6 @@
 import React from 'react';
-import { Box, Container } from '@mantine/core';
-import Header from './Header';
-import SectionTitle from './SectionTitle';
-import ProductList from './ProductList';
-import SearchBar from './SearchBar';
+import { Box } from '@mantine/core';
+import SearchBar from '../components/SearchBar'; // 경로 수정
 
 const CommonLayout = ({ children }) => {
     return (

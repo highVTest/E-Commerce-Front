@@ -44,39 +44,39 @@ const SearchResults = () => {
   };
 
   return (
-      <Container size={800} mt="xl">
-        <Title order={2}>검색 결과</Title>
-        {alert.visible && (
-            <Alert title="알림" icon={<IconHeart />} withCloseButton onClose={() => setAlert({ ...alert, visible: false })}>
-              {alert.message}
-            </Alert>
-        )}
-        <Grid mt="md">
-          {products.map((product, index) => (
-              <Grid.Col span={4} key={product.id}>
-                <Card shadow="sm" padding="lg">
-                  <Card.Section style={{ position: 'relative' }}>
-                    <Image src={product.imageUrl} height={160} alt="상품 이미지" />
-                    <ActionIcon
-                        variant={liked[index] ? "gradient" : "default"}
-                        size="xl"
-                        aria-label="Gradient action icon"
-                        gradient={liked[index] ? { from: 'red', to: 'red', deg: 360 } : null}
-                        style={{ position: 'absolute', top: 10, right: 10 }}
-                        onClick={() => handleLikeClick(index)}
-                    >
-                      <IconHeart style={{ width: rem(24), height: rem(24) }} />
-                    </ActionIcon>
-                  </Card.Section>
-                  <Flex justify="space-between" align="center" mt="md">
-                    <Text weight={500}>{product.title}</Text>
-                    <Text size="sm" color="dimmed">{product.price}</Text>
-                  </Flex>
-                </Card>
-              </Grid.Col>
-          ))}
-        </Grid>
-      </Container>
+    <Container size={800} mt="xl">
+      <Title order={2}>검색 결과</Title>
+      {alert.visible && (
+        <Alert title="알림" icon={<IconHeart />} withCloseButton onClose={() => setAlert({ ...alert, visible: false })}>
+          {alert.message}
+        </Alert>
+      )}
+      <Grid mt="md">
+        {products.map((product, index) => (
+          <Grid.Col span={4} key={product.id}>
+            <Card shadow="sm" padding="lg">
+              <Card.Section style={{ position: 'relative' }}>
+                <Image src={product.imageUrl} height={160} alt="상품 이미지" />
+                <ActionIcon
+                  variant={liked[index] ? "gradient" : "default"}
+                  size="xl"
+                  aria-label="Gradient action icon"
+                  gradient={liked[index] ? { from: 'red', to: 'red', deg: 360 } : null}
+                  style={{ position: 'absolute', top: 10, right: 10 }}
+                  onClick={() => handleLikeClick(index)}
+                >
+                  <IconHeart style={{ width: rem(24), height: rem(24) }} />
+                </ActionIcon>
+              </Card.Section>
+              <Flex justify="space-between" align="center" mt="md">
+                <Text weight={500}>{product.title}</Text>
+                <Text size="sm" color="dimmed">{product.price}</Text>
+              </Flex>
+            </Card>
+          </Grid.Col>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 
