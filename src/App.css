@@ -1,10 +1,12 @@
-.top-bar{
+.top-bar {
     display: flex;
     width: auto;
     height: 150px;
     background-color: rgb(226, 213, 213);
     padding: 20px;
     align-items: center;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -106,3 +108,4 @@ nav a:hover {
   font-size: 0.875rem;
   color: #666;
 }
+
