@@ -8,4 +8,12 @@ const client = axios.create({
 client.get("/api/v1")
     .then(r=> r.data)
 
+
+export const apiClient = axios.create({
+    baseURL: import.meta.env.VITE_HIGH_V_URL,
+    headers: {
+      "Access-Control-Allow-Origin": "*", // CORS
+    },
+  });
+
 export default client

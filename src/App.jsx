@@ -2,6 +2,7 @@ import { Button } from '@mantine/core';
 import './App.css'
 import {useState} from "react";
 import PaymentModal from "./payment/components/PaymentModal.jsx";
+import '@mantine/core/styles.css';
 
 function App() {
 

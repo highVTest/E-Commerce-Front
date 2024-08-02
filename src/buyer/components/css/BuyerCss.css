@@ -1,0 +1,27 @@
+.buyer-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    /* background-color: green; */
+
+    width: 800px;
+    margin: auto;
+    height: 100vh;
+}
+.buyer-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    /* background-color: green; */
+
+    width: 800px;
+    margin: auto;
+    /* height: 100vh; */
+}
+.profile-image {
+    margin-left : 50px;    
+}

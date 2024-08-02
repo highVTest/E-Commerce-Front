@@ -1,18 +1,35 @@
-import { apiClient } from "./client";
+import { apiClient } from "../client";
 
 
-export const addItemIntoCart = async (productId) => {
-  return apiClient.post(`/api/v1/cart/${productId}`, { productId });
+
+export const addItemIntoCart = async (token, productId) => {
+  return apiClient.post(`cart/${productId}`,{},{
+    headers : {
+      Authorization : `Bearer ${token}`
+    }
+  });
 };
 
-export const getMyCart = async () => {
-    return apiClient.get(`/api/v1/cart`);
+export const getMyCart = async (token) => {
+    return apiClient.get(`cart`,{
+      headers : {
+        Authorization : `Bearer ${token}`
+      }
+    });
   };
 
   export const updateIntoCart = async (productId) => {
-    return apiClient.put(`/api/v1/cart/${productId}`, { productId });
+    return apiClient.put(`cart/${productId}`, { },{
+      headers : {
+        Authorization : `Bearer ${token}`
+      }
+    });
   };
 
   export const deleteItemIntoCart = async (productId) => {
-    return apiClient.delete(`/api/v1/cart/${productId}`, { productId });
+    return apiClient.delete(`cart/${productId}`, { },{
+      headers : {
+        Authorization : `Bearer ${token}`
+      }
+    });
   };
