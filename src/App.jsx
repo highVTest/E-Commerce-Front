@@ -4,7 +4,7 @@ import './App.css';
 import HomePage from './homepage/pages/HomePage';
 import SearchPage from './homepage/pages/SearchPage';
 import ProductDetailPage from './homepage/pages/ProductDetailPage';
-import PaymentPage from './homepage/pages/PaymentPage'; // 경로 수정
+import PaymentPage from './homepage/pages/PaymentPage';
 import '@mantine/core/styles.css';
 
 function App() {
