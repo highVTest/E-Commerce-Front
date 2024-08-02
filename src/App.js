@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import './App.css';
-import HomePage from './pages/HomePage';
-import SearchPage from './pages/SearchPage';
-import ProductDetailPage from './pages/ProductDetailPage';
-import PaymentPage from './pages/PaymentPage'; 
-import CommonLayout from './components/CommonLayout'; 
+import HomePage from './homepage/pages/HomePage';
+import SearchPage from './homepage/pages/SearchPage';
+import ProductDetailPage from './homepage/pages/ProductDetailPage';
+import PaymentPage from './homepage/pages/PaymentPage';
+import CommonLayout from './homepage/components/CommonLayout';
 import '@mantine/core/styles.css';
 
 function App() {

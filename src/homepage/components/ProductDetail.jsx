@@ -42,28 +42,28 @@ const ProductDetail = () => {
   };
 
   return (
-    <>
-      {alert.visible && (
-        <Alert title="알림" icon={<IconHeart />} withCloseButton onClose={() => setAlert({ ...alert, visible: false })}>
-          {alert.message}
-        </Alert>
-      )}
-      <Grid mt="md">
-        <Grid.Col span={4}>
-          <Image src="/path/to/your/image.jpg" alt="상품 이미지" />
-        </Grid.Col>
-        <Grid.Col span={8}>
-          <Title order={2}>상품명</Title>
-          <Text>카테고리</Text>
-          <Text>가격</Text>
-          <Text>간단 설명</Text>
-          <Button mt="md" onClick={handlePurchaseClick}>구매하기</Button>
-          <Button mt="md" ml="sm" onClick={handleLikeClick}>
-            찜하기
-          </Button>
-        </Grid.Col>
-      </Grid>
-    </>
+      <>
+        {alert.visible && (
+            <Alert title="알림" icon={<IconHeart />} withCloseButton onClose={() => setAlert({ ...alert, visible: false })}>
+              {alert.message}
+            </Alert>
+        )}
+        <Grid mt="md">
+          <Grid.Col span={4}>
+            <Image src="/path/to/your/image.jpg" alt="상품 이미지" />
+          </Grid.Col>
+          <Grid.Col span={8}>
+            <Title order={2}>상품명</Title>
+            <Text>카테고리</Text>
+            <Text>가격</Text>
+            <Text>간단 설명</Text>
+            <Button mt="md" onClick={handlePurchaseClick}>구매하기</Button>
+            <Button mt="md" ml="sm" onClick={handleLikeClick}>
+              찜하기
+            </Button>
+          </Grid.Col>
+        </Grid>
+      </>
   );
 };
 
