@@ -11,10 +11,9 @@ import { ModalsProvider } from "@mantine/modals";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <MantineProvider>
-      <ModalsProvider>
-        <RouterProvider router={router} />
-      </ModalsProvider>
-    </MantineProvider>
+      <MantineProvider>
+    <RouterProvider router={router} />
+      </MantineProvider>
   </React.StrictMode>
 );
+
