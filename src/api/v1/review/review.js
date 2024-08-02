@@ -23,10 +23,9 @@ export const deleteReview = async (id) => {
 export const getProductReviews = async () => {
     const response = await reviewClient().get("/reviews");
 
-    return response.data
-
+    return response.data;
 };
 
-// export const getBuyerReviews = async () => {
-//     return apiClient.get(`/api/v1/reviews/buyer`);
-// };
+export const getBuyerReviews = async () => {
+    return apiClient.get(`/api/v1/reviews/buyer`);
+};
