@@ -1,7 +1,7 @@
 import { apiClient } from "./client";
 
 
-export const signUp = async () => {
+export const buyerSignUp = async () => {
   return apiClient.post(`/api/v1/buyer/user_signup`);
 };
 

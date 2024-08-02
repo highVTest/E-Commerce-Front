@@ -1,0 +1,8 @@
+.field-set{
+    display: flex;
+}
+
+.payment-set{
+    display: flex;
+    justify-content: space-between;
+}
