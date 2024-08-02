@@ -1,5 +1,13 @@
-import { apiClient } from "./client";
+import { apiClient } from "../client";
 
+export const buyerPayment = async (token, cartIdList,couponIdList ) => {
+    return apiClient.post("/payments", {cartIdList,couponIdList},{
+        headers : {
+          Authorization : `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      })
+}
 
 export const buyerRequestComplain = async (shopId, orderId) => {
   return apiClient.patch(`/api/v1/buyer/complain/${shopId}/${orderId}`, { shopId, orderId });
