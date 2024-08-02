@@ -23,7 +23,7 @@ export const getProductById = async (productId) => {
 };
 
 export const getAllProducts = async () => {
-    return apiClient.get(`/api/v1/products/all`);
+    return apiClient.get(`products/all`);
 };
 
 export const getProductsByCategory = async () => {

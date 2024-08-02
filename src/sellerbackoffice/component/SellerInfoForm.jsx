@@ -1,18 +1,14 @@
 import {TextInput, Textarea,Button,Image,FileInput,Group, PasswordInput} from '@mantine/core';
 import {modals} from "@mantine/modals"
+import {useState} from 'react';
 import "./css/SellerInfoForm.css"
 
-const SellerInfo = ({
-    seller,
-    getSellerDetail,
-    sellerChangeImage,
-    sellerChangeProfile,
-    sellerChangePassword,
-    shopChangeImage,
-    shopChangeProfile
-}) =>{
+const SellerInfoForm = ({sellerUpdateShopInfo}) =>{
+  
+    const seller="1";
+    const [file,setFile]=useState([]);
 
-    const handleSellerImageChange = async(e)=>{
+    const handleSellerImageChange = (e)=>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const file = formData.get("file");
@@ -21,13 +17,10 @@ const SellerInfo = ({
             alert("이미지를 선택해주세요.");
             return;
         }
-        
-        await sellerChangeImage(file);
-
-        window.location.reload();
+        setFile(file);
     }
 
-    const handleShopImageChange = async(e)=>{
+    const handleShopImageChange = (e)=>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const file = formData.get("file");
@@ -36,10 +29,7 @@ const SellerInfo = ({
             alert("이미지를 선택해주세요.");
             return;
         }
-        
-        await shopChangeImage(file);
-
-        window.location.reload();
+        setFile(file);
     }
 
     const handleSellerProfileChange = async (e) => {
@@ -50,23 +40,20 @@ const SellerInfo = ({
         const address = formData.get("address");
         const phone = formData.get("phone");
     
-        await sellerChangeProfile(nickname, address, phone);
+        await sellerChangeProfile(nickname,file, address, phone);
         window.location.reload();
       };
 
-      const handleShopProfileChange = async (e) => {
+      const handleUpdateShopInfo = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
+        const description = formData.get("description")
     
-        const nickname = formData.get("nickName");
-        const address = formData.get("address");
-        const phone = formData.get("phone");
-    
-        await shopChangeProfile(nickname, address, phone);
+        await sellerUpdateShopInfo(description,file);
         window.location.reload();
       };
 
-      const handlePasswordChange = async (e) => {
+      const handleUpdatePassword = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
     
@@ -105,7 +92,7 @@ const SellerInfo = ({
                                 autoContrast
                                 onClick={()=>{
                                     modals.open({
-                                        title:"프로필 수정",
+                                        title:"프로필 이미지 수정",
                                         children:(
                                             <>
                                                 <form onSubmit = {handleSellerImageChange}>
@@ -163,7 +150,7 @@ const SellerInfo = ({
                                 title:"비밀번호 수정",
                                 children:(
                                     <>
-                                        <form onSubmit={handlePasswordChange}>
+                                        <form onSubmit={handleUpdatePassword}>
                                             <PasswordInput
                                                 label="현재 비밀번호"
                                                 placeholder='현재 비밀번호를 입력해주세요'
@@ -207,7 +194,7 @@ const SellerInfo = ({
                                 autoContrast
                                 onClick={()=>{
                                     modals.open({
-                                        title:"프로필 수정",
+                                        title:"상점 이미지 수정",
                                         children:(
                                             <>
                                                 <form onSubmit = {handleShopImageChange}>
@@ -228,30 +215,27 @@ const SellerInfo = ({
                     </div>
                 <div>
                 <div className="shop-info">
-
-                    <TextInput
-                        label = "상점명"
-                        placeholder="상점명"
-                        name="shopname"
-                        className="input-field"
-                    />
                     <div className="input-group">
-                        <label>평점</label>
-                        <span>★★★★☆ (4.0)</span>
+                        <label>상점명</label>
+                        <span>&nbsp;&nbsp;상점 이름</span>
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;평점</label>
+                        <span>&nbsp;&nbsp;★★★★☆ (4.0)</span>
                     </div>
                 </div>
                 <div>
-                    <Textarea
-                        label="상점 설명"
-                        placeholder="상점 설명을 입력하세요"
-                        name="description"
-                        className="input-field"
-                        autosize
-                        minRows={8}
-                        maxRows={8}
-                    />
+                    <form onSubmit={handleUpdateShopInfo}>
+                        <Textarea
+                            label="상점 설명"
+                            placeholder="상점 설명을 입력하세요"
+                            name="description"
+                            className="input-field"
+                            autosize
+                            minRows={8}
+                            maxRows={8}
+                        />
+                        <Button fullWidth color="pink" type="submit">저장</Button>
+                    </form>
                 </div>
-                <Button fullWidth color="pink" className="btn" type="submit">저장</Button>
                 </div>
                 </div>
                 </div>
@@ -260,4 +244,4 @@ const SellerInfo = ({
     );
 };
 
-export default SellerInfo;
+export default SellerInfoForm;

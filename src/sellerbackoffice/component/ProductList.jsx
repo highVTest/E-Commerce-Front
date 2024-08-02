@@ -1,4 +1,5 @@
-import {Button,Image} from '@mantine/core';
+import {Button,Image,TextInput} from '@mantine/core';
+import { modals } from '@mantine/modals';
 import './css/ProductList.css';
 
 const products = [
@@ -23,6 +24,25 @@ const products = [
 ];
 
 const ProductList = () =>{
+    //product 불러오는 코드(서버에서)
+
+    const handlePrice = async(e) =>{
+        e.preventDegfault();
+        const formData = new FormData(e.currentTarget);
+        const price = formData.get("price");
+        await handleProductPrice(price);
+        window.location.reload();
+    }
+
+    const handleQuantity = async(e) =>{
+        e.preventDegfault();
+        const formData = new FormData(e.currentTarget);
+        const quantity = formData.get("quantity");
+        await handleProductQuantity(quantity);
+        window.location.reload();
+    }
+
+
     return(
         <div className="product-list">
             <h1>상품 목록</h1>
@@ -54,11 +74,12 @@ const ProductList = () =>{
                                     title:"재고 수정",
                                     children: (
                                         <>
-                                            <form onSubmit={inventory}>
+                                            <form onSubmit={handlePrice}>
                                                 <TextInput
                                                     label = "가격"
                                                     placeholder='가격을 입력해주세요'
                                                     name="price"
+                                                    className="price"
                                                 />
                                                 <Button fullWidth type="submit">변경하기</Button>
                                                 <Button fullWidth onClick={()=>modals.closeAll()} mt="md">취소</Button>
@@ -76,11 +97,12 @@ const ProductList = () =>{
                                     title:"재고 수정",
                                     children: (
                                         <>
-                                            <form onSubmit={inventory}>
+                                            <form onSubmit={handleQuantity}>
                                                 <TextInput
                                                     label = "수량"
                                                     placeholder='수량을 입력해주세요'
                                                     name="quantity"
+                                                    className="quantity"
                                                 />
                                                 <Button fullWidth type="submit">변경하기</Button>
                                                 <Button fullWidth onClick={()=>modals.closeAll()} mt="md">취소</Button>
