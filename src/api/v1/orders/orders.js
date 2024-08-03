@@ -9,20 +9,38 @@ export const buyerPayment = async (token, cartIdList,couponIdList ) => {
       })
 }
 
-export const buyerRequestComplain = async (shopId, orderId) => {
-  return apiClient.patch(`/api/v1/buyer/complain/${shopId}/${orderId}`, { shopId, orderId });
+export const buyerRequestComplain = async (token, shopId, orderId, complainType, description) => {
+    return apiClient.patch(`/buyer/complain/${shopId}/${orderId}`, {complainType: complainType, description: description}, {
+        headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    })
 };
 
-export const getBuyerOrders = async () => {
-  return apiClient.get(`/api/v1/buyer/order-details`);
+export const getBuyerOrders = async (token) => {
+    return apiClient.get(`/buyer/order-details`, {
+        headers:{
+            authorization : `Bearer ${token}`,
+        }
+    });
 };
 
-export const getBuyerOrderDetails = async (orderId) => {
-    return apiClient.get(`/api/v1/buyer/order-details/${orderId}`, { orderId });
+export const getBuyerOrderDetails = async (token, orderId) => {
+    return apiClient.get(`/buyer/order-details/${orderId}`, {
+        headers:{
+            authorization : `Bearer ${token}`,
+        }
+    });
 };
 
-export const requestComplainReject = async (shopId, orderId) => {
-    return apiClient.patch(`/api/v1//seller/complain/${shopId}/${orderId}`, { shopId, orderId });
+export const requestComplainReject = async (token, shopId, orderId, complainType, description) => {
+    return apiClient.patch(`/api/v1/seller/complain/${shopId}/${orderId}`, {complainType: complainType, description: description},{
+        headers:{
+            authorization : `Bearer ${token}`,
+            "Content-Type" : "application/json"
+        }
+    });
 };
 
 export const getSellerOrderDetailsAll = async (shopId) => {

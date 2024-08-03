@@ -1,51 +1,46 @@
 import {Button,Image,TextInput} from '@mantine/core';
 import { modals } from '@mantine/modals';
 import './css/ProductList.css';
+import {Link} from "react-router-dom";
 
-const products = [
-    {
-        name: '상품명',
-        price: 89000,
-        quantity: 50,
-        date: '2024-07-31 12:00:13',
-    },
-    {
-        name: '상품명',
-        price: 27000,
-        quantity: 40,
-        date: '2024-07-31 12:02:11',
-    },
-    {
-        name: '상품명',
-        price: 9800,
-        quantity: 13,
-        date: '2024-07-31 12:00:13',
-    },
-];
 
-const ProductList = () =>{
-    //product 불러오는 코드(서버에서)
+const ProductList = ({
+    products,
+    handleProductPrice,
+    handleProductQuantity,
+    handleDeleteProduct
+}) =>{
 
-    const handlePrice = async(e) =>{
-        e.preventDegfault();
+    const handlePrice = async(e,productId) =>{
+        e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const price = formData.get("price");
-        await handleProductPrice(price);
+        await handleProductPrice(productId,Number(price));
         window.location.reload();
     }
 
-    const handleQuantity = async(e) =>{
-        e.preventDegfault();
+    const handleQuantity = async(e,productId) =>{
+        e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const quantity = formData.get("quantity");
-        await handleProductQuantity(quantity);
+        await handleProductQuantity(productId,Number(quantity));
         window.location.reload();
     }
 
+    const handleDelete =async(productId) =>{
+        await handleDeleteProduct(productId);
+        window.location.reload();
+    }
 
     return(
         <div className="product-list">
             <h1>상품 목록</h1>
+            <Link to="/product-create">
+                <Button
+                    color="gray"
+                    className="update-btn"
+                >상품 생성</Button>
+            </Link>
             {products.map((product, index) => (
                 <div className="product-item" key={index}>
                     <div className='image'>
@@ -61,20 +56,27 @@ const ProductList = () =>{
                     </div>
                     <div className="product-info">
                         <h2>{product.name}</h2>
-                        <p>가격: {product.price.toLocaleString()} 원</p>
+                        <p>가격: {product.price} 원</p>
                         <p>수량: {product.quantity} 개</p>
                     </div>
                     <div className="product-actions">
-                    <p>등록 시간 : {product.date}</p>
+                        <p>등록 시간 : {product.createdAt}</p>
+                        <Link to={`/product-update/${product.id}`}>
+                            <Button
+                                color="gray"
+                                className="update-btn"
+                                fullWidth
+                            >상품 수정</Button>
+                        </Link>
                         <Button
                             color="gray"
                             className="update-btn"
                             onClick={()=>{
                                 modals.open({
-                                    title:"재고 수정",
+                                    title:"가격 수정",
                                     children: (
                                         <>
-                                            <form onSubmit={handlePrice}>
+                                            <form onSubmit={(e) => handlePrice(e, product.id)}>
                                                 <TextInput
                                                     label = "가격"
                                                     placeholder='가격을 입력해주세요'
@@ -89,7 +91,7 @@ const ProductList = () =>{
                                 })
                             }}
                         >가격 수정</Button>
-                                                <Button
+                        <Button
                             color="gray"
                             className="update-btn"
                             onClick={()=>{
@@ -97,7 +99,7 @@ const ProductList = () =>{
                                     title:"재고 수정",
                                     children: (
                                         <>
-                                            <form onSubmit={handleQuantity}>
+                                            <form onSubmit={(e) => handleQuantity(e, product.id)}>
                                                 <TextInput
                                                     label = "수량"
                                                     placeholder='수량을 입력해주세요'
@@ -112,6 +114,23 @@ const ProductList = () =>{
                                 })
                             }}
                         >수량 수정</Button>
+                        <Button
+                        color="gray"
+                        className="update-btn"
+                        onClick={()=>{
+                            modals.open({
+                                title:"상품 삭제",
+                                children: (
+                                    <>
+                                        <Button fullWidth onClick={()=>{handleDelete(product.id)}} >YES</Button>
+                                        <Button fullWidth onClick={()=>modals.closeAll()} mt="md">NO</Button>
+                                    </>
+                                )
+                            })
+                        }}
+                        >
+                        상품 삭제
+                        </Button>
                     </div>
                 </div>
             ))}
