@@ -7,8 +7,18 @@ import {
 
 const BuyerFavoriteContainer = () => {
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
 
   const [favorites, setFavorites] = useState([]);
+
+
+  if(!token){
+    alert("로그인을 해주세요");
+    window.location.href = "/login/buyer"
+  }else if(role !== "BUYER"){
+    alert("권한이 없습니다");
+    window.location.href = "/login/buyer"
+  }
 
   const buyerGetFavorite = async () => {
     try {

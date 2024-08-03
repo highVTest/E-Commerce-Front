@@ -4,8 +4,8 @@ import { apiClient } from "../client";
 
 
 
-export const loginSeller = async () => {
-  return apiClient.post(`/api/v1/login/seller`);
+export const loginSeller = async (email, password) => {
+  return apiClient.post(`/login/seller`, {email, password});
 };
 
 export const loginBuyer = async (email,password) => {

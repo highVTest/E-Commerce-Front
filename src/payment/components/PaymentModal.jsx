@@ -15,6 +15,7 @@ function PaymentModal({totalPrice, paymentData, cartIdList, token}) {
             await buyerPayment(token, cartIdList, [])
             alert("결제가 완료 되었습니다")
             close()
+            window.location.href = "/orderDetails"
         }catch (error){
             alert(error)
         }

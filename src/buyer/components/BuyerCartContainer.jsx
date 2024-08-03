@@ -12,6 +12,15 @@ const BuyerCartContainer = () => {
   const [favorites, setFavorites] = useState([]);
 
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  if(!token){
+    alert("로그인을 해주세요");
+    window.location.href = "/login/buyer"
+  }else if(role !== "BUYER"){
+    alert("권한이 없습니다");
+    window.location.href = "/login/buyer"
+  }
 
   const getBuyerCart = async () => {
     const data = await getMyCart(token);

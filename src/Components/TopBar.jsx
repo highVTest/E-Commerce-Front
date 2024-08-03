@@ -1,29 +1,49 @@
 import { Button } from '@mantine/core';
 import {useState} from "react";
+import {Link} from "react-router-dom";
 import "../index.css"
 import "../App.css"
 
 import '@mantine/core/styles.css';
 
+
+
+
 function TopBar() {
-    const [isLogin, setIsLogin] = useState(true);
-    const [isModal, setIsModal] = useState(false);
 
     const token = localStorage.getItem("token");
-    const handlerLogin = () => {
-        if(isLogin === true){
-            setIsLogin(false);
-        } else{
-            setIsLogin(true);
-        }
+    const role = localStorage.getItem("role");
+
+
+    const backOfficeRedirect = () => {
+        window.location.href = "/seller-info"
     }
 
-    const handlerPayment =() =>{
-        if(isModal === true){
-            setIsModal(false);
-        }else {
-            setIsModal(true);
-        }
+    const myPageRedirect = () => {
+        window.location.href = "/buyer/info"
+    }
+
+    const sellerReload =() =>{
+        window.location.href = "/login/seller"
+    }
+
+    const buyerReload =() =>{
+        window.location.href = "/login/buyer"
+    }
+
+    const vaildRole = () => {
+        if(role === "BUYER"){
+            return true;
+        }else if(role === "SELLER"){
+            return false;
+        }else return null
+    }
+
+    const logout = () =>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        alert("로그 아웃이 완료되 었습니다")
+        window.location.href = "/"
     }
 
     return (
@@ -32,16 +52,36 @@ function TopBar() {
                 <div className="circle"></div>
                 <h1>High V</h1>
                 {
-                    (token === null) ?
+                    (token === null && vaildRole() === null) ?
                         <div className='button-container'>
 
-                            <Button to=""variant="filled" className='button' size='lg' color="grape" onClick={handlerLogin}>구매자 로그인</Button>
+                            <Button to="" variant="filled" className='button' size='lg' color="grape"
+                                    onClick={buyerReload}>구매자 로그인</Button>
+                            <Button variant="filled" className='button' size='lg' color="grape"
+                                    onClick={sellerReload}>판매자 로그인</Button>
 
-                            <Button variant="filled" className='button' size='lg' color="grape" onClick={handlerPayment}>판매자 로그인</Button>
                         </div> :
-                        <div className='button-container'>
-                            <Button variant="filled" className='button' size='lg' color="grape" onClick={handlerLogin}>마이페이지로 이동</Button>
-                        </div>
+                        <>
+                        {
+                            ( vaildRole() === true ) ?
+                                <div className='button-container'>
+                                    <Button variant="filled" className='button' size='lg' color="grape" onClick={myPageRedirect}
+                                            >마이페이지로 이동</Button>
+                                    <Button variant="filled" className='button' size='lg' color="grape" onClick={logout}
+                                    >로그 아웃</Button>
+                                </div> :
+                                <div className='button-container'>
+                                    <Button variant="filled" className='button' size='lg' color="grape"
+                                            onClick={backOfficeRedirect}>상품 관리 페이지로 이동</Button>
+                                    <Button variant="filled" className='button' size='lg' color="grape" onClick={logout}
+                                    >로그 아웃</Button>
+                                </div>
+                        }
+                        </>
+
+
+
+
                 }
             </div>
         </>

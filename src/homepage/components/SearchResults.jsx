@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Container, Grid, Card, Image, Text, Title, Flex, ActionIcon, rem, Alert} from '@mantine/core';
 import {IconHeart} from '@tabler/icons-react';
-import {favoriteProduct, getAllProducts} from "../../api/v1/product/product.js";
+import {getAllProducts} from "../../api/v1/product/product.js";
 
 // 제품 데이터를 가져오기 위한 빈 배열 초기화
 const SearchResults = () => {

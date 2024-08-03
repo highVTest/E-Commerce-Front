@@ -1,4 +1,4 @@
-import {Button, Card, Fieldset, Image, Text} from "@mantine/core";
+import { Card, Fieldset, Image, Text} from "@mantine/core";
 import "../css/BuyerOrderListPage.css"
 import {useEffect, useState} from "react";
 import { getBuyerOrders} from "../../api/v1/orders/orders.js";
@@ -9,6 +9,14 @@ const BuyerOrderListPage = () => {
     const [buyerOrder, setBuyerOrder] = useState([]);
 
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    if(!token){
+        alert("로그인을 해주세요")
+        window.location.href = "/login/buyer"
+    }else if(role !== "BUYER"){
+        alert("권한이 없습니다")
+        window.location.href = "/login/buyer"
+    }
 
     const getBuyerOrderList = async () => {
         const data = await getBuyerOrders(token);

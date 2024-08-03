@@ -15,8 +15,13 @@ const BuyerContainer = () => {
   const [buyer, setBuyer] = useState(null);
 
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
   if (!token) {
-    alert("토큰이 없어용 돌아가세요");
+    alert("로그인 해주세요");
+    navigate("/login/buyer");
+  }else if(role !== "BUYER"){
+    alert("권한이 없습니다");
     navigate("/");
   }
 
@@ -80,7 +85,8 @@ const BuyerContainer = () => {
   const isReLogin = (message) => {
     if (message == "Access Denied") {
       alert("다시 로그인 해주세요");
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
+      // localStorage.removeItem("role");
       return;
     }
   };

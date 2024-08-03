@@ -7,7 +7,7 @@ export const register = async (id, Email, password, nickname, ) => {
 };
 
 export const login = async (Email, password) => {
-    const response = await authClient.post("/login", {Email,password});
+    const response = await authClient.post("/login/buyer", {Email,password});
 
     return response.data;
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import ProductUpdateForm from "./ProductUpdateForm";
 
@@ -7,11 +7,15 @@ import {
 } from "../../api/v1/product/product";
 
 const ProductUpdateContainer = () =>{
-    const [product,setProduct]=useState([]);
 
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
     if (!token) {
         alert("No Token");
+        window.location.href = "/login/seller"
+    }else if(role !== "SELLER"){
+        alert("권한이 없습니다")
+        window.location.href = "/login/seller"
     }
 
     const handleUpdateProduct = async (productId,name,description) => {

@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./loginandreview/pages/RootLayout.jsx";
-import LoginLayout from "./buyer/pages/layout/LoginLayout.jsx";
-import LoginPage from "./buyer/pages/BuyerLoginPage.jsx";
+import LoginLayout from "./loginandreview/pages/LoginLayout.jsx";
+import LoginPage from "./loginandreview/pages/LoginPage.jsx";
+// import LoginLayout from "./buyer/pages/layout/LoginLayout.jsx";
+// import LoginPage from "./buyer/pages/BuyerLoginPage.jsx";
 import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
 import UploadPage from "./loginandreview/pages/UploadPage.jsx";
@@ -19,6 +21,8 @@ import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
 import ProductListContainer from "./sellerbackoffice/component/ProductListContainer.jsx";
 import ProductCreateContainer from "./sellerbackoffice/component/ProductCreateContainer.jsx";
 import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
+import SellerLoginPage from "./buyer/pages/SellerLoginPage.jsx";
+import HomePage from "./homepage/pages/HomePage.jsx";
 
 export const router= createBrowserRouter([
     {
@@ -27,7 +31,7 @@ export const router= createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <></>
+                element: <HomePage/>
             }
         ]
     },
@@ -36,7 +40,7 @@ export const router= createBrowserRouter([
         element: <LoginLayout />,
         children: [
             {
-                path:"",
+                path:"buyer",
                 element: <LoginPage />,
             },
             {
@@ -62,7 +66,7 @@ export const router= createBrowserRouter([
     element: <BuyerLayout></BuyerLayout>,
     children: [
       {
-        path: "",
+        path: "info",
         element: <BuyerInfoPage />,
       },
       {
@@ -114,5 +118,13 @@ export const router= createBrowserRouter([
     {
         path:"/seller-info",
         element:<SellerContainer></SellerContainer>
+    },
+    {
+        path:"/login/seller",
+        element: <SellerLoginPage></SellerLoginPage>,
+    },
+    {
+        path:"/orderDetails",
+        element: <BuyerOrderListPage></BuyerOrderListPage>
     }
 ]);

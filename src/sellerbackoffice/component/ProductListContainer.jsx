@@ -12,12 +12,16 @@ import{
 } from "../../api/v1/seller-backoffice/inventoryManagement";
 
 const ProductListContainer=()=>{
-    const navigate = useNavigate();
     const [products,setProducts]=useState([]);
     
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
     if (!token) {
         alert("No Token");
+        window.location.href = "/login/seller"
+    }else if(role !== "SELLER"){
+        alert("권한이 없습니다");
+        window.location.href = "/login/seller"
     }
 
     const handleDeleteProduct = async(productId) =>{

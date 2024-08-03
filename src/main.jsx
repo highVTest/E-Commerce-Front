@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <MantineProvider>
       <ModalsProvider>
           <TopBar/>
-          <App/>
+          {/*<App/>*/}
         <RouterProvider router={router} />
       </ModalsProvider>
     </MantineProvider>

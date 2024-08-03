@@ -9,9 +9,6 @@ const HomePage = () => {
     return (
         <CommonLayout>
             {/* 제목과 버튼 영역 */}
-            <Container size={800} mt="md">
-                <Header />
-            </Container>
 
             {/* 추천 상품 리스트 */}
             <Container size={800} mt="xl">
