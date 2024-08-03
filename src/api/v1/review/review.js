@@ -1,6 +1,5 @@
 
-import {apiClient} from "../client.js";
-
+import {reviewClient} from "../client/reviewClient.js"
 
 
 
@@ -30,13 +29,11 @@ export const getProductReviews = async (token) => {
   return await apiClient.get(`/reviews?productId=2`, {
       headers: {
           Authorization : `Bearer ${token}`
-
-
-      }});
-
+          }
+          })
 
 };
 
-// export const getBuyerReviews = async () => {
-//     return apiClient.get(`/api/v1/reviews/buyer`);
-// };
+export const getBuyerReviews = async () => {
+    return apiClient.get(`/api/v1/reviews/buyer`);
+};

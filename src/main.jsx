@@ -8,12 +8,16 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "./index.css";
 import { ModalsProvider } from "@mantine/modals";
+import App from "./App.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-      <MantineProvider>
-    <RouterProvider router={router} />
-      </MantineProvider>
+    <MantineProvider>
+      <ModalsProvider>
+          <App/>
+        <RouterProvider router={router} />
+      </ModalsProvider>
+    </MantineProvider>
   </React.StrictMode>
 );
 

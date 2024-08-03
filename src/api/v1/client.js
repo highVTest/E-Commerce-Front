@@ -5,4 +5,4 @@ export const apiClient = axios.create({
     headers: {
       "Access-Control-Allow-Origin": "*", // CORS
     },
-  });
+});

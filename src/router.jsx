@@ -1,18 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
 import RootLayout from "./loginandreview/pages/RootLayout.jsx";
-import LoginLayout from "./loginandreview/pages/LoginLayout.jsx";
-import LoginPage from "./loginandreview/pages/LoginPage.jsx";
+import LoginLayout from "./buyer/pages/layout/LoginLayout.jsx";
+import LoginPage from "./buyer/pages/BuyerLoginPage.jsx";
 import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
 import UploadPage from "./loginandreview/pages/UploadPage.jsx";
 import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
-import BuyerLayout from "./buyer/pages/layout/BuyerLayout.jsx";
-import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
-import BuyerCartPage from "./buyer/pages/BuyerCartPage.jsx";
-import ProductPage from "./buyer/pages/ProductPage.jsx";
-import ProductLayout from "./buyer/pages/layout/ProductLayout.jsx";
-import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
-import ProductOnePage from "./buyer/pages/ProductOnePage.jsx";
 
 
 export const router= createBrowserRouter([
@@ -48,10 +41,10 @@ export const router= createBrowserRouter([
         path: '/upload',
         element: <UploadPage/>,
     },
-    {
-        path:'/review',
-        element: <ReviewPage/>,
-    },
+    // {
+    //     path:'/review',
+    //     element: <ReviewPage/>,
+    // },
   {
     path: "/buyer",
     element: <BuyerLayout></BuyerLayout>,
@@ -84,5 +77,27 @@ export const router= createBrowserRouter([
       },
     ],
   },
+  {
+    path:"/product-create",
+    element:<ProductCreateContainer></ProductCreateContainer>
+  },
+  {
+    path:"/product-update",
+    element:<ProductUpdateContainer></ProductUpdateContainer>,
+    children:[
+      {
+        path:":id",
+        element:<ProductUpdateForm></ProductUpdateForm>
+      }
+    ]
+  },
+  {
+    path:"/product-list",
+    element:<ProductListContainer></ProductListContainer>
+  },
+  {
+    path:"/seller-info",
+    element:<SellerContainer></SellerContainer>
+  }
 ]);
 
