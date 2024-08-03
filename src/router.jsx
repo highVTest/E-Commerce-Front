@@ -93,30 +93,28 @@ export const router= createBrowserRouter([
     {
         path: "/buyer-order",
         element: <BuyerOrderListPage/>
+    },
+    {
+        path:"/product-create",
+        element:<ProductCreateContainer></ProductCreateContainer>
+    },
+    {
+        path:"/product-update",
+        element:<ProductUpdateContainer></ProductUpdateContainer>,
+        children:[
+            {
+                path:":id",
+                element:<ProductUpdateForm></ProductUpdateForm>
+            }
+        ]
+    },
+    {
+        path:"/product-list",
+        element:<ProductListContainer></ProductListContainer>
+    },
+    {
+        path:"/seller-info",
+        element:<SellerContainer></SellerContainer>
     }
-]);
-
-  {
-    path:"/product-create",
-    element:<ProductCreateContainer></ProductCreateContainer>
-  },
-  {
-    path:"/product-update",
-    element:<ProductUpdateContainer></ProductUpdateContainer>,
-    children:[
-      {
-        path:":id",
-        element:<ProductUpdateForm></ProductUpdateForm>
-      }
-    ]
-  },
-  {
-    path:"/product-list",
-    element:<ProductListContainer></ProductListContainer>
-  },
-  {
-    path:"/seller-info",
-    element:<SellerContainer></SellerContainer>
-  }
 ]);
 
