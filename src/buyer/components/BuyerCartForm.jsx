@@ -11,11 +11,17 @@ import {
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import PaymentModal from "../../payment/components/PaymentModal.jsx";
 
+// eslint-disable-next-line react/prop-types
 const BuyerCartForm = ({ items, buyerPayments, favorites, favoriteChange }) => {
   const [totalPrice, setTotalPrice] = useState(0);
+  const [paymentData, setPaymentData] = useState([])
+  const [cartIdList, setCartIdList] = useState([])
 
-  const [products, setProducts] = useState([]);
+  const token = localStorage.getItem("token");
+
+  const [products] = useState([]);
 
   const setting = (data) => {
     const isIn = products.indexOf(data.cartId);
@@ -23,9 +29,13 @@ const BuyerCartForm = ({ items, buyerPayments, favorites, favoriteChange }) => {
     if (isIn != -1) {
       products.splice(isIn, isIn + 1);
       setTotalPrice(totalPrice - data.productPrice * data.productQuantity);
+      setPaymentData(prevPaymentData => prevPaymentData.filter(item => item.cartId !== data.cartId));
+      setCartIdList(prevCartIdList => prevCartIdList.filter(item => item !== data.cartId));
     } else {
       products.push(data.cartId);
       setTotalPrice(totalPrice + data.productPrice * data.productQuantity);
+      setPaymentData(prevData => [...prevData, data])
+      setCartIdList(prevCartIdList => [...prevCartIdList, data.cartId]);
     }
   };
 
@@ -44,6 +54,8 @@ const BuyerCartForm = ({ items, buyerPayments, favorites, favoriteChange }) => {
     window.location.reload();
   };
 
+  console.log(paymentData)
+
   return (
     <>
       <Text
@@ -56,6 +68,7 @@ const BuyerCartForm = ({ items, buyerPayments, favorites, favoriteChange }) => {
         장바구니
       </Text>
       <ul>
+        {/* eslint-disable-next-line react/prop-types */}
         {items.map((shop) => {
           return (
             <Stack
@@ -96,7 +109,6 @@ const BuyerCartForm = ({ items, buyerPayments, favorites, favoriteChange }) => {
                           src={item.productImageUrl}
                           h={150}
                           w={150}
-                          fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                         />
                         <Stack align="stretch" justify="center" gap="md">
                           <Group>
@@ -157,9 +169,7 @@ const BuyerCartForm = ({ items, buyerPayments, favorites, favoriteChange }) => {
             <Text fw={500}>총 {products.length}건</Text>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Button variant="outline" color="grape" onClick={payment}>
-              주문하기
-            </Button>
+            <PaymentModal totalPrice={totalPrice} paymentData={paymentData} cartIdList={cartIdList} token={token} />
           </Grid.Col>
         </Grid>
       </Container>

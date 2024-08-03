@@ -1,0 +1,9 @@
+.card{
+    display: flex;
+}
+
+.card-button{
+    margin: 20px;
+    justify-content: end;
+    align-items: end;
+}

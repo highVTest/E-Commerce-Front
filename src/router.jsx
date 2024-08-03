@@ -13,6 +13,7 @@ import ProductOnePage from "./buyer/pages/ProductOnePage.jsx";
 import ProductPage from "./buyer/pages/ProductPage.jsx";
 import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
 import BuyerLayout from "./buyer/pages/layout/BuyerLayout.jsx";
+import BuyerOrderListPage from "./payment/pages/BuyerOrderListPage.jsx";
 
 
 export const router= createBrowserRouter([
@@ -84,5 +85,9 @@ export const router= createBrowserRouter([
       },
     ],
   },
+    {
+        path: "/buyer-order",
+        element: <BuyerOrderListPage/>
+    }
 ]);
 
