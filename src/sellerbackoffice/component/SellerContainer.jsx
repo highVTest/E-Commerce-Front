@@ -1,25 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import SellerInfoForm from "./SellerInfoForm";
 import{
     updateSellerInfo,
-    updateShopInfo
+    updateShopInfo,
+    changePassword,
+    getShopInfo,
+    getSellerInfo,
 } from "../../api/v1/seller-backoffice/sellerInfo";
 
 
 const SellerContainer = () =>{
     //const navigate = useNavigate();
-    const [products, setProducts] = useState([]);
+    const [shop,setShop] = useState([]);
+    const [seller,setSeller] =useState([]);
 
     const token = localStorage.getItem("token");
     if (!token) {
         alert("No Token");
-        navigate("/");
+        navigate("/login");
     }
 
-    const sellerUpdateInfo = async (seller) => {
+    const sellerUpdateInfo = async (nickname,phoneNumber,address) => {
         try {
-            await updateSellerInfo(token, seller);
+            console.log(nickname);
+            console.log(phoneNumber);
+            console.log(address);
+            await updateSellerInfo(token, nickname,phoneNumber,address);
             alert("프로필 수정 완료!");
         } catch (e) {
             const message = e.response.data["errorMessage"];
@@ -28,9 +35,9 @@ const SellerContainer = () =>{
         }
     };
 
-    const sellerUpdateShopInfo = async (description,file) =>{
+    const sellerUpdateShopInfo = async (description) =>{
         try{
-            await updateShopInfo(token,description,file);
+            await updateShopInfo(token,description);
             alert("상점 프로필 수정 완료!");
         }catch(e){
             const message = e.response.data["errorMessage"];
@@ -39,20 +46,40 @@ const SellerContainer = () =>{
         }
     }
 
-    const handleProductImageChange = async (productId, file) => {
-        try {
-            const data = await changeProductImage(token, productId, file);
-            setProducts((prevProducts) =>
-                prevProducts.map((product) =>
-                    product.id === productId ? { ...product, image: data.image } : product
-                )
-            );
-        } catch (e) {
+    const sellerChangePassword = async(oldPassword,newPassword) =>{
+        try{
+            console.log(oldPassword);
+            console.log(newPassword);
+            await changePassword(token,oldPassword,newPassword);
+            alert("상점 프로필 수정 완료!");
+        }catch(e){
             const message = e.response.data["errorMessage"];
             isReLogin(message);
             alert(message);
         }
-    };
+    }
+
+    const sellerGetShopInfo = async() =>{
+        try{
+            const data = await getShopInfo(token);
+            setShop(data.data);
+        }catch(e){
+            const message = e.response.data["errorMessage"];
+            isReLogin(message);
+            alert(message);
+        }
+    }
+
+    const sellerGetMyInfo = async() =>{
+        try{
+            const data = await getSellerInfo(token);
+            setSeller(data.data);
+        }catch(e){
+            const message = e.response.data["errorMessage"];
+            isReLogin(message);
+            alert(message);
+        }
+    }
 
     const isReLogin = (message) => {
         if (message === "Access Denied") {
@@ -61,11 +88,19 @@ const SellerContainer = () =>{
         }
     };
 
+    useEffect(()=>{
+        sellerGetShopInfo();
+        sellerGetMyInfo();
+     },[])
+
     return(
         <div>
             <SellerInfoForm
+                shop={shop}
+                seller={seller}
                 sellerUpdateInfo={sellerUpdateInfo}
                 sellerUpdateShopInfo={sellerUpdateShopInfo}
+                sellerChangePassword={sellerChangePassword}
             ></SellerInfoForm>
         </div>
     );

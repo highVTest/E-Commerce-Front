@@ -25,6 +25,7 @@ h1, h2 {
     flex-direction: row;
     margin-bottom: 15px;
     text-align: left;
+    padding:30px;
 }
 
 .input-field {
