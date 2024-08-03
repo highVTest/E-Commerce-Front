@@ -3,36 +3,40 @@ import {Modal, Button, TextInput, Fieldset, Card, Image, Text} from '@mantine/co
 import "../css/PaymentModal.css"
 import {useEffect, useState} from "react";
 import {buyerPayment} from "../../api/v1/orders/orders.js";
+import {getMyProfile} from "../../api/v1/buyer/buyer.js";
 
 // eslint-disable-next-line react/prop-types
 function PaymentModal({totalPrice, paymentData, cartIdList, token}) {
 
     const [opened, { open, close }] = useDisclosure(false);
-
+    const [buyerData, setBuyerData] = useState([]);
     const reqPayment = async () =>{
         try{
             await buyerPayment(token, cartIdList, [])
-            console.log(cartIdList)
             alert("결제가 완료 되었습니다")
             close()
         }catch (error){
             alert(error)
         }
+    }
 
+    const getBuyerData = async () =>{
+        let data = await getMyProfile(token)
+        setBuyerData(data.data);
     }
 
     useEffect(() => {
+        getBuyerData()
     })
 
-    console.log(paymentData);
 
     return (
         <>
             <Modal opened={opened} onClose={close} title="결제 정보" centered style={{padding:'10px'}}>
                 <Fieldset legend="배송 정보" disabled style={{fontWeight: "bold"}}>
-                    <TextInput label="주문자" placeholder="Your name"/>
-                    <TextInput label="휴대폰 번호" placeholder="Email" mt="md"/>
-                    <TextInput label="배송지" placeholder="Email" mt="md"/>
+                    <TextInput label="주문자" placeholder={buyerData.nickname}/>
+                    <TextInput label="휴대폰 번호" placeholder={buyerData.phoneNumber} mt="md"/>
+                    <TextInput label="배송지" placeholder={buyerData.address} mt="md"/>
                 </Fieldset>
                 <Fieldset legend="주문 상품" disabled fw={1000}>
                     {
