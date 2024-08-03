@@ -50,11 +50,11 @@
     "postcss-simple-vars": "^7.0.1",
     "vite": "^5.3.5"
   },
-  "proxy":"http://localhost:8080"
+  "proxy":"http://localhost:8080",
     "postcss": "^8.4.40",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "vite": "^5.3.5"
   }
 
-}
+
