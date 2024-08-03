@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./loginandreview/pages/RootLayout.jsx";
 import LoginLayout from "./buyer/pages/layout/LoginLayout.jsx";
 import LoginPage from "./buyer/pages/BuyerLoginPage.jsx";
@@ -19,7 +19,6 @@ import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
 import ProductListContainer from "./sellerbackoffice/component/ProductListContainer.jsx";
 import ProductCreateContainer from "./sellerbackoffice/component/ProductCreateContainer.jsx";
 import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
-
 
 export const router= createBrowserRouter([
     {
@@ -119,4 +118,3 @@ export const router= createBrowserRouter([
     element:<SellerContainer></SellerContainer>
   }
 ]);
-
