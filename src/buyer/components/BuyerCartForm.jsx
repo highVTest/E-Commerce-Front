@@ -109,6 +109,7 @@ const BuyerCartForm = ({ items, buyerPayments, favorites, favoriteChange }) => {
                           src={item.productImageUrl}
                           h={150}
                           w={150}
+                          fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                         />
                         <Stack align="stretch" justify="center" gap="md">
                           <Group>

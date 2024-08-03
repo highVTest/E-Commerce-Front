@@ -81,7 +81,7 @@ function OrderDetailsModal({orderShopDetails, orderMasterId}) {
 
     return (
         <>
-            <Modal opened={opened} onClose={close} title="결제 정보" centered style={{padding: '10px'}}>
+            <Modal opened={opened} onClose={close} title="주문 내역 정보" centered style={{padding: '10px'}}>
                 <div className="order-status">
                     <div>{setOrderStatus()}</div>
                     <div className="order-circle" style={setColor()}></div>
@@ -104,9 +104,10 @@ function OrderDetailsModal({orderShopDetails, orderMasterId}) {
                                             component="a"
                                         >
                                             <Image
-                                                src="https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                                                src={it.productImageUrl}
                                                 h={100}
                                                 alt="No way!"
+                                                fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                                             />
                                         </Card>
                                         <div>
