@@ -1,29 +1,23 @@
-import {TextInput, Textarea,Button,Image,FileInput,Group, PasswordInput} from '@mantine/core';
+import {TextInput, Textarea,Button,Image,Group, PasswordInput} from '@mantine/core';
 import {modals} from "@mantine/modals"
-import {useState} from 'react';
 import "./css/SellerInfoForm.css"
 
 const SellerInfoForm = ({
-    // eslint-disable-next-line react/prop-types
+    shop,
+    seller,
     sellerUpdateInfo,
-    // eslint-disable-next-line react/prop-types
-    sellerUpdateShopInfo
-    // eslint-disable-next-line react/prop-types
+    sellerUpdateShopInfo,
+    sellerChangePassword
 }) =>{
-  
-    const seller="1";
-    const [file,setFile]=useState([]);
-
     const handleSellerProfileChange = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
     
-        const nickname = formData.get("nickName");
+        const nickname = formData.get("nickname");
+        const phoneNumber = formData.get("phoneNumber");
         const address = formData.get("address");
-        const phone = formData.get("phone");
-    
-        await sellerUpdateInfo(nickname,file, address, phone);
-        window.location.reload();
+
+        await sellerUpdateInfo(nickname, phoneNumber, address);
       };
 
       const handleUpdateShopInfo = async (e) => {
@@ -31,45 +25,19 @@ const SellerInfoForm = ({
         const formData = new FormData(e.currentTarget);
         const description = formData.get("description")
     
-        await sellerUpdateShopInfo(description,file);
-        window.location.reload();
+        await sellerUpdateShopInfo(description);
       };
 
-      // const handleUpdatePassword = async (e) => {
-      //   e.preventDefault();
-      //   const formData = new FormData(e.currentTarget);
-      //
-      //   const currentPW = formData.get("currentPW");
-      //   const newPW = formData.get("newPW");
-      //   const confirmPW = formData.get("confirmPW");
-      //
-      //   sellerChangePassword(currentPW, newPW, confirmPW);
-      // };
+      const handleUpdatePassword = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+      
+        const oldPassword = formData.get("oldPassword");
+        const newPassword = formData.get("newPassword");
+      
+        sellerChangePassword(oldPassword, newPassword);
+      };
     
-      const handleSellerImageChange = (e)=>{
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const file = formData.get("file");
-
-        if(file.size==0){
-            alert("이미지를 선택해주세요.");
-            return;
-        }
-        setFile(file);
-    };
-
-    const handleShopImageChange = (e)=>{
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const file = formData.get("file");
-
-        if(file.size==0){
-            alert("이미지를 선택해주세요.");
-            return;
-        }
-        setFile(file);
-    };
-
     return(
         <div>
             <div className="sellerinfo-container">
@@ -83,39 +51,25 @@ const SellerInfoForm = ({
                             h={150}
                             w={150}
                             fit="crop"
-                            src={
-                                seller?.profileImage ? seller.profileImage : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                            }
-                            style={{marginTop:15}}
+                            src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                         />
                         <Group style={{marginTop:15}}>
-                            <div className='seller-info'>
-                                
-                            </div>
                             <Button 
                                 w={150}
                                 fullWidth color="pink" 
                                 autoContrast
-                                onClick={()=>{
-                                    modals.open({
-                                        title:"프로필 이미지 수정",
-                                        children:(
-                                            <>
-                                                <form onSubmit = {handleSellerImageChange}>
-                                                    <FileInput
-                                                        label="이미지"
-                                                        placeholder="이미지를 선택해주세요"
-                                                        name="file"/>
-                                                    <br/>
-                                                    <Button fullWidth type="submit">변경하기</Button>
-                                                    <Button fullWidth onClick={()=>modals.closeAll()} mt="md">취소</Button>
-                                                </form>
-                                            </>
-                                        )
-                                    })
-                                }}
                             >이미지 변경</Button>
                         </Group>
+                        <div className='seller-info'>
+                                <label>이름</label>
+                                <span>{seller.nickname}</span>
+                                <label>이메일</label>
+                                <span>{seller.email}</span>
+                                <label>전화번호</label>
+                                <span>{seller.phoneNumber}</span>
+                                <label>주소</label>
+                                <span>{seller.address}</span>
+                            </div>
                     </div>
                 <div className='info-container'>
                     <Button
@@ -131,14 +85,14 @@ const SellerInfoForm = ({
                                                 name="nickname"
                                             />
                                             <TextInput
+                                                label = "핸드폰번호"
+                                                placeholder='핸드폰번호를 입력해주세요'
+                                                name="phoneNumber"
+                                            />
+                                            <TextInput
                                                 label = "주소"
                                                 placeholder='주소를 입력해주세요'
                                                 name="address"
-                                            />
-                                            <TextInput
-                                                label = "핸드폰번호"
-                                                placeholder='핸드폰번호를 입력해주세요'
-                                                name="phone"
                                             />
                                             <Button fullWidth type="submit">변경하기</Button>
                                             <Button fullWidth onClick={()=>modals.closeAll()} mt="md">취소</Button>
@@ -156,17 +110,17 @@ const SellerInfoForm = ({
                                 title:"비밀번호 수정",
                                 children:(
                                     <>
-                                        <form /*onSubmit={handleUpdatePassword}*/>
+                                        <form onSubmit={handleUpdatePassword}>
                                             <PasswordInput
                                                 label="현재 비밀번호"
                                                 placeholder='현재 비밀번호를 입력해주세요'
                                                 withAsterisk
-                                                name="currPW"/>
+                                                name="oldPassword"/>
                                             <PasswordInput
                                                 label="새 비밀번호"
                                                 placeholder='현재 비밀번호를 입력해주세요'
                                                 withAsterisk
-                                                name="currPW"/>
+                                                name="newPassword"/>
                                             <Button fullWidth type="submit">변경하기</Button>
                                             <Button fullWidth onClick={()=>modals.closeAll()} mt="md">취소</Button>
                                         </form>
@@ -198,24 +152,6 @@ const SellerInfoForm = ({
                                 w={150}
                                 fullWidth color="pink" 
                                 autoContrast
-                                onClick={()=>{
-                                    modals.open({
-                                        title:"상점 이미지 수정",
-                                        children:(
-                                            <>
-                                                <form onSubmit = {handleShopImageChange}>
-                                                    <FileInput
-                                                        label="이미지"
-                                                        placeholder="이미지를 선택해주세요"
-                                                        name="file"/>
-                                                    <br/>
-                                                    <Button fullWidth type="submit">변경하기</Button>
-                                                    <Button fullWidth onClick={()=>modals.closeAll()} mt="md">취소</Button>
-                                                </form>
-                                            </>
-                                        )
-                                    })
-                                }}
                                 >이미지 변경</Button>
                         </Group>
                     </div>
@@ -223,9 +159,9 @@ const SellerInfoForm = ({
                 <div className="shop-info">
                     <div className="input-group">
                         <label>상점명</label>
-                        <span>&nbsp;&nbsp;상점 이름</span>
-                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;평점</label>
-                        <span>&nbsp;&nbsp;★★★★☆ (4.0)</span>
+                        <span>{shop.name}</span>
+                        <label>평점</label>
+                        <span>{shop.rate}</span>
                     </div>
                 </div>
                 <div>

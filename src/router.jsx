@@ -5,7 +5,7 @@ import LoginPage from "./loginandreview/pages/LoginPage.jsx";
 import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
 import UploadPage from "./loginandreview/pages/UploadPage.jsx";
-import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
+// import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
 import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
 import BuyerCartPage from "./buyer/pages/BuyerCartPage.jsx";
 import ProductLayout from "./buyer/pages/layout/ProductLayout.jsx";
@@ -13,6 +13,11 @@ import ProductOnePage from "./buyer/pages/ProductOnePage.jsx";
 import ProductPage from "./buyer/pages/ProductPage.jsx";
 import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
 import BuyerLayout from "./buyer/pages/layout/BuyerLayout.jsx";
+import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
+import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
+import ProductListContainer from "./sellerbackoffice/component/ProductListContainer.jsx";
+import ProductCreateContainer from "./sellerbackoffice/component/ProductCreateContainer.jsx";
+import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
 
 
 export const router= createBrowserRouter([
@@ -48,10 +53,10 @@ export const router= createBrowserRouter([
         path: '/upload',
         element: <UploadPage/>,
     },
-    {
-        path:'/review',
-        element: <ReviewPage/>,
-    },
+    // {
+    //     path:'/review',
+    //     element: <ReviewPage/>,
+    // },
   {
     path: "/buyer",
     element: <BuyerLayout></BuyerLayout>,
@@ -84,5 +89,26 @@ export const router= createBrowserRouter([
       },
     ],
   },
+  {
+    path:"/product-create",
+    element:<ProductCreateContainer></ProductCreateContainer>
+  },
+  {
+    path:"/product-update",
+    element:<ProductUpdateContainer></ProductUpdateContainer>,
+    children:[
+      {
+        path:":id",
+        element:<ProductUpdateForm></ProductUpdateForm>
+      }
+    ]
+  },
+  {
+    path:"/product-list",
+    element:<ProductListContainer></ProductListContainer>
+  },
+  {
+    path:"/seller-info",
+    element:<SellerContainer></SellerContainer>
+  }
 ]);
-

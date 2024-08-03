@@ -1,10 +1,11 @@
 import {Button, Stack, Textarea, TextInput,FileInput} from '@mantine/core';
 import {useState} from 'react';
 import './css/ProductForm.css';
+import {Link} from "react-router-dom";
 
-const ProductForm = ({handleCreateProduct}) =>{
-
-    const [file,setFile]=useState([]);
+const ProductCreateForm = ({
+    handleCreateProduct,
+}) =>{
 
     const handleProductSubmit = async (e) => {
         e.preventDefault();
@@ -14,23 +15,9 @@ const ProductForm = ({handleCreateProduct}) =>{
         const quantity = formData.get("quantity");
         const description = formData.get("description");
 
-        await handleCreateProduct(name, price, quantity, description,file);
+        await handleCreateProduct(name, price, quantity, description);
         
-        window.location.reload();
       };
-
-    
-    const handleImageSubmit = (e) =>{
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const file = formData.get("file");
-
-        if(file.size==0){
-            alert("이미지를 선택해주세요")
-            return;
-        }
-        setFile(file);
-    }
 
     return(
     <div>
@@ -71,11 +58,14 @@ const ProductForm = ({handleCreateProduct}) =>{
                             <Button fullWidth color="indigo" type="submit">저장</Button>
                         </Stack>
                     </form>
+                    <Link to="/product-list">
+                        <Button>목록으로</Button>
+                    </Link>
                 </div>
+                {/*
                 <div className="image-area">
                     <h2>상품 이미지 등록</h2>
                     <div className="image-grid">
-                        {/* 이미지 슬롯 */}
                         {Array.from({ length: 9 }).map((_, index) => (
                             <div key={index} className="image-slot"></div>
                         ))}
@@ -93,12 +83,12 @@ const ProductForm = ({handleCreateProduct}) =>{
                         >
                         이미지 추가하기</Button>
                     </form>
-
                 </div>
+                */}
             </div>
         </div>
     </div>
     );
 };
 
-export default ProductForm;
+export default ProductCreateForm;
