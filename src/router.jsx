@@ -13,6 +13,7 @@ import ProductOnePage from "./buyer/pages/ProductOnePage.jsx";
 import ProductPage from "./buyer/pages/ProductPage.jsx";
 import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
 import BuyerLayout from "./buyer/pages/layout/BuyerLayout.jsx";
+import BuyerOrderListPage from "./payment/pages/BuyerOrderListPage.jsx";
 import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
 import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
 import ProductListContainer from "./sellerbackoffice/component/ProductListContainer.jsx";
@@ -89,6 +90,12 @@ export const router= createBrowserRouter([
       },
     ],
   },
+    {
+        path: "/buyer-order",
+        element: <BuyerOrderListPage/>
+    }
+]);
+
   {
     path:"/product-create",
     element:<ProductCreateContainer></ProductCreateContainer>
@@ -112,3 +119,4 @@ export const router= createBrowserRouter([
     element:<SellerContainer></SellerContainer>
   }
 ]);
+

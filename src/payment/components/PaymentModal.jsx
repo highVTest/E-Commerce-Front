@@ -2,128 +2,81 @@ import { useDisclosure } from '@mantine/hooks';
 import {Modal, Button, TextInput, Fieldset, Card, Image, Text} from '@mantine/core';
 import "../css/PaymentModal.css"
 import {useEffect, useState} from "react";
+import {buyerPayment} from "../../api/v1/orders/orders.js";
+import {getMyProfile} from "../../api/v1/buyer/buyer.js";
 
-function PaymentModal() {
-    const priceList = [2000, 3000, 4000]
-    const [totalPrice, setTotalPrice] = useState(0);
+// eslint-disable-next-line react/prop-types
+function PaymentModal({totalPrice, paymentData, cartIdList, token}) {
+
     const [opened, { open, close }] = useDisclosure(false);
-    const [calc, setCalc] = useState(false);
-
-    const handlerTotalPrice = () => {
-        let tempTotalPrice = totalPrice;
-        priceList.forEach((item) => { tempTotalPrice += item });
-        setTotalPrice(tempTotalPrice);
+    const [buyerData, setBuyerData] = useState([]);
+    const reqPayment = async () =>{
+        try{
+            await buyerPayment(token, cartIdList, [])
+            alert("결제가 완료 되었습니다")
+            close()
+        }catch (error){
+            alert(error)
+        }
     }
 
-    const reqPayment = async () => {
-        alert("결제가 완료 되었습니다")
-        close()
+    const getBuyerData = async () =>{
+        let data = await getMyProfile(token)
+        setBuyerData(data.data);
     }
 
     useEffect(() => {
-        if (opened && !calc) {
-            setCalc(true)
-            handlerTotalPrice();
-        }else{
-            setCalc(false)
-            setTotalPrice(0)
-        }
-    }, [opened]);
+        getBuyerData()
+    })
 
 
     return (
         <>
             <Modal opened={opened} onClose={close} title="결제 정보" centered style={{padding:'10px'}}>
                 <Fieldset legend="배송 정보" disabled style={{fontWeight: "bold"}}>
-                    <TextInput label="주문자" placeholder="Your name"/>
-                    <TextInput label="휴대폰 번호" placeholder="Email" mt="md"/>
-                    <TextInput label="배송지" placeholder="Email" mt="md"/>
+                    <TextInput label="주문자" placeholder={buyerData.nickname}/>
+                    <TextInput label="휴대폰 번호" placeholder={buyerData.phoneNumber} mt="md"/>
+                    <TextInput label="배송지" placeholder={buyerData.address} mt="md"/>
                 </Fieldset>
                 <Fieldset legend="주문 상품" disabled fw={1000}>
-                    <Card
-                        shadow="sm"
-                        padding="xxs"
-                        component="a"
-                        target="_blank"
-                    >
-                        <div className="field-set">
-                            <Card
-                                shadow="none"
-                                padding="lg"
-                                component="a"
-                            >
-                                <Image
-                                    src="https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-                                    h={100}
-                                    alt="No way!"
-                                />
-                            </Card>
-                            <div>
-                                <Text fw={1000} size="lg" mt="md">
-                                    상품 정보
-                                </Text>
-                                <Text mt="xs" c="dimmed" size="sm">
-                                    {priceList[0]} 원
-                                </Text>
-                            </div>
-                        </div>
-                    </Card>
-                    <Card
-                        shadow="sm"
-                        padding="xxs"
-                        component="a"
-                        target="_blank"
-                    >
-                        <div className="field-set">
-                            <Card
-                                shadow="none"
-                                padding="lg"
-                                component="a"
-                            >
-                                <Image
-                                    src="https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-                                    h={100}
-                                    alt="No way!"
-                                />
-                            </Card>
-                            <div>
-                                <Text fw={1000} size="lg" mt="md">
-                                    상품 정보
-                                </Text>
-                                <Text mt="xs" c="dimmed" size="sm">
-                                    {priceList[1]} 원
-                                </Text>
-                            </div>
-                        </div>
-                    </Card>
-                    <Card
-                        shadow="sm"
-                        padding="xxs"
-                        component="a"
-                        target="_blank"
-                    >
-                        <div className="field-set">
-                            <Card
-                                shadow="none"
-                                padding="lg"
-                                component="a"
-                            >
-                                <Image
-                                    src="https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-                                    h={100}
-                                    alt="No way!"
-                                />
-                            </Card>
-                            <div>
-                                <Text fw={1000} size="lg" mt="md">
-                                    상품 정보
-                                </Text>
-                                <Text mt="xs" c="dimmed" size="sm">
-                                    {priceList[2]}
-                                </Text>
-                            </div>
-                        </div>
-                    </Card>
+                    {
+                        // eslint-disable-next-line react/prop-types
+                        paymentData.map((item) => {
+                            return (
+                                <>
+                                    <Card
+                                        shadow="sm"
+                                        padding="xxs"
+                                        component="a"
+                                        target="_blank"
+                                    >
+                                        <div className="field-set">
+                                            <Card
+                                                shadow="none"
+                                                padding="lg"
+                                                component="a"
+                                            >
+                                                <Image
+                                                    src={item.productImage}
+                                                    h={100}
+                                                    alt="No way!"
+                                                    fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                                                />
+                                            </Card>
+                                            <div>
+                                                <Text fw={1000} size="lg" mt="md">
+                                                    {item.productName}
+                                                </Text>
+                                                <Text mt="xs" c="dimmed" size="sm">
+                                                    {item.productPrice}
+                                                </Text>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </>
+                            )
+                        })
+                    }
                 </Fieldset>
                 <Fieldset disabled fw={1000}>
                     <div className="payment-set">
