@@ -23,44 +23,46 @@ import ProductCreateContainer from "./sellerbackoffice/component/ProductCreateCo
 import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
 import SellerLoginPage from "./buyer/pages/SellerLoginPage.jsx";
 import HomePage from "./homepage/pages/HomePage.jsx";
+import ProductDetailPage from "./homepage/pages/ProductDetailPage.jsx";
+import ProductDetailContainer from "./homepage/components/ProductDetailContainer.jsx";
 
-export const router= createBrowserRouter([
-    {
-        path: "/",
-        element: <RootLayout />,
-        children: [
-            {
-                path: "",
-                element: <HomePage/>
-            }
-        ]
-    },
-    {
-        path: '/login',
-        element: <LoginLayout />,
-        children: [
-            {
-                path:"buyer",
-                element: <LoginPage />,
-            },
-            {
-                path: 'register',
-                element: <RegisterPage/>,
-            },
-        ],
-    },
-    {
-        path:"/redirect",
-        element: <RedirectPage />,
-    },
-    {
-        path: '/upload',
-        element: <UploadPage/>,
-    },
-    // {
-    //     path:'/review',
-    //     element: <ReviewPage/>,
-    // },
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <LoginLayout />,
+    children: [
+      {
+        path: "buyer",
+        element: <LoginPage />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+    ],
+  },
+  {
+    path: "/redirect",
+    element: <RedirectPage />,
+  },
+  {
+    path: "/upload",
+    element: <UploadPage />,
+  },
+  // {
+  //     path:'/review',
+  //     element: <ReviewPage/>,
+  // },
   {
     path: "/buyer",
     element: <BuyerLayout></BuyerLayout>,
@@ -85,7 +87,7 @@ export const router= createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: <ProductOnePage></ProductOnePage>,
+        element: <ProductDetailPage></ProductDetailPage>,
       },
       {
         path: "",
@@ -93,38 +95,38 @@ export const router= createBrowserRouter([
       },
     ],
   },
-    {
-        path: "/buyer-order",
-        element: <BuyerOrderListPage/>
-    },
-    {
-        path:"/product-create",
-        element:<ProductCreateContainer></ProductCreateContainer>
-    },
-    {
-        path:"/product-update",
-        element:<ProductUpdateContainer></ProductUpdateContainer>,
-        children:[
-            {
-                path:":id",
-                element:<ProductUpdateForm></ProductUpdateForm>
-            }
-        ]
-    },
-    {
-        path:"/product-list",
-        element:<ProductListContainer></ProductListContainer>
-    },
-    {
-        path:"/seller-info",
-        element:<SellerContainer></SellerContainer>
-    },
-    {
-        path:"/login/seller",
-        element: <SellerLoginPage></SellerLoginPage>,
-    },
-    {
-        path:"/orderDetails",
-        element: <BuyerOrderListPage></BuyerOrderListPage>
-    }
+  {
+    path: "/buyer-order",
+    element: <BuyerOrderListPage />,
+  },
+  {
+    path: "/product-create",
+    element: <ProductCreateContainer></ProductCreateContainer>,
+  },
+  {
+    path: "/product-update",
+    element: <ProductUpdateContainer></ProductUpdateContainer>,
+    children: [
+      {
+        path: ":id",
+        element: <ProductUpdateForm></ProductUpdateForm>,
+      },
+    ],
+  },
+  {
+    path: "/product-list",
+    element: <ProductListContainer></ProductListContainer>,
+  },
+  {
+    path: "/seller-info",
+    element: <SellerContainer></SellerContainer>,
+  },
+  {
+    path: "/login/seller",
+    element: <SellerLoginPage></SellerLoginPage>,
+  },
+  {
+    path: "/orderDetails",
+    element: <BuyerOrderListPage></BuyerOrderListPage>,
+  },
 ]);

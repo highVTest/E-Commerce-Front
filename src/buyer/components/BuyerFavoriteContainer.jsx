@@ -11,19 +11,17 @@ const BuyerFavoriteContainer = () => {
 
   const [favorites, setFavorites] = useState([]);
 
-
-  if(!token){
+  if (!token) {
     alert("로그인을 해주세요");
-    window.location.href = "/login/buyer"
-  }else if(role !== "BUYER"){
+    window.location.href = "/login/buyer";
+  } else if (role !== "BUYER") {
     alert("권한이 없습니다");
-    window.location.href = "/login/buyer"
+    window.location.href = "/login/buyer";
   }
 
   const buyerGetFavorite = async () => {
     try {
       const data = await getFavorites(token);
-
       setFavorites(data.data);
     } catch (e) {
       const status = e.response.data["errorCode"];

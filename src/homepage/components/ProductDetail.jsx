@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Grid, Image, Text, Button, Title, Alert } from '@mantine/core';
-import { IconHeart } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
+import { Button, Grid, Image, Text, TextInput, Title } from "@mantine/core";
+import React, { useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
-const ProductDetail = () => {
+const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
   const [liked, setLiked] = useState(false);
-  const [alert, setAlert] = useState({ visible: false, message: '' });
+  const [alert, setAlert] = useState({ visible: false, message: "" });
   const navigate = useNavigate();
 
   const handleLikeClick = () => {
@@ -15,52 +15,83 @@ const ProductDetail = () => {
     // Alert 메시지 설정
     setAlert({
       visible: true,
-      message: newLiked ? '찜하기 완료!' : '찜하기 취소!',
+      message: newLiked ? "찜하기 완료!" : "찜하기 취소!",
     });
-
-    // 데이터베이스에 찜하기 상태 업데이트 (주석으로 작성)
-    /*
-    fetch('/api/update-favorite', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ productId: 1, favorite: newLiked }), // productId를 실제 제품 ID로 교체
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-    */
+  };
+  const handleHeart = (productId) => {
+    favoriteChange(productId);
+    // console.log(productId);
   };
 
   const handlePurchaseClick = () => {
-    navigate('/payment');
+    navigate("/payment");
+  };
+
+  const [amount, setAmount] = useState(1);
+
+  const addCart = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    const amount = formData.get("amount");
+    // console.log(amount);
+    if (amount < 1) {
+      return;
+    }
+    addItemCart(amount);
+
+    window.location.href = "/buyer/cart";
   };
 
   return (
     <>
-      {alert.visible && (
-        <Alert title="알림" icon={<IconHeart />} withCloseButton onClose={() => setAlert({ ...alert, visible: false })}>
+      {/* {alert.visible && (
+        <Alert
+          title="알림"
+          icon={<IconHeart />}
+          withCloseButton
+          onClose={() => setAlert({ ...alert, visible: false })}
+        >
           {alert.message}
         </Alert>
-      )}
+      )} */}
       <Grid mt="md">
         <Grid.Col span={4}>
-          <Image src="/path/to/your/image.jpg" alt="상품 이미지" />
+          <Image
+            src={product?.productImage}
+            fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+          />
         </Grid.Col>
         <Grid.Col span={8}>
-          <Title order={2}>상품명</Title>
-          <Text>카테고리</Text>
-          <Text>가격</Text>
-          <Text>간단 설명</Text>
-          <Button mt="md" onClick={handlePurchaseClick}>구매하기</Button>
-          <Button mt="md" ml="sm" onClick={handleLikeClick}>
+          <Title order={2}>상품명: {product?.name} </Title>
+          <Text>카테고리 : {product?.categoryId}</Text>
+          <Text>가격 : {product?.price}</Text>
+          {/* <Text>간단 설명 : {produc}</Text> */}
+
+          <form onSubmit={addCart}>
+            <TextInput
+              label="상품 수량"
+              value={amount}
+              onChange={(e) => {
+                setAmount(Number(e.target.value));
+              }}
+              name="amount"
+            />
+            <Button mt="md" type="submit">
+              장바구니에 담기
+            </Button>
+          </form>
+
+          {/* <Button mt="md" ml="sm" onClick={handleLikeClick}>
             찜하기
-          </Button>
+          </Button> */}
+          <div onClick={() => handleHeart(product.id)}>
+            {favorite.indexOf(product?.id) != -1 ? (
+              <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
+            ) : (
+              <AiOutlineHeart style={{ fontSize: "30px" }} />
+            )}
+          </div>
         </Grid.Col>
       </Grid>
     </>
