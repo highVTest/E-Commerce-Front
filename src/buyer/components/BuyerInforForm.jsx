@@ -79,9 +79,8 @@ const BuyerInfoForm = ({
             fit="contain"
             src={
               buyer?.profileImage
-                ? buyer.profileImage
-                : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
             }
+            fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
             style={{ marginTop: 15 }}
           />
           <Group style={{ marginLeft: 25, marginTop: 15 }}>

@@ -1,10 +1,11 @@
 import {Button, PasswordInput, Stack, TextInput} from "@mantine/core";
-import {login} from "../../../api/v1/client/auth.js";
 import {useNavigate} from "react-router-dom";
+import {loginBuyer} from "../../../api/v1/auth/auth.js";
 
 
 const LoginForm = () => {
     const navigate = useNavigate(); //로그인 후 지정한 주소로 이동 아마 메인페이지?
+
     const handleSubmit =async (event) => {
         event.preventDefault();
 
@@ -14,11 +15,13 @@ const LoginForm = () => {
 
         console.log(Email, password);
 
-        const data = await login(Email,password);
+        const data = await loginBuyer(Email,password);
         console.log("data: >>", data);
 
-        localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("token", data.data.accessToken);
+        localStorage.setItem("role", "BUYER");
         navigate("/");
+        window.location.reload()
     };
 
     return(

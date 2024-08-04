@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 import ProductCreateForm from "./ProductCreateForm";
 
@@ -8,10 +8,15 @@ import {
 
 
 const ProductCreateContainer = () =>{
-
     const token = localStorage.getItem("token");
-    if (!token) {
-        alert("No Token");
+    const role = localStorage.getItem("role");
+
+    if(!token){
+        alert("토큰이 없습 니다")
+        window.location.href="/login/seller";
+    }else if(role !== "SELLER"){
+        alert("권한이 없습 니다")
+        window.location.href="/login/seller";
     }
     
     const handleCreateProduct = async (name, price, quantity, description) => {
@@ -29,6 +34,7 @@ const ProductCreateContainer = () =>{
         if (message === "Access Denied") {
             alert("다시 로그인 해주세요");
             localStorage.removeItem("token");
+            localStorage.removeItem("role");
         }
     };
 

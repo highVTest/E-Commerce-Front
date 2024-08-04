@@ -1,6 +1,6 @@
 import LoginForm from "../components/LoginForm";
 
-const BuyerLoginPage = () => {
+const SellerLoginPage = () => {
   return (
     <section className="login-section">
       <h2>로그인</h2>
@@ -9,4 +9,4 @@ const BuyerLoginPage = () => {
   );
 };
 
-export default BuyerLoginPage;
+export default SellerLoginPage;
