@@ -3,7 +3,7 @@ import {
   favoriteManagement,
   getFavorites,
 } from "../../api/v1/favorite/favorite";
-import { getMyCart } from "../../api/v1/item-cart/itemCart";
+import { deleteItemIntoCart, getMyCart } from "../../api/v1/item-cart/itemCart";
 import { buyerPayment } from "../../api/v1/orders/orders";
 import BuyerCartForm from "./BuyerCartForm";
 
@@ -14,12 +14,12 @@ const BuyerCartContainer = () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
-  if(!token){
+  if (!token) {
     alert("로그인을 해주세요");
-    window.location.href = "/login/buyer"
-  }else if(role !== "BUYER"){
+    window.location.href = "/login/buyer";
+  } else if (role !== "BUYER") {
     alert("권한이 없습니다");
-    window.location.href = "/login/buyer"
+    window.location.href = "/login/buyer";
   }
 
   const getBuyerCart = async () => {
@@ -85,6 +85,12 @@ const BuyerCartContainer = () => {
     }
   };
 
+  const deleteItem = async (productId) => {
+    // console.log(token);
+    const data = await deleteItemIntoCart(token, productId);
+    alert("상품이 삭제됐습니다.");
+  };
+
   useEffect(() => {
     getBuyerCart();
   }, []);
@@ -96,6 +102,7 @@ const BuyerCartContainer = () => {
         buyerPayments={buyerPayments}
         favorites={favorites}
         favoriteChange={favoriteChange}
+        deleteItem={deleteItem}
       ></BuyerCartForm>
     </div>
   );

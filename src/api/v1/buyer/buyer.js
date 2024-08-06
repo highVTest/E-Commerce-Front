@@ -25,7 +25,7 @@ export const changePassword = async (token, currentPassword, newPassword, confir
 };
 
 export const changeImage = async (token, file) => {
-  return apiClient.patch(`/buyer/profile/image`,{},{file}, {
+  return apiClient.patch(`/buyer/profile/image`,{file}, {
       headers : {
         Authorization : `Bearer ${token}`,
         "Content-Type": "multipart/form-data"

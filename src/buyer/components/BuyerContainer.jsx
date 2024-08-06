@@ -20,7 +20,7 @@ const BuyerContainer = () => {
   if (!token) {
     alert("로그인 해주세요");
     navigate("/login/buyer");
-  }else if(role !== "BUYER"){
+  } else if (role !== "BUYER") {
     alert("권한이 없습니다");
     navigate("/");
   }
@@ -48,7 +48,6 @@ const BuyerContainer = () => {
       // console.log(status);
       // console.log(message);
       isReLogin(message);
-      alert(message);
     }
   };
 
@@ -87,7 +86,8 @@ const BuyerContainer = () => {
       alert("다시 로그인 해주세요");
       // localStorage.removeItem("token");
       // localStorage.removeItem("role");
-      return;
+    } else {
+      alert(message);
     }
   };
   useEffect(() => {
