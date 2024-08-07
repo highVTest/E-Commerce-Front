@@ -24,7 +24,7 @@ import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateCo
 import SellerLoginPage from "./buyer/pages/SellerLoginPage.jsx";
 import HomePage from "./homepage/pages/HomePage.jsx";
 import ProductDetailPage from "./homepage/pages/ProductDetailPage.jsx";
-import ProductDetailContainer from "./homepage/components/ProductDetailContainer.jsx";
+import CouponPage from "./coupon/pages/CouponPage.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -129,4 +129,8 @@ export const router = createBrowserRouter([
     path: "/orderDetails",
     element: <BuyerOrderListPage></BuyerOrderListPage>,
   },
+  {
+    path: "/seller/coupon",
+    element: <CouponPage></CouponPage>,
+  }
 ]);

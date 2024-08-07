@@ -12,7 +12,7 @@ import{
 } from "../../api/v1/seller-backoffice/inventoryManagement";
 
 const ProductListContainer=()=>{
-    const [products,setProducts]=useState([]);
+    const [products,setProducts] = useState([]);
     
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
@@ -23,6 +23,7 @@ const ProductListContainer=()=>{
         alert("권한이 없습니다");
         window.location.href = "/login/seller"
     }
+
 
     const handleDeleteProduct = async(productId) =>{
         try{
@@ -37,9 +38,8 @@ const ProductListContainer=()=>{
     }
 
     const getSellersAllProduct = async() =>{
-        try{ 
+        try{
             const data = await getSellerProducts(token);
-            console.log(data.data);
             setProducts(data.data);
         } catch(e) {
             const message = e.response.data["errorMessage"];
@@ -70,10 +70,10 @@ const ProductListContainer=()=>{
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getSellersAllProduct();
-    },[]);
-    
+    }, []);
+
     return(
         <div>
             <ProductList
@@ -81,6 +81,7 @@ const ProductListContainer=()=>{
                 handleProductPrice={handleProductPrice}
                 handleProductQuantity={handleProductQuantity}
                 handleDeleteProduct={handleDeleteProduct}
+                token={token}
             ></ProductList>
         </div>
     );

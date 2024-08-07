@@ -2,8 +2,10 @@ import { Button, Image, TextInput } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import "./css/ProductList.css";
 import { Link } from "react-router-dom";
+import CreateCouponModal from "../../coupon/components/CreateCouponModal.jsx";
 
 const ProductList = ({
+  token,
   products,
   handleProductPrice,
   handleProductQuantity,
@@ -17,6 +19,7 @@ const ProductList = ({
     window.location.reload();
   };
 
+  console.log(products);
   const handleQuantity = async (e, productId) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -33,12 +36,19 @@ const ProductList = ({
   return (
     <div className="product-list">
       <h1>상품 목록</h1>
-      <Link to="/product-create">
-        <Button color="gray" className="update-btn">
-          상품 생성
-        </Button>
-      </Link>
-      {products.map((product, index) => (
+      <div className="product-backoffice-top-bar">
+        <Link to="/product-create">
+          <Button color="gray" className="top-bar-btn" style={{marginBottom:"10px"}}>
+            상품 생성
+          </Button>
+        </Link>
+        <Link to="/seller/coupon">
+          <Button color="gray" className="top-bar-btn" style={{marginBottom:"10px"}}>
+            내 쿠폰 관리
+          </Button>
+        </Link>
+      </div>
+      {products.content.map((product, index) => (
         <div className="product-item" key={index}>
           <div className="image">
             <Image
@@ -131,6 +141,7 @@ const ProductList = ({
             >
               수량 수정
             </Button>
+            <CreateCouponModal product={product} token={token} />
             <Button
               color="gray"
               className="update-btn"

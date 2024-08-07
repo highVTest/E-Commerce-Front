@@ -2,8 +2,21 @@ import { apiClient } from "../client";
 
 
 
-export const createCoupon = async () => {
-  return apiClient.post(`seller/coupon`);
+export const createCoupon = async (token, data) => {
+  return apiClient.post(`seller/coupon`,{
+      createCouponRequest :{
+          productId : data.productId,
+          discountPolicy : data.discountPolicy,
+          expiredAt : data.expiredAt,
+          quantity : data.quantity,
+          couponName : data.couponName,
+      }
+  }, {
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+      }
+  } );
 };
 
 export const updateCoupon = async (couponId) => {
@@ -18,8 +31,13 @@ export const getSellerCouponById = async (couponId) => {
     return apiClient.get(`seller/coupon/{couponId}`, { couponId });
   };
 
-export const getSellerCouponList = async () => {
-    return apiClient.get(`seller/coupon`);
+export const getSellerCouponList = async (token) => {
+    return apiClient.get(`seller/coupon`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    });
 };
 
 export const getBuyerCouponById = async (couponId) => {
