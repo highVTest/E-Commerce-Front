@@ -1,30 +1,37 @@
 
 import {reviewClient} from "../client/reviewClient.js"
-import {apiClient} from "../client.js";
 
 
-export const addReview = async (review) => {
-  const response = await reviewClient.post("/reviews",review);
 
-  return response.data;
-};
+export const addReview = async (token,productId) => {
+    return await apiClient.post(`/reviews/${productId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+
+
+        }
+    });
+}
 
 export const updateReview = async (review) => {
-  const response = await reviewClient.put('/reviews/${review.id}', review);
+  const response = await apiClient.put('/reviews/${review.id}', review);
 
   return response.data;
 };
 
 export const deleteReview = async (id) => {
-    const response = await reviewClient.delete(`/reviews/${id}`);
+    return await apiClient.delete(`/reviews/${id}`);
 
-    return response.data;
+
   };
 
-export const getProductReviews = async () => {
-    const response = await reviewClient().get("/reviews");
+export const getProductReviews = async (token) => {
+  return await apiClient.get(`/reviews?productId=2`, {
+      headers: {
+          Authorization : `Bearer ${token}`
+          }
+          })
 
-    return response.data;
 };
 
 export const getBuyerReviews = async () => {

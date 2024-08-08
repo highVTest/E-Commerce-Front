@@ -7,6 +7,7 @@ import LoginPage from "./loginandreview/pages/LoginPage.jsx";
 import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
 import UploadPage from "./loginandreview/pages/UploadPage.jsx";
+import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
 // import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
 import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
 import BuyerCartPage from "./buyer/pages/BuyerCartPage.jsx";

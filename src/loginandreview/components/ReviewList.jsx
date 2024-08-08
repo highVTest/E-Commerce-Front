@@ -1,20 +1,35 @@
-import {useEffect, useState} from "react";
-import {getProductReviews} from "../../api/v1/review/review.js";
 
-const ReviewList = () => {
-const [reviews, setReviews] = useState([]);
 
-    useEffect(() => {
-        const fetchReviews = async () => {
-            const data = await getProductReviews();
+const ReviewList = ({reviews, removeReview, toggleReview}) => {
 
-            setReviews(data);
-        };
-        fetchReviews();
-    }, []);
-    return <div>
-        ReviewList
-    </div>
-};
+    return(
+        <div>
+            <h2>
+                리뷰입니다
+            </h2>
+       <ul>
+           {reviews.map((review) => (
+               <li key={review.id}>
+                   <p>id: {review.id}</p>
+                   <p>productId: {review.productId}</p>
+                   <p>completed: {review.complete ? "true" : "false"} </p>
+                   <button
+                   onClick={() =>
+                       toggleReview({
+                           ...review,
+                           completed: !review.completed,
+                       })
+                   }
+                   >
+                   완료
+               </button>
 
-export default ReviewList;
+                   <button onClick={() => removeReview(review.id)}>삭제</button>
+               </li>
+           ))}
+       </ul>
+                 </div>
+                );
+               };
+
+export default ReviewList
