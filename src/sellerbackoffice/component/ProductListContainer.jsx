@@ -40,7 +40,8 @@ const ProductListContainer=()=>{
     const getSellersAllProduct = async() =>{
         try{
             const data = await getSellerProducts(token);
-            setProducts(data.data);
+            setProducts(data.data.content);
+
         } catch(e) {
             const message = e.response.data["errorMessage"];
             //isReLogin(message);

@@ -40,6 +40,8 @@ function PaymentModal({ totalPrice, paymentData, cartIdList, token }) {
     getBuyerData();
   }, []);
 
+  console.log(paymentData)
+
   return (
     <>
       <Modal
@@ -68,7 +70,7 @@ function PaymentModal({ totalPrice, paymentData, cartIdList, token }) {
                     <div className="field-set">
                       <Card shadow="none" padding="lg" component="a">
                         <Image
-                          src={item.productImage}
+                          src={item.productImageUrl}
                           h={100}
                           alt="No way!"
                           fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"

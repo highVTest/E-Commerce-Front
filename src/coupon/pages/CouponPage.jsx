@@ -50,7 +50,6 @@ const CouponPage=()=>{
     useEffect(() => {
         getCoupon()
     },[])
-
     console.log(couponData);
 
     return(
@@ -85,15 +84,16 @@ const CouponPage=()=>{
                     </div>
                     <div className="product-info">
                         <h2>{coupon.couponName}</h2>
-                        <p >쿠폰 정책: {policyKorean(coupon.discountPolicy)}</p>
+                        <p>쿠폰 정책: {policyKorean(coupon.discountPolicy)}</p>
                         {
                             coupon.discountPolicy === 'DISCOUNT_RATE' ? <p>할인율: {coupon.discount} %</p>
                                 : <p>가격 할인 : {coupon.discount} 원 </p>
                         }
+                        <p>쿠폰 개수: {coupon.quantity}</p>
                     </div>
                     <div className="coupon-actions">
                         <p>만료 시간 : {coupon.expiredAt}</p>
-                        <UpdateCouponModal coupon={coupon} />
+                        <UpdateCouponModal token={token} coupon={coupon} />
                         <Button
                             color="gray"
                             className="update-btn"

@@ -4,13 +4,13 @@ import { apiClient } from "../client";
 
 export const createCoupon = async (token, data) => {
   return apiClient.post(`seller/coupon`,{
-      createCouponRequest :{
           productId : data.productId,
           discountPolicy : data.discountPolicy,
+          discount: data.discount,
           expiredAt : data.expiredAt,
           quantity : data.quantity,
           couponName : data.couponName,
-      }
+
   }, {
       headers: {
           Authorization: `Bearer ${token}`,
@@ -19,8 +19,19 @@ export const createCoupon = async (token, data) => {
   } );
 };
 
-export const updateCoupon = async (couponId) => {
-    return apiClient.put(`seller/coupon/${couponId}`, { couponId });
+export const updateCoupon = async (token, data, couponId) => {
+    console.log(data);
+    return apiClient.put(`seller/coupon/${couponId}`, {
+        expiredAt : data.expiredAt,
+        discountPolicy : data.discountPolicy,
+        discount: data.discount,
+        quantity : data.quantity
+
+    }, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }});
   };
 
 export const deleteCoupon = async (couponId) => {

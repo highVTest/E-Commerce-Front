@@ -19,7 +19,6 @@ const ProductList = ({
     window.location.reload();
   };
 
-  console.log(products);
   const handleQuantity = async (e, productId) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -48,7 +47,7 @@ const ProductList = ({
           </Button>
         </Link>
       </div>
-      {products.content.map((product, index) => (
+      {products.map((product, index) => (
         <div className="product-item" key={index}>
           <div className="image">
             <Image

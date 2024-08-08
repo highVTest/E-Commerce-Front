@@ -1,6 +1,4 @@
 import { useDisclosure } from "@mantine/hooks";
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
 import {
     Modal,
     Button,
@@ -19,7 +17,7 @@ import {createCoupon} from "../../api/v1/coupon/coupon.js";
 function CreateCouponModal({token, product}) {
     const [value, setValue] = useState(null);
     const [opened, { open, close }] = useDisclosure(false);
-    const [discountPolicy, setDiscountPolicy] = useState("할인율 설정");
+    const [discountPolicy, setDiscountPolicy] = useState('정책을 선택해 주세요');
     const [discount, setDiscount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(product.price);
     const [expiredAt, setExpiredAt] = useState(null);
@@ -77,21 +75,25 @@ function CreateCouponModal({token, product}) {
     }
 
     const reqCreateCoupon = async () => {
-
+        console.log(quantity);
         try {
-            const data = {
+            const data ={
                 productId : product.id,
                 discountPolicy : dataDiscountPolicy(),
+                discount: discount,
                 expiredAt : expiredAt,
                 quantity : quantity,
                 couponName : couponName,
             }
+            console.log(data)
             await createCoupon(
                 token, data
             )
+
+            alert("쿠폰 발급이 완료 되었습니다")
+            window.location.reload()
         } catch (e){
-            console.log(e.response.data)
-            alert(e.response.data)
+            alert(e.response.data.errorMessage)
         }
 
     }
@@ -106,6 +108,11 @@ function CreateCouponModal({token, product}) {
         } else {
             setExpiredAt(null);
         }
+    };
+
+    const handleQuantity = (e) => {
+        console.log(e.target.value);
+        setQuantity(e.target.value); // 새로운 값을 상태에 저장합니다.
     };
 
     useEffect(() => {
@@ -155,7 +162,7 @@ function CreateCouponModal({token, product}) {
                         style={{marginTop:"5px"}}
                         label="쿠폰 수량 설정"
                         placeholder="쿠폰 수량을 입력하세요"
-                        onChange={(e)=>{setQuantity(e.target.value)}}
+                        onChange={(value)=>{setQuantity(value)}}
                     />
                 </Fieldset>
                 <Fieldset disabled fw={1000}>

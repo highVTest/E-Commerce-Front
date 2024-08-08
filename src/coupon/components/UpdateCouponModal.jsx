@@ -13,16 +13,17 @@ import {
 import "../../payment/css/PaymentModal.css";
 import { useEffect, useState } from "react";
 import { DateInput } from "@mantine/dates";
-import {createCoupon} from "../../api/v1/coupon/coupon.js";
+import {createCoupon, updateCoupon} from "../../api/v1/coupon/coupon.js";
 
 // eslint-disable-next-line react/prop-types
 function UpdateCouponModal({token, coupon}) {
 
     const [opened, { open, close }] = useDisclosure(false);
-    const [discountPolicy, setDiscountPolicy] = useState("할인율 설정");
+    const [discountPolicy, setDiscountPolicy] = useState('정책을 선택해 주세요');
     const [discount, setDiscount] = useState(coupon.discount);
     const [expiredAt, setExpiredAt] = useState(coupon.expiredAt);
     const [quantity, setQuantity] = useState(coupon.quantity);
+
 
     const handlerDiscountPolicy = () => {
 
@@ -60,22 +61,28 @@ function UpdateCouponModal({token, coupon}) {
         }else return 'DISCOUNT_RATE'
     }
 
-    const reqCreateCoupon = async () => {
+    const reqUpdateCoupon = async () => {
+        console.log(dataDiscountPolicy());
+        console.log(discount);
+        console.log(expiredAt);
+        console.log(quantity);
 
         try {
             const data = {
-                productId : product.id,
                 discountPolicy : dataDiscountPolicy(),
+                discount: discount,
                 expiredAt : expiredAt,
-                quantity : quantity,
-                couponName : coupon.couponName,
+                quantity : quantity
             }
-            await createCoupon(
-                token, data
+            await updateCoupon(
+                token, data, coupon.couponId
             )
+
+            alert("쿠폰 업데이트가 완료 되었습니다")
+            window.location.reload();
         } catch (e){
-            console.log(e.response.data)
-            alert(e.response.data)
+            console.log(e.response)
+            alert(e.response.data.errorMessage)
         }
 
     }
@@ -120,13 +127,14 @@ function UpdateCouponModal({token, coupon}) {
                         style={{marginTop:"5px"}}
                         label="쿠폰 수량 설정"
                         placeholder="쿠폰 수량을 입력하세요"
-                        onChange={(e)=>{setQuantity(e.target.value)}}
+                        value={quantity}
+                        onChange={(value)=>{setQuantity(value)}}
                     />
                 </Fieldset>
                 <div>
                     <Button
                         style={{ margin: "10px", float: "right" }}
-                        onClick={reqCreateCoupon}
+                        onClick={reqUpdateCoupon}
                     >
                         쿠폰 업데이트 하기
                     </Button>
