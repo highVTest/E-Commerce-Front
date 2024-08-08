@@ -77,9 +77,7 @@ const BuyerInfoForm = ({
             h={180}
             w={250}
             fit="contain"
-            src={
-              buyer?.profileImage
-            }
+            src={buyer?.profileImage}
             fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
             style={{ marginTop: 15 }}
           />
@@ -299,7 +297,7 @@ const BuyerInfoForm = ({
           marginTop: 0,
         }}
       >
-        <Grid.Col span={6}>
+        <Grid.Col span={4}>
           <Link to="/buyer/cart">
             <Button
               fullWidth
@@ -311,7 +309,19 @@ const BuyerInfoForm = ({
             </Button>
           </Link>
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={4}>
+          <Link to="/orderDetails">
+            <Button
+              fullWidth
+              variant="light"
+              color="rgba(93, 255, 5, 1)"
+              style={{ height: 150, color: "black" }}
+            >
+              주문 내역 보기
+            </Button>
+          </Link>
+        </Grid.Col>
+        <Grid.Col span={4}>
           <Link to="/buyer/favorite">
             <Button
               fullWidth

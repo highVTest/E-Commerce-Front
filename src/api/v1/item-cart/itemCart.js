@@ -2,8 +2,8 @@ import { apiClient } from "../client";
 
 
 
-export const addItemIntoCart = async (token, productId) => {
-  return apiClient.post(`cart/${productId}`,{},{
+export const addItemIntoCart = async (token, productId,quantity) => {
+  return apiClient.post(`cart/${productId}`,{quantity},{
     headers : {
       Authorization : `Bearer ${token}`
     }
@@ -26,8 +26,8 @@ export const getMyCart = async (token) => {
     });
   };
 
-  export const deleteItemIntoCart = async (productId) => {
-    return apiClient.delete(`cart/${productId}`, { },{
+  export const deleteItemIntoCart = async (token, productId) => {
+    return apiClient.delete(`cart/${productId}`,{
       headers : {
         Authorization : `Bearer ${token}`
       }
