@@ -2,8 +2,10 @@ import { apiClient } from "../client";
 
 
 
-export const signUp = async () => {
-  return apiClient.post(`/buyer/user_signup`);
+export const buyerSignUp = async (id, nickname, password, email, profileImage, phoneNumber, address) => {
+  return apiClient.post(`/buyer/user_signup`,{
+    id, nickname, password, email, profileImage, phoneNumber, address
+  });
 };
 
 export const getMyProfile = async (token) => {

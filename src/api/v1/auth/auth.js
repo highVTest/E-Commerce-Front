@@ -12,13 +12,13 @@ export const loginBuyer = async (email,password) => {
   return apiClient.post(`/login/buyer`,{email,password});
 };
 
-export const sendMail = async () => {
-    return apiClient.post("/api/v1/email/send");
+export const sendMail = async (email, role) => {
+    return apiClient.post("email/send",{email, role});
   };
   
 
-export const verifyEmail = async () => {
-  return apiClient.post(`/api/v1/email/confirm`);
+export const verifyEmail = async (email,role, authCode) => {
+  return apiClient.post(`email/confirm?code=${authCode}`,{email,role});
 };
 
 // export const uploadImage = async (token, file) => {

@@ -98,7 +98,7 @@ const BuyerOrderListPage = () => {
           );
         })
       ) : (
-        <div>Loading...</div>
+        <div style={{ marginTop: "200px" }}>Loading...</div>
       )}
     </>
   );

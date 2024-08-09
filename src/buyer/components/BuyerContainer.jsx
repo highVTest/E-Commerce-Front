@@ -44,9 +44,14 @@ const BuyerContainer = () => {
       let imageUrl = "";
 
       if (file) {
-        const dataImage = await uploadImage(token, file);
+        try {
+          const dataImage = await uploadImage(token, file);
+          imageUrl = dataImage.data.imageUrl;
+        } catch (e) {
+          alert(data.data.msg);
+        }
+
         // console.log(dataImage.data);
-        imageUrl = dataImage.data.imageUrl;
       }
 
       const data = await changeImage(token, imageUrl);

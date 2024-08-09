@@ -13,14 +13,20 @@ const LoginForm = () => {
     const password = formData.get("password");
 
     // console.log(Email, password);
+    try {
+      const data = await loginBuyer(Email, password);
+      localStorage.setItem("token", data.data.accessToken);
+      localStorage.setItem("role", "BUYER");
+      navigate("/");
+      window.location.reload();
+    } catch (e) {
+      const message = e.response.data.errorMessage;
+      if (message == "구매자 로그인 실패") {
+        alert("로그인 실패");
+      }
+    }
 
-    const data = await loginBuyer(Email, password);
     // console.log("data: >>", data);
-
-    localStorage.setItem("token", data.data.accessToken);
-    localStorage.setItem("role", "BUYER");
-    navigate("/");
-    window.location.reload();
   };
 
   return (
