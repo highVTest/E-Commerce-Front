@@ -40,7 +40,7 @@ function PaymentModal({ totalPrice, paymentData, cartIdList, token }) {
     getBuyerData();
   }, []);
 
-  console.log(paymentData)
+  console.log(paymentData);
 
   return (
     <>

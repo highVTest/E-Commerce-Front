@@ -1,4 +1,13 @@
-import {Button, Fieldset, Grid, Image, Text, TextInput, Title} from "@mantine/core";
+import {
+  Button,
+  Fieldset,
+  Grid,
+  Image,
+  NumberInput,
+  Text,
+  TextInput,
+  Title,
+} from "@mantine/core";
 import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +42,7 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    const amount = formData.get("amount");
+    // const amount = formData.get("amount");
     // console.log(amount);
     if (amount < 1) {
       return;
@@ -64,27 +73,39 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
         </Grid.Col>
         <Grid.Col span={8}>
           <Fieldset className="display-center">
-            <div style={{display:"flex", margin:"10px"}}>
+            <div style={{ display: "flex", margin: "10px" }}>
               <Title order={2}>상품명: {product?.name} </Title>
-              <div onClick={() => handleHeart(product.id)} style={{marginLeft:"10px", marginTop:"2px"}}>
+              <div
+                onClick={() => handleHeart(product.id)}
+                style={{ marginLeft: "10px", marginTop: "2px" }}
+              >
                 {favorite.indexOf(product?.id) !== -1 ? (
-                    <AiFillHeart style={{color: "red", fontSize: "30px"}}/>
+                  <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
                 ) : (
-                    <AiOutlineHeart style={{fontSize: "30px"}}/>
+                  <AiOutlineHeart style={{ fontSize: "30px" }} />
                 )}
               </div>
             </div>
             <Text>카테고리 : {product?.categoryId}</Text>
             <Text order={3}>가격 : {product?.price}</Text>
-            <form onSubmit={addCart} style={{width: "50%"}}>
-              <TextInput
-                  size="xs"
-                  label="상품 수량"
-                  value={amount}
-                  onChange={(e) => {
-                    setAmount(Number(e.target.value));
-                  }}
-                  name="amount"
+            <form onSubmit={addCart} style={{ width: "50%" }}>
+              {/* <TextInput
+                size="xs"
+                label="상품 수량"
+                value={amount}
+                onChange={(e) => {
+                  setAmount(Number(e.target.value));
+                }}
+                name="amount"
+              /> */}
+              <NumberInput
+                size="xs"
+                label="상품 수량"
+                value={amount}
+                onChange={(e) => {
+                  setAmount(e);
+                }}
+                name="amount"
               />
               <Button mt="md" type="submit">
                 장바구니에 담기
@@ -94,11 +115,9 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
 
           {/* <Text>간단 설명 : {produc}</Text> */}
 
-
           {/* <Button mt="md" ml="sm" onClick={handleLikeClick}>
             찜하기
           </Button> */}
-
         </Grid.Col>
       </Grid>
     </>

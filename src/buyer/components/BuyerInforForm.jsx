@@ -64,7 +64,7 @@ const BuyerInfoForm = ({
     const newPW = formData.get("newPW");
     const confirmPW = formData.get("confirmPW");
 
-    buyerChangePassword(currentPW, newPW, confirmPW);
+    await buyerChangePassword(currentPW, newPW, confirmPW);
   };
 
   return (

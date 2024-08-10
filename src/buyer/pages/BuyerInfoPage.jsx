@@ -5,7 +5,6 @@ const BuyerInfoPage = () => {
   return (
     <>
       <BuyerContainer />
-      {/* <Link to="/">얻ㅇㄴ머ㅏㅇ넘아너</Link> */}
     </>
   );
 };

@@ -8,6 +8,7 @@ import {
   changeProfile,
   getMyProfile,
 } from "../../api/v1/buyer/buyer";
+import { uploadImage } from "../../api/v1/image/image";
 
 const BuyerContainer = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const BuyerContainer = () => {
   const getBuyerDetail = async () => {
     try {
       const data = await getMyProfile(token);
-
+      // console.log(data);
       setBuyer(data.data);
     } catch (e) {
       const status = e.response.data["errorCode"];
@@ -40,8 +41,22 @@ const BuyerContainer = () => {
 
   const buyerChangeImage = async (file) => {
     try {
-      const data = await changeImage(token, file);
-      setBuyer(data.data);
+      let imageUrl = "";
+
+      if (file) {
+        try {
+          const dataImage = await uploadImage(token, file);
+          imageUrl = dataImage.data.imageUrl;
+        } catch (e) {
+          alert(data.data.msg);
+        }
+
+        // console.log(dataImage.data);
+      }
+
+      const data = await changeImage(token, imageUrl);
+      await getBuyerDetail();
+      alert(data.data.msg);
     } catch (e) {
       const status = e.response.data["errorCode"];
       const message = e.response.data["errorMessage"];
@@ -67,15 +82,14 @@ const BuyerContainer = () => {
   const buyerChangePassword = async (currentPW, newPW, confirmPW) => {
     try {
       const data = await changePassword(token, currentPW, newPW, confirmPW);
-      console.log("dddd");
+
       localStorage.removeItem("token");
-      alert(data.data);
+      localStorage.removeItem("role");
+      alert(data.data.msg);
+      window.location.href = "/";
     } catch (e) {
       const status = e.response.data["errorCode"];
       const message = e.response.data["errorMessage"];
-      console.log(e.response.data);
-      console.log(status);
-      console.log(message);
       isReLogin(message);
       alert(message);
     }
