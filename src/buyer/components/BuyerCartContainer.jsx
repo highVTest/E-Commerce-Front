@@ -64,7 +64,7 @@ const BuyerCartContainer = () => {
   const buyerPayments = async (cartIdList, couponIdList) => {
     try {
       const data = await buyerPayment(token, cartIdList, couponIdList);
-      console.log(data);
+      // console.log(data);
       alert(`총${cartIdList.length}건 주문이 완료됐습니다.`);
     } catch (e) {
       const status = e.response.data["errorCode"];
