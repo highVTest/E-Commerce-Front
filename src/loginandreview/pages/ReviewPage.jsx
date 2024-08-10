@@ -21,12 +21,13 @@
 //
 // export default ReviewPage;
 
-import ReviewList from "../../loginandreview/components/ReviewList.jsx";
+
+import ReviewContainer from "../components/review/ReviewContainer.jsx";
 
 const ReviewPage = () => {
     return(
         <div>
-            <ReviewList />
+            <ReviewContainer />
         </div>
     );
 };

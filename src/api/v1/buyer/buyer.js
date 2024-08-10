@@ -2,8 +2,10 @@ import { apiClient } from "../client";
 
 
 
-export const signUp = async () => {
-  return apiClient.post(`/buyer/user_signup`);
+export const buyerSignUp = async (id, nickname, password, email, profileImage, phoneNumber, address) => {
+  return apiClient.post(`/buyer/user_signup`,{
+    id, nickname, password, email, profileImage, phoneNumber, address
+  });
 };
 
 export const getMyProfile = async (token) => {
@@ -24,11 +26,11 @@ export const changePassword = async (token, currentPassword, newPassword, confir
   });
 };
 
-export const changeImage = async (token, file) => {
-  return apiClient.patch(`/buyer/profile/image`,{file}, {
+export const changeImage = async (token, imageUrl) => {
+  return apiClient.patch(`/buyer/profile/image`,{imageUrl}, {
       headers : {
         Authorization : `Bearer ${token}`,
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "application/json"
       }
     });
   };

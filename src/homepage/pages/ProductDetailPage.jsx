@@ -1,18 +1,5 @@
+import { Anchor, Box, Button, Fieldset, Image, Title } from "@mantine/core";
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Title,
-  Box,
-  Anchor,
-  Stack,
-  Text,
-  Center, Button, Image, Fieldset,
-} from "@mantine/core";
-import CommonLayout from "../components/CommonLayout";
-import ProductDetail from "../components/ProductDetail";
-import ProductDescription from "../components/ProductDescription";
-import ProductReview from "../components/ProductReview";
-import { getProductById } from "../../api/v1/product/product";
 import { useParams } from "react-router";
 import {
   favoriteManagement,
@@ -22,6 +9,12 @@ import { addItemIntoCart } from "../../api/v1/item-cart/itemCart";
 import {Link} from "react-router-dom";
 import UpdateCouponModal from "../../coupon/components/UpdateCouponModal.jsx";
 import {getDetailCoupon, issuedCoupon} from "../../api/v1/coupon/coupon.js";
+import { getProductById } from "../../api/v1/product/product";
+import CommonLayout from "../components/CommonLayout";
+import ProductDetail from "../components/ProductDetail";
+import ProdcutReviewContainer from "../components/ProductReviewContainer";
+import ProductReviewPage from "./ProductReviewPage";
+
 
 const ProductDetailPage = () => {
   const token = localStorage.getItem("token");
@@ -59,7 +52,7 @@ const ProductDetailPage = () => {
       }
       await getBuyerFavorites();
     } catch (e) {
-      alert("찜 실패");
+      alert("찜 관련 실패");
     }
   };
 
@@ -68,7 +61,7 @@ const ProductDetailPage = () => {
       alert("1개 이상만 담을 수 있습니다.");
     }
     const data = await addItemIntoCart(token, productId, amount);
-    console.log(data);
+    // console.log(data);
     alert(data.data.msg);
   };
 
@@ -94,14 +87,15 @@ const ProductDetailPage = () => {
   }, []);
 
   return (
-      <CommonLayout>
-        <Fieldset size={800} mt="md">
-          <ProductDetail
-              product={product}
-              favorite={favorite}
-              favoriteChange={favoriteChange}
-              addItemCart={addItemCart}
-          />
+    <CommonLayout>
+      <Fieldset size={800} mt="md">
+        <ProductDetail
+          product={product}
+          favorite={favorite}
+          favoriteChange={favoriteChange}
+          addItemCart={addItemCart}
+        />
+
 
             <Fieldset
                 legend={`지급 가능 쿠폰`}
@@ -163,23 +157,41 @@ const ProductDetailPage = () => {
             </Box>
           </Center>
 
-          {/* <ProductDescription product={product} /> */}
-          <Title order={3} mt="xl">
-            리뷰
-          </Title>
-          {/* <ProductReview /> */}
-          {/* Q&A 섹션 */}
-          <Box id="qa-section" mt="xl">
-            <Title order={3}>Q&A</Title>
-            <Box sx={{minHeight: "300px", backgroundColor: "gray"}}></Box>
+        <Fieldset legend="상세설명">
+          <Box
+            bg="var(--mantine-color-blue-light)"
+            style={{ height: "150px", alignContent: "center" }}
+          >
+            {product?.description}{" "}
           </Box>
-          {/* Q&A로 바로가기 링크 */}
-          <Anchor href="#qa-section" mt="md" size="md">
-            Q&A로 바로가기
-          </Anchor>
         </Fieldset>
 
-      </CommonLayout>
+        <Fieldset legend="리뷰">
+          {/* <Title order={3} mt="xl">
+            리뷰
+          </Title> */}
+          {/* <ProductReviewPage
+            token={token}
+            productId={productId}
+          ></ProductReviewPage> */}
+          <ProdcutReviewContainer
+            token={token}
+            productId={productId}
+          ></ProdcutReviewContainer>
+        </Fieldset>
+
+        {/* <ProductReview /> */}
+        {/* Q&A 섹션 */}
+        <Box id="qa-section" mt="xl">
+          <Title order={3}>Q&A</Title>
+          <Box sx={{ minHeight: "300px", backgroundColor: "gray" }}></Box>
+        </Box>
+        {/* Q&A로 바로가기 링크 */}
+        <Anchor href="#qa-section" mt="md" size="md">
+          Q&A로 바로가기
+        </Anchor>
+      </Fieldset>
+    </CommonLayout>
   );
 };
 

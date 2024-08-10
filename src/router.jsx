@@ -1,30 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "./loginandreview/pages/RootLayout.jsx";
 import LoginLayout from "./loginandreview/pages/LoginLayout.jsx";
 import LoginPage from "./loginandreview/pages/LoginPage.jsx";
+import RootLayout from "./loginandreview/pages/RootLayout.jsx";
 // import LoginLayout from "./buyer/pages/layout/LoginLayout.jsx";
 // import LoginPage from "./buyer/pages/BuyerLoginPage.jsx";
-import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
+import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import UploadPage from "./loginandreview/pages/UploadPage.jsx";
 // import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
-import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
 import BuyerCartPage from "./buyer/pages/BuyerCartPage.jsx";
-import ProductLayout from "./buyer/pages/layout/ProductLayout.jsx";
-import ProductOnePage from "./buyer/pages/ProductOnePage.jsx";
-import ProductPage from "./buyer/pages/ProductPage.jsx";
+import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
 import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
 import BuyerLayout from "./buyer/pages/layout/BuyerLayout.jsx";
-import BuyerOrderListPage from "./payment/pages/BuyerOrderListPage.jsx";
-import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
-import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
-import ProductListContainer from "./sellerbackoffice/component/ProductListContainer.jsx";
-import ProductCreateContainer from "./sellerbackoffice/component/ProductCreateContainer.jsx";
-import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
+import ProductLayout from "./buyer/pages/layout/ProductLayout.jsx";
+import ProductPage from "./buyer/pages/ProductPage.jsx";
 import SellerLoginPage from "./buyer/pages/SellerLoginPage.jsx";
+import CouponPage from "./coupon/pages/CouponPage.jsx";
 import HomePage from "./homepage/pages/HomePage.jsx";
 import ProductDetailPage from "./homepage/pages/ProductDetailPage.jsx";
-import CouponPage from "./coupon/pages/CouponPage.jsx";
+import BuyerOrderListPage from "./payment/pages/BuyerOrderListPage.jsx";
+import ProductCreateContainer from "./sellerbackoffice/component/ProductCreateContainer.jsx";
+import ProductListContainer from "./sellerbackoffice/component/ProductListContainer.jsx";
+import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
+import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
+import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -132,5 +131,5 @@ export const router = createBrowserRouter([
   {
     path: "/seller/coupon",
     element: <CouponPage></CouponPage>,
-  }
+  },
 ]);

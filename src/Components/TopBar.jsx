@@ -53,6 +53,15 @@ function TopBar() {
         {token === null && vaildRole() === null ? (
           <div className="button-container">
             <Button
+              variant="filled"
+              className="button"
+              size="lg"
+              color="grape"
+              onClick={mainPage}
+            >
+              메인 페이지로 이동
+            </Button>
+            <Button
               to=""
               variant="filled"
               className="button"
