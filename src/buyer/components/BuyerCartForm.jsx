@@ -7,8 +7,9 @@ import {
   Image,
   Stack,
   Text,
+  Fieldset
 } from "@mantine/core";
-import { useState } from "react";
+import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import PaymentModal from "../../payment/components/PaymentModal.jsx";
@@ -23,7 +24,6 @@ const BuyerCartForm = ({
 }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [paymentData, setPaymentData] = useState([]);
-  const [cartIdList, setCartIdList] = useState([]);
 
   const token = localStorage.getItem("token");
 
@@ -45,7 +45,6 @@ const BuyerCartForm = ({
       products.push(data.cartId);
       setTotalPrice(totalPrice + data.productPrice * data.productQuantity);
       setPaymentData((prevData) => [...prevData, data]);
-      setCartIdList((prevCartIdList) => [...prevCartIdList, data.cartId]);
     }
   };
 
@@ -92,7 +91,7 @@ const BuyerCartForm = ({
                 justify="center"
                 gap="xs"
                 key={shop.shopId}
-                style={{ marginTop: 15 }}
+                style={{ marginTop: "10px" }}
               >
                 <Text
                   size="xl"
@@ -108,21 +107,21 @@ const BuyerCartForm = ({
                   return (
                     <Grid
                       key={item.cartId}
-                      style={{ width: 700, backgroundColor: "beige" }}
+                      style={{ width: "800px", backgroundColor: "beige", height:"280px", justifyContent:"center"}}
                     >
                       <Grid.Col span={1}>
                         <Checkbox
-                          style={{ marginTop: "7vh", marginLeft: 20 }}
+                          style={{ marginTop: "125px", marginLeft: "20px" }}
                           onClick={() => setting(item)}
                         />
                       </Grid.Col>
-                      <Grid.Col span={11}>
-                        <Group gap="xl" grow style={{ width: 700 }}>
+                      <Fieldset style={{marginTop:"20px"}}>
+                        <Group gap="xs" grow style={{ margin:"10px", width: "600px", height:"200px"}}>
                           <Image
                             radius="md"
                             src={item.productImageUrl}
-                            h={150}
-                            w={150}
+                            h={100}
+                            w={100}
                             fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                           />
                           <Stack align="stretch" justify="center" gap="md">
@@ -131,11 +130,11 @@ const BuyerCartForm = ({
                               <div onClick={() => handleHeart(item.productId)}>
                                 {favorites.indexOf(item.productId) != -1 ? (
                                   <AiFillHeart
-                                    style={{ color: "red", fontSize: "30px" }}
+                                    style={{ color: "red", fontSize: "30px", marginRight:"50px"}}
                                   />
                                 ) : (
                                   <AiOutlineHeart
-                                    style={{ fontSize: "30px" }}
+                                    style={{ fontSize: "30px",  marginRight:"50px" }}
                                   />
                                 )}
                               </div>
@@ -173,7 +172,7 @@ const BuyerCartForm = ({
                             </Button>
                           </Link>
                         </Group>
-                      </Grid.Col>
+                      </Fieldset>
                     </Grid>
                   );
                 })}
@@ -207,7 +206,6 @@ const BuyerCartForm = ({
               <PaymentModal
                 totalPrice={totalPrice}
                 paymentData={paymentData}
-                cartIdList={cartIdList}
                 token={token}
               />
             </Grid.Col>

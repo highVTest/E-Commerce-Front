@@ -12,24 +12,12 @@ import "../css/PaymentModal.css";
 import { useEffect, useState } from "react";
 import { buyerPayment } from "../../api/v1/orders/orders.js";
 import { getMyProfile } from "../../api/v1/buyer/buyer.js";
+import PaymentComponent from "./PaymentComponent.jsx";
 
 // eslint-disable-next-line react/prop-types
-function PaymentModal({ totalPrice, paymentData, cartIdList, token }) {
+function PaymentModal({ totalPrice, paymentData, token }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [buyerData, setBuyerData] = useState([]);
-
-  const reqPayment = async () => {
-    try {
-      await buyerPayment(token, cartIdList, []);
-      alert("결제가 완료 되었습니다");
-      close();
-      window.location.href = "/orderDetails";
-    } catch (error) {
-      const msg = error.response.data.errorMessage;
-      console.log(error);
-      alert(msg);
-    }
-  };
 
   const getBuyerData = async () => {
     let data = await getMyProfile(token);
@@ -40,8 +28,6 @@ function PaymentModal({ totalPrice, paymentData, cartIdList, token }) {
     getBuyerData();
   }, []);
 
-  console.log(paymentData);
-
   return (
     <>
       <Modal
@@ -49,6 +35,7 @@ function PaymentModal({ totalPrice, paymentData, cartIdList, token }) {
         onClose={close}
         title="결제 정보"
         centered
+        size="lg"
         style={{ padding: "10px" }}
       >
         <Fieldset legend="배송 정보" disabled style={{ fontWeight: "bold" }}>
@@ -91,27 +78,7 @@ function PaymentModal({ totalPrice, paymentData, cartIdList, token }) {
             })
           }
         </Fieldset>
-        <Fieldset disabled fw={1000}>
-          <div className="payment-set">
-            <Text mt="xs" size="lg" fw={500}>
-              총 주문 금액
-            </Text>
-            <Text mt="xs" size="lg" fw={1000}>
-              {totalPrice} 원
-            </Text>
-          </div>
-        </Fieldset>
-        <div>
-          <Button
-            onClick={reqPayment}
-            style={{ margin: "10px", float: "right" }}
-          >
-            결제 하기
-          </Button>
-          <Button onClick={close} style={{ margin: "10px", float: "right" }}>
-            닫기
-          </Button>
-        </div>
+        <PaymentComponent token={token} paymentData={paymentData} totalPrice={totalPrice} />
       </Modal>
 
       <Button onClick={open}>결제 하기</Button>

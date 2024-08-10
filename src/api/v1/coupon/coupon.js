@@ -63,7 +63,15 @@ export const getBuyerCouponList = async (token) => {
     });
 };
 
-export const issuedCoupon = async () => {
-    return apiClient.patch(`buyer/coupon/${couponId}`, { couponId });
+export const issuedCoupon = async (token, couponId) => {
+    return apiClient.patch(`buyer/coupon/${couponId}`, { couponId }, {
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    });
 };
+
+export const getDetailCoupon = async (productId) => {
+    return apiClient.get(`coupon/${productId}`, { productId });
+}
 
