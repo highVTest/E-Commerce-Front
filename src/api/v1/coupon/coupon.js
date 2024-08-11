@@ -51,8 +51,12 @@ export const getSellerCouponList = async (token) => {
     });
 };
 
-export const getBuyerCouponById = async (couponId) => {
-    return apiClient.get(`buyer/coupon/${couponId}`, { couponId });
+export const getBuyerCouponById = async (token, productId) => {
+    return apiClient.get(`buyer/coupon/${productId}`,{
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    });
 };
 
 export const getBuyerCouponList = async (token) => {
@@ -75,3 +79,9 @@ export const getDetailCoupon = async (productId) => {
     return apiClient.get(`coupon/${productId}`, { productId });
 }
 
+export const deleteBuyerCoupon = async (token, couponId) => {
+    return apiClient.delete(`buyer/coupon/${couponId}`, {
+        headers : {
+            Authorization : `Bearer ${token}`
+        }});
+}

@@ -1,6 +1,5 @@
 
 import { apiClient } from "../client.js";
-import {reviewClient} from "../client/reviewClient.js"
 
 
 
@@ -43,6 +42,10 @@ export const getProductReviews = async (productId) => {
 };
 
 
-export const getBuyerReviews = async () => {
-    return apiClient.get(`/api/v1/reviews/buyer`);
+export const getBuyerReviews = async (token) => {
+    return apiClient.get(`/reviews/buyer`,{
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    });
 };
