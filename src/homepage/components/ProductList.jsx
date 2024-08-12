@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 //   }));
 
 const ProductList = ({ products }) => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   // API를 호출하여 상품 목록을 가져오는 로직
   const getProducts = async () => {
     // console.log("getProducts");

@@ -1,12 +1,4 @@
-import {
-  Anchor,
-  Box,
-  Button,
-  Center,
-  Fieldset,
-  Image,
-  Title,
-} from "@mantine/core";
+import { Anchor, Box, Button, Fieldset, Image, Title } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router";
@@ -15,10 +7,12 @@ import {
   getFavorites,
 } from "../../api/v1/favorite/favorite";
 import { addItemIntoCart } from "../../api/v1/item-cart/itemCart";
-import { Link } from "react-router-dom";
-import UpdateCouponModal from "../../coupon/components/UpdateCouponModal.jsx";
-import { getDetailCoupon, issuedCoupon } from "../../api/v1/coupon/coupon.js";
-import {getBuyerCouponById, getDetailCoupon, issuedCoupon} from "../../api/v1/coupon/coupon.js";
+
+import {
+  getBuyerCouponById,
+  getDetailCoupon,
+  issuedCoupon,
+} from "../../api/v1/coupon/coupon.js";
 
 import { getProductById } from "../../api/v1/product/product";
 import CommonLayout from "../components/CommonLayout";
@@ -39,20 +33,18 @@ const ProductDetailPage = () => {
     getBuyerFavorites();
   };
 
-  const useBuyerCouponById = async () =>{
-
+  const useBuyerCouponById = async () => {
     try {
       const data = await getBuyerCouponById(token, productId);
       setCouponToBuyer(data);
       console.log(couponToBuyer);
-    }catch (e) {
-      if(e.response.data.errorMessage === "쿠폰을 가지고 있지 않습니다"){
+    } catch (e) {
+      if (e.response.data.errorMessage === "쿠폰을 가지고 있지 않습니다") {
         console.log(e.response.data.errorMessage);
         setCouponToBuyer(null);
       }
     }
-
-  }
+  };
 
   const [favorite, setFavorite] = useState([]);
 
@@ -113,7 +105,6 @@ const ProductDetailPage = () => {
     useBuyerCouponById();
   }, []);
 
-
   return (
     <CommonLayout>
       <Fieldset size={800} mt="md">
@@ -124,63 +115,62 @@ const ProductDetailPage = () => {
           addItemCart={addItemCart}
         />
 
-            <Fieldset
-                legend={`지급 가능 쿠폰`}
-                style={{ margin: "10px" }}
-            >
-              <div className="product-list">
-                {
-                  coupon !== null ? <div className="product-item" key={1}>
-                    <div className="image">
-                      <Image
-                          className="product-image"
-                          radius="md"
-                          h={150}
-                          w={150}
-                          fit="crop"
-                          src={product?.productImage}
-                          //   src={coupon.image}
-                          fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                          style={{marginRight: 15}}
-                      />
-                    </div>
-                    <div className="product-info">
-                      <h2>{coupon.couponName}</h2>
-                      {
-                        (coupon.discountPolicy === "RATE") ? <p>할인율: {coupon.discount} %</p> :
-                            <p>가격 할인 : {coupon.discount} 원</p>
-                      }
+        <Fieldset legend={`지급 가능 쿠폰`} style={{ margin: "10px" }}>
+          <div className="product-list">
+            {coupon !== null ? (
+              <div className="product-item" key={1}>
+                <div className="image">
+                  <Image
+                    className="product-image"
+                    radius="md"
+                    h={150}
+                    w={150}
+                    fit="crop"
+                    src={product?.productImage}
+                    //   src={coupon.image}
+                    fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                    style={{ marginRight: 15 }}
+                  />
+                </div>
+                <div className="product-info">
+                  <h2>{coupon.couponName}</h2>
+                  {coupon.discountPolicy === "RATE" ? (
+                    <p>할인율: {coupon.discount} %</p>
+                  ) : (
+                    <p>가격 할인 : {coupon.discount} 원</p>
+                  )}
 
-                      <p>남은 개수: {coupon.quantity} 개</p>
-                    </div>
-                    <div className="coupon-actions">
-                      <p>만료 시간 : {coupon.expiredAt.split('-')[0]} 년 {coupon.expiredAt.split('-')[1]} 월 {coupon.expiredAt.split('-')[2].slice(0,2)} 일 까지</p>
-                      {
-                        (couponToBuyer === null) ?
-                            <Button
-                                color="gray"
-                                className="update-btn"
-                                style={{marginTop: '5px'}}
-                                onClick={issuedCouponFunc}
-                            >
-                              쿠폰 발급
-                            </Button>:
-                            <Button
-                                color="gray"
-                                className="update-btn"
-                                style={{marginTop: '5px'}}
-                            >
-                              이미 쿠폰을 가지고 있습니다
-                            </Button>
-                      }
-
-                    </div>
-                  </div>
-                      : null
-                }
-
+                  <p>남은 개수: {coupon.quantity} 개</p>
+                </div>
+                <div className="coupon-actions">
+                  <p>
+                    만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
+                    {coupon.expiredAt.split("-")[1]} 월{" "}
+                    {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
+                  </p>
+                  {couponToBuyer === null ? (
+                    <Button
+                      color="gray"
+                      className="update-btn"
+                      style={{ marginTop: "5px" }}
+                      onClick={issuedCouponFunc}
+                    >
+                      쿠폰 발급
+                    </Button>
+                  ) : (
+                    <Button
+                      color="gray"
+                      className="update-btn"
+                      style={{ marginTop: "5px" }}
+                    >
+                      이미 쿠폰을 가지고 있습니다
+                    </Button>
+                  )}
+                </div>
               </div>
-            </Fieldset>
+            ) : null}
+          </div>
+        </Fieldset>
         <Fieldset legend="상세설명">
           <Box
             bg="var(--mantine-color-blue-light)"
