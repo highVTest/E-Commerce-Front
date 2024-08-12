@@ -39,9 +39,6 @@ const BuyerCartForm = ({
       setPaymentData((prevPaymentData) =>
         prevPaymentData.filter((item) => item.cartId !== data.cartId)
       );
-      setCartIdList((prevCartIdList) =>
-        prevCartIdList.filter((item) => item !== data.cartId)
-      );
     } else {
       products.push(data.cartId);
       setTotalPrice(totalPrice + data.productPrice * data.productQuantity);

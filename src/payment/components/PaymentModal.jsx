@@ -52,33 +52,42 @@ function PaymentModal({ totalPrice, paymentData, token }) {
             // eslint-disable-next-line react/prop-types
             paymentData.map((item) => {
               return (
-                <>
-                  <Card shadow="sm" padding="xxs" component="a" target="_blank">
-                    <div className="field-set">
-                      <Card shadow="none" padding="lg" component="a">
-                        <Image
-                          src={item.productImageUrl}
-                          h={100}
-                          alt="No way!"
-                          fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                        />
-                      </Card>
-                      <div>
-                        <Text fw={1000} size="lg" mt="md">
-                          {item.productName}
-                        </Text>
-                        <Text mt="xs" c="dimmed" size="sm">
-                          {item.productPrice}
-                        </Text>
-                      </div>
+                <Card
+                  shadow="sm"
+                  padding="xxs"
+                  component="a"
+                  target="_blank"
+                  key={item.cartId}
+                >
+                  <div className="field-set">
+                    <Card shadow="none" padding="lg" component="a">
+                      <Image
+                        src={item.productImageUrl}
+                        h={100}
+                        alt="No way!"
+                        fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                      />
+                    </Card>
+                    <div>
+                      <Text fw={1000} size="lg" mt="md">
+                        {item.productName}
+                      </Text>
+                      <Text mt="xs" c="dimmed" size="sm">
+                        {item.productPrice}
+                      </Text>
                     </div>
-                  </Card>
-                </>
+                  </div>
+                </Card>
               );
             })
           }
         </Fieldset>
-        <PaymentComponent token={token} paymentData={paymentData} totalPrice={totalPrice} />
+        <PaymentComponent
+          token={token}
+          paymentData={paymentData}
+          totalPrice={totalPrice}
+          close={close}
+        />
       </Modal>
 
       <Button onClick={open}>결제 하기</Button>
