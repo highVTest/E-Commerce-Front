@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid, Card, Image, Text, Button } from "@mantine/core";
 import { getAllProducts } from "../../api/v1/product/product.js";
 import { Link } from "react-router-dom";
@@ -24,6 +24,7 @@ const ProductList = () => {
     for (let i = 0; i < 6; i++) {
       list.push(data.data.content[i]);
     }
+    console.log(data.data);
     setProducts(list);
   };
   useEffect(() => {

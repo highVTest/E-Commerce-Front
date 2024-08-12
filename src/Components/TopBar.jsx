@@ -1,6 +1,4 @@
 import { Button } from "@mantine/core";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import "../index.css";
 import "../App.css";
 
@@ -12,6 +10,10 @@ function TopBar() {
 
   const backOfficeRedirect = () => {
     window.location.href = "/seller-info";
+  };
+
+  const adminBackOfficeRedirect = () => {
+    window.location.href = "/admin-info";
   };
 
   const myPageRedirect = () => {
@@ -124,15 +126,27 @@ function TopBar() {
                 >
                   메인 페이지로 이동
                 </Button>
-                <Button
-                  variant="filled"
-                  className="button"
-                  size="lg"
-                  color="grape"
-                  onClick={backOfficeRedirect}
-                >
-                  관리 페이지로 이동
-                </Button>
+                {
+                  role === "SELLER" ?
+                      <Button
+                          variant="filled"
+                          className="button"
+                          size="lg"
+                          color="grape"
+                          onClick={backOfficeRedirect}
+                      >
+                        관리 페이지로 이동
+                      </Button>:
+                      <Button
+                          variant="filled"
+                          className="button"
+                          size="lg"
+                          color="grape"
+                          onClick={adminBackOfficeRedirect}
+                      >
+                        관리 페이지로 이동
+                      </Button>
+                }
                 <Button
                   variant="filled"
                   className="button"

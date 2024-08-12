@@ -24,6 +24,10 @@ import ProductListContainer from "./sellerbackoffice/component/ProductListContai
 import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
 import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
 import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
+import MyCouponPage from "./coupon/pages/MyCouponPage.jsx";
+import MyReviewPage from "./loginandreview/pages/MyReviewPage.jsx";
+import AdminPage from "./admin/Pages/AdminPage.jsx";
+import StatisticPages from "./sellerbackoffice/Pages/StatisticsPages.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -132,4 +136,20 @@ export const router = createBrowserRouter([
     path: "/seller/coupon",
     element: <CouponPage></CouponPage>,
   },
+  {
+    path: "/buyer/coupon-list",
+    element: <MyCouponPage></MyCouponPage>,
+  },
+  {
+    path: "/buyer/review-list",
+    element: <MyReviewPage></MyReviewPage>,
+  },
+  {
+    path: "/admin-info",
+    element: <AdminPage></AdminPage>,
+  },
+  {
+    path: "/seller-statistic",
+    element: <StatisticPages/>
+  }
 ]);

@@ -16,7 +16,6 @@ import { Link } from "react-router-dom";
 
 const BuyerInfoForm = ({
   buyer,
-  getBuyerDetail,
   buyerChangeImage,
   buyerChangeProfile,
   buyerChangePassword,
@@ -330,6 +329,38 @@ const BuyerInfoForm = ({
               style={{ height: 150, color: "black" }}
             >
               찜 목록 바로가기
+            </Button>
+          </Link>
+        </Grid.Col>
+      </Grid>
+      <Grid
+          style={{
+            height: 150,
+            width: 800,
+            marginTop: 0,
+          }}
+      >
+        <Grid.Col span={6}>
+          <Link to="/buyer/coupon-list">
+            <Button
+                fullWidth
+                variant="light"
+                color="rgba(19, 200, 70, 55)"
+                style={{ height: 150, color: "black" }}
+            >
+              쿠폰 목록 보기
+            </Button>
+          </Link>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <Link to="/buyer/review-list">
+            <Button
+                fullWidth
+                variant="light"
+                color="rgba(200, 255, 5, 1)"
+                style={{ height: 150, color: "black" }}
+            >
+              내 댓글 목록 보기
             </Button>
           </Link>
         </Grid.Col>

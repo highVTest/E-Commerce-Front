@@ -2,6 +2,7 @@ import { Button, Stack, Textarea, TextInput, FileInput } from "@mantine/core";
 import { useState } from "react";
 import "./css/ProductForm.css";
 import { Link } from "react-router-dom";
+import SellerNavComponent from "./SellerNavComponent.jsx";
 
 const ProductCreateForm = ({ handleCreateProduct }) => {
   const handleProductSubmit = async (e) => {
@@ -17,7 +18,8 @@ const ProductCreateForm = ({ handleCreateProduct }) => {
   };
 
   return (
-    <div>
+    <div className="seller">
+      <SellerNavComponent/>
       <div className="product-container">
         <h1>상품 등록</h1>
         <div className="box">
