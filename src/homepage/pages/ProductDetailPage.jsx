@@ -35,6 +35,7 @@ const ProductDetailPage = () => {
       console.log(couponToBuyer);
     }catch (e) {
       if(e.response.data.errorMessage === "쿠폰을 가지고 있지 않습니다"){
+        console.log(e.response.data.errorMessage);
         setCouponToBuyer(null);
       }
     }

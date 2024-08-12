@@ -17,8 +17,9 @@
   width: 100%;
   box-sizing: border-box;
   height: 150px;
+  max-width: 1500px;
+  margin: 20px auto 0 auto;
   background-color: rgb(226, 213, 213);
-  padding: 20px;
   align-items: center;
 }
 
@@ -28,3 +29,4 @@
     justify-content: center;
     align-items: center;
 }
+

@@ -1,7 +1,16 @@
+.seller{
+    display: flex;
+    max-width: 100%;
+    min-width: 1550px;
+    flex-direction: revert;
+    margin: 0 auto;
+}
+
 .sellerinfo-container {
     display:flex;
+    justify-content: center;
     flex-direction: column;
-    max-width: 100%;
+    max-width: 50%;
     min-width: 1000px;
     margin: 0 auto;
     padding: 20px;
