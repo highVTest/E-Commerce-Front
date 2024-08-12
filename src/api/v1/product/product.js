@@ -34,7 +34,7 @@ export const getProductById = async (productId) => {
 };
 
 export const getAllProducts = async () => {
-    return apiClient.get(`products/all`);
+    return apiClient.get(`products/all?page=0&size=10&sort=createdAt,DESC`);
 };
 
 export const getProductsByCategory = async () => {

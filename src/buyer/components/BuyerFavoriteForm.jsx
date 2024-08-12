@@ -1,21 +1,27 @@
 import {
-  Box,
   Button,
   Card,
-  Center,
   Group,
   Image,
   SimpleGrid,
   Stack,
   Text,
 } from "@mantine/core";
+import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
-import ProductOnePage from "../pages/ProductOnePage";
+import { Link } from "react-router-dom";
 
 const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
-  const handleHeart = (productId) => {
-    buyerChangeFavorite(productId);
+  const [wait, setWait] = useState(false);
+
+  const handleHeart = async (productId) => {
+    if (wait == true) {
+      console.log("실행중이다.");
+      return;
+    }
+    setWait(true);
+    await buyerChangeFavorite(productId);
+    setWait(false);
     // console.log(productId);
   };
 

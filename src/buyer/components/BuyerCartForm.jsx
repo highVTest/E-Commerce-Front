@@ -7,7 +7,7 @@ import {
   Image,
   Stack,
   Text,
-  Fieldset
+  Fieldset,
 } from "@mantine/core";
 import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -24,6 +24,7 @@ const BuyerCartForm = ({
 }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [paymentData, setPaymentData] = useState([]);
+  const [wait, setWait] = useState(false);
 
   const token = localStorage.getItem("token");
 
@@ -48,8 +49,15 @@ const BuyerCartForm = ({
     }
   };
 
-  const handleHeart = (productId) => {
-    favoriteChange(productId);
+  const handleHeart = async (productId) => {
+    if (wait == true) {
+      console.log("실행중이다.");
+      return;
+    }
+    setWait(true);
+    await favoriteChange(productId);
+    setWait(false);
+
     // console.log(productId);
   };
 
@@ -107,7 +115,12 @@ const BuyerCartForm = ({
                   return (
                     <Grid
                       key={item.cartId}
-                      style={{ width: "800px", backgroundColor: "beige", height:"280px", justifyContent:"center"}}
+                      style={{
+                        width: "800px",
+                        backgroundColor: "beige",
+                        height: "280px",
+                        justifyContent: "center",
+                      }}
                     >
                       <Grid.Col span={1}>
                         <Checkbox
@@ -115,8 +128,16 @@ const BuyerCartForm = ({
                           onClick={() => setting(item)}
                         />
                       </Grid.Col>
-                      <Fieldset style={{marginTop:"20px"}}>
-                        <Group gap="xs" grow style={{ margin:"10px", width: "600px", height:"200px"}}>
+                      <Fieldset style={{ marginTop: "20px" }}>
+                        <Group
+                          gap="xs"
+                          grow
+                          style={{
+                            margin: "10px",
+                            width: "600px",
+                            height: "200px",
+                          }}
+                        >
                           <Image
                             radius="md"
                             src={item.productImageUrl}
@@ -130,11 +151,18 @@ const BuyerCartForm = ({
                               <div onClick={() => handleHeart(item.productId)}>
                                 {favorites.indexOf(item.productId) != -1 ? (
                                   <AiFillHeart
-                                    style={{ color: "red", fontSize: "30px", marginRight:"50px"}}
+                                    style={{
+                                      color: "red",
+                                      fontSize: "30px",
+                                      marginRight: "50px",
+                                    }}
                                   />
                                 ) : (
                                   <AiOutlineHeart
-                                    style={{ fontSize: "30px",  marginRight:"50px" }}
+                                    style={{
+                                      fontSize: "30px",
+                                      marginRight: "50px",
+                                    }}
                                   />
                                 )}
                               </div>

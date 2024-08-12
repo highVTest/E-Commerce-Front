@@ -24,6 +24,7 @@ import ProductListContainer from "./sellerbackoffice/component/ProductListContai
 import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
 import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
 import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
+import SearchPage from "./homepage/pages/SearchPage.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,15 @@ export const router = createBrowserRouter([
       {
         path: ":id",
         element: <ProductDetailPage></ProductDetailPage>,
+      },
+      {
+        path: ":keyword",
+        children: [
+          {
+            path: ":orderby",
+            element: <SearchPage></SearchPage>,
+          },
+        ],
       },
       {
         path: "",
