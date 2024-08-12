@@ -19,9 +19,9 @@ export const updateSellerInfo = async (token,nickname,phoneNumber,address) => {
     });
   };
 
-export const changePassword = async (token,oldPassword,newPassword) => {
+export const changePassword = async (token,currentPassword,newPassword,confirmNewPassword) => {
   return apiClient.patch(`/sellerInfo/myInfo/changePassword`,
-    {oldPassword,newPassword},{
+    {currentPassword,newPassword,confirmNewPassword},{
     headers:{
       Authorization : `Bearer ${token}`,
       "Content-Type": "application/json"
@@ -45,3 +45,21 @@ export const getSellerInfo = async (token) => {
     }  
   });
 };
+
+export const updateShopImage = async (token, imageUrl) => {
+  return apiClient.patch(`/sellerInfo/myShopInfo/image`,{imageUrl},{
+    headers:{
+      Authorization : `Bearer ${token}`,
+      "Content-Type" : "application/json"
+    }  
+  });
+}
+
+export const updateSellerImage = async (token, imageUrl) => {
+  return apiClient.patch(`/sellerInfo/myInfo/image`,{imageUrl},{
+    headers:{
+      Authorization : `Bearer ${token}`,
+      "Content-Type" : "application/json"
+    }  
+  });
+}

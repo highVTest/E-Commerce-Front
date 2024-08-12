@@ -7,7 +7,10 @@ import {
   changePassword,
   getShopInfo,
   getSellerInfo,
+  updateShopImage,
+  updateSellerImage,
 } from "../../api/v1/seller-backoffice/sellerInfo";
+import { uploadImage } from "../../api/v1/image/image";
 
 const SellerContainer = () => {
   //const navigate = useNavigate();
@@ -24,6 +27,35 @@ const SellerContainer = () => {
     alert("권한이 없습니다");
     window.location.href = "/login/seller";
   }
+
+  const addImage = async (file) => {
+    try {
+      const data = await uploadImage(token, file);
+      return data.data.imageUrl;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateSellerInfoImage = async (imageUrl) => {
+    try {
+      const data = await updateSellerImage(token, imageUrl);
+      alert(data.data.msg);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateShopInfoImage = async (imageUrl) => {
+    try {
+      const data = await updateShopImage(token, imageUrl);
+      alert(data.data.msg);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const sellerUpdateInfo = async (nickname, phoneNumber, address) => {
     try {
@@ -50,12 +82,19 @@ const SellerContainer = () => {
     }
   };
 
-  const sellerChangePassword = async (oldPassword, newPassword) => {
+  const sellerChangePassword = async (
+    oldPassword,
+    newPassword,
+    confirmPassword
+  ) => {
     try {
       //   console.log(oldPassword);
       //   console.log(newPassword);
-      await changePassword(token, oldPassword, newPassword);
-      alert("상점 프로필 수정 완료!");
+      await changePassword(token, oldPassword, newPassword, confirmPassword);
+      alert("비밀번호 수정 완료!");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      window.location.href = "/login/seller";
     } catch (e) {
       const message = e.response.data["errorMessage"];
       isReLogin(message);
@@ -108,6 +147,9 @@ const SellerContainer = () => {
         sellerUpdateInfo={sellerUpdateInfo}
         sellerUpdateShopInfo={sellerUpdateShopInfo}
         sellerChangePassword={sellerChangePassword}
+        updateSellerInfoImage={updateSellerInfoImage}
+        updateShopInfoImage={updateShopInfoImage}
+        addImage={addImage}
       ></SellerInfoForm>
     </div>
   );

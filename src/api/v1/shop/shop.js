@@ -6,9 +6,9 @@ export const getShopInfo = (shopId)=> {
 
 export const postShop = (token, name, description, shopImage) => {
    
-    return apiClient.post("seller", {name, description, shopImage}, {
+    return apiClient.post("seller/shop", {name, description, shopImage}, {
         headers : {
-            "Authorization" : `Bearer ${token}`,
+            Authorization : `Bearer ${token}`,
             "Content-Type": "application/json"
         }
     })

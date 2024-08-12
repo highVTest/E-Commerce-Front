@@ -23,7 +23,7 @@ const LoginForm = () => {
       navigate("/"); // 일단 구매자 로그인 성공 시 마이페이지로 전환
       window.location.reload();
     } catch (e) {
-      console.log(e.data);
+      console.log(e);
       alert("로그인에 실패했습니다. ");
     }
   };

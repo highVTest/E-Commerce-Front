@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Grid, Card, Image, Text, Button } from "@mantine/core";
 import { getAllProducts } from "../../api/v1/product/product.js";
 import { Link } from "react-router-dom";
+import { IoEye } from "react-icons/io5";
+import { AiFillHeart } from "react-icons/ai";
 
 // const products = Array(6)
 //   .fill(0)
@@ -31,13 +33,19 @@ const ProductList = ({ products, isLoading }) => {
                   fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                 />
               </Card.Section>
-              <Text weight={500} mt="md">
-                {product.title}
+              <Text weight={500} mt="md" fw="bold">
+                상품명 : {product.name}
               </Text>
-              <Text size="sm" fw="bold">
-                {product.name}
-              </Text>
-              <Text size="sm">{product.price}원</Text>
+
+              <Text size="sm">가격 : {product.price}원</Text>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <AiFillHeart style={{ color: "red", fontSize: "20px" }} />
+                <Text size="sm" style={{ marginLeft: "15px" }}>
+                  {product.likes}
+                </Text>
+              </div>
+
               {/* <Text size="sm" mt="sm">
               {product.description}
             </Text> */}
