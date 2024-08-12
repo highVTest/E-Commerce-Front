@@ -17,6 +17,7 @@ import {modals} from "@mantine/modals";
 import CreateCouponModal from "../components/CreateCouponModal.jsx";
 import {getSellerCouponList} from "../../api/v1/coupon/coupon.js";
 import UpdateCouponModal from "../components/UpdateCouponModal.jsx";
+import SellerNavComponent from "../../sellerbackoffice/component/SellerNavComponent.jsx";
 
 const CouponPage=()=>{
 
@@ -53,57 +54,48 @@ const CouponPage=()=>{
     console.log(couponData);
 
     return(
-        <div className="product-list">
-            <h1>상품 목록</h1>
-            <div className="product-backoffice-top-bar">
-                <Link to="/product-create">
-                    <Button color="gray" className="top-bar-btn" style={{marginBottom: "10px"}}>
-                        상품 생성
-                    </Button>
-                </Link>
-                <Link to="/product-list">
-                    <Button color="gray" className="top-bar-btn" style={{marginBottom: "10px"}}>
-                        상품 관리
-                    </Button>
-                </Link>
+        <div className="seller">
+            <SellerNavComponent/>
+            <div className="product-list">
+                <h1>쿠폰 목록</h1>
+                {couponData.map((coupon, index) => (
+                    <div className="product-item" key={index}>
+                        <div className="image">
+                            <Image
+                                className="product-image"
+                                radius="md"
+                                h={150}
+                                w={150}
+                                fit="crop"
+                                src="https://ifh.cc/g/xQTG2b.png"
+                                //   src={coupon.image}
+                                fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                                style={{marginRight: 15}}
+                            />
+                        </div>
+                        <div className="product-info">
+                            <h2>{coupon.couponName}</h2>
+                            <p>쿠폰 정책: {policyKorean(coupon.discountPolicy)}</p>
+                            {
+                                coupon.discountPolicy === 'DISCOUNT_RATE' ? <p>할인율: {coupon.discount} %</p>
+                                    : <p>가격 할인 : {coupon.discount} 원 </p>
+                            }
+                            <p>쿠폰 개수: {coupon.quantity}</p>
+                        </div>
+                        <div className="coupon-actions">
+                            <p>만료 시간 : {coupon.expiredAt}</p>
+                            <UpdateCouponModal token={token} coupon={coupon}/>
+                            <Button
+                                color="gray"
+                                className="update-btn"
+                                style={{marginTop: '5px'}}
+                            >
+                                쿠폰 삭제
+                            </Button>
+                        </div>
+                    </div>
+                ))}
             </div>
-            {couponData.map((coupon, index) => (
-                <div className="product-item" key={index}>
-                    <div className="image">
-                        <Image
-                            className="product-image"
-                            radius="md"
-                            h={150}
-                            w={150}
-                            fit="crop"
-                            src="https://ifh.cc/g/xQTG2b.png"
-                            //   src={coupon.image}
-                            fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                            style={{marginRight: 15}}
-                        />
-                    </div>
-                    <div className="product-info">
-                        <h2>{coupon.couponName}</h2>
-                        <p>쿠폰 정책: {policyKorean(coupon.discountPolicy)}</p>
-                        {
-                            coupon.discountPolicy === 'DISCOUNT_RATE' ? <p>할인율: {coupon.discount} %</p>
-                                : <p>가격 할인 : {coupon.discount} 원 </p>
-                        }
-                        <p>쿠폰 개수: {coupon.quantity}</p>
-                    </div>
-                    <div className="coupon-actions">
-                        <p>만료 시간 : {coupon.expiredAt}</p>
-                        <UpdateCouponModal token={token} coupon={coupon} />
-                        <Button
-                            color="gray"
-                            className="update-btn"
-                            style={{marginTop: '5px'}}
-                        >
-                            쿠폰 삭제
-                        </Button>
-                    </div>
-                </div>
-            ))}
         </div>
     );
 };

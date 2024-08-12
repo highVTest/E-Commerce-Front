@@ -10,7 +10,6 @@ import {
 } from "@mantine/core";
 import "../css/PaymentModal.css";
 import { useEffect, useState } from "react";
-import { buyerPayment } from "../../api/v1/orders/orders.js";
 import { getMyProfile } from "../../api/v1/buyer/buyer.js";
 import PaymentComponent from "./PaymentComponent.jsx";
 

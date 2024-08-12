@@ -1,15 +1,17 @@
-import {Button, Stack, Textarea, TextInput,FileInput} from '@mantine/core';
+import {Button, Stack, Textarea, TextInput, FileInput, Modal} from '@mantine/core';
 import {useState} from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import './css/ProductForm.css';
+import SellerNavComponent from "./SellerNavComponent.jsx";
+import {useDisclosure} from "@mantine/hooks";
 
 const ProductUpdateForm = ({
     handleUpdateProduct
 }) =>{
 
     const params = useParams();
-
+    const [opened, { open, close }] = useDisclosure(false);
     const handleProductSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -20,8 +22,13 @@ const ProductUpdateForm = ({
     };
 
     return(
-    <div>
-        <div className="product-container">
+    <>
+        <Modal
+            className="product-container"
+            opened={opened}
+            onClose={close}
+            size="lg"
+        >
             <h1>상품 등록</h1>
             <div className='box'>
                 <div className="form-area">
@@ -47,12 +54,15 @@ const ProductUpdateForm = ({
                         </Stack>
                     </form>
                     <Link to="/product-list">
-                        <Button>목록으로</Button>
+                        <Button style={{margin:"20px", float:"right"}}>목록으로</Button>
                     </Link>
                 </div>
             </div>
-        </div>
-    </div>
+        </Modal>
+        <Button onClick={open} color="gray" className="update-btn" fullWidth>
+            상품 수정
+        </Button>
+    </>
     );
 };
 
