@@ -7,18 +7,13 @@ import { getAllProducts } from "../../api/v1/product/product";
 const ProductContainer = () => {
   const [products, setProducts] = useState([]);
   const [popularProducts, setPopularProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // API를 호출하여 상품 목록을 가져오는 로직
   const getProducts = async () => {
-    // console.log("getProducts");
+    setIsLoading(true);
     const data = await getAllProducts(0, 9, "createdAt", "DESC");
-    // console.log("data", data);
-    // const list = [];
-    // for (let i = 0; i < 6; i++) {
-    //   list.push(data.data.content[i]);
-    // }
-    // console.log(data);
-    // setProducts(data.data.content);
+    setIsLoading(false);
     setProducts(data.data.content);
   };
 
@@ -47,7 +42,7 @@ const ProductContainer = () => {
           />
         </Center>
 
-        <ProductList products={products} />
+        <ProductList products={products} isLoading={isLoading} />
       </Container>
 
       {/* 카테고리별 인기 상품 */}

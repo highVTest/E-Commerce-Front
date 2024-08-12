@@ -31,7 +31,7 @@ import MyCouponPage from "./coupon/pages/MyCouponPage.jsx";
 import MyReviewPage from "./loginandreview/pages/MyReviewPage.jsx";
 import AdminPage from "./admin/Pages/AdminPage.jsx";
 import StatisticPages from "./sellerbackoffice/Pages/StatisticsPages.jsx";
-
+import ShopCreateContainer from "./sellerbackoffice/component/ShopCreateContainer.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -142,6 +142,10 @@ export const router = createBrowserRouter([
     element: <SellerRegisterPage></SellerRegisterPage>,
   },
   {
+    path: "/seller/shop",
+    element: <ShopCreateContainer></ShopCreateContainer>,
+  },
+  {
     path: "/orderDetails",
     element: <BuyerOrderListPage></BuyerOrderListPage>,
   },
@@ -163,6 +167,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "/seller-statistic",
-    element: <StatisticPages/>
-  }
+    element: <StatisticPages />,
+  },
 ]);

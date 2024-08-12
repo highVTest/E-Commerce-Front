@@ -13,7 +13,10 @@ import { Link } from "react-router-dom";
 //     imageUrl: "/path/to/your/image.jpg",
 //   }));
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, isLoading }) => {
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Grid mt="md">
       {products.length != 0 ? (
@@ -47,7 +50,7 @@ const ProductList = ({ products }) => {
           </Grid.Col>
         ))
       ) : (
-        <div className="display-center"> 검색 결과 없음</div>
+        <div className="display-center"> No Data </div>
       )}
     </Grid>
   );

@@ -3,19 +3,25 @@ import ProductList from "./ProductList";
 import SearchPageBar from "./SearchPageBar";
 import { useEffect, useState } from "react";
 
-const SearchProductsForm = ({ result, products, param, getSearchProducts }) => {
+const SearchProductsForm = ({
+  result,
+  products,
+  param,
+  getSearchProducts,
+  isLoading,
+}) => {
   const key = param.keyword;
   const sort = param.orderby.split(",");
 
   const [activePage, setPage] = useState(1);
 
   useEffect(() => {
-    const movePage = async (page) => {
-      if (result.number == page) {
+    const movePage = (page) => {
+      if (result?.number == page - 1) {
         return;
       }
 
-      await getSearchProducts(key, sort[0], sort[1], page, 9);
+      getSearchProducts(key, sort[0], sort[1], page - 1, 9);
     };
 
     movePage(activePage);
@@ -28,7 +34,7 @@ const SearchProductsForm = ({ result, products, param, getSearchProducts }) => {
         getSearchProducts={getSearchProducts}
       ></SearchPageBar>
       <Container size={800} mt="xl">
-        <ProductList products={products}></ProductList>
+        <ProductList products={products} isLoading={isLoading}></ProductList>
       </Container>
 
       <div style={{ marginTop: "50px" }} className="display-center">
