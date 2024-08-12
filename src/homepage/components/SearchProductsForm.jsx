@@ -3,13 +3,7 @@ import ProductList from "./ProductList";
 import SearchPageBar from "./SearchPageBar";
 import { useEffect, useState } from "react";
 
-const SearchProductsForm = ({
-  result,
-  products,
-  totalPages,
-  param,
-  getSearchProducts,
-}) => {
+const SearchProductsForm = ({ result, products, param, getSearchProducts }) => {
   const key = param.keyword;
   const sort = param.orderby.split(",");
 
@@ -43,20 +37,6 @@ const SearchProductsForm = ({
           onChange={setPage}
           total={result?.totalPages}
         />
-        {/* {totalPages.map((page) => {
-          return (
-            <Button
-              key={page}
-              variant="outline"
-              color="gray"
-              onClick={() => {
-                movePage(page);
-              }}
-            >
-              {page + 1}
-            </Button>
-          );
-        })} */}
       </div>
     </>
   );

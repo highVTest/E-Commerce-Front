@@ -10,7 +10,6 @@ const SearchPage = () => {
 
   const [result, setResult] = useState(null);
   const [products, setProducts] = useState([]);
-  const [totalPages, setTotalPages] = useState([]);
 
   const getSearchProducts = async (
     keyword,
@@ -23,8 +22,6 @@ const SearchPage = () => {
     console.log(data);
     setProducts(data.data.content);
     setResult(data.data);
-
-    setTotalPages(Array.from({ length: data.data.totalPages }, (v, i) => i));
   };
 
   useEffect(() => {
@@ -35,7 +32,6 @@ const SearchPage = () => {
     <SearchProductsForm
       result={result}
       products={products}
-      totalPages={totalPages}
       param={param}
       getSearchProducts={getSearchProducts}
     ></SearchProductsForm>
