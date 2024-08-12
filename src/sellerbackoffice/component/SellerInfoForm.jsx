@@ -13,6 +13,9 @@ import {
 import { modals } from "@mantine/modals";
 import "./css/SellerInfoForm.css";
 import SellerNavComponent from "./SellerNavComponent.jsx";
+import DaumPost from "../../Components/DaumPost.jsx";
+import { useState } from "react";
+import ProfileModal from "./ProfileModal.jsx";
 
 const SellerInfoForm = ({
   shop,
@@ -23,17 +26,12 @@ const SellerInfoForm = ({
   updateSellerInfoImage,
   updateShopInfoImage,
   addImage,
+  desc,
+  setDesc,
 }) => {
-  const handleSellerProfileChange = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const nickname = formData.get("nickname");
-    const phoneNumber = formData.get("phoneNumber");
-    const address = formData.get("address");
-
-    await sellerUpdateInfo(nickname, phoneNumber, address);
-  };
+  const [address, setAddress] = useState("");
+  const [extraAddr, setExtraAddr] = useState("");
+  const [detailAddr, setDetailAddr] = useState("");
 
   const handleUpdateShopInfo = async (e) => {
     e.preventDefault();
@@ -88,13 +86,11 @@ const SellerInfoForm = ({
         <SellerNavComponent />
         <div className="sellerinfo-container">
           <h1>내정보 수정</h1>
-          <div
-            className="info-box"
-            style={{ display: "flex", justifyContent: "space-around" }}
-          >
-            <div>
-              <h2>Seller Info</h2>
-              <div className="image-container">
+
+          <div className="info-box">
+            <h2>Seller Info</h2>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <div className="image-container" style={{ marginTop: "20px" }}>
                 <Image
                   className="seller-img"
                   radius="md"
@@ -154,91 +150,101 @@ const SellerInfoForm = ({
                   이미지 삭제
                 </Button>
               </div>
-            </div>
-
-            <div style={{ marginTop: "50px" }}>
-              <div className="seller-info" style={{ width: "450px" }}>
-                <Stack
-                  h={300}
-                  // bg="var(--mantine-color-body)"
-                  align="stretch"
-                  justify="center"
-                  gap="md"
-                >
-                  <Grid>
-                    <Grid.Col
-                      span={4}
-                      style={{ alignContent: "center", textAlign: "center" }}
-                    >
-                      이름 :
-                    </Grid.Col>
-                    <Grid.Col span={8}>
-                      <Container
-                        fluid
-                        h={50}
-                        bg="var(--mantine-color-gray-light)"
+              <div>
+                <div className="seller-info" style={{ width: "450px" }}>
+                  <Stack
+                    h={300}
+                    // bg="var(--mantine-color-body)"
+                    align="stretch"
+                    justify="center"
+                    gap="md"
+                  >
+                    <Grid>
+                      <Grid.Col
+                        span={4}
                         style={{ alignContent: "center", textAlign: "center" }}
                       >
-                        {seller.nickname}
-                      </Container>
-                    </Grid.Col>
-                  </Grid>
-                  <Grid>
-                    <Grid.Col
-                      span={4}
-                      style={{ alignContent: "center", textAlign: "center" }}
-                    >
-                      이메일 :
-                    </Grid.Col>
-                    <Grid.Col span={8}>
-                      <Container
-                        fluid
-                        h={50}
-                        bg="var(--mantine-color-gray-light)"
+                        이름 :
+                      </Grid.Col>
+                      <Grid.Col span={8}>
+                        <Container
+                          fluid
+                          h={50}
+                          bg="var(--mantine-color-gray-light)"
+                          style={{
+                            alignContent: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          {seller.nickname}
+                        </Container>
+                      </Grid.Col>
+                    </Grid>
+                    <Grid>
+                      <Grid.Col
+                        span={4}
                         style={{ alignContent: "center", textAlign: "center" }}
                       >
-                        {seller.email}
-                      </Container>
-                    </Grid.Col>
-                  </Grid>
-                  <Grid>
-                    <Grid.Col
-                      span={4}
-                      style={{ alignContent: "center", textAlign: "center" }}
-                    >
-                      전화번호 :
-                    </Grid.Col>
-                    <Grid.Col span={8}>
-                      <Container
-                        fluid
-                        h={50}
-                        bg="var(--mantine-color-gray-light)"
+                        이메일 :
+                      </Grid.Col>
+                      <Grid.Col span={8}>
+                        <Container
+                          fluid
+                          h={50}
+                          bg="var(--mantine-color-gray-light)"
+                          style={{
+                            alignContent: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          {seller.email}
+                        </Container>
+                      </Grid.Col>
+                    </Grid>
+                    <Grid>
+                      <Grid.Col
+                        span={4}
                         style={{ alignContent: "center", textAlign: "center" }}
                       >
-                        {seller.phoneNumber}
-                      </Container>
-                    </Grid.Col>
-                  </Grid>
-                  <Grid>
-                    <Grid.Col
-                      span={4}
-                      style={{ alignContent: "center", textAlign: "center" }}
-                    >
-                      주소 :
-                    </Grid.Col>
-                    <Grid.Col span={8}>
-                      <Container
-                        fluid
-                        h={50}
-                        bg="var(--mantine-color-gray-light)"
+                        전화번호 :
+                      </Grid.Col>
+                      <Grid.Col span={8}>
+                        <Container
+                          fluid
+                          h={50}
+                          bg="var(--mantine-color-gray-light)"
+                          style={{
+                            alignContent: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          {seller.phoneNumber}
+                        </Container>
+                      </Grid.Col>
+                    </Grid>
+                    <Grid>
+                      <Grid.Col
+                        span={4}
                         style={{ alignContent: "center", textAlign: "center" }}
                       >
-                        {seller.address}
-                      </Container>
-                    </Grid.Col>
-                  </Grid>
-                </Stack>
-                {/* <label>
+                        주소 :
+                      </Grid.Col>
+                      <Grid.Col span={8}>
+                        <Container
+                          fluid
+                          h={50}
+                          bg="var(--mantine-color-gray-light)"
+                          style={{
+                            alignContent: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          {seller.address}
+                        </Container>
+                      </Grid.Col>
+                    </Grid>
+                  </Stack>
+                  {/* <label>
                   이름 : <span>{seller.nickname}</span>
                 </label>
                 <label>
@@ -252,98 +258,74 @@ const SellerInfoForm = ({
                 <label>
                   주소 : <span>{seller.address}</span>
                 </label> */}
-              </div>
-              <div className="info-container">
-                <Button
-                  onClick={() => {
-                    modals.open({
-                      title: "프로필 수정",
-                      children: (
-                        <>
-                          <form onSubmit={handleSellerProfileChange}>
-                            <TextInput
-                              label="닉네임"
-                              placeholder="닉네임을 입력해주세요"
-                              name="nickname"
-                            />
-                            <TextInput
-                              label="핸드폰번호"
-                              placeholder="핸드폰번호를 입력해주세요"
-                              name="phoneNumber"
-                            />
-                            <TextInput
-                              label="주소"
-                              placeholder="주소를 입력해주세요"
-                              name="address"
-                            />
-                            <Button fullWidth type="submit">
-                              변경하기
-                            </Button>
-                            <Button
-                              fullWidth
-                              onClick={() => modals.closeAll()}
-                              mt="md"
-                            >
-                              취소
-                            </Button>
-                          </form>
-                        </>
-                      ),
-                    });
-                  }}
-                >
-                  프로필 수정하기
-                </Button>
-                <Button
-                  style={{ marginLeft: "25px" }}
-                  onClick={() => {
-                    modals.open({
-                      title: "비밀번호 수정",
-                      children: (
-                        <>
-                          <form onSubmit={handleUpdatePassword}>
-                            <PasswordInput
-                              label="현재 비밀번호"
-                              placeholder="현재 비밀번호를 입력해주세요"
-                              withAsterisk
-                              name="oldPassword"
-                            />
-                            <PasswordInput
-                              label="새 비밀번호"
-                              placeholder="현재 비밀번호를 입력해주세요"
-                              withAsterisk
-                              name="newPassword"
-                            />
-                            <PasswordInput
-                              label="확인 비밀번호"
-                              placeholder="확인 비밀번호를 입력해주세요"
-                              withAsterisk
-                              name="confirmPW"
-                            />
-                            <Button fullWidth type="submit">
-                              변경하기
-                            </Button>
-                            <Button
-                              fullWidth
-                              onClick={() => modals.closeAll()}
-                              mt="md"
-                            >
-                              취소
-                            </Button>
-                          </form>
-                        </>
-                      ),
-                    });
-                  }}
-                >
-                  비밀번호 수정하기
-                </Button>
+                </div>
+
+                <div className="info-container">
+                  <ProfileModal
+                    address={address}
+                    setAddress={setAddress}
+                    extraAddr={extraAddr}
+                    setExtraAddr={setExtraAddr}
+                    detailAddr={detailAddr}
+                    setDetailAddr={setDetailAddr}
+                    sellerUpdateInfo={sellerUpdateInfo}
+                  ></ProfileModal>
+
+                  <Button
+                    style={{ marginLeft: "25px" }}
+                    onClick={() => {
+                      modals.open({
+                        title: "비밀번호 수정",
+                        children: (
+                          <>
+                            <form onSubmit={handleUpdatePassword}>
+                              <PasswordInput
+                                label="현재 비밀번호"
+                                placeholder="현재 비밀번호를 입력해주세요"
+                                withAsterisk
+                                name="oldPassword"
+                              />
+                              <PasswordInput
+                                label="새 비밀번호"
+                                placeholder="현재 비밀번호를 입력해주세요"
+                                withAsterisk
+                                name="newPassword"
+                              />
+                              <PasswordInput
+                                label="확인 비밀번호"
+                                placeholder="확인 비밀번호를 입력해주세요"
+                                withAsterisk
+                                name="confirmPW"
+                              />
+                              <Button fullWidth type="submit">
+                                변경하기
+                              </Button>
+                              <Button
+                                fullWidth
+                                onClick={() => modals.closeAll()}
+                                mt="md"
+                              >
+                                취소
+                              </Button>
+                            </form>
+                          </>
+                        ),
+                      });
+                    }}
+                  >
+                    비밀번호 수정하기
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
           <div className="info-box">
+            <div></div>
             <h2>Shop Info</h2>
-            <div className="shop">
+            <div
+              className="shop"
+              style={{ display: "flex", justifyContent: "space-around" }}
+            >
               <div className="image-container">
                 <Image
                   className="seller-img"
@@ -405,17 +387,70 @@ const SellerInfoForm = ({
                   이미지 삭제
                 </Button>
               </div>
+
               <div>
-                <div className="shop-info">
-                  <div className="input-group">
+                <div className="shop-info" style={{ width: "450px" }}>
+                  <Stack
+                    // bg="var(--mantine-color-body)"
+                    align="stretch"
+                    justify="center"
+                    gap="md"
+                  >
+                    <Grid>
+                      <Grid.Col
+                        span={4}
+                        style={{ alignContent: "center", textAlign: "center" }}
+                      >
+                        상점명 :
+                      </Grid.Col>
+                      <Grid.Col span={8}>
+                        <Container
+                          fluid
+                          h={50}
+                          bg="var(--mantine-color-gray-light)"
+                          style={{
+                            alignContent: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          {shop.name}
+                        </Container>
+                      </Grid.Col>
+                    </Grid>
+                    <Grid>
+                      <Grid.Col
+                        span={4}
+                        style={{ alignContent: "center", textAlign: "center" }}
+                      >
+                        평점 :
+                      </Grid.Col>
+                      <Grid.Col span={8}>
+                        <Container
+                          fluid
+                          h={50}
+                          bg="var(--mantine-color-gray-light)"
+                          style={{
+                            alignContent: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          {shop.rate}
+                        </Container>
+                      </Grid.Col>
+                    </Grid>
+                  </Stack>
+                  {/* <div className="input-group">
                     <label>상점명</label>
                     <span>:{shop.name}</span>
                     <label>평점</label>
                     <span>{shop.rate}</span>
-                  </div>
+                  </div> */}
                 </div>
                 <div>
-                  <form onSubmit={handleUpdateShopInfo}>
+                  <form
+                    onSubmit={handleUpdateShopInfo}
+                    style={{ marginTop: "20px" }}
+                  >
                     <Textarea
                       label="상점 설명"
                       placeholder="상점 설명을 입력하세요"
@@ -424,6 +459,10 @@ const SellerInfoForm = ({
                       autosize
                       minRows={8}
                       maxRows={8}
+                      value={desc}
+                      onChange={(e) => {
+                        setDesc(e.target.value);
+                      }}
                     />
                     <Button fullWidth color="pink" type="submit">
                       저장

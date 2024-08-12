@@ -16,6 +16,7 @@ const SellerContainer = () => {
   //const navigate = useNavigate();
   const [shop, setShop] = useState([]);
   const [seller, setSeller] = useState([]);
+  const [desc, setDesc] = useState("");
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -64,6 +65,7 @@ const SellerContainer = () => {
       // console.log(address);
       await updateSellerInfo(token, nickname, phoneNumber, address);
       alert("프로필 수정 완료!");
+      window.location.reload();
     } catch (e) {
       const message = e.response.data["errorMessage"];
       isReLogin(message);
@@ -75,6 +77,7 @@ const SellerContainer = () => {
     try {
       await updateShopInfo(token, description);
       alert("상점 프로필 수정 완료!");
+      window.location.reload();
     } catch (e) {
       const message = e.response.data["errorMessage"];
       isReLogin(message);
@@ -106,6 +109,7 @@ const SellerContainer = () => {
     try {
       const data = await getShopInfo(token);
       setShop(data.data);
+      setDesc(data.data.description);
     } catch (e) {
       const message = e.response.data["errorMessage"];
       isReLogin(message);
@@ -150,6 +154,8 @@ const SellerContainer = () => {
         updateSellerInfoImage={updateSellerInfoImage}
         updateShopInfoImage={updateShopInfoImage}
         addImage={addImage}
+        desc={desc}
+        setDesc={setDesc}
       ></SellerInfoForm>
     </div>
   );
