@@ -13,6 +13,8 @@ import "./css/BuyerCss.css";
 
 import { modals } from "@mantine/modals";
 import { Link } from "react-router-dom";
+import BuyerProfileModal from "./BuyerProfileModal";
+import { useState } from "react";
 
 const BuyerInfoForm = ({
   buyer,
@@ -20,6 +22,9 @@ const BuyerInfoForm = ({
   buyerChangeProfile,
   buyerChangePassword,
 }) => {
+  const [address, setAddress] = useState("");
+  const [extraAddr, setExtraAddr] = useState("");
+  const [detailAddr, setDetailAddr] = useState("");
   const handleImageDelete = async () => {
     await buyerChangeImage(null);
   };
@@ -202,7 +207,16 @@ const BuyerInfoForm = ({
               </Grid.Col>
             </Grid>
             <Group style={{ marginLeft: "auto", marginRight: "auto" }}>
-              <Button
+              <BuyerProfileModal
+                address={address}
+                setAddress={setAddress}
+                extraAddr={extraAddr}
+                setExtraAddr={setExtraAddr}
+                detailAddr={detailAddr}
+                setDetailAddr={setDetailAddr}
+                buyerChangeProfile={buyerChangeProfile}
+              ></BuyerProfileModal>
+              {/* <Button
                 onClick={() => {
                   modals.open({
                     title: "프로필 수정",
@@ -241,7 +255,7 @@ const BuyerInfoForm = ({
                 }}
               >
                 프로필 수정하기
-              </Button>
+              </Button> */}
               <Button
                 onClick={() => {
                   modals.open({
@@ -334,19 +348,19 @@ const BuyerInfoForm = ({
         </Grid.Col>
       </Grid>
       <Grid
-          style={{
-            height: 150,
-            width: 800,
-            marginTop: 0,
-          }}
+        style={{
+          height: 150,
+          width: 800,
+          marginTop: 0,
+        }}
       >
         <Grid.Col span={6}>
           <Link to="/buyer/coupon-list">
             <Button
-                fullWidth
-                variant="light"
-                color="rgba(19, 200, 70, 55)"
-                style={{ height: 150, color: "black" }}
+              fullWidth
+              variant="light"
+              color="rgba(19, 200, 70, 55)"
+              style={{ height: 150, color: "black" }}
             >
               쿠폰 목록 보기
             </Button>
@@ -355,10 +369,10 @@ const BuyerInfoForm = ({
         <Grid.Col span={6}>
           <Link to="/buyer/review-list">
             <Button
-                fullWidth
-                variant="light"
-                color="rgba(200, 255, 5, 1)"
-                style={{ height: 150, color: "black" }}
+              fullWidth
+              variant="light"
+              color="rgba(200, 255, 5, 1)"
+              style={{ height: 150, color: "black" }}
             >
               내 댓글 목록 보기
             </Button>
