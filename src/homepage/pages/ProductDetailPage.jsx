@@ -1,17 +1,29 @@
-import {Anchor, Box, Button, Center, Fieldset, Image, Title} from "@mantine/core";
-import { useEffect, useState } from "react";
+import {
+  Anchor,
+  Box,
+  Button,
+  Center,
+  Fieldset,
+  Image,
+  Title,
+} from "@mantine/core";
+import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router";
 import {
   favoriteManagement,
   getFavorites,
 } from "../../api/v1/favorite/favorite";
 import { addItemIntoCart } from "../../api/v1/item-cart/itemCart";
+import { Link } from "react-router-dom";
+import UpdateCouponModal from "../../coupon/components/UpdateCouponModal.jsx";
+import { getDetailCoupon, issuedCoupon } from "../../api/v1/coupon/coupon.js";
 import {getBuyerCouponById, getDetailCoupon, issuedCoupon} from "../../api/v1/coupon/coupon.js";
+
 import { getProductById } from "../../api/v1/product/product";
 import CommonLayout from "../components/CommonLayout";
 import ProductDetail from "../components/ProductDetail";
 import ProdcutReviewContainer from "../components/ProductReviewContainer";
-
 
 const ProductDetailPage = () => {
   const token = localStorage.getItem("token");
@@ -78,21 +90,22 @@ const ProductDetailPage = () => {
     alert(data.data.msg);
   };
 
-  const getDetailCouponData = async () =>{
-    const data = await getDetailCoupon(productId);
+  const getDetailCouponData = async () => {
+    try {
+      const data = await getDetailCoupon(productId);
 
-    console.log(data.data)
-    setCoupon(data.data);
-  }
+      setCoupon(data.data);
+    } catch (e) {}
+  };
 
   const issuedCouponFunc = async () => {
     try {
-      await issuedCoupon(token, coupon.couponId)
-      alert("쿠폰 발급이 완료 되었습니다")
-    }catch (e){
-      alert(e.response.data.errorMessage)
+      await issuedCoupon(token, coupon.couponId);
+      alert("쿠폰 발급이 완료 되었습니다");
+    } catch (e) {
+      alert(e.response.data.errorMessage);
     }
-  }
+  };
 
   useEffect(() => {
     getProductOne(productId);
@@ -110,7 +123,6 @@ const ProductDetailPage = () => {
           favoriteChange={favoriteChange}
           addItemCart={addItemCart}
         />
-
 
             <Fieldset
                 legend={`지급 가능 쿠폰`}

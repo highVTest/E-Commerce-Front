@@ -17,6 +17,8 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
   const [alert, setAlert] = useState({ visible: false, message: "" });
   const navigate = useNavigate();
 
+  const [wait, setWait] = useState(false);
+
   const handleLikeClick = () => {
     const newLiked = !liked;
     setLiked(newLiked);
@@ -27,8 +29,13 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
       message: newLiked ? "찜하기 완료!" : "찜하기 취소!",
     });
   };
-  const handleHeart = (productId) => {
-    favoriteChange(productId);
+  const handleHeart = async (productId) => {
+    if (wait == true) {
+      return;
+    }
+    setWait(true);
+    await favoriteChange(productId);
+    setWait(false);
     // console.log(productId);
   };
 
@@ -40,6 +47,9 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
 
   const addCart = async (e) => {
     e.preventDefault();
+    if (wait == true) {
+      return;
+    }
     const formData = new FormData(e.currentTarget);
 
     // const amount = formData.get("amount");
@@ -47,7 +57,10 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
     if (amount < 1) {
       return;
     }
+
+    setWait(true);
     addItemCart(amount);
+    setWait(false);
 
     window.location.href = "/buyer/cart";
   };

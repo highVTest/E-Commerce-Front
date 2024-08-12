@@ -1,21 +1,14 @@
-import {
-  Button,
-  FileInput,
-  PasswordInput,
-  Stack,
-  Text,
-  TextInput,
-} from "@mantine/core";
+import { Button, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { sendMail, verifyEmail } from "../../../api/v1/auth/auth.js";
-import { modals } from "@mantine/modals";
-import { uploadImage } from "../../../api/v1/image/image.js";
 import { buyerSignUp } from "../../../api/v1/buyer/buyer.js";
+import { uploadImage } from "../../../api/v1/image/image.js";
 import DaumPost from "../../../Components/DaumPost.jsx";
+import { sellerSignup } from "../../../api/v1/seller/seller.js";
 
-const RegisterForm = () => {
+const SellerRegisterForm = () => {
   const [isOk, setIsOk] = useState(false); // 이메일 인증번호가 발송 될 때
   const [authMin, setAuthMin] = useState(5);
   const [authSec, setAuthSec] = useState(0);
@@ -27,11 +20,12 @@ const RegisterForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [email, setEmail] = useState("");
   const [auth, setAuth] = useState("");
-  const [buyerId, setBuyerId] = useState(-1);
+  const [sellerId, setSellerId] = useState(-1);
 
   const authTimer = () => {
     let min = 5;
     let sec = 0;
+
     const timer = setInterval(() => {
       if (min == 0 && sec == 0) {
         clearInterval(timer);
@@ -71,18 +65,17 @@ const RegisterForm = () => {
     }
 
     try {
-      const data = await buyerSignUp(
-        buyerId,
+      const data = await sellerSignup(
+        sellerId,
         nickname,
         password,
         email,
-        imageUrl,
         PhoneNumber,
         fullAddr
       );
-
+      console.log("x");
       alert("회원가입이 완료됐습니다.");
-      navigate("/login/buyer");
+      navigate("/login/seller");
     } catch (e) {
       alert(e.response.data.errorMessage);
     }
@@ -94,7 +87,7 @@ const RegisterForm = () => {
         alert("이메일을 입력해주세요");
         return;
       }
-      const data = await sendMail(email, "BUYER");
+      const data = await sendMail(email, "SELLER");
       authTimer();
       alert(data.data.msg + "\n5분 이내에 인증해주세요");
       setIsOk(true);
@@ -107,12 +100,12 @@ const RegisterForm = () => {
   const authConfirm = async () => {
     try {
       // console.log("dd>>", auth);
-      const data = await verifyEmail(email, "BUYER", auth);
+      const data = await verifyEmail(email, "SELLER", auth);
       // console.log(data);
       if (data.data.isApproved == false) {
         alert("이메일 인증에 실패 했습니다.\n다시 시도해주세요");
       } else {
-        setBuyerId(data.data.id);
+        setSellerId(data.data.id);
         alert("이메일 인증에 성공했습니다.");
         setAuth("");
         setPass(true);
@@ -121,7 +114,6 @@ const RegisterForm = () => {
       }
     } catch (e) {
       console.log(e);
-      console.log(buyerId);
     }
   };
 
@@ -295,4 +287,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default SellerRegisterForm;
