@@ -1,7 +1,7 @@
-import { Button, Container } from "@mantine/core";
+import { Button, Container, Pagination } from "@mantine/core";
 import ProductList from "./ProductList";
 import SearchPageBar from "./SearchPageBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SearchProductsForm = ({
   result,
@@ -10,24 +10,23 @@ const SearchProductsForm = ({
   param,
   getSearchProducts,
 }) => {
-  const [wait, setWait] = useState(false);
-
   const key = param.keyword;
   const sort = param.orderby.split(",");
 
-  const movePage = async (page) => {
-    if (result.number == page) {
-      return;
-    }
+  const [activePage, setPage] = useState(1);
 
-    if (wait == true) {
-      return;
-    }
+  useEffect(() => {
+    const movePage = async (page) => {
+      if (result.number == page) {
+        return;
+      }
 
-    setWait(true);
-    await getSearchProducts(key, sort[0], sort[1], page, 9);
-    setWait(false);
-  };
+      await getSearchProducts(key, sort[0], sort[1], page, 9);
+    };
+
+    movePage(activePage);
+  }, [activePage]);
+
   return (
     <>
       <SearchPageBar
@@ -38,8 +37,13 @@ const SearchProductsForm = ({
         <ProductList products={products}></ProductList>
       </Container>
 
-      <div style={{ marginTop: "20px" }}>
-        {totalPages.map((page) => {
+      <div style={{ marginTop: "50px" }} className="display-center">
+        <Pagination
+          value={activePage}
+          onChange={setPage}
+          total={result?.totalPages}
+        />
+        {/* {totalPages.map((page) => {
           return (
             <Button
               key={page}
@@ -52,7 +56,7 @@ const SearchProductsForm = ({
               {page + 1}
             </Button>
           );
-        })}
+        })} */}
       </div>
     </>
   );
