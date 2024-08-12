@@ -14,23 +14,6 @@ import { Link } from "react-router-dom";
 //   }));
 
 const ProductList = ({ products }) => {
-  // const [products, setProducts] = useState([]);
-  // API를 호출하여 상품 목록을 가져오는 로직
-  const getProducts = async () => {
-    // console.log("getProducts");
-    const data = await getAllProducts();
-    // console.log("data", data);
-    const list = [];
-    for (let i = 0; i < 6; i++) {
-      list.push(data.data.content[i]);
-    }
-    console.log(data.data);
-    setProducts(list);
-  };
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   return (
     <Grid mt="md">
       {products.length != 0 ? (
