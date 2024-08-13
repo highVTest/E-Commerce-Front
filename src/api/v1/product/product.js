@@ -1,8 +1,8 @@
 import {apiClient} from "../client";
 
-export const createProduct = async (token,name, price, quantity, description) => {
+export const createProduct = async (token,name, price, quantity, description, imageUrl) => {
   return apiClient.post(`/products`,{
-    createProductRequest :{name,description,categoryId:1},
+    createProductRequest :{name,description,categoryId:1,imageUrl},
     createProductBackOfficeRequest:{quantity,price},},{
     headers:{
       Authorization : `Bearer ${token}`,

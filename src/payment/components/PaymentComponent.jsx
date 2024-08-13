@@ -8,6 +8,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   const productIdList = [];
   const [coupons, setCoupons] = useState([]);
   const [couponIdList, setCouponIdList] = useState([]);
+  const [wait, setWait] = useState(false);
 
   for (let i = 0; i < paymentData.length; i++) {
     cartIdList.push(paymentData[i].cartId);
@@ -15,16 +16,26 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   }
 
   const reqPayment = async () => {
+    if (cartIdList.length == 0) {
+      alert("상품을 선택해주세요");
+      return;
+    }
+
+    if (wait == true) {
+      return;
+    }
+    setWait(true);
     try {
       await buyerPayment(token, cartIdList, []);
       alert("결제가 완료 되었습니다");
+      setWait(false);
       close();
-      window.location.href = "/orderDetails";
+      // window.location.href = "/orderDetails";
     } catch (error) {
       const msg = error.response.data.errorMessage;
-      console.log(error);
       alert(msg);
     }
+    setWait(false);
   };
 
   const getBuyerCoupon = async () => {

@@ -27,6 +27,8 @@ const ProductDetailPage = () => {
   const params = useParams();
   const productId = params.id;
 
+  const [click, setClick] = useState(false);
+
   const getProductOne = async () => {
     const data = await getProductById(productId);
     setProduct(data.data);
@@ -37,10 +39,10 @@ const ProductDetailPage = () => {
     try {
       const data = await getBuyerCouponById(token, productId);
       setCouponToBuyer(data);
-      console.log(couponToBuyer);
+      // console.log(couponToBuyer);
     } catch (e) {
       if (e.response.data.errorMessage === "쿠폰을 가지고 있지 않습니다") {
-        console.log(e.response.data.errorMessage);
+        // console.log(e.response.data.errorMessage);
         setCouponToBuyer(null);
       }
     }
@@ -76,10 +78,11 @@ const ProductDetailPage = () => {
   const addItemCart = async (amount) => {
     if (amount < 1) {
       alert("1개 이상만 담을 수 있습니다.");
+      return false;
     }
     const data = await addItemIntoCart(token, productId, amount);
-    // console.log(data);
     alert(data.data.msg);
+    return true;
   };
 
   const getDetailCouponData = async () => {
@@ -91,12 +94,20 @@ const ProductDetailPage = () => {
   };
 
   const issuedCouponFunc = async () => {
+    if (click == true) {
+      return;
+    }
+
     try {
+      setClick(true);
       await issuedCoupon(token, coupon.couponId);
       alert("쿠폰 발급이 완료 되었습니다");
+      getDetailCouponData();
+      useBuyerCouponById();
     } catch (e) {
       alert(e.response.data.errorMessage);
     }
+    setClick(false);
   };
 
   useEffect(() => {
@@ -196,14 +207,14 @@ const ProductDetailPage = () => {
 
         {/* <ProductReview /> */}
         {/* Q&A 섹션 */}
-        <Box id="qa-section" mt="xl">
+        {/* <Box id="qa-section" mt="xl">
           <Title order={3}>Q&A</Title>
           <Box sx={{ minHeight: "300px", backgroundColor: "gray" }}></Box>
         </Box>
-        {/* Q&A로 바로가기 링크 */}
+        // Q&A로 바로가기 링크
         <Anchor href="#qa-section" mt="md" size="md">
           Q&A로 바로가기
-        </Anchor>
+        </Anchor> */}
       </Fieldset>
     </CommonLayout>
   );

@@ -19,7 +19,7 @@ const BuyerOrderListPage = () => {
 
   const getBuyerOrderList = async () => {
     const data = await getBuyerOrders(token);
-
+    console.log(data.data);
     setBuyerOrder(data.data);
   };
 

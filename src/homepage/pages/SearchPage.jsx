@@ -10,7 +10,7 @@ const SearchPage = () => {
 
   const [result, setResult] = useState(null);
   const [products, setProducts] = useState([]);
-  const [totalPages, setTotalPages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getSearchProducts = async (
     keyword,
@@ -19,12 +19,11 @@ const SearchPage = () => {
     page,
     size = 9
   ) => {
+    setIsLoading(true);
     const data = await searchByRedis(keyword, sortBy, orderBy, page, size);
-    console.log(data);
+    setIsLoading(false);
     setProducts(data.data.content);
     setResult(data.data);
-
-    setTotalPages(Array.from({ length: data.data.totalPages }, (v, i) => i));
   };
 
   useEffect(() => {
@@ -35,9 +34,9 @@ const SearchPage = () => {
     <SearchProductsForm
       result={result}
       products={products}
-      totalPages={totalPages}
       param={param}
       getSearchProducts={getSearchProducts}
+      isLoading={isLoading}
     ></SearchProductsForm>
   );
 };
