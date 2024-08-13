@@ -1,10 +1,9 @@
-import { Button, Stack, Textarea, TextInput, FileInput } from "@mantine/core";
-import { useState } from "react";
-import "./css/ProductForm.css";
+import { Button, FileInput, Stack, Textarea, TextInput } from "@mantine/core";
 import { Link } from "react-router-dom";
+import "./css/ProductForm.css";
 import SellerNavComponent from "./SellerNavComponent.jsx";
 
-const ProductCreateForm = ({ handleCreateProduct }) => {
+const ProductCreateForm = ({ handleCreateProduct, imageUpload }) => {
   const handleProductSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -12,14 +11,24 @@ const ProductCreateForm = ({ handleCreateProduct }) => {
     const price = formData.get("price");
     const quantity = formData.get("quantity");
     const description = formData.get("description");
+    const file = formData.get("file");
 
-    await handleCreateProduct(name, price, quantity, description);
-    window.location.href = "/product-list";
+    console.log(file);
+
+    if (file.size != 0) {
+      const imageUrl = await imageUpload(file);
+
+      await handleCreateProduct(name, price, quantity, description, imageUrl);
+    } else {
+      await handleCreateProduct(name, price, quantity, description, "");
+    }
+
+    // window.location.href = "/product-list";
   };
 
   return (
     <div className="seller">
-      <SellerNavComponent/>
+      <SellerNavComponent />
       <div className="product-container">
         <h1>상품 등록</h1>
         <div className="box">
@@ -54,38 +63,42 @@ const ProductCreateForm = ({ handleCreateProduct }) => {
                   minRows={8}
                   maxRows={8}
                 />
+
+                <FileInput
+                  className="input-field"
+                  label="이미지"
+                  placeholder="이미지를 선택해주세요"
+                  name="file"
+                />
+
                 <Button fullWidth color="indigo" type="submit">
                   저장
                 </Button>
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button>목록으로</Button>
+              <Button style={{ marginTop: "20px" }}>목록으로</Button>
             </Link>
           </div>
-          {/*
-                <div className="image-area">
-                    <h2>상품 이미지 등록</h2>
-                    <div className="image-grid">
-                        {Array.from({ length: 9 }).map((_, index) => (
-                            <div key={index} className="image-slot"></div>
-                        ))}
-                    </div>
-                    <form onSubmit={handleImageSubmit}>
-                        <FileInput
-                            label="이미지"
-                            placeholder="이미지를 선택해주세요"
-                            name="file"
-                        />
-                        <Button
-                            color="lime.4"
-                            autoContrast
-                            type= "submit"
-                        >
-                        이미지 추가하기</Button>
-                    </form>
-                </div>
-                */}
+
+          {/* <div className="image-area">
+            <h2>상품 이미지 등록</h2>
+            <div className="image-grid">
+              {Array.from({ length: 9 }).map((_, index) => (
+                <div key={index} className="image-slot"></div>
+              ))}
+            </div>
+            <form onSubmit={handleImageSubmit}>
+              <FileInput
+                label="이미지"
+                placeholder="이미지를 선택해주세요"
+                name="file"
+              />
+              <Button color="lime.4" autoContrast type="submit">
+                이미지 추가하기
+              </Button>
+            </form>
+          </div> */}
         </div>
       </div>
     </div>
