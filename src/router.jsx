@@ -32,6 +32,8 @@ import MyReviewPage from "./loginandreview/pages/MyReviewPage.jsx";
 import AdminPage from "./admin/Pages/AdminPage.jsx";
 import StatisticPages from "./sellerbackoffice/Pages/StatisticsPages.jsx";
 import ShopCreateContainer from "./sellerbackoffice/component/ShopCreateContainer.jsx";
+import OrderStatusPage from "./sellerbackoffice/Pages/OrderStatusPage.jsx";
+
 
 export const router = createBrowserRouter([
   {
@@ -167,6 +169,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/seller-statistic",
-    element: <StatisticPages />,
+    element: <StatisticPages/>
   },
+  {
+    path: "/seller/order-status",
+    element: <OrderStatusPage/>
+  }
 ]);

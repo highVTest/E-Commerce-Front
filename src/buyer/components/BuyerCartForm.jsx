@@ -48,6 +48,7 @@ const BuyerCartForm = ({
 
   const handleHeart = async (productId) => {
     if (wait == true) {
+      console.log("실행중이다.");
       return;
     }
     setWait(true);

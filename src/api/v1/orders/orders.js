@@ -43,8 +43,12 @@ export const requestComplainReject = async (token, shopId, orderId, complainType
     });
 };
 
-export const getSellerOrderDetailsAll = async (shopId) => {
-    return apiClient.get(`/api/v1/shop/order-details/${shopId}`, { shopId });
+export const getSellerOrderDetailsAll = async (token, shopId, orderStatus) => {
+    return apiClient.get(`shop/order-details/${shopId}?orderStatus=${orderStatus}`,{
+            headers:{
+                authorization : `Bearer ${token}`
+            }
+    });
 };
 
 export const getSellerOrderDetailsBuyer = async (shopId, orderId) => {
