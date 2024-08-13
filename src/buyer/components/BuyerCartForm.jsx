@@ -69,7 +69,12 @@ const BuyerCartForm = ({
   };
 
   const itemDelete = async (productId) => {
+    if (wait == true) {
+      return;
+    }
+    setWait(true);
     await deleteItem(productId);
+    setWait(false);
     window.location.reload();
   };
 

@@ -6,12 +6,23 @@ import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 function RefundModal({ orderMasterId, shopId }) {
-  console.log(shopId);
+  // console.log(shopId);
   const token = localStorage.getItem("token");
   const [opened, { open, close }] = useDisclosure(false);
   const [refundReason, setRefundReason] = useState("");
 
+  const [click, setClick] = useState(false);
+
   const reqReject = async () => {
+    if (refundReason.length == 0) {
+      alert("이유를 입력해주세요");
+      return;
+    }
+
+    if (click == true) {
+      return;
+    }
+    setClick(true);
     try {
       await buyerRequestComplain(
         token,
@@ -21,10 +32,12 @@ function RefundModal({ orderMasterId, shopId }) {
         refundReason
       );
       alert("환불 요청이 완료 되었습니다");
+      setClick(false);
       close();
       window.location.reload();
     } catch (error) {
       alert(error);
+      setClick(false);
     }
   };
 

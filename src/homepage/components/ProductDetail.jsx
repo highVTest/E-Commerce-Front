@@ -47,22 +47,28 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
 
   const addCart = async (e) => {
     e.preventDefault();
-    if (wait == true) {
-      return;
-    }
+
     const formData = new FormData(e.currentTarget);
 
     // const amount = formData.get("amount");
     // console.log(amount);
-    if (amount < 1) {
+    // if (amount < 1) {
+    //   return;
+    // }
+
+    if (wait == true) {
       return;
     }
 
     setWait(true);
-    addItemCart(amount);
+
+    const error = await addItemCart(amount);
+
     setWait(false);
 
-    window.location.href = "/buyer/cart";
+    if (error == true) {
+      window.location.href = "/buyer/cart";
+    }
   };
 
   return (

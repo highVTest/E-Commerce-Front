@@ -7,6 +7,8 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   const cartIdList = [];
   const productIdList = [];
   const [coupons, setCoupons] = useState([]);
+  const [couponIdList, setCouponIdList] = useState([]);
+  const [wait, setWait] = useState(false);
   const [checkBox, setCheckBox] = useState([]);
   const [newTotalPrice, setNewTotalPrice] = useState(totalPrice);
 
@@ -16,15 +18,26 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   }
 
   const reqPayment = async () => {
+    if (cartIdList.length == 0) {
+      alert("상품을 선택해주세요");
+      return;
+    }
+
+    if (wait == true) {
+      return;
+    }
+    setWait(true);
     try {
       await buyerPayment(token, cartIdList, checkBox);
       alert("결제가 완료 되었습니다");
+      setWait(false);
       close();
       window.location.href = "/orderDetails";
     } catch (error) {
       const msg = error.response.data.errorMessage;
       alert(msg);
     }
+    setWait(false);
   };
 
   const setting = (data) => {
