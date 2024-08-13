@@ -48,7 +48,6 @@ const BuyerCartForm = ({
 
   const handleHeart = async (productId) => {
     if (wait == true) {
-      console.log("실행중이다.");
       return;
     }
     setWait(true);
@@ -69,7 +68,12 @@ const BuyerCartForm = ({
   };
 
   const itemDelete = async (productId) => {
+    if (wait == true) {
+      return;
+    }
+    setWait(true);
     await deleteItem(productId);
+    setWait(false);
     window.location.reload();
   };
 

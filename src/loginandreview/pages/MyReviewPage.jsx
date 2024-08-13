@@ -8,17 +8,34 @@ import {
   Image,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { getBuyerReviews } from "../../api/v1/review/review.js";
+import { deleteReview, getBuyerReviews } from "../../api/v1/review/review.js";
 import ReviewUpdateModal from "../components/review/ReviewUpdateModal.jsx";
 // eslint-disable-next-line react/prop-types
 const MyReviewPage = () => {
   const [reviews, setReviews] = useState([]);
   const token = localStorage.getItem("token");
+  const [click, setClick] = useState(false);
 
   const getMyReview = async () => {
     const data = await getBuyerReviews(token);
-    // console.log(data.data)
+    console.log(data.data);
     setReviews(data.data);
+  };
+
+  const delReview = async (productId, reviewId) => {
+    if (click == true) {
+      return;
+    }
+
+    setClick(true);
+    try {
+      const data = await deleteReview(token, productId, reviewId);
+      setClick(false);
+      alert("리뷰 삭제가 완료됐습니다.");
+      getMyReview();
+    } catch (e) {
+      setClick(false);
+    }
   };
 
   useEffect(() => {
@@ -97,6 +114,9 @@ const MyReviewPage = () => {
                           mt="md"
                           radius="md"
                           style={{ width: "100px", height: "40px" }}
+                          onClick={() => {
+                            delReview(review.productId, review.id);
+                          }}
                         >
                           삭제 하기
                         </Button>

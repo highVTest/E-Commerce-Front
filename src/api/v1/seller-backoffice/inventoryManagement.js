@@ -22,8 +22,8 @@ export const changePrice = async (token,productId,price) => {
     });
   };
 
-export const getSellerProducts = async(token) =>{
-  return apiClient.get(`seller/products`,{
+export const getSellerProducts = async(token,page, size) =>{
+  return apiClient.get(`seller/products?page=${page}&size=${size}`,{
     headers:{
       Authorization : `Bearer ${token}`
     } 

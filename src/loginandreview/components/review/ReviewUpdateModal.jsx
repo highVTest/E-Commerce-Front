@@ -1,37 +1,41 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Button, Modal, NumberInput, TextInput } from "@mantine/core";
-import {useState} from "react";
-import {updateReview} from "../../../api/v1/review/review.js";
+import { useState } from "react";
+import { updateReview } from "../../../api/v1/review/review.js";
 
-const ReviewUpdateModal = ({
-  token,
-  productId,
-  reviewId
-}) => {
+const ReviewUpdateModal = ({ token, productId, reviewId }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [content, setContent] = useState("");
-  const [rate, setRate] = useState(0)
+  const [rate, setRate] = useState(0);
 
+  const [click, setClick] = useState(false);
 
   const getUpdateReview = async () => {
-      try {
-          await updateReview(token, productId, reviewId , rate , content)
-          alert("리뷰 수정이 완료 되었습니다")
-          window.location.reload();
-      }catch (e) {
-          console.log(e)
-          alert(e);
-      }
+    if (content.length == 0) {
+      alert("내용을 입력해주세요");
+      return;
+    }
 
-  }
+    if (click == true) {
+      return;
+    }
+
+    try {
+      setClick(true);
+      await updateReview(token, productId, reviewId, rate, content);
+      alert("리뷰 수정이 완료 되었습니다");
+      setClick(false);
+      window.location.reload();
+    } catch (e) {
+      setClick(false);
+      console.log(e);
+      alert(e);
+    }
+  };
 
   return (
     <>
-      <Modal
-        opened={opened}
-        onClose={close}
-        title="리뷰 수정"
-      >
+      <Modal opened={opened} onClose={close} title="리뷰 수정">
         <TextInput
           label="내용"
           placeholder="내용을 입력해주세요"
@@ -54,12 +58,8 @@ const ReviewUpdateModal = ({
             }
           }}
         />
-        <Button
-          fullWidth
-          onClick={getUpdateReview}
-          mt="md"
-        >
-            수정 하기
+        <Button fullWidth onClick={getUpdateReview} mt="md">
+          수정 하기
         </Button>
       </Modal>
 
@@ -68,7 +68,7 @@ const ReviewUpdateModal = ({
       </Button> */}
       <Button
         color="grey"
-        style={{width: "100px", height: "40px" }}
+        style={{ width: "100px", height: "40px" }}
         onClick={() => {
           open();
         }}

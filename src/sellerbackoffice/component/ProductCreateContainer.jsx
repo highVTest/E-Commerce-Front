@@ -27,7 +27,6 @@ const ProductCreateContainer = () => {
     try {
       await createProduct(token, name, price, quantity, description, imageUrl);
       alert("상품 추가 완료!");
-      window.location.href = "/product-list";
     } catch (e) {
       const message = e.response.data["errorMessage"];
       isReLogin(message);
