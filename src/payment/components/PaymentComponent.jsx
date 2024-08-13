@@ -7,7 +7,8 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   const cartIdList = [];
   const productIdList = [];
   const [coupons, setCoupons] = useState([]);
-  const [couponIdList, setCouponIdList] = useState([]);
+  const [checkBox, setCheckBox] = useState([]);
+  const [newTotalPrice, setNewTotalPrice] = useState(totalPrice);
 
   for (let i = 0; i < paymentData.length; i++) {
     cartIdList.push(paymentData[i].cartId);
@@ -16,14 +17,23 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
 
   const reqPayment = async () => {
     try {
-      await buyerPayment(token, cartIdList, []);
+      await buyerPayment(token, cartIdList, checkBox);
       alert("결제가 완료 되었습니다");
       close();
       window.location.href = "/orderDetails";
     } catch (error) {
       const msg = error.response.data.errorMessage;
-      console.log(error);
       alert(msg);
+    }
+  };
+
+  const setting = (data) => {
+    const isIn = checkBox.indexOf(data.couponId);
+
+    if (isIn != -1) {
+      checkBox.splice(isIn, isIn + 1);
+    } else {
+      checkBox.push(data.couponId);
     }
   };
 
@@ -34,6 +44,17 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
     );
     setCoupons(filterData);
   };
+
+  const getTotalPrice = async () => {
+
+    const filteredCoupons = coupons.filter(coupon => checkBox.includes(coupon.couponId));
+    console.log(filteredCoupons)
+
+    return 0
+
+  }
+
+
 
   useEffect(() => {
     getBuyerCoupon();
@@ -57,7 +78,9 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
                   style={{ display: "flex", alignItems: "center" }}
                 >
                   <div style={{ marginRight: "20px" }}>
-                    <Checkbox />
+                    <Checkbox
+                        onChange={()=>{setting(coupon)}}
+                    />
                   </div>
                   <div style={{ width: "80%" }}>
                     <Text fw={1000} size="xl" mt="md">
@@ -89,8 +112,8 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
           <Text mt="xs" size="lg" fw={500}>
             총 주문 금액
           </Text>
-          <Text mt="xs" size="lg" fw={1000}>
-            {totalPrice} 원
+          <Text mt="xs" size="lg" fw={1000} onChange={getTotalPrice}>
+            {newTotalPrice} 원
           </Text>
         </div>
       </Fieldset>

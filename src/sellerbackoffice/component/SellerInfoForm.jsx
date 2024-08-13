@@ -8,9 +8,8 @@ import {
 } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import "./css/SellerInfoForm.css";
-import { Link } from "react-router-dom";
-import { IconGauge } from '@tabler/icons-react';
 import SellerNavComponent from "./SellerNavComponent.jsx";
+import "./css/ProductForm.css"
 
 const SellerInfoForm = ({
   shop,
