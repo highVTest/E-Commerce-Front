@@ -45,8 +45,61 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
 
     if (isIn != -1) {
       checkBox.splice(isIn, isIn + 1);
+      calc(data, 1);
     } else {
+      calc(data, -1);
       checkBox.push(data.couponId);
+    }
+  };
+
+  const calc = (data, mode) => {
+    let product;
+    if (mode != -1) {
+      if (data.discountPolicy == "DISCOUNT_RATE") {
+        paymentData.forEach((i) => {
+          if (i.productId == data.productId) {
+            product = i;
+          }
+        });
+        let price =
+          product.productPrice *
+          product.productQuantity *
+          (data.discount / 100);
+
+        setNewTotalPrice(newTotalPrice + price);
+      } else {
+        paymentData.forEach((i) => {
+          if (i.productId == data.productId) {
+            product = i;
+          }
+        });
+        let price = data.discount;
+
+        setNewTotalPrice(newTotalPrice + price);
+      }
+    } else {
+      if (data.discountPolicy == "DISCOUNT_RATE") {
+        paymentData.forEach((i) => {
+          if (i.productId == data.productId) {
+            product = i;
+          }
+        });
+        let price =
+          product.productPrice *
+          product.productQuantity *
+          (data.discount / 100);
+
+        setNewTotalPrice(newTotalPrice - price);
+      } else {
+        paymentData.forEach((i) => {
+          if (i.productId == data.productId) {
+            product = i;
+          }
+        });
+        let price = data.discount;
+
+        setNewTotalPrice(newTotalPrice - price);
+      }
     }
   };
 
@@ -59,15 +112,13 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   };
 
   const getTotalPrice = async () => {
+    const filteredCoupons = coupons.filter((coupon) =>
+      checkBox.includes(coupon.couponId)
+    );
+    console.log(filteredCoupons);
 
-    const filteredCoupons = coupons.filter(coupon => checkBox.includes(coupon.couponId));
-    console.log(filteredCoupons)
-
-    return 0
-
-  }
-
-
+    return 0;
+  };
 
   useEffect(() => {
     getBuyerCoupon();
@@ -92,7 +143,9 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
                 >
                   <div style={{ marginRight: "20px" }}>
                     <Checkbox
-                        onChange={()=>{setting(coupon)}}
+                      onChange={() => {
+                        setting(coupon);
+                      }}
                     />
                   </div>
                   <div style={{ width: "80%" }}>
