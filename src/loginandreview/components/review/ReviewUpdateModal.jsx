@@ -28,7 +28,6 @@ const ReviewUpdateModal = ({ token, productId, reviewId }) => {
       window.location.reload();
     } catch (e) {
       setClick(false);
-      console.log(e);
       alert(e);
     }
   };

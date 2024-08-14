@@ -74,7 +74,6 @@ const OrderListPage = () => {
         return setEnum("DELIVERED");
     }
   };
-  console.log(getEnum);
   const orderList = async () => {
     try {
       const shop = await getShopInfo(token);
@@ -82,7 +81,6 @@ const OrderListPage = () => {
       setShopId(shop.data.id);
       setPendingData(data.data);
     } catch (error) {
-      console.log(error);
       alert(error.response.data.errorMessage);
     }
   };
@@ -133,7 +131,7 @@ const OrderListPage = () => {
               <div
                 className="product-item"
                 key={index}
-                style={{ marginTop: "20px", backgroundColor: "beige" }}
+                style={{ marginTop: "20px"}}
               >
                 <div className="product-info">
                   <div style={{ display: "flex" }}>
@@ -158,7 +156,7 @@ const OrderListPage = () => {
                       return (
                         <div key={index}>
                           <Fieldset
-                            style={{ display: "flex", width: "1100px" }}
+                            style={{ display: "flex", width: "690px" }}
                           >
                             <Image
                               className="product-image"
@@ -197,7 +195,7 @@ const OrderListPage = () => {
               alignItems: "center",
             }}
           >
-            <Text fw={1000} size="lg" mt="lg">
+            <Text fw={1000} size="lg" mt="lg" style={{width:"750px"}}>
               결제 및 환불 요청된 상품이 존재 하지 않습니다
             </Text>
           </div>

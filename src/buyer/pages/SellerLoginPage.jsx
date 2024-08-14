@@ -5,7 +5,7 @@ import { Button } from "@mantine/core";
 const SellerLoginPage = () => {
   return (
     <section className="login-section">
-      <h2>로그인</h2>
+      <h2>Seller Login</h2>
       <LoginForm></LoginForm>
       <Link to="/register/seller">
         <Button

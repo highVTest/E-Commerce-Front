@@ -172,7 +172,7 @@ const SellerInfoForm = ({
                         <Container
                           fluid
                           h={50}
-                          bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                           style={{
                             alignContent: "center",
                             textAlign: "center",
@@ -193,7 +193,7 @@ const SellerInfoForm = ({
                         <Container
                           fluid
                           h={50}
-                          bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                           style={{
                             alignContent: "center",
                             textAlign: "center",
@@ -214,7 +214,7 @@ const SellerInfoForm = ({
                         <Container
                           fluid
                           h={50}
-                          bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                           style={{
                             alignContent: "center",
                             textAlign: "center",
@@ -235,7 +235,7 @@ const SellerInfoForm = ({
                         <Container
                           fluid
                           h={50}
-                          bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                           style={{
                             alignContent: "center",
                             textAlign: "center",
@@ -359,13 +359,14 @@ const SellerInfoForm = ({
                                 name="file"
                               />
                               <br />
-                              <Button fullWidth type="submit">
+                              <Button fullWidth type="submit" color="grey">
                                 변경하기
                               </Button>
                               <Button
                                 fullWidth
                                 onClick={() => modals.closeAll()}
                                 mt="md"
+                                color="grey"
                               >
                                 취소
                               </Button>
@@ -411,7 +412,7 @@ const SellerInfoForm = ({
                         <Container
                           fluid
                           h={50}
-                          bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                           style={{
                             alignContent: "center",
                             textAlign: "center",
@@ -432,7 +433,7 @@ const SellerInfoForm = ({
                         <Container
                           fluid
                           h={50}
-                          bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                           style={{
                             alignContent: "center",
                             textAlign: "center",

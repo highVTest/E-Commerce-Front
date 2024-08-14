@@ -36,7 +36,6 @@ const CouponPage=()=>{
     useEffect(() => {
         getCoupon()
     },[])
-    console.log(couponData);
 
     return(
         <div className="seller">

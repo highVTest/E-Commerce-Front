@@ -14,7 +14,6 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
 
   const searchKeyword = async () => {
     if (wait == true) {
-      console.log("실행중임;;;");
       return;
     }
 

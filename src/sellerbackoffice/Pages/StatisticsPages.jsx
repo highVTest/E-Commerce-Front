@@ -26,7 +26,6 @@ const StatisticPages = () => {
 
     const getProductSalesData = async () => {
         const data = await getProductSales(token);
-        console.log(data.data)
         setProductSales(data.data)
     }
 
@@ -36,7 +35,8 @@ const StatisticPages = () => {
     },[])
 
     return (
-        <div className="seller">
+        <div className="seller"
+            style={{}}>
             <SellerNavComponent/>
             <Stack>
                 <div style={{display: "flex", margin: "10px", justifyContent: "flex-end"}}>
@@ -48,14 +48,15 @@ const StatisticPages = () => {
                     <NumberFormatter value={totalSale.totalQuantity} thousandSeparator suffix=" 개"/>
                 </div>
 
-                <div className="backoffice">
+                <div 
+                    className="backoffice">
                     <Text size="xl" fw={1000} style={{marginBottom:"20px"}}>상품 별 판매량</Text>
                     <BarChart
                         h={500}
                         data={productSales}
                         dataKey="productName"
                         type="stacked"
-                        style={{width: "1130px"}}
+                        style={{width: "700px"}}
                         series={[
                             {name: 'productQuantity', color: 'violet.6'},
                         ]}
@@ -63,7 +64,7 @@ const StatisticPages = () => {
                 </div>
                 <div>
                     <Text size="xl" fw={1000} style={{marginBottom:"20px"}}>상품 별 판매 가격</Text>
-                    <Table style={{width: "1130px"}}>
+                    <Table style={{width: "700px"}}>
                         <Table.Thead>
                             <Table.Tr>
                                 <Table.Th style={{textAlign:"center"}}>상품 명</Table.Th>

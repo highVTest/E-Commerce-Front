@@ -16,13 +16,11 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
 
   const handleHeart = async (productId) => {
     if (wait == true) {
-      console.log("실행중이다.");
       return;
     }
     setWait(true);
     await buyerChangeFavorite(productId);
     setWait(false);
-    // console.log(productId);
   };
 
   return (

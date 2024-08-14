@@ -19,7 +19,6 @@ function ExchangeModal({ orderMasterId, shopId }) {
     }
 
     if (click == true) {
-      console.log("dsasdsadsda");
       return;
     }
     try {

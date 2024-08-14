@@ -167,6 +167,7 @@ const ProductList = ({
                         <>
                           <Button
                             fullWidth
+                            color="grey"
                             onClick={() => {
                               handleDelete(product.id);
                             }}
@@ -175,6 +176,7 @@ const ProductList = ({
                           </Button>
                           <Button
                             fullWidth
+                            color="grey"
                             onClick={() => modals.closeAll()}
                             mt="md"
                           >

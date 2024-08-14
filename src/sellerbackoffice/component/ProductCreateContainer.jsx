@@ -43,7 +43,6 @@ const ProductCreateContainer = () => {
       const data = await uploadImage(token, file);
       return data.data.imageUrl;
     } catch (e) {
-      console.log(e);
     }
   };
 
