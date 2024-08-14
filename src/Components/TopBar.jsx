@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, Image } from "@mantine/core";
 import "../index.css";
 import "../App.css";
 
@@ -50,32 +50,24 @@ function TopBar() {
   return (
     <>
       <div className="top-bar">
-        <div className="circle"></div>
-        <h1>High V</h1>
+        <div>
+          <Image
+            onClick={mainPage}
+            src="../../public/images/Group70.png"
+          ></Image>
+        </div>
         {token === null && vaildRole() === null ? (
-          <div className="button-container">
-            <Button
-              variant="filled"
-              className="button"
-              size="lg"
-              // color="grape"
-              color="gray"
-              onClick={mainPage}
-            >
-              메인 페이지로 이동
-            </Button>
-            <Button
-              to=""
-              variant="filled"
-              className="button"
-              size="lg"
-              // color="grape"
-              color="gray"
+          <div className="button-container" style={{ width: "20%" }}>
+            <Image
               onClick={buyerReload}
-            >
-              구매자 로그인
-            </Button>
-            <Button
+              src="../../public/images/Login.jpg"
+            ></Image>
+            <Image src="../../public/images/Untitled.jpg"></Image>
+            <Image
+              onClick={sellerReload}
+              src="../../public/images/SellerLogin.jpg"
+            ></Image>
+            {/* <Button
               variant="filled"
               className="button"
               size="lg"
@@ -84,22 +76,12 @@ function TopBar() {
               onClick={sellerReload}
             >
               판매자 로그인
-            </Button>
+            </Button> */}
           </div>
         ) : (
           <>
             {vaildRole() === true ? (
               <div className="button-container">
-                <Button
-                  variant="filled"
-                  className="button"
-                  size="lg"
-                  // color="grape"
-                  color="gray"
-                  onClick={mainPage}
-                >
-                  메인 페이지로 이동
-                </Button>
                 <Button
                   variant="filled"
                   className="button"
