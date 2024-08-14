@@ -50,7 +50,7 @@ const ProductList = ({ products, isLoading }) => {
               {product.description}
             </Text> */}
               <Link to={`/product/${product.id}`} style={{ marginTop: 0 }}>
-                <Button color="blue" fullWidth mt="md" radius="md">
+                <Button color="gray" fullWidth mt="md" radius="md">
                   상품 페이지 바로가기
                 </Button>
               </Link>

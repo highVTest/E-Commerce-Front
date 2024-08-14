@@ -89,7 +89,9 @@ function PaymentModal({ totalPrice, paymentData, token }) {
         />
       </Modal>
 
-      <Button onClick={open}>결제 하기</Button>
+      <Button color="gray" onClick={open}>
+        결제 하기
+      </Button>
     </>
   );
 }

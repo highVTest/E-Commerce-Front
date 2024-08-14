@@ -109,7 +109,7 @@ const MyReviewPage = () => {
                           productId={review.productId}
                         />
                         <Button
-                          color="red"
+                          color="gray"
                           // fullWidth
                           mt="md"
                           radius="md"

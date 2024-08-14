@@ -62,13 +62,19 @@ function RefundModal({ orderMasterId, shopId }) {
         />
         <div style={{ display: "flex" }}>
           <div style={{ width: "70%" }}></div>
-          <Button onClick={reqReject} style={{ marginTop: "10px" }}>
+          <Button
+            color="gray"
+            onClick={reqReject}
+            style={{ marginTop: "10px" }}
+          >
             환불 요청 하기
           </Button>
         </div>
       </Modal>
 
-      <Button onClick={open}>환불 요청</Button>
+      <Button color="gray" onClick={open}>
+        환불 요청
+      </Button>
     </>
   );
 }

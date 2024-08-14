@@ -104,7 +104,7 @@ function OrderDetailsModal({ orderShopDetails, orderMasterId }) {
         );
       default:
         return (
-          <Button size="xs" color="grey">
+          <Button color="gray" size="xs">
             환불 및 교환이 불가능 합니다
           </Button>
         );
@@ -159,7 +159,9 @@ function OrderDetailsModal({ orderShopDetails, orderMasterId }) {
         }
       </Modal>
 
-      <Button onClick={open}>주문 내역 상세 정보 보기</Button>
+      <Button color="gray" onClick={open}>
+        주문 내역 상세 정보 보기
+      </Button>
     </>
   );
 }

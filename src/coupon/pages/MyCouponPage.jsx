@@ -98,7 +98,7 @@ const MyCouponPage = () => {
                     </Grid.Col>
                     <Grid.Col span={2}>
                       <Button
-                        color="red"
+                        color="gray"
                         // fullWidth
                         mt="md"
                         radius="md"

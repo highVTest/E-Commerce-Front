@@ -60,7 +60,7 @@ const DaumPost = ({
           style={{ width: 100, marginLeft: "10px" }}
           fullWidth
           variant="filled"
-          color="grey"
+          color="gray"
           radius="md"
           type="button"
           onClick={handleClick}
@@ -68,6 +68,7 @@ const DaumPost = ({
           주소검색
         </Button>
       </div>
+      <div style={{ marginTop: "15px" }}></div>
       <TextInput
         disabled
         placeholder="주소"
@@ -76,6 +77,7 @@ const DaumPost = ({
           setAddress(e.target.value);
         }}
       />
+      <div style={{ marginTop: "15px" }}></div>
       <div style={{ display: "flex" }}>
         <TextInput
           placeholder="상세주소"

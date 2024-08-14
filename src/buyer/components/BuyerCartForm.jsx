@@ -48,7 +48,6 @@ const BuyerCartForm = ({
 
   const handleHeart = async (productId) => {
     if (wait == true) {
-      console.log("실행중이다.");
       return;
     }
     setWait(true);
@@ -179,7 +178,7 @@ const BuyerCartForm = ({
                           </Stack>
 
                           <Button
-                            color="red"
+                            color="gray"
                             // fullWidth
                             mt="md"
                             radius="md"
@@ -192,7 +191,7 @@ const BuyerCartForm = ({
                           </Button>
                           <Link to={`/product/${item.productId}`}>
                             <Button
-                              color="blue"
+                              color="gray"
                               fullWidth
                               mt="md"
                               radius="md"

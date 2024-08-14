@@ -38,7 +38,7 @@ const LoginForm = () => {
           placeholder="비밀번호를 입력하세요"
           name="password"
         />
-        <Button fullWidth type="submit" color="black">
+        <Button fullWidth type="submit" color="gray">
           CONTINUE
         </Button>
       </Stack>
