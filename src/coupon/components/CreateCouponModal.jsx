@@ -46,6 +46,10 @@ function CreateCouponModal({ token, product }) {
     }
   };
 
+  const couponExpired =()=> {
+     alert("쿠폰은 생성 뒤에 삭제 할 수 없습니다 신중하게 작성 부탁드립니다")
+  }
+
   const handlerDiscountPolicy = () => {
     if (discountPolicy === "할인율 설정") {
       return (
@@ -171,6 +175,7 @@ function CreateCouponModal({ token, product }) {
             label="만료 기한"
             placeholder="만료 시간을 입력하세요"
             onChange={handleDateChange}
+            onClick={couponExpired}
           />
           <NativeSelect
             label="쿠폰 정책"

@@ -1,20 +1,6 @@
-import { useEffect, useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
-import ProductList from "../../sellerbackoffice/component/ProductList";
+import {useEffect, useState} from "react";
 import "../css/CouponPage.css"
-
-
-import {
-    deleteProduct
-} from "../../api/v1/product/product";
-import{
-    changeQuantity,
-    changePrice,
-    getSellerProducts
-} from "../../api/v1/seller-backoffice/inventoryManagement";
-import {Button, Image, TextInput} from "@mantine/core";
-import {modals} from "@mantine/modals";
-import CreateCouponModal from "../components/CreateCouponModal.jsx";
+import {Image} from "@mantine/core";
 import {deleteSellerCoupon, getSellerCouponList} from "../../api/v1/coupon/coupon.js";
 import UpdateCouponModal from "../components/UpdateCouponModal.jsx";
 import SellerNavComponent from "../../sellerbackoffice/component/SellerNavComponent.jsx";
@@ -97,16 +83,6 @@ const CouponPage=()=>{
                                 {coupon.expiredAt.split("-")[1]} 월{" "}
                                 {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지</p>
                             <UpdateCouponModal token={token} coupon={coupon}/>
-                            <Button
-                                color="gray"
-                                className="update-btn"
-                                style={{marginTop: '5px'}}
-                                onClick={()=>{
-                                    deleteCoupon(coupon.couponId)
-                                }}
-                            >
-                                쿠폰 삭제
-                            </Button>
                         </div>
                     </div>
                 ))}
