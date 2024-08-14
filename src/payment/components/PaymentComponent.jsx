@@ -11,6 +11,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   const [couponIdList, setCouponIdList] = useState([]);
   const [wait, setWait] = useState(false);
   const [checkBox, setCheckBox] = useState([]);
+  const [newTotalPrice, setNewTotalPrice] = useState(totalPrice);
 
   for (let i = 0; i < paymentData.length; i++) {
     cartIdList.push(paymentData[i].cartId);
@@ -112,16 +113,6 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
     setCoupons(filterData);
     console.log(filterData)
   };
-
-  const getTotalPrice = async () => {
-    const filteredCoupons = coupons.filter((coupon) =>
-      checkBox.includes(coupon.couponId)
-    );
-    console.log(filteredCoupons);
-
-    return 0;
-  };
-
   useEffect(() => {
     getBuyerCoupon();
   }, []);
@@ -181,7 +172,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
             총 주문 금액
           </Text>
           <Text mt="xs" size="lg" fw={1000}>
-            total 원
+            {newTotalPrice} 원
           </Text>
         </div>
       </Fieldset>

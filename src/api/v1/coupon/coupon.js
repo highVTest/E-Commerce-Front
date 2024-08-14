@@ -34,8 +34,12 @@ export const updateCoupon = async (token, data, couponId) => {
         }});
   };
 
-export const deleteCoupon = async (couponId) => {
-  return apiClient.delete(`seller/coupon/${couponId}`, { couponId });
+export const deleteSellerCoupon = async (token, couponId) => {
+  return apiClient.delete(`seller/coupon/${couponId}`,{
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  });
 };
 
 export const getSellerCouponById = async (couponId) => {

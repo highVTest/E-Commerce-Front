@@ -15,7 +15,7 @@ import{
 import {Button, Image, TextInput} from "@mantine/core";
 import {modals} from "@mantine/modals";
 import CreateCouponModal from "../components/CreateCouponModal.jsx";
-import {getSellerCouponList} from "../../api/v1/coupon/coupon.js";
+import {deleteSellerCoupon, getSellerCouponList} from "../../api/v1/coupon/coupon.js";
 import UpdateCouponModal from "../components/UpdateCouponModal.jsx";
 import SellerNavComponent from "../../sellerbackoffice/component/SellerNavComponent.jsx";
 
@@ -45,6 +45,16 @@ const CouponPage=()=>{
         if(discountPolicy === 'DISCOUNT_RATE'){
             return '할인율 정책'
         }else return '가격 할인 정책'
+    }
+
+    const deleteCoupon = async (id) => {
+        try {
+            await deleteSellerCoupon(token, id)
+            alert("쿠폰 삭제가 완료 되었습니다")
+        }catch (error) {
+            alert(error.response.data.errorMessage);
+        }
+
     }
 
 
@@ -83,12 +93,17 @@ const CouponPage=()=>{
                             <p>쿠폰 개수: {coupon.quantity}</p>
                         </div>
                         <div className="coupon-actions">
-                            <p>만료 시간 : {coupon.expiredAt}</p>
+                            <p>만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
+                                {coupon.expiredAt.split("-")[1]} 월{" "}
+                                {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지</p>
                             <UpdateCouponModal token={token} coupon={coupon}/>
                             <Button
                                 color="gray"
                                 className="update-btn"
                                 style={{marginTop: '5px'}}
+                                onClick={()=>{
+                                    deleteCoupon(coupon.couponId)
+                                }}
                             >
                                 쿠폰 삭제
                             </Button>
