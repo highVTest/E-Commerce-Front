@@ -90,7 +90,8 @@ const ProductDetailPage = () => {
       const data = await getDetailCoupon(productId);
 
       setCoupon(data.data);
-    } catch (e) {}
+    } catch (e) {
+    }
   };
 
   const issuedCouponFunc = async () => {
@@ -103,7 +104,7 @@ const ProductDetailPage = () => {
       await issuedCoupon(token, coupon.couponId);
       alert("쿠폰 발급이 완료 되었습니다");
       getDetailCouponData();
-      useBuyerCouponById();
+      await useBuyerCouponById();
     } catch (e) {
       alert(e.response.data.errorMessage);
     }

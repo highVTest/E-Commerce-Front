@@ -13,7 +13,7 @@ const SellerNavComponent = () => {
                 <NavLink label="상품 관리" href="/product-list"/>
                 <NavLink label="쿠폰 관리" href="/seller/coupon"/>
                 <NavLink label="결제 상태 관리" href="/seller/order-status"/>
-                <NavLink label="주문 상태 관리" href="/seller/order-status"/>
+                <NavLink label="주문 상태 관리" href="/seller/order-list"/>
             </NavLink>
             <NavLink
                 href="#required-for-focus"

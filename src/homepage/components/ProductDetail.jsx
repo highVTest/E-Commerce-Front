@@ -10,7 +10,9 @@ import {
 } from "@mantine/core";
 import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, Link, useParams} from "react-router-dom";
+import BuyerShopInfo from "../../buyer/pages/BuyerShopInfo.jsx";
+
 
 const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
   const [liked, setLiked] = useState(false);
@@ -107,29 +109,21 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
             </div>
             <Text>카테고리 : {product?.categoryId}</Text>
             <Text order={3}>가격 : {product?.price}</Text>
-            <form onSubmit={addCart} style={{ width: "50%" }}>
-              {/* <TextInput
-                size="xs"
-                label="상품 수량"
-                value={amount}
-                onChange={(e) => {
-                  setAmount(Number(e.target.value));
-                }}
-                name="amount"
-              /> */}
-              <NumberInput
-                size="xs"
-                label="상품 수량"
-                value={amount}
-                onChange={(e) => {
-                  setAmount(e);
-                }}
-                name="amount"
-              />
-              <Button mt="md" type="submit">
-                장바구니에 담기
-              </Button>
-            </form>
+              <form onSubmit={addCart} style={{width: "50%"}}>
+                <NumberInput
+                    size="xs"
+                    label="상품 수량"
+                    value={amount}
+                    onChange={(e) => {
+                      setAmount(e);
+                    }}
+                    name="amount"
+                />
+                <Button mt="md" type="submit">
+                  장바구니에 담기
+                </Button>
+                  <BuyerShopInfo product={product}/>
+              </form>
           </Fieldset>
 
           {/* <Text>간단 설명 : {produc}</Text> */}

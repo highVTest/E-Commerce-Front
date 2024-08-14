@@ -3,6 +3,7 @@ import { buyerPayment } from "../../api/v1/orders/orders.js";
 import { getBuyerCouponList } from "../../api/v1/coupon/coupon.js";
 import React, { useEffect, useState } from "react";
 
+//totalPrice 제외
 function PaymentComponent({ token, paymentData, totalPrice, close }) {
   const cartIdList = [];
   const productIdList = [];
@@ -10,12 +11,12 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   const [couponIdList, setCouponIdList] = useState([]);
   const [wait, setWait] = useState(false);
   const [checkBox, setCheckBox] = useState([]);
-  const [newTotalPrice, setNewTotalPrice] = useState(totalPrice);
 
   for (let i = 0; i < paymentData.length; i++) {
     cartIdList.push(paymentData[i].cartId);
     productIdList.push(paymentData[i].productId);
   }
+  console.log(paymentData);
 
   const reqPayment = async () => {
     if (cartIdList.length == 0) {
@@ -109,6 +110,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
       productIdList.includes(coupon.productId)
     );
     setCoupons(filterData);
+    console.log(filterData)
   };
 
   const getTotalPrice = async () => {
@@ -178,8 +180,8 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
           <Text mt="xs" size="lg" fw={500}>
             총 주문 금액
           </Text>
-          <Text mt="xs" size="lg" fw={1000} onChange={getTotalPrice}>
-            {newTotalPrice} 원
+          <Text mt="xs" size="lg" fw={1000}>
+            total 원
           </Text>
         </div>
       </Fieldset>

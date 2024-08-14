@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import LoginLayout from "./loginandreview/pages/LoginLayout.jsx";
 import LoginPage from "./loginandreview/pages/LoginPage.jsx";
 import RootLayout from "./loginandreview/pages/RootLayout.jsx";
@@ -13,7 +13,6 @@ import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
 import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
 import BuyerLayout from "./buyer/pages/layout/BuyerLayout.jsx";
 import ProductLayout from "./buyer/pages/layout/ProductLayout.jsx";
-import ProductPage from "./buyer/pages/ProductPage.jsx";
 import SellerLoginPage from "./buyer/pages/SellerLoginPage.jsx";
 import CouponPage from "./coupon/pages/CouponPage.jsx";
 import HomePage from "./homepage/pages/HomePage.jsx";
@@ -25,7 +24,6 @@ import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateCo
 import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
 import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
 import SearchPage from "./homepage/pages/SearchPage.jsx";
-import SellerRegisterForm from "./loginandreview/components/login/SellerRegisterForm.jsx";
 import SellerRegisterPage from "./loginandreview/pages/SellerRegisterPage.jsx";
 import MyCouponPage from "./coupon/pages/MyCouponPage.jsx";
 import MyReviewPage from "./loginandreview/pages/MyReviewPage.jsx";
@@ -33,6 +31,8 @@ import AdminPage from "./admin/Pages/AdminPage.jsx";
 import StatisticPages from "./sellerbackoffice/Pages/StatisticsPages.jsx";
 import ShopCreateContainer from "./sellerbackoffice/component/ShopCreateContainer.jsx";
 import OrderStatusPage from "./sellerbackoffice/Pages/OrderStatusPage.jsx";
+import OrderListPage from "./sellerbackoffice/Pages/OrderListPage.jsx";
+import BuyerShopInfo from "./buyer/pages/BuyerShopInfo.jsx";
 
 
 export const router = createBrowserRouter([
@@ -97,6 +97,12 @@ export const router = createBrowserRouter([
       {
         path: ":id",
         element: <ProductDetailPage></ProductDetailPage>,
+        children: [
+          {
+            path: "shop",
+            element: <BuyerShopInfo/>
+          }
+        ]
       },
       {
         path: ":keyword",
@@ -174,5 +180,10 @@ export const router = createBrowserRouter([
   {
     path: "/seller/order-status",
     element: <OrderStatusPage/>
-  }
+  },
+  {
+    path: "/seller/order-list",
+    element: <OrderListPage/>
+  },
+
 ]);

@@ -1,18 +1,18 @@
 import SellerNavComponent from "../component/SellerNavComponent.jsx";
 import "../component/css/SellerInfoForm.css"
-import {Image, Text, Fieldset, Stack} from "@mantine/core";
+import {Button, Fieldset, Image, NativeSelect, Stack, Text} from "@mantine/core";
 import {getSellerOrderDetailsAll} from "../../api/v1/orders/orders.js";
 import {useEffect, useState} from "react";
 import {getShopInfo} from "../../api/v1/seller-backoffice/sellerInfo.js";
-import RejectModal from "../component/RejectModal.jsx";
-import AcceptModal from "../component/AcceptModal.jsx";
+import UpdateDeliveryModal from "../component/UpdateDeliveryModal.jsx";
 
 
-const OrderStatusPage = () => {
+const OrderListPage = () => {
     const [pendingData, setPendingData] = useState([]);
     const [shopId, setShopId] = useState(0);
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
+    const [getEnum , setEnum] = useState("ORDERED");
 
     if (!token) {
         alert("로그인을 해주세요");
@@ -22,15 +22,74 @@ const OrderStatusPage = () => {
         window.location.href = "/login/seller";
     }
 
+    const orderStatusToKorean = (orderStatus) => {
+        switch (orderStatus) {
+            case "ORDER_CANCELED":
+                return "주문이 취소 됨";
 
-    const orderList = async () => {
-        const shop = await getShopInfo(token);
-        const data = await getSellerOrderDetailsAll(token, shop.data.id, "PENDING")
-        setShopId(shop.data.id)
-        setPendingData(data.data);
+            case "ORDERED":
+                return "주문 접수";
+
+            case "PRODUCT_PREPARING":
+                return "상품 준비 중";
+
+            case "DELIVERY_PREPARING":
+                return "상품 배달 준비 중";
+
+            case "SHIPPING":
+                return "상품 배달 중";
+
+            case "DELIVERED":
+                return "상품 배달 완료";
+
+            case "PENDING":
+                return "보류";
+
+        }
     }
 
-    console.log(pendingData);
+    const orderStatusToEnum = (orderStatus) => {
+        switch (orderStatus) {
+            case "주문 취소":
+                return setEnum("ORDER_CANCELED");
+
+            case "주문 접수":
+                return setEnum("ORDERED");
+
+            case "상품 준비 중":
+                return setEnum("PRODUCT_PREPARING");
+
+            case "상품 배달 준비 중":
+                return setEnum("DELIVERY_PREPARING");
+
+            case "상품 배달 중":
+                return setEnum("SHIPPING");
+
+            case "상품 배달 완료":
+                return setEnum("DELIVERED");
+
+        }
+    }
+    console.log(getEnum);
+    const orderList = async () => {
+        try {
+        const shop = await getShopInfo(token);
+        const data = await getSellerOrderDetailsAll(token, shop.data.id, getEnum)
+        setShopId(shop.data.id)
+        setPendingData(data.data);
+        }catch (error) {
+            console.log(error);
+            alert(error.response.data.errorMessage);
+        }
+
+    }
+
+    const handleSearchClick = () => {
+
+            orderList();
+
+    }
+
 
     useEffect(() => {
         orderList()
@@ -40,14 +99,19 @@ const OrderStatusPage = () => {
         <div className="seller">
             <SellerNavComponent/>
             <Stack>
+                <div style={{display:"flex", alignItems:"center", justifyContent:"flex-end"}}>
+                    <NativeSelect label="주문 상태를 선택해 주세요"  data={['주문 접수', '주문 취소','상품 준비 중', "상품 배달 준비 중", "상품 배달 중", "상품 배달 완료"]} onChange={(e)=>orderStatusToEnum(e.currentTarget.value)} />
+                    <Button style={{marginLeft:"10px", marginTop:"29px"}} onClick={handleSearchClick}>검색</Button>
+                </div>
+
             {
-                (pendingData.length > 0 )?
+                (pendingData.length > 0)?
                     (pendingData.map((data, index) => {
                     return (
                         <div className="product-item" key={index} style={{marginTop:"20px", backgroundColor:"beige"}}>
                             <div className="product-info">
                                 <div style={{display:"flex"}}>
-                                    <div style={{width:"70%"}}>
+                                    <div style={{width:"90%"}}>
                                         <h2>주문 번호 : {data.orderMasterId}</h2>
                                         <Text fw={500} size="lg" mt="md">
                                             주문 시간 : {data.registerDate.split("-")[0]} 년{" "}
@@ -56,8 +120,7 @@ const OrderStatusPage = () => {
                                         </Text>
                                     </div>
                                     <div style={{justifyContent: "flex-end", margin: "30px"}}>
-                                        <RejectModal token={token} data={data} shopId={shopId}/>
-                                        <AcceptModal token={token} data={data} shopId={shopId}/>
+                                        <UpdateDeliveryModal token={token} shopId={shopId} orderMasterId={data.orderMasterId}/>
                                     </div>
                                 </div>
                                 <Stack>
@@ -80,24 +143,10 @@ const OrderStatusPage = () => {
                                                         />
                                                         <div style={{marginLeft:"50px", width:"500px"}}>
                                                             <Text fw={500} size="lg" mt="md">
-                                                                구매자 요청 시간 : {orderDetail.buyerComplainDate.split("-")[0]} 년{" "}
-                                                                {orderDetail.buyerComplainDate.split("-")[1]} 월{" "}
-                                                                {orderDetail.buyerComplainDate.split("-")[2].slice(0, 2)} 일
-                                                            </Text>
-                                                            <Text fw={500} size="lg" mt="md">
                                                                 구매자 이름 : {orderDetail.complainBuyerName}
                                                             </Text>
                                                             <Text fw={500} size="lg" mt="md">
-                                                                결제 상태 : 보류
-                                                            </Text>
-                                                            <Text fw={500} size="lg" mt="md">
-                                                                구매자 민원 상태 :
-                                                                {
-                                                                    (orderDetail.complainStatus.split("_")[0] === "REFUND") ? "환불" : "교환"
-                                                                }
-                                                                {
-                                                                    (orderDetail.complainStatus.split("_")[1] === "REQUESTED") ? " 요청됨" : " 됨"
-                                                                }
+                                                                결제 상태 : {orderStatusToKorean(orderDetail.statusCode)}
                                                             </Text>
                                                         </div>
 
@@ -129,4 +178,4 @@ const OrderStatusPage = () => {
     )
 }
 
-export default OrderStatusPage;
+export default OrderListPage;
