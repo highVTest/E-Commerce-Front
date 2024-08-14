@@ -9,11 +9,16 @@ import {
 } from "@mantine/core";
 import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import {useNavigate, Link, useParams} from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import BuyerShopInfo from "../../buyer/pages/BuyerShopInfo.jsx";
 
-
-const ProductDetail = ({ product, favorite, favoriteChange, addItemCart, role }) => {
+const ProductDetail = ({
+  product,
+  favorite,
+  favoriteChange,
+  addItemCart,
+  role,
+}) => {
   const [liked, setLiked] = useState(false);
   const [alert, setAlert] = useState({ visible: false, message: "" });
   const navigate = useNavigate();
@@ -108,25 +113,23 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart, role })
             </div>
             <Text>카테고리 : {product?.categoryId}</Text>
             <Text order={3}>가격 : {product?.price}</Text>
-              <form onSubmit={addCart} style={{width: "50%"}}>
-                <NumberInput
-                    size="xs"
-                    label="상품 수량"
-                    value={amount}
-                    onChange={(e) => {
-                      setAmount(e);
-                    }}
-                    name="amount"
-                />
-                {
-                  role === "BUYER" ?
-                      <Button mt="md" type="submit">
-                        장바구니에 담기
-                      </Button>:
-                      null
-                }
-                  <BuyerShopInfo product={product}/>
-              </form>
+            <form onSubmit={addCart} style={{ width: "50%" }}>
+              <NumberInput
+                size="xs"
+                label="상품 수량"
+                value={amount}
+                onChange={(e) => {
+                  setAmount(e);
+                }}
+                name="amount"
+              />
+              {role === "BUYER" ? (
+                <Button color="gray" mt="md" type="submit">
+                  장바구니에 담기
+                </Button>
+              ) : null}
+              <BuyerShopInfo product={product} />
+            </form>
           </Fieldset>
 
           {/* <Text>간단 설명 : {produc}</Text> */}

@@ -13,7 +13,8 @@ const SellerRegisterPage = () => {
           style={{ width: 300 }}
           fullWidth
           variant="filled"
-          color="rgba(166, 104, 158, 1)"
+          // color="rgba(166, 104, 158, 1)"
+          color="gray"
           radius="md"
         >
           로그인하기

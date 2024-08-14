@@ -16,7 +16,7 @@ import SellerNavComponent from "./SellerNavComponent.jsx";
 import DaumPost from "../../Components/DaumPost.jsx";
 import { useState } from "react";
 import ProfileModal from "./ProfileModal.jsx";
-import "./css/ProductForm.css"
+import "./css/ProductForm.css";
 
 const SellerInfoForm = ({
   shop,
@@ -105,7 +105,7 @@ const SellerInfoForm = ({
                   <Button
                     w={150}
                     fullWidth
-                    color="pink"
+                    color="gray"
                     autoContrast
                     onClick={() => {
                       modals.open({
@@ -119,10 +119,11 @@ const SellerInfoForm = ({
                                 name="file"
                               />
                               <br />
-                              <Button fullWidth type="submit">
+                              <Button color="gray" fullWidth type="submit">
                                 변경하기
                               </Button>
                               <Button
+                                color="gray"
                                 fullWidth
                                 onClick={() => modals.closeAll()}
                                 mt="md"
@@ -141,7 +142,7 @@ const SellerInfoForm = ({
                 <Button
                   w={150}
                   fullWidth
-                  color="pink"
+                  color="gray"
                   autoContrast
                   style={{ marginTop: "15px" }}
                   onClick={() => {
@@ -273,6 +274,7 @@ const SellerInfoForm = ({
                   ></ProfileModal>
 
                   <Button
+                    color="gray"
                     style={{ marginLeft: "25px" }}
                     onClick={() => {
                       modals.open({
@@ -298,10 +300,11 @@ const SellerInfoForm = ({
                                 withAsterisk
                                 name="confirmPW"
                               />
-                              <Button fullWidth type="submit">
+                              <Button color="gray" fullWidth type="submit">
                                 변경하기
                               </Button>
                               <Button
+                                color="gray"
                                 fullWidth
                                 onClick={() => modals.closeAll()}
                                 mt="md"
@@ -342,7 +345,7 @@ const SellerInfoForm = ({
                   <Button
                     w={150}
                     fullWidth
-                    color="pink"
+                    color="gray"
                     autoContrast
                     onClick={() => {
                       modals.open({
@@ -378,7 +381,7 @@ const SellerInfoForm = ({
                 <Button
                   w={150}
                   fullWidth
-                  color="pink"
+                  color="gray"
                   autoContrast
                   style={{ marginTop: "15px" }}
                   onClick={() => {
@@ -465,7 +468,7 @@ const SellerInfoForm = ({
                         setDesc(e.target.value);
                       }}
                     />
-                    <Button fullWidth color="pink" type="submit">
+                    <Button fullWidth color="gray" type="submit">
                       저장
                     </Button>
                   </form>

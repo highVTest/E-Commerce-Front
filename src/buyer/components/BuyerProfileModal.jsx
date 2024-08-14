@@ -59,13 +59,14 @@ const BuyerProfileModal = ({
               setDetailAddr={setDetailAddr}
             ></DaumPost>
           </div>
-          <Button type="submit" fullWidth mt="md">
+          <Button color="gray" type="submit" fullWidth mt="md">
             변경
           </Button>
         </form>
       </Modal>
 
       <Button
+        color="gray"
         onClick={() => {
           open();
           setAddress("");

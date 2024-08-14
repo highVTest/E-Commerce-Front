@@ -117,13 +117,15 @@ const ProductCreateForm = ({ handleCreateProduct, imageUpload }) => {
                   name="file"
                 />
 
-                <Button fullWidth color="indigo" type="submit">
+                <Button color="gray" fullWidth type="submit">
                   저장
                 </Button>
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button style={{ marginTop: "20px" }}>목록으로</Button>
+              <Button color="gray" style={{ marginTop: "20px" }}>
+                목록으로
+              </Button>
             </Link>
           </div>
 

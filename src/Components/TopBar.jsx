@@ -58,7 +58,8 @@ function TopBar() {
               variant="filled"
               className="button"
               size="lg"
-              color="grape"
+              // color="grape"
+              color="gray"
               onClick={mainPage}
             >
               메인 페이지로 이동
@@ -68,7 +69,8 @@ function TopBar() {
               variant="filled"
               className="button"
               size="lg"
-              color="grape"
+              // color="grape"
+              color="gray"
               onClick={buyerReload}
             >
               구매자 로그인
@@ -77,7 +79,8 @@ function TopBar() {
               variant="filled"
               className="button"
               size="lg"
-              color="grape"
+              // color="grape"
+              color="gray"
               onClick={sellerReload}
             >
               판매자 로그인
@@ -91,7 +94,8 @@ function TopBar() {
                   variant="filled"
                   className="button"
                   size="lg"
-                  color="grape"
+                  // color="grape"
+                  color="gray"
                   onClick={mainPage}
                 >
                   메인 페이지로 이동
@@ -100,7 +104,8 @@ function TopBar() {
                   variant="filled"
                   className="button"
                   size="lg"
-                  color="grape"
+                  // color="grape"
+                  color="gray"
                   onClick={myPageRedirect}
                 >
                   마이페이지로 이동
@@ -109,7 +114,8 @@ function TopBar() {
                   variant="filled"
                   className="button"
                   size="lg"
-                  color="grape"
+                  // color="grape"
+                  color="gray"
                   onClick={logout}
                 >
                   로그 아웃
@@ -121,37 +127,41 @@ function TopBar() {
                   variant="filled"
                   className="button"
                   size="lg"
-                  color="grape"
+                  // color="grape"
+                  color="gray"
                   onClick={mainPage}
                 >
                   메인 페이지로 이동
                 </Button>
-                {
-                  role === "SELLER" ?
-                      <Button
-                          variant="filled"
-                          className="button"
-                          size="lg"
-                          color="grape"
-                          onClick={backOfficeRedirect}
-                      >
-                        관리 페이지로 이동
-                      </Button>:
-                      <Button
-                          variant="filled"
-                          className="button"
-                          size="lg"
-                          color="grape"
-                          onClick={adminBackOfficeRedirect}
-                      >
-                        관리 페이지로 이동
-                      </Button>
-                }
+                {role === "SELLER" ? (
+                  <Button
+                    variant="filled"
+                    className="button"
+                    size="lg"
+                    // color="grape"
+                    color="gray"
+                    onClick={backOfficeRedirect}
+                  >
+                    관리 페이지로 이동
+                  </Button>
+                ) : (
+                  <Button
+                    variant="filled"
+                    className="button"
+                    size="lg"
+                    // color="grape"
+                    color="gray"
+                    onClick={adminBackOfficeRedirect}
+                  >
+                    관리 페이지로 이동
+                  </Button>
+                )}
                 <Button
                   variant="filled"
                   className="button"
                   size="lg"
-                  color="grape"
+                  // color="grape"
+                  color="gray"
                   onClick={logout}
                 >
                   로그 아웃
