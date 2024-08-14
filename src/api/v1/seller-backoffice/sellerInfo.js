@@ -63,3 +63,7 @@ export const updateSellerImage = async (token, imageUrl) => {
     }  
   });
 }
+
+export const getAllUserShopInfo = async (shopId) => {
+  return apiClient.get(`/sellerInfo/shopInfo/${shopId}`);
+};

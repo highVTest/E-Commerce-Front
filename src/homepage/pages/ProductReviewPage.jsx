@@ -1,4 +1,4 @@
-import { Button, Fieldset, NumberInput, Text, TextInput } from "@mantine/core";
+import {Button, Fieldset, NumberInput, Rating, Text, TextInput} from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { useState } from "react";
 import ReviewAddModal from "../../loginandreview/components/review/ReviewAddModal";
@@ -29,7 +29,7 @@ const ProductReviewPage = ({
             <Fieldset legend="내용">
               <div>
                 <Text> 내용 : {review.content}</Text>
-                <Text> 평점 : {review.rate}</Text>
+                <Rating value={review.rate} fractions={2} readOnly />
               </div>
               <div
                 style={{
