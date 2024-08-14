@@ -33,17 +33,6 @@ const CouponPage=()=>{
         }else return '가격 할인 정책'
     }
 
-    const deleteCoupon = async (id) => {
-        try {
-            await deleteSellerCoupon(token, id)
-            alert("쿠폰 삭제가 완료 되었습니다")
-        }catch (error) {
-            alert(error.response.data.errorMessage);
-        }
-
-    }
-
-
     useEffect(() => {
         getCoupon()
     },[])
