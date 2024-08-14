@@ -18,7 +18,6 @@ const MyReviewPage = () => {
 
   const getMyReview = async () => {
     const data = await getBuyerReviews(token);
-    console.log(data.data);
     setReviews(data.data);
   };
 

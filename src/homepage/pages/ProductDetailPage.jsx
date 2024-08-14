@@ -129,10 +129,10 @@ const ProductDetailPage = () => {
           role = {role}
         />
 
-        <Fieldset legend={`지급 가능 쿠폰`} style={{ margin: "10px" }}>
-          <div className="product-list">
+        <Fieldset legend={`지급 가능 쿠폰`}>
+          <div className="product-list" style={{backgroundColor:"white"}}>
             {coupon !== null ? (
-              <div className="product-item" key={1}>
+              <div className="product-item" key={1} style={{width:"750px", marginTop:"-50px", marginBottom:"-50px"}}>
                 <div className="image">
                   <Image
                     className="product-image"
@@ -187,7 +187,6 @@ const ProductDetailPage = () => {
         </Fieldset>
         <Fieldset legend="상세설명">
           <Box
-            bg="var(--mantine-color-blue-light)"
             style={{ height: "150px", alignContent: "center" }}
           >
             {product?.description}{" "}

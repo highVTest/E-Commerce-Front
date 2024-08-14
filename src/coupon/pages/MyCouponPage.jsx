@@ -62,7 +62,6 @@ const MyCouponPage = () => {
               // eslint-disable-next-line react/jsx-key
               <Grid
                 style={{
-                  backgroundColor: "beige",
                   height: "280px",
                   justifyContent: "center",
                 }}

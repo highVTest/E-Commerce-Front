@@ -12,17 +12,9 @@
 
 .form-area {
     min-width: 600px;
-    background-color: #f0f4ff; /* 연한 파란색 배경 */
     padding: 20px;
     border-radius: 8px;
     margin-right: 20px;
-}
-
-.image-area {
-    width:350px;
-    background-color: #ffeef0; /* 연한 빨간색 배경 */
-    padding: 20px;
-    border-radius: 8px;
 }
 
 .input-field {

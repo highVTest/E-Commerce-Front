@@ -34,7 +34,6 @@ const SellerContainer = () => {
       const data = await uploadImage(token, file);
       return data.data.imageUrl;
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -44,7 +43,6 @@ const SellerContainer = () => {
       alert(data.data.msg);
       window.location.reload();
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -54,7 +52,6 @@ const SellerContainer = () => {
       alert(data.data.msg);
       window.location.reload();
     } catch (e) {
-      console.log(e);
     }
   };
 

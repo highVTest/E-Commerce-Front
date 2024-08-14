@@ -68,10 +68,6 @@ function UpdateCouponModal({ token, coupon }) {
   };
 
   const reqUpdateCoupon = async () => {
-    console.log(dataDiscountPolicy());
-    console.log(discount);
-    console.log(expiredAt);
-    console.log(quantity);
 
     try {
       const data = {
@@ -85,7 +81,6 @@ function UpdateCouponModal({ token, coupon }) {
       alert("쿠폰 업데이트가 완료 되었습니다");
       window.location.reload();
     } catch (e) {
-      console.log(e.response);
       alert(e.response.data.errorMessage);
     }
   };
@@ -98,6 +93,7 @@ function UpdateCouponModal({ token, coupon }) {
       setExpiredAt(null);
     }
   };
+  
 
   return (
     <>

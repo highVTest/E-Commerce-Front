@@ -97,7 +97,6 @@ function CreateCouponModal({ token, product }) {
       return;
     }
 
-    // console.log(quantity);
     try {
       setClick(true);
       const data = {
@@ -108,7 +107,6 @@ function CreateCouponModal({ token, product }) {
         quantity: quantity,
         couponName: couponName,
       };
-      // console.log(data);
       await createCoupon(token, data);
 
       alert("쿠폰 발급이 완료 되었습니다");
@@ -130,7 +128,6 @@ function CreateCouponModal({ token, product }) {
   };
 
   const handleQuantity = (e) => {
-    console.log(e.target.value);
     setQuantity(e.target.value); // 새로운 값을 상태에 저장합니다.
   };
 
