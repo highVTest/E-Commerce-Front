@@ -21,6 +21,7 @@ import ProdcutReviewContainer from "../components/ProductReviewContainer";
 
 const ProductDetailPage = () => {
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
   const [product, setProduct] = useState(null);
   const [coupon, setCoupon] = useState(null);
   const [couponToBuyer, setCouponToBuyer] = useState(null);
@@ -125,6 +126,7 @@ const ProductDetailPage = () => {
           favorite={favorite}
           favoriteChange={favoriteChange}
           addItemCart={addItemCart}
+          role = {role}
         />
 
         <Fieldset legend={`지급 가능 쿠폰`} style={{ margin: "10px" }}>

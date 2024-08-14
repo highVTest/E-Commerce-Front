@@ -5,7 +5,6 @@ import {
   Image,
   NumberInput,
   Text,
-  TextInput,
   Title,
 } from "@mantine/core";
 import React, { useState } from "react";
@@ -14,7 +13,7 @@ import {useNavigate, Link, useParams} from "react-router-dom";
 import BuyerShopInfo from "../../buyer/pages/BuyerShopInfo.jsx";
 
 
-const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
+const ProductDetail = ({ product, favorite, favoriteChange, addItemCart, role }) => {
   const [liked, setLiked] = useState(false);
   const [alert, setAlert] = useState({ visible: false, message: "" });
   const navigate = useNavigate();
@@ -119,9 +118,13 @@ const ProductDetail = ({ product, favorite, favoriteChange, addItemCart }) => {
                     }}
                     name="amount"
                 />
-                <Button mt="md" type="submit">
-                  장바구니에 담기
-                </Button>
+                {
+                  role === "BUYER" ?
+                      <Button mt="md" type="submit">
+                        장바구니에 담기
+                      </Button>:
+                      null
+                }
                   <BuyerShopInfo product={product}/>
               </form>
           </Fieldset>
