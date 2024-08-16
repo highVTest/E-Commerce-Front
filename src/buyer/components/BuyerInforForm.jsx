@@ -88,9 +88,19 @@ const BuyerInfoForm = ({
             fit="contain"
             src={buyer?.profileImage}
             fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-            style={{ marginTop: 15, marginLeft: "50px" }}
+            style={{ margin: "0 auto", marginTop: "35px" }}
           />
-          <Group style={{ marginLeft: 25, marginTop: 15 }}>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "50%",
+              margin: "0 auto",
+              marginTop: "15px",
+              gap: "8px",
+            }}
+          >
             <Button
               color="gray"
               autoContrast
@@ -129,7 +139,7 @@ const BuyerInfoForm = ({
             <Button color="gray" autoContrast onClick={handleImageDelete}>
               이미지 삭제하기
             </Button>
-          </Group>
+          </div>
         </Grid.Col>
         <Grid.Col span={6} style={{ height: 350 }}>
           <Stack

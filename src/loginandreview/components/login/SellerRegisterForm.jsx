@@ -1,6 +1,6 @@
 import { Button, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendMail, verifyEmail } from "../../../api/v1/auth/auth.js";
 import { buyerSignUp } from "../../../api/v1/buyer/buyer.js";
@@ -22,13 +22,17 @@ const SellerRegisterForm = () => {
   const [auth, setAuth] = useState("");
   const [sellerId, setSellerId] = useState(-1);
 
+  const timerRef = useRef();
+
   const authTimer = () => {
     let min = 5;
     let sec = 0;
 
-    const timer = setInterval(() => {
+    clearInterval(timerRef.current);
+
+    timerRef.current = setInterval(() => {
       if (min == 0 && sec == 0) {
-        clearInterval(timer);
+        clearInterval(timerRef.current);
         setIsOk(false);
         setAuthMin(5);
         setAuthSec(0);
@@ -111,8 +115,7 @@ const SellerRegisterForm = () => {
         // clearInterval(timer);
         setIsOk(false);
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const handleImageChange = async (e) => {
@@ -136,6 +139,12 @@ const SellerRegisterForm = () => {
 
     // window.location.reload();
   };
+
+  useEffect(() => {
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>

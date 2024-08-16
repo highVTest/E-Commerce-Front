@@ -41,6 +41,7 @@ const ProductDetail = ({
     }
     setWait(true);
     await favoriteChange(productId);
+
     setWait(false);
     // console.log(productId);
   };
