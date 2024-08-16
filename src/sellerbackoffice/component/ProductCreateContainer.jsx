@@ -30,7 +30,11 @@ const ProductCreateContainer = () => {
     } catch (e) {
       const message = e.response.data["errorMessage"];
       isReLogin(message);
-      alert(message);
+      if (message == "Seller is not authorized to create a product") {
+        alert("아직 판매자 승인이 안됐습니다.");
+      } else {
+        alert(message);
+      }
     }
   };
 
@@ -39,7 +43,6 @@ const ProductCreateContainer = () => {
       const data = await uploadImage(token, file);
       return data.data.imageUrl;
     } catch (e) {
-      console.log(e);
     }
   };
 

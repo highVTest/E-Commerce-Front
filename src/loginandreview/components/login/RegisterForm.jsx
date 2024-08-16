@@ -120,8 +120,6 @@ const RegisterForm = () => {
         setIsOk(false);
       }
     } catch (e) {
-      console.log(e);
-      console.log(buyerId);
     }
   };
 
@@ -140,7 +138,6 @@ const RegisterForm = () => {
       setImageUrl(dataImage.data.imageUrl);
       alert("이미지가 등록됐습니다.");
     } catch (e) {
-      console.log(e);
       alert(e.response.data.errorMessage);
       // alert(e.data.msg);
     }
@@ -247,18 +244,19 @@ const RegisterForm = () => {
           placeholder="주소를 입력하세요"
           name="address"
         /> */}
-        <>
-          <DaumPost
-            address={address}
-            setAddress={setAddress}
-            extraAddr={extraAddr}
-            setExtraAddr={setExtraAddr}
-            detailAddr={detailAddr}
-            setDetailAddr={setDetailAddr}
-          ></DaumPost>
-        </>
+      </Stack>
+      <div style={{ marginTop: "25px" }}>
+        <DaumPost
+          address={address}
+          setAddress={setAddress}
+          extraAddr={extraAddr}
+          setExtraAddr={setExtraAddr}
+          detailAddr={detailAddr}
+          setDetailAddr={setDetailAddr}
+        ></DaumPost>
+      </div>
 
-        {/* <Button
+      {/* <Button
           color="lime.4"
           autoContrast
           onClick={() => {
@@ -287,10 +285,14 @@ const RegisterForm = () => {
         >
           이미지 등록하기
         </Button> */}
-        <Button fullWidth type="submit">
-          REGISTER
-        </Button>
-      </Stack>
+      <Button
+        color="gray"
+        fullWidth
+        type="submit"
+        style={{ marginTop: "25px" }}
+      >
+        REGISTER
+      </Button>
     </form>
   );
 };

@@ -12,7 +12,6 @@ const ShopCreateContainer = () => {
       const data = await postShop(token, name, description, shopImage);
       window.location.href = "/seller-info";
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -21,7 +20,6 @@ const ShopCreateContainer = () => {
       const data = await uploadImage(token, file);
       return data.data.imageUrl;
     } catch (e) {
-      console.log(e);
     }
   };
   return (

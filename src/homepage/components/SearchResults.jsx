@@ -11,9 +11,7 @@ const SearchResults = () => {
 
   // API를 호출하여 제품 데이터를 가져오는 함수
   const getProducts = async () => {
-    console.log("getProducts");
     const data = await getAllProducts();
-    console.log("data", data);
     setProducts(data.data.content);
     // 찜하기 상태 배열 초기화
     setLiked(Array(data.data.content.length).fill(false));

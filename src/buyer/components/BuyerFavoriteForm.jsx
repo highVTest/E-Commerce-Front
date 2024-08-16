@@ -16,13 +16,11 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
 
   const handleHeart = async (productId) => {
     if (wait == true) {
-      console.log("실행중이다.");
       return;
     }
     setWait(true);
     await buyerChangeFavorite(productId);
     setWait(false);
-    // console.log(productId);
   };
 
   return (
@@ -70,7 +68,7 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
                     to={`/product/${favorite.productId}`}
                     style={{ marginTop: 0 }}
                   >
-                    <Button color="blue" fullWidth mt="md" radius="md">
+                    <Button color="gray" fullWidth mt="md" radius="md">
                       상품 페이지 바로가기
                     </Button>
                   </Link>

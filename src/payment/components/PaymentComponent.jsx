@@ -17,7 +17,6 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
     cartIdList.push(paymentData[i].cartId);
     productIdList.push(paymentData[i].productId);
   }
-  console.log(paymentData);
 
   const reqPayment = async () => {
     if (cartIdList.length == 0) {
@@ -111,7 +110,6 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
       productIdList.includes(coupon.productId)
     );
     setCoupons(filterData);
-    console.log(filterData)
   };
   useEffect(() => {
     getBuyerCoupon();
@@ -177,10 +175,18 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
         </div>
       </Fieldset>
       <div>
-        <Button onClick={reqPayment} style={{ margin: "10px", float: "right" }}>
+        <Button
+          color="gray"
+          onClick={reqPayment}
+          style={{ margin: "10px", float: "right" }}
+        >
           결제 하기
         </Button>
-        <Button onClick={close} style={{ margin: "10px", float: "right" }}>
+        <Button
+          color="gray"
+          onClick={close}
+          style={{ margin: "10px", float: "right" }}
+        >
           닫기
         </Button>
       </div>

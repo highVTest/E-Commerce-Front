@@ -14,7 +14,6 @@ const ReviewContainer = () => {
   const fetchReviews = async () => {
     // console.log("token", token);
     const data = await getProductReviews(token);
-    console.log(data);
 
     setReviews(data.data);
   };
@@ -22,14 +21,12 @@ const ReviewContainer = () => {
   const addReview = async () => {
     try {
       const data = await addReview(token, 3);
-      console.log(data);
       // await createReview(review);
 
       await fetchReviews();
 
       alert("리뷰 추가 완료!");
     } catch (e) {
-      console.log(e.message);
     }
   };
 

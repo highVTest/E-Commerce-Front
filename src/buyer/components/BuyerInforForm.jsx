@@ -25,7 +25,12 @@ const BuyerInfoForm = ({
   const [address, setAddress] = useState("");
   const [extraAddr, setExtraAddr] = useState("");
   const [detailAddr, setDetailAddr] = useState("");
+
   const handleImageDelete = async () => {
+    if (buyer?.profileImage == "") {
+      alert("삭제할 이미지가 없습니다.");
+      return;
+    }
     await buyerChangeImage(null);
   };
 
@@ -72,22 +77,22 @@ const BuyerInfoForm = ({
   };
 
   return (
-    <div className="buyer-info">
+    <div className="buyer-info" style={{ marginTop: "50px" }}>
       <Grid style={{ width: 800, height: 350 }}>
-        <Grid.Col span={6} style={{ paddingTop: 0, height: 350 }}>
+        <Grid.Col span={6} style={{ paddingTop: 0, height: "350px" }}>
           <Image
-            className="profile-image"
+            // className="profile-image"
             radius="md"
             h={180}
             w={250}
             fit="contain"
             src={buyer?.profileImage}
             fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-            style={{ marginTop: 15 }}
+            style={{ marginTop: 15, marginLeft: "50px" }}
           />
           <Group style={{ marginLeft: 25, marginTop: 15 }}>
             <Button
-              color="lime.4"
+              color="gray"
               autoContrast
               onClick={() => {
                 modals.open({
@@ -101,10 +106,11 @@ const BuyerInfoForm = ({
                           name="file"
                         />
                         <br />
-                        <Button fullWidth type="submit">
+                        <Button color="gray" fullWidth type="submit">
                           변경하기
                         </Button>
                         <Button
+                          color="gray"
                           fullWidth
                           onClick={() => modals.closeAll()}
                           mt="md"
@@ -120,7 +126,7 @@ const BuyerInfoForm = ({
               이미지 변경하기
             </Button>
 
-            <Button color="lime.4" autoContrast onClick={handleImageDelete}>
+            <Button color="gray" autoContrast onClick={handleImageDelete}>
               이미지 삭제하기
             </Button>
           </Group>
@@ -216,47 +222,9 @@ const BuyerInfoForm = ({
                 setDetailAddr={setDetailAddr}
                 buyerChangeProfile={buyerChangeProfile}
               ></BuyerProfileModal>
-              {/* <Button
-                onClick={() => {
-                  modals.open({
-                    title: "프로필 수정",
-                    children: (
-                      <>
-                        <form onSubmit={handleProfileChange}>
-                          <TextInput
-                            label="닉네임"
-                            placeholder="닉네임을 입력해주세요"
-                            name="nickName"
-                          />
-                          <TextInput
-                            label="주소"
-                            placeholder="주소를 입력해주세요"
-                            name="address"
-                          />
-                          <TextInput
-                            label="핸드폰 번호"
-                            placeholder="핸드폰 번호를 입력해주세요"
-                            name="phone"
-                          />
-                          <Button fullWidth type="submit" mt="md">
-                            변경하기
-                          </Button>
-                          <Button
-                            fullWidth
-                            onClick={() => modals.closeAll()}
-                            mt="md"
-                          >
-                            취소
-                          </Button>
-                        </form>
-                      </>
-                    ),
-                  });
-                }}
-              >
-                프로필 수정하기
-              </Button> */}
+
               <Button
+                color="gray"
                 onClick={() => {
                   modals.open({
                     title: "프로필 수정",
@@ -281,10 +249,11 @@ const BuyerInfoForm = ({
                             withAsterisk
                             name="confirmPW"
                           />
-                          <Button fullWidth type="submit" mt="md">
+                          <Button color="gray" fullWidth type="submit" mt="md">
                             변경하기
                           </Button>
                           <Button
+                            color="gray"
                             fullWidth
                             onClick={() => modals.closeAll()}
                             mt="md"
@@ -303,9 +272,10 @@ const BuyerInfoForm = ({
           </Stack>
         </Grid.Col>
       </Grid>
+      {/* 아래쪽 원래 height 150임 */}
       <Grid
         style={{
-          height: 150,
+          height: 100,
           width: 800,
           marginTop: 0,
         }}
@@ -315,8 +285,9 @@ const BuyerInfoForm = ({
             <Button
               fullWidth
               variant="light"
-              color="grape"
-              style={{ height: 150, color: "black" }}
+              // color="grape"
+              color="gray"
+              style={{ height: 100, color: "black" }}
             >
               장바구니 바로가기
             </Button>
@@ -327,8 +298,9 @@ const BuyerInfoForm = ({
             <Button
               fullWidth
               variant="light"
-              color="rgba(93, 255, 5, 1)"
-              style={{ height: 150, color: "black" }}
+              // color="rgba(93, 255, 5, 1)"
+              color="gray"
+              style={{ height: 100, color: "black" }}
             >
               주문 내역 보기
             </Button>
@@ -339,8 +311,9 @@ const BuyerInfoForm = ({
             <Button
               fullWidth
               variant="light"
-              color="yellow"
-              style={{ height: 150, color: "black" }}
+              // color="yellow"
+              color="gray"
+              style={{ height: 100, color: "black" }}
             >
               찜 목록 바로가기
             </Button>
@@ -349,7 +322,7 @@ const BuyerInfoForm = ({
       </Grid>
       <Grid
         style={{
-          height: 150,
+          height: 100,
           width: 800,
           marginTop: 0,
         }}
@@ -359,8 +332,9 @@ const BuyerInfoForm = ({
             <Button
               fullWidth
               variant="light"
-              color="rgba(19, 200, 70, 55)"
-              style={{ height: 150, color: "black" }}
+              // color="rgba(19, 200, 70, 55)"
+              color="gray"
+              style={{ height: 100, color: "black" }} // 원래 height 150
             >
               쿠폰 목록 보기
             </Button>
@@ -371,8 +345,9 @@ const BuyerInfoForm = ({
             <Button
               fullWidth
               variant="light"
-              color="rgba(200, 255, 5, 1)"
-              style={{ height: 150, color: "black" }}
+              // color="rgba(200, 255, 5, 1)"
+              color="gray"
+              style={{ height: 100, color: "black" }}
             >
               내 댓글 목록 보기
             </Button>

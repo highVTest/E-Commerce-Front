@@ -33,11 +33,9 @@ const CouponPage=()=>{
         }else return '가격 할인 정책'
     }
 
-
     useEffect(() => {
         getCoupon()
     },[])
-    console.log(couponData);
 
     return(
         <div className="seller">

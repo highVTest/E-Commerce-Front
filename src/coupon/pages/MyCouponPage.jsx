@@ -62,7 +62,6 @@ const MyCouponPage = () => {
               // eslint-disable-next-line react/jsx-key
               <Grid
                 style={{
-                  backgroundColor: "beige",
                   height: "280px",
                   justifyContent: "center",
                 }}
@@ -98,7 +97,7 @@ const MyCouponPage = () => {
                     </Grid.Col>
                     <Grid.Col span={2}>
                       <Button
-                        color="red"
+                        color="gray"
                         // fullWidth
                         mt="md"
                         radius="md"

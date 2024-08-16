@@ -103,10 +103,11 @@ const ProductList = ({
                               name="price"
                               className="price"
                             />
-                            <Button fullWidth type="submit">
+                            <Button color="gray" fullWidth type="submit">
                               변경하기
                             </Button>
                             <Button
+                              color="gray"
                               fullWidth
                               onClick={() => modals.closeAll()}
                               mt="md"
@@ -136,10 +137,11 @@ const ProductList = ({
                               name="quantity"
                               className="quantity"
                             />
-                            <Button fullWidth type="submit">
+                            <Button color="gray" fullWidth type="submit">
                               변경하기
                             </Button>
                             <Button
+                              color="gray"
                               fullWidth
                               onClick={() => modals.closeAll()}
                               mt="md"
@@ -165,6 +167,7 @@ const ProductList = ({
                         <>
                           <Button
                             fullWidth
+                            color="grey"
                             onClick={() => {
                               handleDelete(product.id);
                             }}
@@ -173,6 +176,7 @@ const ProductList = ({
                           </Button>
                           <Button
                             fullWidth
+                            color="grey"
                             onClick={() => modals.closeAll()}
                             mt="md"
                           >
@@ -192,6 +196,7 @@ const ProductList = ({
       </div>
       <div className="display-center" style={{ marginTop: "20px" }}>
         <Pagination
+          color="gray"
           value={activePage}
           onChange={setPage}
           total={result?.totalPages}

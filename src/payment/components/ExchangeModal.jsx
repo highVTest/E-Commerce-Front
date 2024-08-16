@@ -19,7 +19,6 @@ function ExchangeModal({ orderMasterId, shopId }) {
     }
 
     if (click == true) {
-      console.log("dsasdsadsda");
       return;
     }
     try {
@@ -62,13 +61,19 @@ function ExchangeModal({ orderMasterId, shopId }) {
         />
         <div style={{ display: "flex" }}>
           <div style={{ width: "70%" }}></div>
-          <Button onClick={reqReject} style={{ marginTop: "10px" }}>
+          <Button
+            color="gray"
+            onClick={reqReject}
+            style={{ marginTop: "10px" }}
+          >
             교환 요청 하기
           </Button>
         </div>
       </Modal>
 
-      <Button onClick={open}>교환 요청</Button>
+      <Button color="gray" onClick={open}>
+        교환 요청
+      </Button>
     </>
   );
 }

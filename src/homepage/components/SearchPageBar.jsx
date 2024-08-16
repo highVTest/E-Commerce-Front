@@ -14,7 +14,6 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
 
   const searchKeyword = async () => {
     if (wait == true) {
-      console.log("실행중임;;;");
       return;
     }
 
@@ -65,7 +64,8 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
         />
         <Button
           variant="filled"
-          color="rgba(118, 94, 255, 0.94)"
+          // color="rgba(118, 94, 255, 0.94)"
+          color="gray"
           style={{ marginLeft: "15px" }}
           onClick={searchKeyword}
         >

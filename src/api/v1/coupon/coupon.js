@@ -20,7 +20,6 @@ export const createCoupon = async (token, data) => {
 };
 
 export const updateCoupon = async (token, data, couponId) => {
-    console.log(data);
     return apiClient.put(`seller/coupon/${couponId}`, {
         expiredAt : data.expiredAt,
         discountPolicy : data.discountPolicy,

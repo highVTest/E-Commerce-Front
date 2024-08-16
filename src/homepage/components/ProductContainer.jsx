@@ -34,7 +34,7 @@ const ProductContainer = () => {
   return (
     <>
       {/* 추천 상품 리스트 */}
-      <Container size={800} mt="xl">
+      <Container size={850} mt="xl">
         <Center>
           <SectionTitle
             title="최신 상품 리스트"

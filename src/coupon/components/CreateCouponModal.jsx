@@ -46,9 +46,9 @@ function CreateCouponModal({ token, product }) {
     }
   };
 
-  const couponExpired =()=> {
-     alert("쿠폰은 생성 뒤에 삭제 할 수 없습니다 신중하게 작성 부탁드립니다")
-  }
+  const couponExpired = () => {
+    alert("쿠폰은 생성 뒤에 삭제 할 수 없습니다 신중하게 작성 부탁드립니다");
+  };
 
   const handlerDiscountPolicy = () => {
     if (discountPolicy === "할인율 설정") {
@@ -97,7 +97,6 @@ function CreateCouponModal({ token, product }) {
       return;
     }
 
-    // console.log(quantity);
     try {
       setClick(true);
       const data = {
@@ -108,7 +107,6 @@ function CreateCouponModal({ token, product }) {
         quantity: quantity,
         couponName: couponName,
       };
-      // console.log(data);
       await createCoupon(token, data);
 
       alert("쿠폰 발급이 완료 되었습니다");
@@ -130,7 +128,6 @@ function CreateCouponModal({ token, product }) {
   };
 
   const handleQuantity = (e) => {
-    console.log(e.target.value);
     setQuantity(e.target.value); // 새로운 값을 상태에 저장합니다.
   };
 
@@ -218,12 +215,17 @@ function CreateCouponModal({ token, product }) {
         </Fieldset>
         <div>
           <Button
+            color="gray"
             style={{ margin: "10px", float: "right" }}
             onClick={reqCreateCoupon}
           >
             쿠폰 등록 하기
           </Button>
-          <Button onClick={close} style={{ margin: "10px", float: "right" }}>
+          <Button
+            color="gray"
+            onClick={close}
+            style={{ margin: "10px", float: "right" }}
+          >
             닫기
           </Button>
         </div>

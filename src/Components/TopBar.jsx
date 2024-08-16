@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, Image } from "@mantine/core";
 import "../index.css";
 import "../App.css";
 
@@ -37,10 +37,10 @@ function TopBar() {
   };
 
   const logout = () => {
+    alert("로그 아웃이 완료되었습니다");
+    window.location.href = "/";
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    alert("로그 아웃이 완료되 었습니다");
-    window.location.href = "/";
   };
 
   const mainPage = () => {
@@ -50,117 +50,74 @@ function TopBar() {
   return (
     <>
       <div className="top-bar">
-        <div className="circle"></div>
-        <h1>High V</h1>
+        <div>
+          <Image
+            onClick={mainPage}
+            src="/images/logo.png"
+          ></Image>
+        </div>
         {token === null && vaildRole() === null ? (
           <div className="button-container">
-            <Button
-              variant="filled"
-              className="button"
-              size="lg"
-              color="grape"
-              onClick={mainPage}
-            >
-              메인 페이지로 이동
-            </Button>
-            <Button
-              to=""
-              variant="filled"
-              className="button"
-              size="lg"
-              color="grape"
+            <Image
               onClick={buyerReload}
-            >
-              구매자 로그인
-            </Button>
-            <Button
-              variant="filled"
-              className="button"
-              size="lg"
-              color="grape"
+              style={{margin:"10px"}}
+              src="/images/login.png"
+            ></Image>
+            <Image src="/images/slash.png"
+            style={{margin:"10px"}}></Image>
+            <Image
+              style={{margin:"10px"}}
               onClick={sellerReload}
-            >
-              판매자 로그인
-            </Button>
+              src="/images/seller-login.png"
+            ></Image>
           </div>
         ) : (
           <>
             {vaildRole() === true ? (
               <div className="button-container">
-                <Button
-                  variant="filled"
-                  className="button"
-                  size="lg"
-                  color="grape"
-                  onClick={mainPage}
-                >
-                  메인 페이지로 이동
-                </Button>
-                <Button
-                  variant="filled"
-                  className="button"
-                  size="lg"
-                  color="grape"
+                <Image
+                  style={{margin:"10px"}}
                   onClick={myPageRedirect}
-                >
-                  마이페이지로 이동
-                </Button>
-                <Button
-                  variant="filled"
-                  className="button"
-                  size="lg"
-                  color="grape"
+                  src="/images/my-page.png"
+                ></Image>
+                <Image
+                  style={{margin:"10px"}}
                   onClick={logout}
-                >
-                  로그 아웃
-                </Button>
+                  src="/images/log-out.png"
+                ></Image>
               </div>
             ) : (
               <div className="button-container">
-                <Button
-                  variant="filled"
-                  className="button"
-                  size="lg"
-                  color="grape"
-                  onClick={mainPage}
-                >
-                  메인 페이지로 이동
-                </Button>
-                {
-                  role === "SELLER" ?
-                      <Button
-                          variant="filled"
-                          className="button"
-                          size="lg"
-                          color="grape"
-                          onClick={backOfficeRedirect}
-                      >
-                        관리 페이지로 이동
-                      </Button>:
-                      <Button
-                          variant="filled"
-                          className="button"
-                          size="lg"
-                          color="grape"
-                          onClick={adminBackOfficeRedirect}
-                      >
-                        관리 페이지로 이동
-                      </Button>
-                }
-                <Button
-                  variant="filled"
-                  className="button"
-                  size="lg"
-                  color="grape"
+                {role === "SELLER" ? (
+                  <Image
+                  style={{margin:"10px"}}
+                  onClick={backOfficeRedirect}
+                  src="/images/seller-page.png"
+                  ></Image>
+                ) : (
+                  <Button
+                    variant="filled"
+                    className="button"
+                    size="lg"
+                    color="gray"
+                    onClick={adminBackOfficeRedirect}
+                  >
+                    관리 페이지로 이동
+                  </Button>
+                )}
+                <Image
+                  style={{margin:"10px"}}
                   onClick={logout}
-                >
-                  로그 아웃
-                </Button>
+                  src="/images/log-out.png"
+                ></Image>
               </div>
             )}
           </>
         )}
       </div>
+      <div style={{width:"100%", marginTop:"-30px"}}>
+          <hr/>
+        </div>
     </>
   );
 }

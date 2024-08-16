@@ -18,7 +18,6 @@ const MyReviewPage = () => {
 
   const getMyReview = async () => {
     const data = await getBuyerReviews(token);
-    console.log(data.data);
     setReviews(data.data);
   };
 
@@ -109,7 +108,7 @@ const MyReviewPage = () => {
                           productId={review.productId}
                         />
                         <Button
-                          color="red"
+                          color="gray"
                           // fullWidth
                           mt="md"
                           radius="md"

@@ -34,7 +34,6 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
         onClose={close}
         size="lg"
       >
-        <h1>상품 등록</h1>
         <div className="box">
           <div className="form-area">
             <h2>상품 정보 등록</h2>
@@ -55,13 +54,13 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
                   minRows={8}
                   maxRows={8}
                 />
-                <Button fullWidth color="indigo" type="submit">
+                <Button color="gray" fullWidth type="submit">
                   저장
                 </Button>
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button style={{ margin: "20px", float: "right" }}>
+              <Button color="gray" style={{ margin: "20px", float: "right" }}>
                 목록으로
               </Button>
             </Link>

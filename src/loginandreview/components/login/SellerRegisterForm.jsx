@@ -73,7 +73,6 @@ const SellerRegisterForm = () => {
         PhoneNumber,
         fullAddr
       );
-      console.log("x");
       alert("회원가입이 완료됐습니다.");
       navigate("/login/seller");
     } catch (e) {
@@ -113,7 +112,6 @@ const SellerRegisterForm = () => {
         setIsOk(false);
       }
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -132,7 +130,6 @@ const SellerRegisterForm = () => {
       setImageUrl(dataImage.data.imageUrl);
       alert("이미지가 등록됐습니다.");
     } catch (e) {
-      console.log(e);
       alert(e.response.data.errorMessage);
       // alert(e.data.msg);
     }
@@ -239,18 +236,19 @@ const SellerRegisterForm = () => {
           placeholder="주소를 입력하세요"
           name="address"
         /> */}
-        <>
-          <DaumPost
-            address={address}
-            setAddress={setAddress}
-            extraAddr={extraAddr}
-            setExtraAddr={setExtraAddr}
-            detailAddr={detailAddr}
-            setDetailAddr={setDetailAddr}
-          ></DaumPost>
-        </>
+      </Stack>
+      <div style={{ marginTop: "25px" }}>
+        <DaumPost
+          address={address}
+          setAddress={setAddress}
+          extraAddr={extraAddr}
+          setExtraAddr={setExtraAddr}
+          detailAddr={detailAddr}
+          setDetailAddr={setDetailAddr}
+        ></DaumPost>
+      </div>
 
-        {/* <Button
+      {/* <Button
           color="lime.4"
           autoContrast
           onClick={() => {
@@ -279,10 +277,14 @@ const SellerRegisterForm = () => {
         >
           이미지 등록하기
         </Button> */}
-        <Button fullWidth type="submit">
-          REGISTER
-        </Button>
-      </Stack>
+      <Button
+        color="gray"
+        fullWidth
+        type="submit"
+        style={{ marginTop: "15px" }}
+      >
+        REGISTER
+      </Button>
     </form>
   );
 };

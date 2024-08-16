@@ -59,7 +59,6 @@ const ProductCreateForm = ({ handleCreateProduct, imageUpload }) => {
     <div className="seller">
       <SellerNavComponent />
       <div className="product-container">
-        <h1>상품 등록</h1>
         <div className="box">
           <div className="form-area">
             <h2>상품 정보 등록</h2>
@@ -117,34 +116,17 @@ const ProductCreateForm = ({ handleCreateProduct, imageUpload }) => {
                   name="file"
                 />
 
-                <Button fullWidth color="indigo" type="submit">
+                <Button color="gray" fullWidth type="submit">
                   저장
                 </Button>
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button style={{ marginTop: "20px" }}>목록으로</Button>
+              <Button color="gray" style={{ marginTop: "20px" }}>
+                목록으로
+              </Button>
             </Link>
           </div>
-
-          {/* <div className="image-area">
-            <h2>상품 이미지 등록</h2>
-            <div className="image-grid">
-              {Array.from({ length: 9 }).map((_, index) => (
-                <div key={index} className="image-slot"></div>
-              ))}
-            </div>
-            <form onSubmit={handleImageSubmit}>
-              <FileInput
-                label="이미지"
-                placeholder="이미지를 선택해주세요"
-                name="file"
-              />
-              <Button color="lime.4" autoContrast type="submit">
-                이미지 추가하기
-              </Button>
-            </form>
-          </div> */}
         </div>
       </div>
     </div>
