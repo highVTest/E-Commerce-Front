@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sendMail, verifyEmail } from "../../../api/v1/auth/auth.js";
 import { modals } from "@mantine/modals";
 import { uploadImage } from "../../../api/v1/image/image.js";
@@ -29,12 +29,17 @@ const RegisterForm = () => {
   const [auth, setAuth] = useState("");
   const [buyerId, setBuyerId] = useState(-1);
 
+  const timerRef = useRef();
+
   const authTimer = () => {
     let min = 5;
     let sec = 0;
-    const timer = setInterval(() => {
+
+    clearInterval(timerRef.current);
+
+    timerRef.current = setInterval(() => {
       if (min == 0 && sec == 0) {
-        clearInterval(timer);
+        clearInterval(timerRef.current);
         setIsOk(false);
         setAuthMin(5);
         setAuthSec(0);
@@ -119,8 +124,7 @@ const RegisterForm = () => {
         // clearInterval(timer);
         setIsOk(false);
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const handleImageChange = async (e) => {
@@ -144,6 +148,12 @@ const RegisterForm = () => {
 
     // window.location.reload();
   };
+
+  useEffect(() => {
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
