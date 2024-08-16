@@ -71,7 +71,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
         setNewTotalPrice(newTotalPrice + price);
       } else {
         paymentData.forEach((i) => {
-          if (i.productId == data.productId) {
+          if (i.productId === data.productId) {
             product = i;
           }
         });
@@ -80,7 +80,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
         setNewTotalPrice(newTotalPrice + price);
       }
     } else {
-      if (data.discountPolicy == "DISCOUNT_RATE") {
+      if (data.discountPolicy === "DISCOUNT_RATE") {
         paymentData.forEach((i) => {
           if (i.productId == data.productId) {
             product = i;
@@ -94,7 +94,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
         setNewTotalPrice(newTotalPrice - price);
       } else {
         paymentData.forEach((i) => {
-          if (i.productId == data.productId) {
+          if (i.productId === data.productId) {
             product = i;
           }
         });
