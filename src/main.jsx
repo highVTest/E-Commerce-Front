@@ -8,7 +8,6 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "./index.css";
 import { ModalsProvider } from "@mantine/modals";
-import App from "./App.jsx";
 import TopBar from "./Components/TopBar.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
