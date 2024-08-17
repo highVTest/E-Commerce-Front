@@ -51,72 +51,60 @@ function TopBar() {
     <>
       <div className="top-bar">
         <div>
-          <Image
-            onClick={mainPage}
-            src="/images/logo.png"
-          ></Image>
+          <Image onClick={mainPage} src="/images/logo.png"></Image>
         </div>
         {token === null && vaildRole() === null ? (
           <div className="button-container">
-            <Image
-              onClick={buyerReload}
-              style={{margin:"10px"}}
-              src="/images/login.png"
-            ></Image>
-            <Image src="/images/slash.png"
-            style={{margin:"10px"}}></Image>
-            <Image
-              style={{margin:"10px"}}
-              onClick={sellerReload}
-              src="/images/seller-login.png"
-            ></Image>
+            <Button onClick={buyerReload} variant="outline" color="black">
+              로그인
+            </Button>
+            <Button onClick={sellerReload} variant="outline" color="black">
+              판매자 로그인
+            </Button>
           </div>
         ) : (
           <>
             {vaildRole() === true ? (
               <div className="button-container">
-                <Image
-                  style={{margin:"10px"}}
+                <Button
                   onClick={myPageRedirect}
-                  src="/images/my-page.png"
-                ></Image>
-                <Image
-                  style={{margin:"10px"}}
-                  onClick={logout}
-                  src="/images/log-out.png"
-                ></Image>
+                  variant="outline"
+                  color="black"
+                >
+                  마이 페이지
+                </Button>
+                <Button onClick={logout} variant="outline" color="black">
+                  로그아웃
+                </Button>
               </div>
             ) : (
               <div className="button-container">
                 {role === "SELLER" ? (
-                  <Image
-                  style={{margin:"10px"}}
-                  onClick={backOfficeRedirect}
-                  src="/images/seller-page.png"
-                  ></Image>
+                  <Button
+                    onClick={backOfficeRedirect}
+                    variant="outline"
+                    color="black"
+                  >판매자 전용 페이지
+                  </Button>
                 ) : (
                   <Button
-                    variant="filled"
-                    className="button"
-                    size="lg"
-                    color="gray"
                     onClick={adminBackOfficeRedirect}
+                    variant="outline"
+                    color="black"
                   >
-                    관리 페이지로 이동
+                    관리자 페이지로 이동
                   </Button>
                 )}
-                <Image
-                  style={{margin:"10px"}}
-                  onClick={logout}
-                  src="/images/log-out.png"
-                ></Image>
+                <Button onClick={logout} variant="outline" color="black">
+                  로그아웃
+                </Button>
               </div>
             )}
           </>
         )}
       </div>
-      <div style={{width:"100%"}}>
-        <hr style={{margin:"0"}}/>
+      <div style={{ width: "100%" }}>
+        <hr style={{ margin: "0" }} />
       </div>
     </>
   );

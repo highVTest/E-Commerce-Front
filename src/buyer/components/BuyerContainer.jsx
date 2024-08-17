@@ -29,7 +29,6 @@ const BuyerContainer = () => {
   const getBuyerDetail = async () => {
     try {
       const data = await getMyProfile(token);
-      // console.log(data);
       setBuyer(data.data);
     } catch (e) {
       const status = e.response.data["errorCode"];
@@ -50,8 +49,6 @@ const BuyerContainer = () => {
         } catch (e) {
           alert(data.data.msg);
         }
-
-        // console.log(dataImage.data);
       }
 
       const data = await changeImage(token, imageUrl);
@@ -60,8 +57,6 @@ const BuyerContainer = () => {
     } catch (e) {
       const status = e.response.data["errorCode"];
       const message = e.response.data["errorMessage"];
-      // console.log(status);
-      // console.log(message);
       isReLogin(message);
     }
   };
@@ -98,8 +93,6 @@ const BuyerContainer = () => {
   const isReLogin = (message) => {
     if (message == "Access Denied") {
       alert("다시 로그인 해주세요");
-      // localStorage.removeItem("token");
-      // localStorage.removeItem("role");
     } else {
       alert(message);
     }

@@ -30,7 +30,7 @@ const ProductContainer = () => {
   }, []);
   return (
     <>
-      <Container style={{width:"100%",marginTop:"20px"}}>
+      <Container style={{width:"100%",marginTop:"20px", padding: "0"}}>
 
         <Center>
           <SectionTitle

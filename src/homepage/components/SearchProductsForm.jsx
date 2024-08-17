@@ -2,6 +2,7 @@ import { Button, Container, Pagination } from "@mantine/core";
 import ProductList from "./ProductList";
 import SearchPageBar from "./SearchPageBar";
 import { useEffect, useState } from "react";
+import SearchBarContainer from "../components/SearchBarContainer";
 
 const SearchProductsForm = ({
   result,
@@ -33,13 +34,12 @@ const SearchProductsForm = ({
         param={param}
         getSearchProducts={getSearchProducts}
       ></SearchPageBar>
-      <Container size={800} mt="xl">
+      <Container>
         <ProductList products={products} isLoading={isLoading}></ProductList>
       </Container>
 
       <div style={{ marginTop: "50px" }} className="display-center">
         <Pagination
-          color="gray"
           value={activePage}
           onChange={setPage}
           total={result?.totalPages}
