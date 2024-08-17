@@ -37,92 +37,90 @@ const OrderStatusPage = () => {
     return (
         <div className="seller">
             <SellerNavComponent/>
-            <Stack>
-            {
-                (pendingData.length > 0 )?
-                    (pendingData.map((data, index) => {
-                    return (
-                        <div className="product-item" key={index} style={{marginTop:"20px"}}>
-                            <div className="product-info">
-                                <div style={{display:"flex"}}>
-                                    <div style={{width:"70%"}}>
-                                        <h2>주문 번호 : {data.orderMasterId}</h2>
-                                        <Text fw={500} size="lg" mt="md">
-                                            주문 시간 : {data.registerDate.split("-")[0]} 년{" "}
-                                            {data.registerDate.split("-")[1]} 월{" "}
-                                            {data.registerDate.split("-")[2].slice(0, 2)} 일
-                                        </Text>
+            <div style={{width:"100%", marginLeft:"20px"}}>
+                <h1>결제 상태 관리</h1>
+                <Stack>
+                {
+                    (pendingData.length > 0 )?
+                        (pendingData.map((data, index) => {
+                        return (
+                            <div className="product-item" key={index} >
+                                <div style={{width:"100%"}}>
+                                    <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between", width:"100%", alignItems:"center"}}>
+                                        <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start"}}>
+                                            <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-start"}}>
+                                                <h2 style={{margin:"0"}}>주문 번호  &emsp;</h2> <p style={{margin:"0"}}> {data.orderMasterId}</p>
+                                            </div>
+                                            <p style={{margin:"0",marginLeft:"2px",marginTop:"5px",marginBottom:"10px"}}>
+                                                <b>주문 시간</b> &emsp; {data.registerDate.split("-")[0]} 년{" "}
+                                                {data.registerDate.split("-")[1]} 월{" "}
+                                                {data.registerDate.split("-")[2].slice(0, 2)} 일
+                                            </p>
+                                        </div>
+                                        <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>
+                                            <AcceptModal token={token} data={data} shopId={shopId}/>
+                                            <RejectModal token={token} data={data} shopId={shopId}/>
+                                        </div>
                                     </div>
-                                    <div style={{display:"flex", margin: "20px"}}>
-                                        <RejectModal token={token} data={data} shopId={shopId}/>
-                                        <AcceptModal token={token} data={data} shopId={shopId}/>
+                                    <div>
+                                        <Stack>
+                                        {
+                                            data.products.map((orderDetail, index) => {
+                                                return (
+                                                    <div key={index}>
+                                                        <Fieldset style={{margin:"0",padding:"15px", display:"flex",flexDirection:"row",justifyContent:"flex-start",textAlign:"left"}}>
+                                                            <Image
+                                                                className="product-image"
+                                                                radius="md"
+                                                                h={120}
+                                                                w={120}
+                                                                fit="crop"
+                                                                src={orderDetail.productImage}
+                                                                style={{margin:"0"}}
+                                                                fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                                                            />
+                                                            <div style={{marginLeft:"20px", display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+                                                                <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-start"}}>
+                                                                    <p style={{margin:"0", width:"200px"}}><b>구매자 요청 시간</b></p>
+                                                                    <Text>
+                                                                        {orderDetail.buyerComplainDate.split("-")[0]} 년{" "}
+                                                                        {orderDetail.buyerComplainDate.split("-")[1]} 월{" "}
+                                                                        {orderDetail.buyerComplainDate.split("-")[2].slice(0, 2)} 일
+                                                                    </Text>
+                                                                </div>
+                                                                <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-start"}}>
+                                                                    <p style={{margin:"0", width:"200px"}}><b>구매자 이름</b></p><p style={{margin:"0"}}>{orderDetail.complainBuyerName}</p>
+                                                                </div>
+                                                                <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-start"}}>
+                                                                    <p style={{margin:"0", width:"200px"}}><b>결제 상태</b></p> <p style={{margin:"0"}}>보류</p>
+                                                                </div>
+                                                                <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-start"}}>
+                                                                    <p style={{margin:"0",width:"200px"}}><b>구매자 민원 상태</b></p>
+                                                                    {(orderDetail.complainStatus.split("_")[0] === "REFUND") ? "환불" : "교환"}
+                                                                    {(orderDetail.complainStatus.split("_")[1] === "REQUESTED") ? " 요청됨" : " 됨"}
+                                                                </div>
+                                                            </div>
+                                                        </Fieldset>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        </Stack>
                                     </div>
                                 </div>
-                                <Stack>
-                                    {
-
-                                        data.products.map((orderDetail, index) => {
-                                            return (
-                                                <div key={index}>
-                                                    <Fieldset style={{display: "flex", width: "700px"}}>
-                                                        <Image
-                                                            className="product-image"
-                                                            radius="md"
-                                                            h={150}
-                                                            w={150}
-                                                            fit="crop"
-                                                            src={orderDetail.productImage}
-                                                            //   src={product.image}
-                                                            fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                                                            style={{marginRight: "15px", marginTop:"10px"}}
-                                                        />
-                                                        <div style={{marginLeft:"50px", width:"500px"}}>
-                                                            <Text fw={500} size="lg" mt="md">
-                                                                구매자 요청 시간 : {orderDetail.buyerComplainDate.split("-")[0]} 년{" "}
-                                                                {orderDetail.buyerComplainDate.split("-")[1]} 월{" "}
-                                                                {orderDetail.buyerComplainDate.split("-")[2].slice(0, 2)} 일
-                                                            </Text>
-                                                            <Text fw={500} size="lg" mt="md">
-                                                                구매자 이름 : {orderDetail.complainBuyerName}
-                                                            </Text>
-                                                            <Text fw={500} size="lg" mt="md">
-                                                                결제 상태 : 보류
-                                                            </Text>
-                                                            <Text fw={500} size="lg" mt="md">
-                                                                구매자 민원 상태 :
-                                                                {
-                                                                    (orderDetail.complainStatus.split("_")[0] === "REFUND") ? "환불" : "교환"
-                                                                }
-                                                                {
-                                                                    (orderDetail.complainStatus.split("_")[1] === "REQUESTED") ? " 요청됨" : " 됨"
-                                                                }
-                                                            </Text>
-                                                        </div>
-
-                                                    </Fieldset>
-
-                                            </div>
-                                        )
-                                    })
-
-                                }
-                                </Stack>
-
                             </div>
+
+                        )
+
+                    })):
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <Text fw={1000} size="lg" mt="lg">
+                                결제 및 환불 요청된 상품이 존재 하지 않습니다
+                            </Text>
                         </div>
-
-                    )
-
-                })):
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
-                        <Text fw={1000} size="lg" mt="lg">
-                            결제 및 환불 요청된 상품이 존재 하지 않습니다
-                        </Text>
-                    </div>
-
-            }
-            </Stack>
-
+                    }
+                </Stack>
+            </div>
         </div>
     )
 }
