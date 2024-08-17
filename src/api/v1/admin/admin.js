@@ -57,3 +57,11 @@ export const promotePendingSeller = async (token, sellerId) => {
         }
     })
 }
+
+export const adminLogin = async (email, password) => {
+    return apiClient.post(`admin/login`,{email : email, password: password},{
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+}

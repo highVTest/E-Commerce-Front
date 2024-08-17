@@ -7,14 +7,16 @@ const SellerLoginPage = () => {
     <section className="login-section">
       <h2>Seller Login</h2>
       <LoginForm></LoginForm>
-        <Button
-            style={{width:"300px"}}
-            color="gray"
-            fullWidth
-            type="submit"
-            radius="md">
-            관리자 권한으로 로그인
-        </Button>
+        <Link to="/login/admin">
+            <Button
+                style={{width:"300px"}}
+                color="gray"
+                fullWidth
+                type="submit"
+                radius="md">
+                관리자 권한으로 로그인
+            </Button>
+        </Link>
       <Link to="/register/seller">
         <Button
           style={{ width: 300 }}
