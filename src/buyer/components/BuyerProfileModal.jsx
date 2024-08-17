@@ -32,7 +32,7 @@ const BuyerProfileModal = ({
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="프로필 수정">
+      <Modal opened={opened} onClose={close} title="Authentication">
         <form onSubmit={handleProfileChange}>
           <TextInput
             label="닉네임"
@@ -59,13 +59,14 @@ const BuyerProfileModal = ({
               setDetailAddr={setDetailAddr}
             ></DaumPost>
           </div>
-          <Button  type="submit" fullWidth mt="md">
+          <Button color="gray" type="submit" fullWidth mt="md">
             변경
           </Button>
         </form>
       </Modal>
 
       <Button
+        color="gray"
         onClick={() => {
           open();
           setAddress("");

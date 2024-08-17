@@ -6,13 +6,16 @@ import SellerRegisterForm from "../components/login/SellerRegisterForm.jsx";
 const SellerRegisterPage = () => {
   return (
     <section className="login-section">
-      <h2 style={{width:300, textAlign:"left"}}>판매자 회원가입 페이지</h2>
+      <h2>Hello! Register to get started</h2>
       <SellerRegisterForm />
-      <Link to="/login/seller" className="reg">
+      <Link to="/login/seller">
         <Button
           style={{ width: 300 }}
           fullWidth
           variant="filled"
+          // color="rgba(166, 104, 158, 1)"
+          color="gray"
+          radius="md"
         >
           로그인하기
         </Button>

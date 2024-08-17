@@ -12,6 +12,7 @@ const LoginForm = () => {
     const Email = formData.get("Email");
     const password = formData.get("password");
 
+    // console.log(Email, password);
     try {
       const data = await loginBuyer(Email, password);
       localStorage.setItem("token", data.data.accessToken);
@@ -25,22 +26,20 @@ const LoginForm = () => {
       }
     }
 
+    // console.log("data: >>", data);
   };
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <Stack gap="md">
-        <div className="id-pw">
-          <p style={{margin:"0",marginBottom:"5px"}}>이메일</p>
-          <TextInput placeholder="example@email.com" name="Email" />
-          <p style={{margin:"0",marginBottom:"5px",marginTop:"15px"}}>비밀번호</p>
-          <PasswordInput
-            placeholder="비밀번호를 입력하세요"
-            name="password"
-          />
-        </div>
-        <Button fullWidth type="submit" style={{marginTop:"10px"}}>
-          로그인
+        <TextInput label="Email" placeholder="example@email.com" name="Email" />
+        <PasswordInput
+          label="Password"
+          placeholder="비밀번호를 입력하세요"
+          name="password"
+        />
+        <Button fullWidth type="submit" color="gray">
+          CONTINUE
         </Button>
       </Stack>
     </form>

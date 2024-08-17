@@ -7,7 +7,9 @@ import {
   Image,
   PasswordInput,
   Stack,
+  TextInput,
 } from "@mantine/core";
+import "./css/BuyerCss.css";
 
 import { modals } from "@mantine/modals";
 import { Link } from "react-router-dom";
@@ -75,23 +77,32 @@ const BuyerInfoForm = ({
   };
 
   return (
-    <div className="buyer-info" style={{ width: "100%", alignItems: "none" }}>
-      <h1>마이 페이지</h1>
-      <div style={{ display: "flex", gap: "12px" }}>
-        <div className="image-container">
+    <div className="buyer-info" style={{ marginTop: "50px" }}>
+      <Grid style={{ width: 800, height: 350 }}>
+        <Grid.Col span={6} style={{ paddingTop: 0, height: "350px" }}>
           <Image
+            // className="profile-image"
             radius="md"
-            h={160}
-            w={160}
+            h={180}
+            w={250}
             fit="contain"
             src={buyer?.profileImage}
             fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-            style={{ margin: "0", marginBottom: "10px" }}
+            style={{ margin: "0 auto", marginTop: "35px" }}
           />
+
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "50%",
+              margin: "0 auto",
+              marginTop: "15px",
+              gap: "8px",
+            }}
           >
             <Button
+              color="gray"
               autoContrast
               onClick={() => {
                 modals.open({
@@ -105,10 +116,11 @@ const BuyerInfoForm = ({
                           name="file"
                         />
                         <br />
-                        <Button fullWidth type="submit">
+                        <Button color="gray" fullWidth type="submit">
                           변경하기
                         </Button>
                         <Button
+                          color="gray"
                           fullWidth
                           onClick={() => modals.closeAll()}
                           mt="md"
@@ -124,32 +136,93 @@ const BuyerInfoForm = ({
               이미지 변경하기
             </Button>
 
-            <Button variant="outline" autoContrast onClick={handleImageDelete}>
+            <Button color="gray" autoContrast onClick={handleImageDelete}>
               이미지 삭제하기
             </Button>
           </div>
-        </div>
-        <div id="buyer-profile">
-          <Stack>
-            <div class="profile-txt-wrapper">
-              <div class="profile-txt">
-                <p class="profile-txt-title">이메일</p>
-                <p class="profile-txt-data">{buyer?.email}</p>
-              </div>
-              <div class="profile-txt">
-                <p class="profile-txt-title">닉네임</p>
-                <p class="profile-txt-data">{buyer?.nickname}</p>
-              </div>
-              <div class="profile-txt">
-                <p class="profile-txt-title">주소</p>
-                <p class="profile-txt-data">{buyer?.address}</p>
-              </div>
-              <div class="profile-txt">
-                <p class="profile-txt-title">번호</p>
-                <p class="profile-txt-data">{buyer?.phoneNumber}</p>
-              </div>
-            </div>
-            <Group class="buyer-profile-buttons">
+        </Grid.Col>
+        <Grid.Col span={6} style={{ height: 350 }}>
+          <Stack
+            h={330}
+            bg="var(--mantine-color-body)"
+            align="stretch"
+            justify="center"
+            gap="xs"
+          >
+            <Grid>
+              <Grid.Col
+                span={3}
+                style={{ alignContent: "center", textAlign: "center" }}
+              >
+                이메일
+              </Grid.Col>
+              <Grid.Col span={8}>
+                <Container
+                  fluid
+                  h={50}
+                  bg="var(--mantine-color-gray-light)"
+                  style={{ alignContent: "center", textAlign: "center" }}
+                >
+                  {buyer?.email}
+                </Container>
+              </Grid.Col>
+            </Grid>
+            <Grid>
+              <Grid.Col
+                span={3}
+                style={{ alignContent: "center", textAlign: "center" }}
+              >
+                닉네임
+              </Grid.Col>
+              <Grid.Col span={8}>
+                <Container
+                  fluid
+                  h={50}
+                  bg="var(--mantine-color-gray-light)"
+                  style={{ alignContent: "center", textAlign: "center" }}
+                >
+                  {buyer?.nickname}
+                </Container>
+              </Grid.Col>
+            </Grid>
+
+            <Grid>
+              <Grid.Col
+                span={3}
+                style={{ alignContent: "center", textAlign: "center" }}
+              >
+                주소
+              </Grid.Col>
+              <Grid.Col span={8}>
+                <Container
+                  fluid
+                  h={50}
+                  bg="var(--mantine-color-gray-light)"
+                  style={{ alignContent: "center", textAlign: "center" }}
+                >
+                  {buyer?.address}
+                </Container>
+              </Grid.Col>
+            </Grid>
+            <Grid>
+              <Grid.Col
+                span={3}
+                style={{ alignContent: "center", textAlign: "center" }}
+              >
+                번호
+              </Grid.Col>
+              <Grid.Col span={8}>
+                <Container
+                  fluid
+                  h={50}
+                  bg="var(--mantine-color-gray-light)"
+                  style={{ alignContent: "center", textAlign: "center" }}
+                >
+                  {buyer?.phoneNumber}
+                </Container>
+              </Grid.Col>
+            </Grid>
+            <Group style={{ marginLeft: "auto", marginRight: "auto" }}>
               <BuyerProfileModal
                 address={address}
                 setAddress={setAddress}
@@ -161,6 +234,7 @@ const BuyerInfoForm = ({
               ></BuyerProfileModal>
 
               <Button
+                color="gray"
                 onClick={() => {
                   modals.open({
                     title: "프로필 수정",
@@ -206,52 +280,90 @@ const BuyerInfoForm = ({
               </Button>
             </Group>
           </Stack>
-        </div>
-      </div>
-
-      <div class="buyer-options">
-        <Link to="/buyer/cart">
-          <Button
-            fullWidth
-            variant="light"
-          >
-            장바구니 바로가기
-          </Button>
-        </Link>
-        <Link to="/orderDetails">
-          <Button
-            fullWidth
-            variant="light"
-          >
-            주문 내역 보기
-          </Button>
-        </Link>
-        <Link to="/buyer/favorite">
-          <Button
-            fullWidth
-            variant="light"
-          >
-            찜 목록 바로가기
-          </Button>
-        </Link>
-
-        <Link to="/buyer/coupon-list">
-          <Button
-            fullWidth
-            variant="light"
-          >
-            쿠폰 목록 보기
-          </Button>
-        </Link>
-        <Link to="/buyer/review-list">
-          <Button
-            fullWidth
-            variant="light"
-          >
-            내 댓글 목록 보기
-          </Button>
-        </Link>
-      </div>
+        </Grid.Col>
+      </Grid>
+      {/* 아래쪽 원래 height 150임 */}
+      <Grid
+        style={{
+          height: 100,
+          width: 800,
+          marginTop: 0,
+        }}
+      >
+        <Grid.Col span={4}>
+          <Link to="/buyer/cart">
+            <Button
+              fullWidth
+              variant="light"
+              // color="grape"
+              color="gray"
+              style={{ height: 100, color: "black" }}
+            >
+              장바구니 바로가기
+            </Button>
+          </Link>
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <Link to="/orderDetails">
+            <Button
+              fullWidth
+              variant="light"
+              // color="rgba(93, 255, 5, 1)"
+              color="gray"
+              style={{ height: 100, color: "black" }}
+            >
+              주문 내역 보기
+            </Button>
+          </Link>
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <Link to="/buyer/favorite">
+            <Button
+              fullWidth
+              variant="light"
+              // color="yellow"
+              color="gray"
+              style={{ height: 100, color: "black" }}
+            >
+              찜 목록 바로가기
+            </Button>
+          </Link>
+        </Grid.Col>
+      </Grid>
+      <Grid
+        style={{
+          height: 100,
+          width: 800,
+          marginTop: 0,
+        }}
+      >
+        <Grid.Col span={6}>
+          <Link to="/buyer/coupon-list">
+            <Button
+              fullWidth
+              variant="light"
+              // color="rgba(19, 200, 70, 55)"
+              color="gray"
+              style={{ height: 100, color: "black" }} // 원래 height 150
+            >
+              쿠폰 목록 보기
+            </Button>
+          </Link>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <Link to="/buyer/review-list">
+            <Button
+              fullWidth
+              variant="light"
+              // color="rgba(200, 255, 5, 1)"
+              color="gray"
+              style={{ height: 100, color: "black" }}
+            >
+              내 댓글 목록 보기
+            </Button>
+          </Link>
+        </Grid.Col>
+      </Grid>
     </div>
   );
 };
