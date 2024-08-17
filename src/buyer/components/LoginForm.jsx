@@ -2,7 +2,6 @@ import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
 
 import { useNavigate } from "react-router-dom";
 import { loginSeller } from "../../api/v1/auth/auth";
-import "./css/BuyerCss.css";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="login-form" onSubmit={handleLogin}>
+    <form  onSubmit={handleLogin}>
       <Stack gap="md">
         <TextInput
           label="email"

@@ -111,8 +111,8 @@ const OrderListPage = () => {
                       "상품 배달 중",
                       "상품 배달 완료",
                     ]}
-                    onClick={handleSearchClick}
                     onChange={(e) => orderStatusToEnum(e.currentTarget.value)}
+                    onClick={handleSearchClick}
                   />
                 </div>
               </div>

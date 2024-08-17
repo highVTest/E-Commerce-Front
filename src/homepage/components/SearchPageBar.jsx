@@ -1,6 +1,5 @@
 import { Button, NativeSelect, TextInput } from "@mantine/core";
 import { useState } from "react";
-import { useNavigate } from "react-router";
 
 const SearchPageBar = ({ param, getSearchProducts }) => {
   const key = param.keyword;
@@ -47,45 +46,36 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          marginTop: "30px",
-          justifyContent: "center",
-        }}
-      >
+      <div style={{display: "flex",marginTop: "30px",gap:"10px",justifyContent: "space-between",width:"100%"}}>
         <TextInput
           placeholder="검색어를 입력해주세요"
           value={keyword}
           onChange={(e) => {
             setKeyword(e.target.value);
           }}
-          style={{ width: "500px" }}
+          style={{ width: "100%" }}
         />
         <Button
+          style={{minWidth:"80px"}}
           variant="filled"
-          // color="rgba(118, 94, 255, 0.94)"
-          color="gray"
-          style={{ marginLeft: "15px" }}
           onClick={searchKeyword}
-        >
-          검색
+        >검색
         </Button>
         <NativeSelect
+        style={{minWidth:"120px"}}
           data={["검색 기준", "시간", "가격"]}
           value={orderBy}
           onChange={(e) => {
             setOrderBy(e.target.value);
           }}
-          style={{ marginLeft: "15px" }}
         />
         <NativeSelect
+        style={{minWidth:"120px"}}
           data={["정렬 기준", "오름차순", "내림차순"]}
           value={asc}
           onChange={(e) => {
             setAsc(e.target.value);
           }}
-          style={{ marginLeft: "15px" }}
         />
       </div>
     </>
