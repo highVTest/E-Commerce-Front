@@ -31,6 +31,7 @@ const ProductContainer = () => {
   return (
     <>
       <Container style={{width:"100%",marginTop:"20px"}}>
+
         <Center>
           <SectionTitle
             title="최신 상품 리스트"
@@ -39,7 +40,6 @@ const ProductContainer = () => {
 
         <ProductList products={products} isLoading={isLoading} />
       </Container>
-
     </>
   );
 };

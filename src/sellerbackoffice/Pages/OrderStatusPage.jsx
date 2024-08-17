@@ -109,9 +109,7 @@ const OrderStatusPage = () => {
                                     </div>
                                 </div>
                             </div>
-
                         )
-
                     })):
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
                             <Text fw={1000} size="lg" mt="lg">

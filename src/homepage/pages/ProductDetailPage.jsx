@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router";
 import {
+  favoriteDelete,
   favoriteManagement,
   getFavorites,
 } from "../../api/v1/favorite/favorite";
@@ -62,7 +63,16 @@ const ProductDetailPage = () => {
   };
   const favoriteChange = async (productId) => {
     try {
-      const data = await favoriteManagement(token, productId);
+      let data;
+      if (favorite.indexOf(product?.id) == -1) {
+        console.log("123", favorite.indexOf(product?.id));
+        data = await favoriteManagement(token, productId);
+      } else {
+        console.log("987", favorite.indexOf(product?.id));
+
+        data = await favoriteDelete(token, productId);
+      }
+
       const msg = data.data.msg;
       if (
         msg == "찜 목록에서 삭제했습니다." ||
@@ -91,8 +101,7 @@ const ProductDetailPage = () => {
       const data = await getDetailCoupon(productId);
 
       setCoupon(data.data);
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const issuedCouponFunc = async () => {
@@ -121,18 +130,28 @@ const ProductDetailPage = () => {
   return (
     <CommonLayout>
       <Fieldset size={800} mt="md">
-        <ProductDetail
-          product={product}
-          favorite={favorite}
-          favoriteChange={favoriteChange}
-          addItemCart={addItemCart}
-          role = {role}
-        />
+        {product ? (
+          <ProductDetail
+            product={product}
+            favorite={favorite}
+            favoriteChange={favoriteChange}
+            addItemCart={addItemCart}
+            role={role}
+          />
+        ) : null}
 
         <Fieldset legend={`지급 가능 쿠폰`}>
-          <div className="product-list" style={{backgroundColor:"white"}}>
+          <div className="product-list" style={{ backgroundColor: "white" }}>
             {coupon !== null ? (
-              <div className="product-item" key={1} style={{width:"750px", marginTop:"-50px", marginBottom:"-50px"}}>
+              <div
+                className="product-item"
+                key={1}
+                style={{
+                  width: "750px",
+                  marginTop: "-50px",
+                  marginBottom: "-50px",
+                }}
+              >
                 <div className="image">
                   <Image
                     className="product-image"
@@ -141,7 +160,6 @@ const ProductDetailPage = () => {
                     w={150}
                     fit="crop"
                     src={product?.productImage}
-                    //   src={coupon.image}
                     fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                     style={{ marginRight: 15 }}
                   />
@@ -194,29 +212,11 @@ const ProductDetailPage = () => {
         </Fieldset>
 
         <Fieldset legend="리뷰">
-          {/* <Title order={3} mt="xl">
-            리뷰
-          </Title> */}
-          {/* <ProductReviewPage
-            token={token}
-            productId={productId}
-          ></ProductReviewPage> */}
           <ProdcutReviewContainer
             token={token}
             productId={productId}
           ></ProdcutReviewContainer>
         </Fieldset>
-
-        {/* <ProductReview /> */}
-        {/* Q&A 섹션 */}
-        {/* <Box id="qa-section" mt="xl">
-          <Title order={3}>Q&A</Title>
-          <Box sx={{ minHeight: "300px", backgroundColor: "gray" }}></Box>
-        </Box>
-        // Q&A로 바로가기 링크
-        <Anchor href="#qa-section" mt="md" size="md">
-          Q&A로 바로가기
-        </Anchor> */}
       </Fieldset>
     </CommonLayout>
   );

@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sendMail, verifyEmail } from "../../../api/v1/auth/auth.js";
 import { modals } from "@mantine/modals";
 import { uploadImage } from "../../../api/v1/image/image.js";
@@ -29,12 +29,17 @@ const RegisterForm = () => {
   const [auth, setAuth] = useState("");
   const [buyerId, setBuyerId] = useState(-1);
 
+  const timerRef = useRef();
+
   const authTimer = () => {
     let min = 5;
     let sec = 0;
-    const timer = setInterval(() => {
+
+    clearInterval(timerRef.current);
+
+    timerRef.current = setInterval(() => {
       if (min == 0 && sec == 0) {
-        clearInterval(timer);
+        clearInterval(timerRef.current);
         setIsOk(false);
         setAuthMin(5);
         setAuthSec(0);
@@ -119,8 +124,7 @@ const RegisterForm = () => {
         // clearInterval(timer);
         setIsOk(false);
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const handleImageChange = async (e) => {
@@ -144,6 +148,12 @@ const RegisterForm = () => {
 
     // window.location.reload();
   };
+
+  useEffect(() => {
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
@@ -239,11 +249,6 @@ const RegisterForm = () => {
           placeholder="전화번호를 입력하세요"
           name="PhoneNumber"
         />
-        {/* <TextInput
-          label="ADDRESS"
-          placeholder="주소를 입력하세요"
-          name="address"
-        /> */}
       </Stack>
       <div style={{ marginTop: "25px" }}>
         <DaumPost
@@ -255,36 +260,6 @@ const RegisterForm = () => {
           setDetailAddr={setDetailAddr}
         ></DaumPost>
       </div>
-
-      {/* <Button
-          color="lime.4"
-          autoContrast
-          onClick={() => {
-            modals.open({
-              title: "프로필 수정",
-              children: (
-                <>
-                  <form onSubmit={handleImageChange}>
-                    <FileInput
-                      label="이미지"
-                      placeholder="이미지를 선택해주세요"
-                      name="file"
-                    />
-                    <br />
-                    <Button fullWidth type="submit">
-                      등록하기
-                    </Button>
-                    <Button fullWidth onClick={() => modals.closeAll()} mt="md">
-                      취소
-                    </Button>
-                  </form>
-                </>
-              ),
-            });
-          }}
-        >
-          이미지 등록하기
-        </Button> */}
       <Button
         color="gray"
         fullWidth

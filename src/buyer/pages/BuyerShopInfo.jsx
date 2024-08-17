@@ -24,8 +24,13 @@ const BuyerShopInfo = ({ product }) => {
   };
 
   useEffect(() => {
+    const getAllUserShopInfoData = async () => {
+      const data = await getAllUserShopInfo(product.shopId);
+
+      setShopData(data.data);
+    };
     getAllUserShopInfoData();
-  });
+  }, []);
 
   return (
     <>
@@ -111,7 +116,7 @@ const BuyerShopInfo = ({ product }) => {
                           <Container
                             fluid
                             h={50}
-                          bg="var(--mantine-color-white)"
+                            bg="var(--mantine-color-white)"
                             style={{
                               alignContent: "center",
                               textAlign: "center",
@@ -153,7 +158,7 @@ const BuyerShopInfo = ({ product }) => {
                                   <Container
                                     fluid
                                     h={50}
-                          bg="var(--mantine-color-white)"
+                                    bg="var(--mantine-color-white)"
                                     style={{
                                       alignContent: "center",
                                       textAlign: "center",
@@ -177,7 +182,7 @@ const BuyerShopInfo = ({ product }) => {
                                   <Container
                                     fluid
                                     h={50}
-                          bg="var(--mantine-color-white)"
+                                    bg="var(--mantine-color-white)"
                                     style={{
                                       alignContent: "center",
                                       textAlign: "center",

@@ -58,16 +58,13 @@ function TopBar() {
         </div>
         {token === null && vaildRole() === null ? (
           <div className="button-container">
-            //일반 로그인
             <Image
               onClick={buyerReload}
               style={{margin:"10px"}}
               src="/images/login.png"
             ></Image>
-            // 표시
             <Image src="/images/slash.png"
             style={{margin:"10px"}}></Image>
-            //구매자 로그인
             <Image
               style={{margin:"10px"}}
               onClick={sellerReload}
@@ -108,7 +105,6 @@ function TopBar() {
                     관리 페이지로 이동
                   </Button>
                 )}
-                
                 <Image
                   style={{margin:"10px"}}
                   onClick={logout}

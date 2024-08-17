@@ -144,6 +144,7 @@ const SellerInfoForm = ({
                       variant="outline"
                       onClick={() => {
                         updateSellerInfoImage("");
+
                       }}
                     >
                       이미지 삭제
