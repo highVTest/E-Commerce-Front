@@ -35,57 +35,61 @@ const StatisticPages = () => {
     },[])
 
     return (
-        <div className="seller"
-            style={{}}>
+        <div className="seller" style={{}}>
             <SellerNavComponent/>
-            <Stack>
-                <div style={{display: "flex", margin: "10px", justifyContent: "flex-end"}}>
-                    <Text style={{marginRight: "30px"}}>상점 총 매출 : </Text>
-                    <NumberFormatter prefix="₩" value={totalSale.totalPrice} thousandSeparator/>
-                </div>
-                <div style={{display: "flex", margin: "10px", justifyContent: "flex-end"}}>
-                    <Text style={{marginRight: "30px"}}>상점 총 판매량 : </Text>
-                    <NumberFormatter value={totalSale.totalQuantity} thousandSeparator suffix=" 개"/>
-                </div>
-
-                <div 
-                    className="backoffice">
-                    <Text size="xl" fw={1000} style={{marginBottom:"20px"}}>상품 별 판매량</Text>
-                    <BarChart
-                        h={500}
-                        data={productSales}
-                        dataKey="productName"
-                        type="stacked"
-                        style={{width: "700px"}}
-                        series={[
-                            {name: 'productQuantity', color: 'violet.6'},
-                        ]}
-                    />
-                </div>
-                <div>
-                    <Text size="xl" fw={1000} style={{marginBottom:"20px"}}>상품 별 판매 가격</Text>
-                    <Table style={{width: "700px"}}>
-                        <Table.Thead>
-                            <Table.Tr>
-                                <Table.Th style={{textAlign:"center"}}>상품 명</Table.Th>
-                                <Table.Th style={{textAlign:"center"}}>상품 판매 가격</Table.Th>
-                            </Table.Tr>
-                        </Table.Thead>
-                        {
-                            productSales.map((product) => {
-                               return (
-                                   <>
-                                   <Table.Tr>
-                                       <Table.Td fw={1000}>{product.productName}</Table.Td>
-                                       <Table.Td> ₩ {product.productPrice}</Table.Td>
-                                   </Table.Tr>
-                                   </>
-                               )
-                            })
-                        }
-                    </Table>
-                </div>
-            </Stack>
+            <div style={{width:"100%",marginLeft:"20px"}}>
+                <Stack>
+                <div style={{display: "flex",flexDirection:"column", justifyContent: "flex-start",gap:"10px"}}>
+                    <h1>매출 현황</h1>
+                        <div style={{display: "flex",justifyContent: "flex-start",flexDirection:"column"}}>
+                            <div style={{display: "flex",justifyContent: "flex-start",flexDirection:"row"}}>
+                            <p style={{margin:"0",marginLeft:"10px"}}><b>상점 총 매출</b></p>
+                            <p style={{margin:"0",marginLeft:"10px"}}><NumberFormatter prefix="₩" value={totalSale.totalPrice} thousandSeparator/></p>
+                            </div>
+                            <div style={{display: "flex",justifyContent: "flex-start",flexDirection:"row"}}>
+                            <p style={{margin:"0",marginLeft:"10px"}}><b>상점 총 판매량</b></p>
+                            <p style={{margin:"0",marginLeft:"10px"}}><NumberFormatter value={totalSale.totalQuantity} thousandSeparator suffix=" 개"/></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div 
+                        className="backoffice">
+                        <h2 style={{marginBottom:"20px"}}>상품 별 판매량</h2>
+                        <BarChart
+                            h={300}
+                            data={productSales}
+                            dataKey="productName"
+                            type="stacked"
+                            series={[
+                                {name: 'productQuantity', color: 'violet.6'},
+                            ]}
+                        />
+                    </div>
+                    <div>
+                        <h2 style={{marginBottom:"20px"}}>상품 별 판매 가격</h2>
+                        <Table style={{width: "700px"}}>
+                            <Table.Thead>
+                                <Table.Tr>
+                                    <Table.Th style={{textAlign:"center"}}>상품 명</Table.Th>
+                                    <Table.Th style={{textAlign:"center"}}>상품 판매 가격</Table.Th>
+                                </Table.Tr>
+                            </Table.Thead>
+                            {
+                                productSales.map((product) => {
+                                return (
+                                    <>
+                                    <Table.Tr>
+                                        <Table.Td fw={1000}>{product.productName}</Table.Td>
+                                        <Table.Td> ₩ {product.productPrice}</Table.Td>
+                                    </Table.Tr>
+                                    </>
+                                )
+                                })
+                            }
+                        </Table>
+                    </div>
+                </Stack>
+            </div>
         </div>
     )
 }

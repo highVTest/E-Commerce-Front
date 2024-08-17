@@ -3,7 +3,7 @@ import {IconGauge} from "@tabler/icons-react";
 
 const SellerNavComponent = () => {
     return (
-        <div style={{width: '200px'}}>
+        <div style={{minWidth: '200px'}}>
             <NavLink
                 label="판매자 정보 관리"
                 leftSection={<IconGauge size="1rem" stroke={1.5}/>}

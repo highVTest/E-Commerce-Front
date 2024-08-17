@@ -67,9 +67,8 @@ function UpdateDeliveryModal({token, shopId, orderMasterId}) {
                     </div>
                 </div>
             </Modal>
-            <Button style={{marginLeft: "10px", width: "130px"}} color="grey" onClick={open}>배송 상태 변경</Button>
-        </>
-    );
+            <Button style={{marginLeft: "10px", width: "130px"}}  onClick={open}>배송 상태 변경</Button>
+    </>)
 }
 
 export default UpdateDeliveryModal;

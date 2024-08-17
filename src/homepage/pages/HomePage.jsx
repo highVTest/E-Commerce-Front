@@ -10,8 +10,6 @@ import SearchBarContainer from "../components/SearchBarContainer";
 const HomePage = () => {
   return (
     <CommonLayout>
-      {/* 제목과 버튼 영역 */}
-      {/* 검색 바 */}
       <SearchBarContainer></SearchBarContainer>
       <ProductContainer></ProductContainer>
     </CommonLayout>

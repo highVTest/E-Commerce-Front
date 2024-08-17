@@ -30,13 +30,10 @@ const DaumPost = ({
         extraAddress +=
           extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
-      // fullAddress = fullAddress.replace(localAddress, "");
-
-      // fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
       setExtraAddr(extraAddress);
     }
 
-    setAddress(fullAddress); // setAddress를 호출하여 부모 컴포넌트의 상태를 업데이트
+    setAddress(fullAddress);
     setZoneCode(data.zonecode);
   };
 
@@ -60,8 +57,6 @@ const DaumPost = ({
           style={{ width: 100, marginLeft: "10px" }}
           fullWidth
           variant="filled"
-          color="gray"
-          radius="md"
           type="button"
           onClick={handleClick}
         >

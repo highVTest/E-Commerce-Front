@@ -1,3 +1,14 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+* {
+  line-height: 1.4em;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  font-family: "Pretendard Variable";
+}
+
 .login-section {
     display: flex;
     flex-direction: column;
@@ -15,8 +26,8 @@
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  height: 150px;
-  max-width: 1500px;
+  height: 100px;
+  max-width: 1000px;
   background-color: rgb(255, 255, 255);
   align-items: center;
 }
@@ -28,3 +39,13 @@
     align-items: center;
 }
 
+a:has(.product-card){
+  text-decoration: none;
+}
+
+.mantine-Grid-col:has(.product-card) {
+  padding: 0;
+}
+.mantine-Grid-col:has(.product-card):hover {
+  border: 1px solid red;
+}

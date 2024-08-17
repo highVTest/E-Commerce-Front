@@ -3,7 +3,6 @@ import { Button, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendMail, verifyEmail } from "../../../api/v1/auth/auth.js";
-import { buyerSignUp } from "../../../api/v1/buyer/buyer.js";
 import { uploadImage } from "../../../api/v1/image/image.js";
 import DaumPost from "../../../Components/DaumPost.jsx";
 import { sellerSignup } from "../../../api/v1/seller/seller.js";
@@ -256,36 +255,6 @@ const SellerRegisterForm = () => {
           setDetailAddr={setDetailAddr}
         ></DaumPost>
       </div>
-
-      {/* <Button
-          color="lime.4"
-          autoContrast
-          onClick={() => {
-            modals.open({
-              title: "프로필 수정",
-              children: (
-                <>
-                  <form onSubmit={handleImageChange}>
-                    <FileInput
-                      label="이미지"
-                      placeholder="이미지를 선택해주세요"
-                      name="file"
-                    />
-                    <br />
-                    <Button fullWidth type="submit">
-                      등록하기
-                    </Button>
-                    <Button fullWidth onClick={() => modals.closeAll()} mt="md">
-                      취소
-                    </Button>
-                  </form>
-                </>
-              ),
-            });
-          }}
-        >
-          이미지 등록하기
-        </Button> */}
       <Button
         color="gray"
         fullWidth

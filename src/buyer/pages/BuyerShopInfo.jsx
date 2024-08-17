@@ -18,6 +18,11 @@ const BuyerShopInfo = ({ product }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [shopData, setShopData] = useState([]);
 
+  const getAllUserShopInfoData = async () => {
+    const data = await getAllUserShopInfo(product.shopId);
+    setShopData(data.data);
+  };
+
   useEffect(() => {
     const getAllUserShopInfoData = async () => {
       const data = await getAllUserShopInfo(product.shopId);
@@ -70,7 +75,7 @@ const BuyerShopInfo = ({ product }) => {
                           <Container
                             fluid
                             h={50}
-                            bg="var(--mantine-color-white)"
+                          bg="var(--mantine-color-white)"
                             style={{
                               alignContent: "center",
                               textAlign: "center",

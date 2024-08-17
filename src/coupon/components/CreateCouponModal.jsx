@@ -148,13 +148,11 @@ function CreateCouponModal({ token, product }) {
           <Image
             className="product-image"
             radius="md"
-            h={150}
-            w={150}
+            h={120}
+            w={120}
             fit="crop"
-            // src="https://ifh.cc/g/xQTG2b.png"
             src={product.productImage}
             fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-            style={{ marginRight: 15 }}
           />
           <TextInput label="상품 이름" placeholder={product.name} />
           <TextInput label="기존 가격" placeholder={product.price} mt="md" />
@@ -213,25 +211,22 @@ function CreateCouponModal({ token, product }) {
             </Text>
           </div>
         </Fieldset>
-        <div>
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end",gap:"10px",marginRight:"2px",marginTop:"10px"}}>
           <Button
-            color="gray"
-            style={{ margin: "10px", float: "right" }}
             onClick={reqCreateCoupon}
           >
             쿠폰 등록 하기
           </Button>
           <Button
-            color="gray"
+            variant="outline"
             onClick={close}
-            style={{ margin: "10px", float: "right" }}
           >
             닫기
           </Button>
         </div>
       </Modal>
 
-      <Button color="gray" onClick={open}>
+      <Button onClick={open}>
         쿠폰 등록
       </Button>
     </>

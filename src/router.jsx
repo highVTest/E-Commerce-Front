@@ -2,12 +2,9 @@ import {createBrowserRouter} from "react-router-dom";
 import LoginLayout from "./loginandreview/pages/LoginLayout.jsx";
 import LoginPage from "./loginandreview/pages/LoginPage.jsx";
 import RootLayout from "./loginandreview/pages/RootLayout.jsx";
-// import LoginLayout from "./buyer/pages/layout/LoginLayout.jsx";
-// import LoginPage from "./buyer/pages/BuyerLoginPage.jsx";
 import RedirectPage from "./loginandreview/pages/RedirectPage.jsx";
 import RegisterPage from "./loginandreview/pages/RegisterPage.jsx";
 import UploadPage from "./loginandreview/pages/UploadPage.jsx";
-// import ReviewPage from "./loginandreview/pages/ReviewPage.jsx";
 import BuyerCartPage from "./buyer/pages/BuyerCartPage.jsx";
 import BuyerFavoritePage from "./buyer/pages/BuyerFavoritePage.jsx";
 import BuyerInfoPage from "./buyer/pages/BuyerInfoPage.jsx";
@@ -68,10 +65,6 @@ export const router = createBrowserRouter([
     path: "/upload",
     element: <UploadPage />,
   },
-  // {
-  //     path:'/review',
-  //     element: <ReviewPage/>,
-  // },
   {
     path: "/buyer",
     element: <BuyerLayout></BuyerLayout>,

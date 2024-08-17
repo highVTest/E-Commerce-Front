@@ -249,11 +249,6 @@ const RegisterForm = () => {
           placeholder="전화번호를 입력하세요"
           name="PhoneNumber"
         />
-        {/* <TextInput
-          label="ADDRESS"
-          placeholder="주소를 입력하세요"
-          name="address"
-        /> */}
       </Stack>
       <div style={{ marginTop: "25px" }}>
         <DaumPost
@@ -265,36 +260,6 @@ const RegisterForm = () => {
           setDetailAddr={setDetailAddr}
         ></DaumPost>
       </div>
-
-      {/* <Button
-          color="lime.4"
-          autoContrast
-          onClick={() => {
-            modals.open({
-              title: "프로필 수정",
-              children: (
-                <>
-                  <form onSubmit={handleImageChange}>
-                    <FileInput
-                      label="이미지"
-                      placeholder="이미지를 선택해주세요"
-                      name="file"
-                    />
-                    <br />
-                    <Button fullWidth type="submit">
-                      등록하기
-                    </Button>
-                    <Button fullWidth onClick={() => modals.closeAll()} mt="md">
-                      취소
-                    </Button>
-                  </form>
-                </>
-              ),
-            });
-          }}
-        >
-          이미지 등록하기
-        </Button> */}
       <Button
         color="gray"
         fullWidth

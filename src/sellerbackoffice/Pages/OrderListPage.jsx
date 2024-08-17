@@ -96,111 +96,106 @@ const OrderListPage = () => {
   return (
     <div className="seller">
       <SellerNavComponent />
-      <Stack>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          <NativeSelect
-            label="주문 상태를 선택해 주세요"
-            data={[
-              "주문 접수",
-              "주문 취소",
-              "상품 준비 중",
-              "상품 배달 준비 중",
-              "상품 배달 중",
-              "상품 배달 완료",
-            ]}
-            onChange={(e) => orderStatusToEnum(e.currentTarget.value)}
-          />
-          <Button
-            color="gray"
-            style={{ marginLeft: "10px", marginTop: "29px" }}
-            onClick={handleSearchClick}
-          >
-            검색
-          </Button>
-        </div>
-
-        {pendingData.length > 0 ? (
-          pendingData.map((data, index) => {
-            return (
-              <div
-                className="product-item"
-                key={index}
-                style={{ marginTop: "20px"}}
-              >
-                <div className="product-info">
-                  <div style={{ display: "flex" }}>
-                    <div style={{ width: "90%" }}>
-                      <h2>주문 번호 : {data.orderMasterId}</h2>
-                      <Text fw={500} size="lg" mt="md">
-                        주문 시간 : {data.registerDate.split("-")[0]} 년{" "}
-                        {data.registerDate.split("-")[1]} 월{" "}
-                        {data.registerDate.split("-")[2].slice(0, 2)} 일
-                      </Text>
-                    </div>
-                    <div style={{ justifyContent: "flex-end", margin: "30px" }}>
-                      <UpdateDeliveryModal
-                        token={token}
-                        shopId={shopId}
-                        orderMasterId={data.orderMasterId}
-                      />
-                    </div>
-                  </div>
-                  <Stack>
-                    {data.products.map((orderDetail, index) => {
-                      return (
-                        <div key={index}>
-                          <Fieldset
-                            style={{ display: "flex", width: "690px" }}
-                          >
-                            <Image
-                              className="product-image"
-                              radius="md"
-                              h={150}
-                              w={150}
-                              fit="crop"
-                              src={orderDetail.productImage}
-                              //   src={product.image}
-                              fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                              style={{ marginRight: "15px", marginTop: "10px" }}
-                            />
-                            <div style={{ marginLeft: "50px", width: "500px" }}>
-                              <Text fw={500} size="lg" mt="md">
-                                구매자 이름 : {orderDetail.complainBuyerName}
-                              </Text>
-                              <Text fw={500} size="lg" mt="md">
-                                결제 상태 :{" "}
-                                {orderStatusToKorean(orderDetail.statusCode)}
-                              </Text>
-                            </div>
-                          </Fieldset>
-                        </div>
-                      );
-                    })}
-                  </Stack>
+      <div style={{width:"100%", marginLeft:"20px"}}>
+          <Stack>
+            <div style={{display: "flex",flexDirection:"row",justifyContent: "space-between"}}>
+              <h1>주문 상태 관리</h1>
+                <div style={{display: "flex",alignItems: "center",justifyContent: "flex-end"}}>
+                  <NativeSelect
+                    label="주문 상태를 선택해 주세요"
+                    data={[
+                      "주문 접수",
+                      "주문 취소",
+                      "상품 준비 중",
+                      "상품 배달 준비 중",
+                      "상품 배달 중",
+                      "상품 배달 완료",
+                    ]}
+                    onClick={handleSearchClick}
+                    onChange={(e) => orderStatusToEnum(e.currentTarget.value)}
+                  />
                 </div>
               </div>
-            );
-          })
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text fw={1000} size="lg" mt="lg" style={{width:"750px"}}>
-              결제 및 환불 요청된 상품이 존재 하지 않습니다
-            </Text>
-          </div>
-        )}
-      </Stack>
+
+            {pendingData.length > 0 ? (
+              pendingData.map((data, index) => {
+                return (
+                  <div
+                    className="product-item"
+                    key={index}
+                    style={{width:"100%",margin:"0"}}
+                  >
+                    <div className="product-info"style={{width:"100%"}}>   
+                      <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between", width:"100%", alignItems:"center"}}>
+                        <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start"}}>
+                            <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-start"}}>
+                                <h2 style={{margin:"0"}}>주문 번호  &emsp;</h2> <p style={{margin:"0"}}> {data.orderMasterId}</p>
+                            </div>
+                            <p style={{margin:"0",marginLeft:"2px",marginTop:"5px",marginBottom:"10px"}}>
+                                <b>주문 시간</b> &emsp; {data.registerDate.split("-")[0]} 년{" "}
+                                {data.registerDate.split("-")[1]} 월{" "}
+                                {data.registerDate.split("-")[2].slice(0, 2)} 일
+                            </p>
+                        </div>
+                        <div>
+                          <UpdateDeliveryModal
+                              token={token}
+                              shopId={shopId}
+                              orderMasterId={data.orderMasterId}
+                            />
+                        </div>
+                      </div>
+                      <div>
+                        <Stack>
+                          {data.products.map((orderDetail, index) => {
+                            return (
+                              <div key={index}>
+                                <Fieldset style={{display:"flex",flexDirection:"row",justifyContent:"flex-start",margin:"0",padding:"15px"}}>
+                                  <Image
+                                    className="product-image"
+                                    radius="md"
+                                    h={120}
+                                    w={120}
+                                    fit="crop"
+                                    style={{margin:"0"}}
+                                    src={orderDetail.productImage}
+                                    fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                                  />
+                                  <div style={{marginLeft:"20px",display:"flex",flexDirection:"column",gap:"10px"}}>
+                                    <div style={{marginLeft:"20px",display:"flex",flexDirection:"row"}}>
+                                      <p style={{margin:"0",width:"150px"}}><b>구매자 이름</b></p>
+                                      <p style={{margin:"0"}}>{orderDetail.complainBuyerName}</p>
+                                    </div>
+                                    <div style={{marginLeft:"20px",display:"flex",flexDirection:"row"}}>
+                                      <p style={{margin:"0",width:"150px"}}><b>결제 상태</b></p>
+                                      <p style={{margin:"0"}}>{orderStatusToKorean(orderDetail.statusCode)}</p>
+                                    </div>
+                                  </div>
+                                </Fieldset>
+                              </div>
+                            );
+                          })}
+                        </Stack>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text fw={1000} size="lg" mt="lg" style={{width:"750px"}}>
+                  결제 및 환불 요청된 상품이 존재 하지 않습니다
+                </Text>
+              </div>
+            )}
+          </Stack>
+      </div>
     </div>
   );
 };

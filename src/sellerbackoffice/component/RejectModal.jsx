@@ -40,7 +40,7 @@ function RejectModal({token, data, shopId}) {
                 style={{ padding: "10px" }}
             >
                 <div style={{display:"flex", alignItems:"center"}}>
-                    <Text>거절 사유 : </Text>
+                    <Text>거절 사유 &emsp;</Text>
                     <TextInput
                         style={{marginLeft:"20px", width:"500px"}}
                         onChange={(e)=>{setContent(e.target.value)}}
@@ -48,10 +48,10 @@ function RejectModal({token, data, shopId}) {
                 </div>
                 <div style={{display:"flex", alignItems:"center", margin:"10px"}}>
                     <div style={{width:"85%"}}></div>
-                    <Button color="grey" onClick={reqReject}>거절 요청</Button>
+                    <Button  onClick={reqReject}>거절 요청</Button>
                 </div>
             </Modal>
-            <Button style={{marginLeft: "10px", width: "100px"}} color="grey" onClick={open}>거절 하기</Button>
+            <Button style={{marginLeft: "10px", width: "100px"}} variant="outline" onClick={open}>거절 하기</Button>
         </>
     );
 }

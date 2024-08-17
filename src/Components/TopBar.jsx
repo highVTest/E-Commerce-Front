@@ -115,9 +115,9 @@ function TopBar() {
           </>
         )}
       </div>
-      <div style={{width:"100%", marginTop:"-30px"}}>
-          <hr/>
-        </div>
+      <div style={{width:"100%"}}>
+        <hr style={{margin:"0"}}/>
+      </div>
     </>
   );
 }

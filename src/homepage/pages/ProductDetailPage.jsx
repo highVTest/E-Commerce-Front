@@ -160,7 +160,6 @@ const ProductDetailPage = () => {
                     w={150}
                     fit="crop"
                     src={product?.productImage}
-                    //   src={coupon.image}
                     fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                     style={{ marginRight: 15 }}
                   />
@@ -205,35 +204,19 @@ const ProductDetailPage = () => {
           </div>
         </Fieldset>
         <Fieldset legend="상세설명">
-          <Box style={{ height: "150px", alignContent: "center" }}>
+          <Box
+            style={{ height: "150px", alignContent: "center" }}
+          >
             {product?.description}{" "}
           </Box>
         </Fieldset>
 
         <Fieldset legend="리뷰">
-          {/* <Title order={3} mt="xl">
-            리뷰
-          </Title> */}
-          {/* <ProductReviewPage
-            token={token}
-            productId={productId}
-          ></ProductReviewPage> */}
           <ProdcutReviewContainer
             token={token}
             productId={productId}
           ></ProdcutReviewContainer>
         </Fieldset>
-
-        {/* <ProductReview /> */}
-        {/* Q&A 섹션 */}
-        {/* <Box id="qa-section" mt="xl">
-          <Title order={3}>Q&A</Title>
-          <Box sx={{ minHeight: "300px", backgroundColor: "gray" }}></Box>
-        </Box>
-        // Q&A로 바로가기 링크
-        <Anchor href="#qa-section" mt="md" size="md">
-          Q&A로 바로가기
-        </Anchor> */}
       </Fieldset>
     </CommonLayout>
   );
