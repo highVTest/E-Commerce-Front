@@ -6,15 +6,18 @@ import { Link } from "react-router-dom";
 const RegisterPage = () => {
   return (
     <section className="login-section">
-      <h2 style={{width:300, textAlign:"left"}}>Made By 회원가입</h2>
+      <h2>Hello! Register to get started</h2>
       <RegisterForm />
-      <Link to="/login/buyer" className="reg">
+      <Link to="/login">
         <Button
           style={{ width: 300 }}
           fullWidth
           variant="filled"
+          // color="rgba(166, 104, 158, 1)"
+          color="gray"
+          radius="md"
         >
-          로그인 페이지로 돌아가기
+          로그인하기
         </Button>
       </Link>
     </section>

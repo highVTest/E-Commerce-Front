@@ -32,7 +32,6 @@ const ShopCreateForm = ({ createShop, imageUpload }) => {
   return (
     <div>
       <form className="login-section" onSubmit={addShop}>
-      <h1 style={{width:300, textAlign:"left"}}>상점 등록</h1>
         <TextInput
           label="가게명"
           placeholder="가게명을 입력해주세요"
