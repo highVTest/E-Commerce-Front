@@ -1,22 +1,27 @@
 import LoginForm from "../../loginandreview/components/login/LoginForm.jsx";
 import "../../index.css";
 import { Link } from "react-router-dom";
-import { Button } from "@mantine/core";
+import { Button, Stack } from "@mantine/core";
+import KakaoLoginButton from "../../loginandreview/components/login/KakaoLoginButton.jsx";
 
 const LoginPage = () => {
   return (
     <section className="login-section">
-      <h2 style={{width:300, textAlign:"left"}}>Login</h2>
+      <h2>Login</h2>
       <LoginForm />
-      <Link to="/login/register" className="reg">
+      <Link to="/login/register">
         <Button
           style={{ width: 300 }}
           fullWidth
           variant="filled"
+          // color="rgba(166, 104, 158, 1)"
+          color="gray"
+          radius="md"
         >
-          회원 가입
+          SIGN UP
         </Button>
       </Link>
+      {/* <KakaoLoginButton /> */}
     </section>
   );
 };

@@ -5,18 +5,17 @@ import "../../index.css";
 
 const ProductList = ({ products, isLoading }) => {
   if (isLoading) {
-    return <div><h1 textAlign="center">Loading...</h1></div>;
+    return <div>Loading...</div>;
   }
   return (
     <div style={{width:"100%"}}>
-    <Grid mt="30px" id="product-grid-list" > 
+    <Grid mt="md">
       {products.length != 0 ? (
         products.map((product) => (
-          <Grid.Col key={product.id}>
+          <Grid.Col span={4} key={product.id}>
             <Link to={`/product/${product.id}`} style={{ marginTop: 0 }}>
-            <div style={{width:"100%"}}>
-              <Card>
-                <div className="product-card" style={{padding:"0"}}>
+              <Card shadow="sm">
+                <div className="product-card" style={{padding:"0", maxWidth:"200px"}}>
                   <Image
                     src={product.productImage}
                     alt="상품 이미지"
@@ -31,26 +30,18 @@ const ProductList = ({ products, isLoading }) => {
                       gap: "20px",
                     }}
                   >
-                    <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "5px"
-                    }}>
                     <p style={{ margin: "0" }}>가격 : </p>
                     <NumberFormatter
                       value={product.price}
                       thousandSeparator
                       suffix="원"
                     />
-                    </div>
                     <div
                       style={{
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "center",
                         alignItems: "center",
-                        gap: "8px"
                       }}
                     >
                       <AiFillHeart style={{ color: "red", fontSize: "20px" }} />
@@ -59,12 +50,11 @@ const ProductList = ({ products, isLoading }) => {
                   </div>
                 </div>
               </Card>
-              </div>
             </Link>
           </Grid.Col>
         ))
       ) : (
-        <div><h1 style={{textAlign:"left"}}>No Data</h1> </div>
+        <div className="display-center"> No Data </div>
       )}
     </Grid>
     </div>

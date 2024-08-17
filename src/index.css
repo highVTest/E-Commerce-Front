@@ -10,15 +10,16 @@
 }
 
 .login-section {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  align-items: center;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    height:600px;
 }
 
 .login-form {
-  width: 300px;
+    width: 300px;
 }
 
 .top-bar {
@@ -33,75 +34,18 @@
 
 .display-center {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-a:has(.product-card) {
+a:has(.product-card){
   text-decoration: none;
 }
 
 .mantine-Grid-col:has(.product-card) {
   padding: 0;
 }
-
-#buyer-profile:has(.mantine-Stack-root){
-  width: 100%;
-}
-
-#buyer-profile .mantine-Stack-root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-#buyer-profile .mantine-Stack-root .profile-txt{
-  display: flex;
-  margin: 0 0 0 50px;
-}
-#buyer-profile .mantine-Stack-root .profile-txt-wrapper{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-#buyer-profile .mantine-Stack-root .profile-txt-wrapper .profile-txt p{
-    margin: 0;
-}
-
-#buyer-profile .mantine-Stack-root .profile-txt-title{
-  font-weight: bold;
-  width: 20%;
-  text-align: left;
-  height: fit-content;
-}
-
-.buyer-options{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  width: 100%;
-  margin: 25px 0 0 ;
-  padding: 20px 0 0 ;
-  border-top: 1px solid #e2e2e2;
-}
-
-.buyer-options a{
-  height: fit-content;
-  text-decoration: none;
-}
-
-.buyer-profile-buttons{
-  display: flex;
-  justify-content: flex-end !important;
-  gap: 15px;
-}
-
-.id-pw p{
-  text-align: left;
-}
-
-.reg{
-  text-decoration: none;
+.mantine-Grid-col:has(.product-card):hover {
+  border: 1px solid red;
 }
