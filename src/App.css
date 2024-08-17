@@ -64,7 +64,6 @@ nav a:hover {
 }
 
 .product-card {
-  border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 0.5rem;
   transition: box-shadow 300ms;
@@ -101,4 +100,3 @@ nav a:hover {
   font-size: 0.875rem;
   color: #666;
 }
-

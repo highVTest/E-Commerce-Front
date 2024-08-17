@@ -9,7 +9,6 @@ const ProductContainer = () => {
   const [popularProducts, setPopularProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // API를 호출하여 상품 목록을 가져오는 로직
   const getProducts = async () => {
     setIsLoading(true);
     const data = await getAllProducts(0, 9, "createdAt", "DESC");
@@ -17,10 +16,8 @@ const ProductContainer = () => {
     setProducts(data.data.content);
   };
 
-  // API를 호출해 인기 상품 목록 가져오는 로직
   const getPopularProducts = async () => {
     const data = await getAllProducts();
-    // console.log("data", data);
     const list = [];
     for (let i = 0; i < 6; i++) {
       list.push(data.data.content[i]);
@@ -33,26 +30,16 @@ const ProductContainer = () => {
   }, []);
   return (
     <>
-      {/* 추천 상품 리스트 */}
-      <Container size={850} mt="xl">
+      <Container style={{width:"100%",marginTop:"20px"}}>
         <Center>
           <SectionTitle
             title="최신 상품 리스트"
-            // subtitle="최신 상품들을 소개합니다."
           />
         </Center>
 
         <ProductList products={products} isLoading={isLoading} />
       </Container>
 
-      {/* 카테고리별 인기 상품 */}
-      {/* <Container size={800} mt="xl">
-        <SectionTitle
-          title="카테고리별 인기 상품"
-          subtitle="사용자의 요구에 맞는 상품들을 소개합니다."
-        />
-        <ProductList products={products} />
-      </Container> */}
     </>
   );
 };

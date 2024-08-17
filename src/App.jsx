@@ -14,10 +14,6 @@ function App() {
       <>
           <MantineProvider withGlobalStyles withNormalizeCSS>
               <Router>
-                  <nav>
-                      <Link to="/">Home(나중에)</Link> | <Link to="/search">Search(지우)</Link> | <Link to="/product">Product Detail(겠습니다)</Link> | <Link to="/payment">Payment Page</Link>
-                  </nav>
-
                   <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/search" element={<SearchPage />} />

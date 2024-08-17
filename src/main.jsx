@@ -15,8 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <MantineProvider>
       <ModalsProvider>
-          <TopBar/>
-          {/*<App/>*/}
+        <TopBar/>
         <RouterProvider router={router} />
       </ModalsProvider>
     </MantineProvider>
