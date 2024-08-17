@@ -11,12 +11,13 @@ nav {
 }
 
 .circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    background-color: yellow;
-    margin: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: yellow;
+  margin: 20px;
 }
+
 nav a {
   margin: 0 1rem;
   text-decoration: none;
@@ -27,15 +28,15 @@ nav a:hover {
   text-decoration: underline;
 }
 
-.button-container{
-    margin-left: auto;
-    display: flex;
-    /* justify-content: flex-end; */
-    justify-content: space-around;
+.button-container {
+  margin-left: auto;
+  display: flex;
+  gap: 5px;
+  justify-content: space-around;
 }
 
-.button{
-    margin: 10px;
+.button {
+  margin: 10px;
 }
 
 /* 새로운 스타일 추가 */
@@ -84,31 +85,31 @@ nav a:hover {
   color: #666;
 }
 
-#product-grid-list{
+#product-grid-list {
   width: 100%;
 }
 
-#product-grid-list .mantine-Grid-inner{
+#product-grid-list .mantine-Grid-inner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
 }
 
-#product-grid-list .mantine-Grid-inner .mantine-Grid-col:has(.product-card){
+#product-grid-list .mantine-Grid-inner .mantine-Grid-col:has(.product-card) {
   border: 1px solid #e2e2e2;
   border-radius: 8px;
 }
 
-#product-grid-list .mantine-Grid-inner .mantine-Grid-col:has(.product-card):hover{
+#product-grid-list .mantine-Grid-inner .mantine-Grid-col:has(.product-card):hover {
   box-shadow: 0px 0px 10px 0px #e2e2e2;
 }
 
-#product-grid-list .mantine-Grid-inner .mantine-Card-root{
+#product-grid-list .mantine-Grid-inner .mantine-Card-root {
   max-width: 300px;
   background-color: inherit;
 }
 
-#product-grid-list .mantine-Grid-inner .mantine-Grid-col .product-card{
+#product-grid-list .mantine-Grid-inner .mantine-Grid-col .product-card {
   width: 100%;
 }
