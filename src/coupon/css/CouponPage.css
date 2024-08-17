@@ -8,19 +8,3 @@
     justify-content: space-between;
     align-items: center;
 }
-
-.product-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.coupon-actions{
-    margin: 10px;
-    display: grid;
-}

@@ -135,25 +135,22 @@ function UpdateCouponModal({ token, coupon }) {
             }}
           />
         </Fieldset>
-        <div>
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end",gap:"5px",marginRight:"2px",marginTop:"10px"}}>
           <Button
-            color="gray"
-            style={{ margin: "10px", float: "right" }}
             onClick={reqUpdateCoupon}
           >
             쿠폰 업데이트 하기
           </Button>
           <Button
-            color="gray"
             onClick={close}
-            style={{ margin: "10px", float: "right" }}
+            variant="outline"
           >
             닫기
           </Button>
         </div>
       </Modal>
 
-      <Button color="gray" onClick={open}>
+      <Button onClick={open}>
         쿠폰 수정
       </Button>
     </>

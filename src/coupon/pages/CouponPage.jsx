@@ -40,37 +40,52 @@ const CouponPage=()=>{
     return(
         <div className="seller">
             <SellerNavComponent/>
-            <div className="product-list">
+            <div className="product-list"  style={{marginLeft:"20px",width:"100%"}}>
                 <h1>쿠폰 목록</h1>
                 {couponData.map((coupon, index) => (
-                    <div className="product-item" key={index}>
-                        <div className="image">
+                    <div className="product-item" key={index} style={{display:"flex", flexDirection:"row",justifyContent:"space-between"}}>
+                        <div style={{display:"flex", flexDirection:"row",justifyContent:"flex-start"}}>
                             <Image
                                 className="product-image"
                                 radius="md"
-                                h={150}
-                                w={150}
+                                h={120}
+                                w={120}
+                                style={{margin:"0"}}
                                 fit="crop"
-                                src="https://ifh.cc/g/xQTG2b.png"
-                                //   src={coupon.image}
                                 fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                                style={{marginRight: 15}}
                             />
+                            <div className="product-info" style={{display:"flex", flexDirection:"column",justifyContent:"space-between", marginLeft:"25px"}}>
+                                <h2 style={{margin:"0"}}>{coupon.couponName}</h2>
+                                <div style={{display:"flex", flexDirection:"row",justifyContent:"flex-start"}}>
+                                    <p style={{margin:"0", width:"100px"}}><b>쿠폰 정책</b></p> <p style={{margin:"0"}}>{policyKorean(coupon.discountPolicy)}</p>
+                                </div>
+                                <div style={{display:"flex", flexDirection:"row",justifyContent:"flex-start"}}>
+                                    {
+                                        coupon.discountPolicy === 'DISCOUNT_RATE' 
+                                            ? (
+                                                <div style={{display: "flex"}}>
+                                                    <p style={{margin:"0", width:"100px"}}><b>할인율</b></p> 
+                                                    <p style={{margin:"0"}}>{coupon.discount} %</p>
+                                                </div>
+                                            )
+                                            : (
+                                                <div style={{display: "flex"}}>
+                                                    <p style={{margin:"0", width:"100px"}}><b>가격 할인</b></p> 
+                                                    <p style={{margin:"0"}}>{coupon.discount} 원</p>
+                                                </div>
+                                            )
+                                    }
+                                </div>
+                                <div style={{display:"flex", flexDirection:"row",justifyContent:"flex-start"}}>
+                                    <p style={{margin:"0", width:"100px"}}><b>쿠폰 개수</b></p> <p style={{margin:"0"}}>{coupon.quantity}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="product-info">
-                            <h2>{coupon.couponName}</h2>
-                            <p>쿠폰 정책: {policyKorean(coupon.discountPolicy)}</p>
-                            {
-                                coupon.discountPolicy === 'DISCOUNT_RATE' ? <p>할인율: {coupon.discount} %</p>
-                                    : <p>가격 할인 : {coupon.discount} 원 </p>
-                            }
-                            <p>쿠폰 개수: {coupon.quantity}</p>
-                        </div>
-                        <div className="coupon-actions">
-                            <p>만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
+                        <div className="coupon-actions"  style={{display:"flex", flexDirection:"column",justifyContent:"space-between",height:"120px"}}>
+                                <p style={{margin:"0"}}>만료 시간 &emsp;{coupon.expiredAt.split("-")[0]} 년{" "}
                                 {coupon.expiredAt.split("-")[1]} 월{" "}
                                 {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지</p>
-                            <UpdateCouponModal token={token} coupon={coupon}/>
+                                <UpdateCouponModal token={token} coupon={coupon}/>
                         </div>
                     </div>
                 ))}
