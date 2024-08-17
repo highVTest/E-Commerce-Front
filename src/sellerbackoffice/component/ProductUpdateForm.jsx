@@ -67,7 +67,7 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
           </div>
         </div>
       </Modal>
-      <Button onClick={open} color="gray" className="update-btn" fullWidth>
+      <Button onClick={open} className="update-btn">
         상품 수정
       </Button>
     </>
