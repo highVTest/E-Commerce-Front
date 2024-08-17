@@ -12,9 +12,10 @@ const SellerLoginPage = () => {
           style={{ width: 300 }}
           fullWidth
           variant="filled"
-        >
-          회원 가입
+        >회원 가입
         </Button>
+      </Link>
+      <Link to="/login/admin" className="reg">
         <Button
             style={{width: 300 , marginTop:"15px"}}
             fullWidth
