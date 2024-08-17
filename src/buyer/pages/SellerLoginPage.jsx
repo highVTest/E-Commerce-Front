@@ -5,26 +5,22 @@ import { Button } from "@mantine/core";
 const SellerLoginPage = () => {
   return (
     <section className="login-section">
-      <h2>Seller Login</h2>
+      <h2 style={{width:300, textAlign:"left"}}>판매자 전용 로그인</h2>
       <LoginForm></LoginForm>
-        <Button
-            style={{width:"300px"}}
-            color="gray"
-            fullWidth
-            type="submit"
-            radius="md">
-            관리자 권한으로 로그인
-        </Button>
-      <Link to="/register/seller">
+      <Link to="/register/seller" className="reg">
         <Button
           style={{ width: 300 }}
           fullWidth
           variant="filled"
-          // color="rgba(166, 104, 158, 1)"
-          color="gray"
-          radius="md"
         >
-          SIGN UP
+          회원 가입
+        </Button>
+        <Button
+            style={{width: 300 , marginTop:"15px"}}
+            fullWidth
+            color="gray"
+            type="submit">
+            관리자 권한으로 로그인
         </Button>
       </Link>
     </section>

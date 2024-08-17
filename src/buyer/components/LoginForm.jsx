@@ -19,7 +19,7 @@ const LoginForm = () => {
       localStorage.setItem("token", data.data.accessToken);
       localStorage.setItem("role", "SELLER");
 
-      navigate("/"); // 일단 구매자 로그인 성공 시 마이페이지로 전환
+      navigate("/");
       window.location.reload();
     } catch (e) {
       alert("로그인에 실패했습니다. ");
@@ -27,19 +27,18 @@ const LoginForm = () => {
   };
 
   return (
-    <form  onSubmit={handleLogin}>
+    <form className="login-form" onSubmit={handleLogin}>
       <Stack gap="md">
-        <TextInput
-          label="email"
-          placeholder="email을 입력하세요"
-          name="email"
-        />
-        <PasswordInput
-          label="Password"
-          placeholder="비밀번호를 입력하세요"
-          name="password"
-        />
-        <Button color="gray" fullWidth type="submit">
+        <div className="id-pw">
+          <p style={{margin:"0",marginBottom:"5px"}}>이메일</p>
+          <TextInput placeholder="example@email.com" name="Email" />
+          <p style={{margin:"0",marginBottom:"5px",marginTop:"15px"}}>비밀번호</p>
+          <PasswordInput
+            placeholder="비밀번호를 입력하세요"
+            name="password"
+          />
+        </div>
+        <Button fullWidth type="submit" style={{marginTop:"10px"}}>
           로그인
         </Button>
       </Stack>
