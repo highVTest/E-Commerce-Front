@@ -84,8 +84,8 @@ const SellerInfoForm = ({
     <div>
       <div className="seller">
         <SellerNavComponent />
-        <div className="sellerinfo-container" style={{width:"100%"}}>
-          <h1 stype={{marginLeft:"20px"}}>내정보 수정</h1>
+        <div className="sellerinfo-container" style={{width:"100%",marginLeft:"20px"}}>
+          <h1>내정보 수정</h1>
           <div style={{marginLeft:"15px"}}>
             <div style={{width:"100%"}}>
               <h2>Seller Info</h2>
