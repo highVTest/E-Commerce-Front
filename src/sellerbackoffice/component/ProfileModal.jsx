@@ -56,13 +56,13 @@ const ProfileModal = ({
               setDetailAddr={setDetailAddr}
             ></DaumPost>
           </div>
-          <Button color="gray" type="submit" fullWidth mt="md">
+          <Button type="submit" fullWidth mt="md">
             변경
           </Button>
         </form>
       </Modal>
 
-      <Button color="gray" onClick={open}>
+      <Button onClick={open}>
         프로필 수정하기
       </Button>
     </>
