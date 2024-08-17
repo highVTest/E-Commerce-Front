@@ -15,7 +15,6 @@ const RedirectPage = () => {
                 code,
                 pathname: REDIRECT_URI,
             });
-            console.log("response.data :>>", response.data);
         };
 
         getSocialLoginInfo();

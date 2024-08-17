@@ -7,7 +7,7 @@ import KakaoLoginButton from "../../loginandreview/components/login/KakaoLoginBu
 const LoginPage = () => {
   return (
     <section className="login-section">
-      <h2>Login to High-V</h2>
+      <h2>Login</h2>
       <LoginForm />
       <Link to="/login/register">
         <Button

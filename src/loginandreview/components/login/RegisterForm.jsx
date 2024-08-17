@@ -120,8 +120,6 @@ const RegisterForm = () => {
         setIsOk(false);
       }
     } catch (e) {
-      console.log(e);
-      console.log(buyerId);
     }
   };
 
@@ -140,7 +138,6 @@ const RegisterForm = () => {
       setImageUrl(dataImage.data.imageUrl);
       alert("이미지가 등록됐습니다.");
     } catch (e) {
-      console.log(e);
       alert(e.response.data.errorMessage);
       // alert(e.data.msg);
     }

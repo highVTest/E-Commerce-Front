@@ -1,6 +1,5 @@
 .product-list {
-    max-width: 100%;
-    min-width: 1135px;
+    width:720px;
     justify-content: space-between;
     padding: 50px;
     font-family: Arial, sans-serif;

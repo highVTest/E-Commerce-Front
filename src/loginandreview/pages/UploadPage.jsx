@@ -19,8 +19,6 @@ const UploadPage = () => {
                     "Content-Type": file.type,
                 },
             });
-
-            console.log(response);
         });
     };
 

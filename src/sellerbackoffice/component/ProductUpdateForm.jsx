@@ -34,7 +34,6 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
         onClose={close}
         size="lg"
       >
-        <h1>상품 등록</h1>
         <div className="box">
           <div className="form-area">
             <h2>상품 정보 등록</h2>

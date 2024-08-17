@@ -18,11 +18,8 @@ const BuyerShopInfo = ({ product }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [shopData, setShopData] = useState([]);
 
-  console.log(product);
-
   const getAllUserShopInfoData = async () => {
     const data = await getAllUserShopInfo(product.shopId);
-    // console.log(data.data)
     setShopData(data.data);
   };
 
@@ -73,7 +70,7 @@ const BuyerShopInfo = ({ product }) => {
                           <Container
                             fluid
                             h={50}
-                            bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                             style={{
                               alignContent: "center",
                               textAlign: "center",
@@ -114,7 +111,7 @@ const BuyerShopInfo = ({ product }) => {
                           <Container
                             fluid
                             h={50}
-                            bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                             style={{
                               alignContent: "center",
                               textAlign: "center",
@@ -156,7 +153,7 @@ const BuyerShopInfo = ({ product }) => {
                                   <Container
                                     fluid
                                     h={50}
-                                    bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                                     style={{
                                       alignContent: "center",
                                       textAlign: "center",
@@ -180,7 +177,7 @@ const BuyerShopInfo = ({ product }) => {
                                   <Container
                                     fluid
                                     h={50}
-                                    bg="var(--mantine-color-gray-light)"
+                          bg="var(--mantine-color-white)"
                                     style={{
                                       alignContent: "center",
                                       textAlign: "center",

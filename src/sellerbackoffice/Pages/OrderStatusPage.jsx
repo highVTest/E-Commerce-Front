@@ -30,8 +30,6 @@ const OrderStatusPage = () => {
         setPendingData(data.data);
     }
 
-    console.log(pendingData);
-
     useEffect(() => {
         orderList()
     }, []);
@@ -44,7 +42,7 @@ const OrderStatusPage = () => {
                 (pendingData.length > 0 )?
                     (pendingData.map((data, index) => {
                     return (
-                        <div className="product-item" key={index} style={{marginTop:"20px", backgroundColor:"beige"}}>
+                        <div className="product-item" key={index} style={{marginTop:"20px"}}>
                             <div className="product-info">
                                 <div style={{display:"flex"}}>
                                     <div style={{width:"70%"}}>
@@ -55,7 +53,7 @@ const OrderStatusPage = () => {
                                             {data.registerDate.split("-")[2].slice(0, 2)} 일
                                         </Text>
                                     </div>
-                                    <div style={{justifyContent: "flex-end", margin: "30px"}}>
+                                    <div style={{display:"flex", margin: "20px"}}>
                                         <RejectModal token={token} data={data} shopId={shopId}/>
                                         <AcceptModal token={token} data={data} shopId={shopId}/>
                                     </div>
@@ -66,7 +64,7 @@ const OrderStatusPage = () => {
                                         data.products.map((orderDetail, index) => {
                                             return (
                                                 <div key={index}>
-                                                    <Fieldset style={{display: "flex", width: "1100px"}}>
+                                                    <Fieldset style={{display: "flex", width: "700px"}}>
                                                         <Image
                                                             className="product-image"
                                                             radius="md"

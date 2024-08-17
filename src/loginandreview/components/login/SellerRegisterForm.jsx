@@ -73,7 +73,6 @@ const SellerRegisterForm = () => {
         PhoneNumber,
         fullAddr
       );
-      console.log("x");
       alert("회원가입이 완료됐습니다.");
       navigate("/login/seller");
     } catch (e) {
@@ -113,7 +112,6 @@ const SellerRegisterForm = () => {
         setIsOk(false);
       }
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -132,7 +130,6 @@ const SellerRegisterForm = () => {
       setImageUrl(dataImage.data.imageUrl);
       alert("이미지가 등록됐습니다.");
     } catch (e) {
-      console.log(e);
       alert(e.response.data.errorMessage);
       // alert(e.data.msg);
     }
