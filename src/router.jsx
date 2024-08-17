@@ -34,6 +34,9 @@ import OrderStatusPage from "./sellerbackoffice/Pages/OrderStatusPage.jsx";
 import OrderListPage from "./sellerbackoffice/Pages/OrderListPage.jsx";
 import BuyerShopInfo from "./buyer/pages/BuyerShopInfo.jsx";
 import AdminLoginPage from "./admin/Pages/AdminLoginPage.jsx";
+import BlackListPage from "./admin/Pages/BlackListPage.jsx";
+import * as path from "node:path";
+import AdminValidSellerContainer from "./admin/Pages/AdminValidSellerContainer.jsx";
 
 
 export const router = createBrowserRouter([
@@ -190,5 +193,17 @@ export const router = createBrowserRouter([
     path: "/login/admin",
     element: <AdminLoginPage/>
   },
+  {
+    path: "/admin/black-list",
+    element: <BlackListPage/>
+  },
+  {
+    path: "/admin/seller-accept",
+    element: <AdminPage/>,
+  },
+  {
+    path: "/admin/seller-accept/:id",
+    element: <AdminValidSellerContainer/>
+  }
 
 ]);
