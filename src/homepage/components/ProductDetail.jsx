@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import BuyerShopInfo from "../../buyer/pages/BuyerShopInfo.jsx";
+import {sanctionProduct} from "../../api/v1/admin/admin.js";
 
 const ProductDetail = ({
   product,
@@ -18,12 +19,30 @@ const ProductDetail = ({
   favoriteChange,
   addItemCart,
   role,
+  token,
+  productId
 }) => {
   const [liked, setLiked] = useState(false);
-  const [alert, setAlert] = useState({ visible: false, message: "" });
+  const [getAlert, setAlert] = useState({ visible: false, message: "" });
+  const [click , setClick] = useState(false);
   const navigate = useNavigate();
-
   const [wait, setWait] = useState(false);
+
+  const sanctionProductApply = async () => {
+    try {
+      if(click === false) {
+        setClick(true);
+        await sanctionProduct(token, productId)
+        alert("판매자 제재가 완료 되었습니다")
+      }else{
+        return null
+      }
+    }catch(err) {
+      console.log("test");
+      alert(err);
+    }
+    setClick(false);
+  }
 
   const handleLikeClick = () => {
     const newLiked = !liked;
@@ -128,6 +147,13 @@ const ProductDetail = ({
                   장바구니에 담기
                 </Button>
               ) : null}
+              {role === 'ADMIN' ?
+                  (
+                      <Button color="gray" mt="md" type="submit" onClick={sanctionProductApply}>
+                        판매자 제재하기
+                      </Button>
+                  ): null
+              }
               <BuyerShopInfo product={product} />
             </form>
           </Fieldset>

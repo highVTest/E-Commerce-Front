@@ -1,12 +1,16 @@
-import { apiClient } from "./client";
+import { apiClient } from "../client";
 
 
 export const sanctionSeller = async (sellerId) => {
   return apiClient.post(`/api/v1/admin/sanctions/seller/${sellerId}`, { sellerId });
 };
 
-export const sanctionProduct = async (productId) => {
-  return apiClient.post(`/api/v1/admin/sanctions/product/${productId}`, { productId });
+export const sanctionProduct = async (token, productId) => {
+    return apiClient.post(`admin/sanctions/product/${productId}`, {}, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 };
 
 export const getBlackLists = async () => {

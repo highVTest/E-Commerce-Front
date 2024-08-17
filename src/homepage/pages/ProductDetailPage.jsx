@@ -1,20 +1,13 @@
-import { Anchor, Box, Button, Fieldset, Image, Title } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import {Box, Button, Fieldset, Image} from "@mantine/core";
+import React, {useEffect, useState} from "react";
 
-import { useParams } from "react-router";
-import {
-  favoriteManagement,
-  getFavorites,
-} from "../../api/v1/favorite/favorite";
-import { addItemIntoCart } from "../../api/v1/item-cart/itemCart";
+import {useParams} from "react-router";
+import {favoriteManagement, getFavorites,} from "../../api/v1/favorite/favorite";
+import {addItemIntoCart} from "../../api/v1/item-cart/itemCart";
 
-import {
-  getBuyerCouponById,
-  getDetailCoupon,
-  issuedCoupon,
-} from "../../api/v1/coupon/coupon.js";
+import {getBuyerCouponById, getDetailCoupon, issuedCoupon,} from "../../api/v1/coupon/coupon.js";
 
-import { getProductById } from "../../api/v1/product/product";
+import {getProductById} from "../../api/v1/product/product";
 import CommonLayout from "../components/CommonLayout";
 import ProductDetail from "../components/ProductDetail";
 import ProdcutReviewContainer from "../components/ProductReviewContainer";
@@ -105,6 +98,7 @@ const ProductDetailPage = () => {
       await issuedCoupon(token, coupon.couponId);
       alert("쿠폰 발급이 완료 되었습니다");
       getDetailCouponData();
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       await useBuyerCouponById();
     } catch (e) {
       alert(e.response.data.errorMessage);
@@ -121,14 +115,19 @@ const ProductDetailPage = () => {
   return (
     <CommonLayout>
       <Fieldset size={800} mt="md">
-        <ProductDetail
-          product={product}
-          favorite={favorite}
-          favoriteChange={favoriteChange}
-          addItemCart={addItemCart}
-          role = {role}
-        />
-
+        {
+          product ? (
+              <ProductDetail
+                  product={product}
+                  favorite={favorite}
+                  favoriteChange={favoriteChange}
+                  addItemCart={addItemCart}
+                  role = {role}
+                  token = {token}
+                  productId = {productId}
+              />
+          ) : null
+        }
         <Fieldset legend={`지급 가능 쿠폰`}>
           <div className="product-list" style={{backgroundColor:"white"}}>
             {coupon !== null ? (

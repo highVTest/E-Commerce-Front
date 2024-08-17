@@ -33,6 +33,7 @@ import ShopCreateContainer from "./sellerbackoffice/component/ShopCreateContaine
 import OrderStatusPage from "./sellerbackoffice/Pages/OrderStatusPage.jsx";
 import OrderListPage from "./sellerbackoffice/Pages/OrderListPage.jsx";
 import BuyerShopInfo from "./buyer/pages/BuyerShopInfo.jsx";
+import AdminLoginPage from "./admin/Pages/AdminLoginPage.jsx";
 
 
 export const router = createBrowserRouter([
@@ -184,6 +185,10 @@ export const router = createBrowserRouter([
   {
     path: "/seller/order-list",
     element: <OrderListPage/>
+  },
+  {
+    path: "/login/admin",
+    element: <AdminLoginPage/>
   },
 
 ]);
