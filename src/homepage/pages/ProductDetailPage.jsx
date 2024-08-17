@@ -114,6 +114,7 @@ const ProductDetailPage = () => {
       await issuedCoupon(token, coupon.couponId);
       alert("쿠폰 발급이 완료 되었습니다");
       getDetailCouponData();
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       await useBuyerCouponById();
     } catch (e) {
       alert(e.response.data.errorMessage);
@@ -130,16 +131,19 @@ const ProductDetailPage = () => {
   return (
     <CommonLayout>
       <Fieldset size={800} mt="md">
-        {product ? (
-          <ProductDetail
-            product={product}
-            favorite={favorite}
-            favoriteChange={favoriteChange}
-            addItemCart={addItemCart}
-            role={role}
-          />
-        ) : null}
-
+        {
+          product ? (
+              <ProductDetail
+                  product={product}
+                  favorite={favorite}
+                  favoriteChange={favoriteChange}
+                  addItemCart={addItemCart}
+                  role = {role}
+                  token = {token}
+                  productId = {productId}
+              />
+          ) : null
+        }
         <Fieldset legend={`지급 가능 쿠폰`}>
           <div className="product-list" style={{ backgroundColor: "white" }}>
             {coupon !== null ? (

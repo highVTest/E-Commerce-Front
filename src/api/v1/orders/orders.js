@@ -1,7 +1,7 @@
 import { apiClient } from "../client";
 
-export const buyerPayment = async (token, cartIdList,couponIdList ) => {
-    return apiClient.post("/payments", {cartIdList,couponIdList},{
+export const buyerPayment = async (token, cartIdList,couponIdList) => {
+    return apiClient.post("/payments", {cartIdList: cartIdList, couponIdList: couponIdList},{
         headers : {
           Authorization : `Bearer ${token}`,
           "Content-Type": "application/json"

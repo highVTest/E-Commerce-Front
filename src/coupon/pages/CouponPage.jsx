@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import "../css/CouponPage.css"
 import {Image} from "@mantine/core";
-import {deleteSellerCoupon, getSellerCouponList} from "../../api/v1/coupon/coupon.js";
+import { getSellerCouponList} from "../../api/v1/coupon/coupon.js";
 import UpdateCouponModal from "../components/UpdateCouponModal.jsx";
 import SellerNavComponent from "../../sellerbackoffice/component/SellerNavComponent.jsx";
 
