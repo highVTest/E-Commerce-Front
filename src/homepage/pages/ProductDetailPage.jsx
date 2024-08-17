@@ -1,13 +1,21 @@
-import {Box, Button, Fieldset, Image} from "@mantine/core";
-import React, {useEffect, useState} from "react";
+import { Anchor, Box, Button, Fieldset, Image, Title } from "@mantine/core";
+import React, { useEffect, useState } from "react";
 
-import {useParams} from "react-router";
-import {favoriteManagement, getFavorites,} from "../../api/v1/favorite/favorite";
-import {addItemIntoCart} from "../../api/v1/item-cart/itemCart";
+import { useParams } from "react-router";
+import {
+  favoriteDelete,
+  favoriteManagement,
+  getFavorites,
+} from "../../api/v1/favorite/favorite";
+import { addItemIntoCart } from "../../api/v1/item-cart/itemCart";
 
-import {getBuyerCouponById, getDetailCoupon, issuedCoupon,} from "../../api/v1/coupon/coupon.js";
+import {
+  getBuyerCouponById,
+  getDetailCoupon,
+  issuedCoupon,
+} from "../../api/v1/coupon/coupon.js";
 
-import {getProductById} from "../../api/v1/product/product";
+import { getProductById } from "../../api/v1/product/product";
 import CommonLayout from "../components/CommonLayout";
 import ProductDetail from "../components/ProductDetail";
 import ProdcutReviewContainer from "../components/ProductReviewContainer";
@@ -55,7 +63,16 @@ const ProductDetailPage = () => {
   };
   const favoriteChange = async (productId) => {
     try {
-      const data = await favoriteManagement(token, productId);
+      let data;
+      if (favorite.indexOf(product?.id) == -1) {
+        console.log("123", favorite.indexOf(product?.id));
+        data = await favoriteManagement(token, productId);
+      } else {
+        console.log("987", favorite.indexOf(product?.id));
+
+        data = await favoriteDelete(token, productId);
+      }
+
       const msg = data.data.msg;
       if (
         msg == "찜 목록에서 삭제했습니다." ||
@@ -84,8 +101,7 @@ const ProductDetailPage = () => {
       const data = await getDetailCoupon(productId);
 
       setCoupon(data.data);
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const issuedCouponFunc = async () => {
@@ -129,9 +145,17 @@ const ProductDetailPage = () => {
           ) : null
         }
         <Fieldset legend={`지급 가능 쿠폰`}>
-          <div className="product-list" style={{backgroundColor:"white"}}>
+          <div className="product-list" style={{ backgroundColor: "white" }}>
             {coupon !== null ? (
-              <div className="product-item" key={1} style={{width:"750px", marginTop:"-50px", marginBottom:"-50px"}}>
+              <div
+                className="product-item"
+                key={1}
+                style={{
+                  width: "750px",
+                  marginTop: "-50px",
+                  marginBottom: "-50px",
+                }}
+              >
                 <div className="image">
                   <Image
                     className="product-image"
@@ -185,9 +209,7 @@ const ProductDetailPage = () => {
           </div>
         </Fieldset>
         <Fieldset legend="상세설명">
-          <Box
-            style={{ height: "150px", alignContent: "center" }}
-          >
+          <Box style={{ height: "150px", alignContent: "center" }}>
             {product?.description}{" "}
           </Box>
         </Fieldset>
