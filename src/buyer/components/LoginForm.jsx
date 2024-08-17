@@ -31,7 +31,7 @@ const LoginForm = () => {
       <Stack gap="md">
         <div className="id-pw">
           <p style={{margin:"0",marginBottom:"5px"}}>이메일</p>
-          <TextInput placeholder="example@email.com" name="Email" />
+          <TextInput placeholder="example@email.com" name="email" />
           <p style={{margin:"0",marginBottom:"5px",marginTop:"15px"}}>비밀번호</p>
           <PasswordInput
             placeholder="비밀번호를 입력하세요"
