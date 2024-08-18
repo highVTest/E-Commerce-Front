@@ -48,14 +48,14 @@ const ProdcutReviewContainer = ({ token, productId }) => {
         content
       );
 
-      alert("수정됐습니다.");
+      alert("리뷰가 수정되었습니다.");
       window.location.reload();
     } catch (e) {
       const msg = e.response.data.errorMessage;
       if (msg == "자기 리뷰가 아닙니다.") {
-        alert("자신의 리뷰가 아닙니다.\n수정할 수 없습니다.");
+        alert("본인의 리뷰가 아닙니다.\n수정할 수 없습니다.");
       } else {
-        alert("알 수 없는 에러");
+        alert("알 수 없는 문제가 발생하였습니다.");
       }
     }
 
@@ -72,15 +72,14 @@ const ProdcutReviewContainer = ({ token, productId }) => {
 
       const data = await deleteReview(token, productId, reviewId);
 
-      alert("삭제됐습니다.");
-      // window.location.reload();
+      alert("리뷰가 삭제됐습니다.");
       await getReviews();
     } catch (e) {
       const msg = e.response.data.errorMessage;
       if (msg == "자기 리뷰가 아닙니다.") {
-        alert("자신의 리뷰가 아닙니다.\n삭제할 수 없습니다.");
+        alert("본인의 리뷰가 아닙니다.\n삭제할 수 없습니다.");
       } else {
-        alert("알 수 없는 에러");
+        alert("알 수 없는 문제가 발생하였습니다.");
       }
     }
     setClick(false);
