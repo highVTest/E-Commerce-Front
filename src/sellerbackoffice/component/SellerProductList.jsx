@@ -153,15 +153,19 @@ const ProductList = ({
                                 name="price"
                                 className="price"
                               />
-                              <Button color="black" type="submit">
-                                변경하기
-                              </Button>
-                              <Button
-                                color="black"
-                                onClick={() => modals.closeAll()}
-                              >
-                                취소
-                              </Button>
+                              <div style={{display:"flex",gap:"10px",marginTop:"10px"}}>
+                                <Button fullWidth color="black" type="submit">
+                                  변경하기
+                                </Button>
+                                <Button
+                                  color="black"
+                                  variant="outline"
+                                  fullWidth 
+                                  onClick={() => modals.closeAll()}
+                                >
+                                  취소
+                                </Button>
+                              </div>
                             </form>
                           </>
                         ),
@@ -187,16 +191,26 @@ const ProductList = ({
                                 name="quantity"
                                 className="quantity"
                               />
-                              <Button color="black" fullWidth type="submit">
-                                변경하기
-                              </Button>
-                              <Button
-                                color="black"
-                                fullWidth
-                                onClick={() => modals.closeAll()}
+
+                              <div
+                                style={{
+                                  display: "flex",
+                                  gap: "10px",
+                                  marginTop: "10px",
+                                }}
                               >
-                                취소
-                              </Button>
+                                <Button color="black" fullWidth type="submit">
+                                  변경하기
+                                </Button>
+                                <Button
+                                  color="black"
+                                  fullWidth
+                                  variant="outline"
+                                  onClick={() => modals.closeAll()}
+                                >
+                                  취소
+                                </Button>
+                              </div>
                             </form>
                           </>
                         ),
@@ -215,23 +229,31 @@ const ProductList = ({
                         title: "상품 삭제",
                         children: (
                           <>
-                            <Button
-                              color="black"
-                              fullWidth
-                              onClick={() => {
-                                handleDelete(product.id);
+                            <div
+                              style={{
+                                display: "flex",
+                                gap: "10px",
+                                marginTop: "10px",
                               }}
                             >
-                              YES
-                            </Button>
-                            <Button
-                              color="black"
-                              fullWidth
-                              variant="outline"
-                              onClick={() => modals.closeAll()}
-                            >
-                              NO
-                            </Button>
+                              <Button
+                                color="black"
+                                fullWidth
+                                onClick={() => {
+                                  handleDelete(product.id);
+                                }}
+                              >
+                                YES
+                              </Button>
+                              <Button
+                                color="black"
+                                fullWidth
+                                variant="outline"
+                                onClick={() => modals.closeAll()}
+                              >
+                                NO
+                              </Button>
+                            </div>
                           </>
                         ),
                       });
