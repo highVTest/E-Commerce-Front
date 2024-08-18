@@ -1,7 +1,6 @@
 import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
 
 import { useNavigate } from "react-router-dom";
-import "../../buyer/components/css/BuyerCss.css";
 import {adminLogin} from "../../api/v1/admin/admin.js";
 
 const AdminLoginForm = () => {
