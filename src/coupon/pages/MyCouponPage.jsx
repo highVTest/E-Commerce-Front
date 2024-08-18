@@ -47,7 +47,9 @@ const MyCouponPage = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
+                margin:0,
                 padding: "15px",
+                marginBottom:"10px"
               }}
             >
               <Stack style={{ textAlign: "left", marginLeft: "10px" }}>
