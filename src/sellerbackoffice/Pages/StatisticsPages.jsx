@@ -61,7 +61,7 @@ const StatisticPages = () => {
                             dataKey="productName"
                             type="stacked"
                             series={[
-                                {name: 'productQuantity', color: 'violet.6'},
+                                {name: 'productQuantity', color: 'gray'},
                             ]}
                         />
                     </div>
