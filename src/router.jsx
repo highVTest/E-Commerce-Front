@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import LoginLayout from "./loginandreview/pages/LoginLayout.jsx";
 import LoginPage from "./loginandreview/pages/LoginPage.jsx";
 import RootLayout from "./loginandreview/pages/RootLayout.jsx";
@@ -34,7 +34,6 @@ import AdminLoginPage from "./admin/Pages/AdminLoginPage.jsx";
 import BlackListPage from "./admin/Pages/BlackListPage.jsx";
 import * as path from "node:path";
 import AdminValidSellerContainer from "./admin/Pages/AdminValidSellerContainer.jsx";
-
 
 export const router = createBrowserRouter([
   {
@@ -97,9 +96,9 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "shop",
-            element: <BuyerShopInfo/>
-          }
-        ]
+            element: <BuyerShopInfo />,
+          },
+        ],
       },
       {
         path: ":keyword",
@@ -172,31 +171,30 @@ export const router = createBrowserRouter([
   },
   {
     path: "/seller-statistic",
-    element: <StatisticPages/>
+    element: <StatisticPages />,
   },
   {
     path: "/seller/order-status",
-    element: <OrderStatusPage/>
+    element: <OrderStatusPage />,
   },
   {
     path: "/seller/order-list",
-    element: <OrderListPage/>
+    element: <OrderListPage />,
   },
   {
     path: "/login/admin",
-    element: <AdminLoginPage/>
+    element: <AdminLoginPage />,
   },
   {
     path: "/admin/black-list",
-    element: <BlackListPage/>
+    element: <BlackListPage />,
   },
   {
     path: "/admin/seller-accept",
-    element: <AdminPage/>,
+    element: <AdminPage />,
   },
   {
     path: "/admin/seller-accept/:id",
-    element: <AdminValidSellerContainer/>
-  }
-
+    element: <AdminValidSellerContainer />,
+  },
 ]);
