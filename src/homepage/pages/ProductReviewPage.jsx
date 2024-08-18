@@ -1,4 +1,4 @@
-import {Button, Fieldset, NumberInput, Rating, Text, TextInput} from "@mantine/core";
+import {Button, Fieldset, NumberInput, Rating, Text, TextInput, Image} from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { useState } from "react";
 import ReviewAddModal from "../../loginandreview/components/review/ReviewAddModal";
@@ -26,17 +26,30 @@ const ProductReviewPage = ({
       {reviews?.map((review) => {
         return (
           <div key={review.id}>
-            <Fieldset legend="내용">
-              <div>
-                <Text> 내용 : {review.content}</Text>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent:"space-between",
+                marginBottom: "10px",
+                border: "2px solid",
+                borderColor: "#efefef",
+                borderRadius: "8px",
+                padding: "10px",
+                textAlign: "left",
+              }}
+            >
+              <div style={{marginTop:"10px"}}>
                 <Rating value={review.rate} fractions={2} readOnly />
+                <p>작성자 : {review.buyerName}</p>
+                <p style={{marginLeft:"20px"}}>{review.content}</p>
               </div>
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "right",
-                  // marginBottom: "15px",
-                  // marginTop: "10px",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                  gap:"5px"
                 }}
               >
                 <ReviewAddModal
@@ -51,9 +64,7 @@ const ProductReviewPage = ({
                 ></ReviewAddModal>
                 <div style={{ marginRight: "15px" }}></div>
                 <Button
-                  variant="filled"
-                  color="gray"
-                  // style={{ marginRight: "20px" }}
+                  variant="outline"
                   onClick={() => {
                     deleteReview(review.id);
                   }}
@@ -61,11 +72,11 @@ const ProductReviewPage = ({
                   리뷰 삭제
                 </Button>
               </div>
-            </Fieldset>
+            </div>
           </div>
         );
       })}
-      <div style={{ marginTop: "15px" }}></div>
+      <div style={{ marginTop: "15px"}}></div>
       <ReviewAddModal
         rate={rate}
         setRate={setRate}
