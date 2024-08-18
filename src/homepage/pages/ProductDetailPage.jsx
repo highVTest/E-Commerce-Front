@@ -130,7 +130,9 @@ const ProductDetailPage = () => {
 
   return (
     <CommonLayout>
-      <Fieldset size={800} mt="md">
+      <h1>상품 페이지</h1>
+      <Fieldset style={{marginTop:"30px"}}> 
+        <h2>상품 정보</h2>
         {
           product ? (
               <ProductDetail
@@ -144,49 +146,45 @@ const ProductDetailPage = () => {
               />
           ) : null
         }
-        <Fieldset legend={`지급 가능 쿠폰`}>
-          <div className="product-list" style={{ backgroundColor: "white" }}>
+        <hr style={{marginTop:"20px", marginBottom:"20px",width:"100%"}}/>
+        <div>
+          <h2>사용 가능한 쿠폰</h2>
+          <div className="product-list">
             {coupon !== null ? (
               <div
                 className="product-item"
                 key={1}
-                style={{
-                  width: "750px",
-                  marginTop: "-50px",
-                  marginBottom: "-50px",
-                }}
               >
                 <div className="image">
                   <Image
                     className="product-image"
                     radius="md"
-                    h={150}
-                    w={150}
+                    h={120}
+                    w={120}
                     fit="crop"
                     src={product?.productImage}
                     fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                    style={{ marginRight: 15 }}
+                    style={{ margin:"0" }}
                   />
                 </div>
-                <div className="product-info">
-                  <h2>{coupon.couponName}</h2>
+                <div className="product-info" style={{display:"flex", flexDirection:"column", gap:"10px"}}>
+                  <h2 style={{margin:"0"}}>{coupon.couponName}</h2>
                   {coupon.discountPolicy === "RATE" ? (
-                    <p>할인율: {coupon.discount} %</p>
+                    <p style={{margin:"0"}}>할인율: {coupon.discount} %</p>
                   ) : (
-                    <p>가격 할인 : {coupon.discount} 원</p>
+                    <p style={{margin:"0"}}>가격 할인 : {coupon.discount} 원</p>
                   )}
 
-                  <p>남은 개수: {coupon.quantity} 개</p>
+                  <p style={{margin:"0"}}>남은 개수: {coupon.quantity} 개</p>
                 </div>
-                <div className="coupon-actions">
-                  <p>
+                <div className="coupon-actions" style={{display:"flex",justifyContent:"space-between", flexDirection:"column"}}>
+                  <p style={{margin:"0"}}>
                     만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
                     {coupon.expiredAt.split("-")[1]} 월{" "}
                     {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
                   </p>
                   {couponToBuyer === null ? (
                     <Button
-                      color="gray"
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                       onClick={issuedCouponFunc}
@@ -195,7 +193,6 @@ const ProductDetailPage = () => {
                     </Button>
                   ) : (
                     <Button
-                      color="gray"
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                     >
@@ -206,21 +203,19 @@ const ProductDetailPage = () => {
               </div>
             ) : null}
           </div>
-        </Fieldset>
-        <Fieldset legend="상세설명">
-          <Box
-            style={{ height: "150px", alignContent: "center" }}
-          >
-            {product?.description}{" "}
-          </Box>
-        </Fieldset>
-
-        <Fieldset legend="리뷰">
+        </div>
+        <div style={{textAlign:"left", marginBottom:"50px"}}>
+          <h2>상세 설명</h2>
+            <p>{product?.description}</p>
+        </div>
+        <hr style={{marginTop:"15px", marginBottom:"15px"}}/>
+        <div>
+          <h2>리뷰 리스트</h2>
           <ProdcutReviewContainer
             token={token}
             productId={productId}
           ></ProdcutReviewContainer>
-        </Fieldset>
+        </div>
       </Fieldset>
     </CommonLayout>
   );

@@ -33,23 +33,20 @@ const BuyerShopInfo = ({ product }) => {
   }, []);
 
   return (
-    <>
-      <Modal
-        opened={opened}
-        onClose={close}
-        size={1100}
-        style={{ display: "flex" }}
-      >
+    <div>
+      <Modal opened={opened} onClose={close} size="auto" title="상점 정보">
         <div>
           <div>
-            <h1 style={{ margin: "0 auto" }}>상점 정보</h1>
-            <div className="info-box">
-              <div></div>
+            <div className="info-box" style={{border:"1px solid", margin:"15px",padding:"15px",borderRadius:"8px", borderColor:"#dadada"}}>
+              <h2>{shopData.name}</h2>
               <div
                 className="shop"
                 style={{ display: "flex", justifyContent: "space-around" }}
               >
-                <div className="image-container">
+                <div
+                  className="image-container"
+                  style={{ alignItems: "center" }}
+                >
                   <Image
                     className="seller-img"
                     radius="md"
@@ -57,145 +54,28 @@ const BuyerShopInfo = ({ product }) => {
                     w={150}
                     fit="crop"
                     src={shopData.shopImage}
+                    style={{margin:"15px"}}
                     fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                    style={{ marginTop: 15 }}
                   />
                 </div>
-
+                <hr color="#efefef" style={{margin:"15px"}}/>
                 <div>
-                  <div className="shop-info" style={{ width: "450px" }}>
-                    <Stack
-                      // bg="var(--mantine-color-body)"
-                      align="stretch"
-                      justify="center"
-                      gap="md"
-                    >
-                      <Grid>
-                        <Grid.Col span={12}>
-                          <Container
-                            fluid
-                            h={50}
-                          bg="var(--mantine-color-white)"
-                            style={{
-                              alignContent: "center",
-                              textAlign: "center",
-                            }}
-                          >
-                            {shopData.name}
-                          </Container>
-                        </Grid.Col>
-                      </Grid>
-                      <Grid>
-                        <Grid.Col
-                          span={4}
-                          style={{
-                            alignContent: "center",
-                            textAlign: "center",
-                          }}
-                        >
-                          평점 :
-                        </Grid.Col>
-                        <Grid.Col span={8}>
-                          <Rating
-                            value={shopData.rate}
-                            fractions={2}
-                            readOnly
-                            size="lg"
-                          />
-                        </Grid.Col>
-                        <Grid.Col
-                          span={4}
-                          style={{
-                            alignContent: "center",
-                            textAlign: "center",
-                          }}
-                        >
-                          상점 소개 :
-                        </Grid.Col>
-                        <Grid.Col span={8}>
-                          <Container
-                            fluid
-                            h={50}
-                            bg="var(--mantine-color-white)"
-                            style={{
-                              alignContent: "center",
-                              textAlign: "center",
-                            }}
-                          >
-                            {shopData.description}
-                          </Container>
-                        </Grid.Col>
-                      </Grid>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                        }}
-                      >
-                        <div>
-                          <div
-                            className="seller-info"
-                            style={{ width: "450px" }}
-                          >
-                            <Stack
-                              h={300}
-                              // bg="var(--mantine-color-body)"
-                              align="stretch"
-                              justify="center"
-                              gap="md"
-                            >
-                              <Grid>
-                                <Grid.Col
-                                  span={4}
-                                  style={{
-                                    alignContent: "center",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  판매자 이름 :
-                                </Grid.Col>
-                                <Grid.Col span={8}>
-                                  <Container
-                                    fluid
-                                    h={50}
-                                    bg="var(--mantine-color-white)"
-                                    style={{
-                                      alignContent: "center",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {shopData.sellerName}
-                                  </Container>
-                                </Grid.Col>
-                              </Grid>
-                              <Grid>
-                                <Grid.Col
-                                  span={4}
-                                  style={{
-                                    alignContent: "center",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  판매자 이메일 :
-                                </Grid.Col>
-                                <Grid.Col span={8}>
-                                  <Container
-                                    fluid
-                                    h={50}
-                                    bg="var(--mantine-color-white)"
-                                    style={{
-                                      alignContent: "center",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {shopData.sellerEmail}
-                                  </Container>
-                                </Grid.Col>
-                              </Grid>
-                            </Stack>
-                          </div>
-                        </div>
-                      </div>
+                  <div style={{ margin: "20px", width: "300px" }}>
+                    <Stack style={{ textAlign: "left", gap:"10px" }}>
+                      <b>평점</b>
+                      <Rating
+                        value={shopData.rate}
+                        fractions={2}
+                        readOnly
+                        size="md"
+                        style={{marginLeft:"15px"}}
+                      />
+                      <b>상점 소개</b>
+                      <div>&emsp;{shopData.description}</div>
+                      <b>판매자 이름</b>
+                      <div>&emsp;{shopData.sellerName}</div>
+                      <b>판매자 이메일</b>
+                      <div>&emsp;{shopData.sellerEmail}</div>
                     </Stack>
                   </div>
                 </div>
@@ -204,14 +84,10 @@ const BuyerShopInfo = ({ product }) => {
           </div>
         </div>
       </Modal>
-      <Button
-        color="gray"
-        onClick={open}
-        style={{ marginTop: "16px", marginLeft: "10px" }}
-      >
-        싱점 정보 보기
+      <Button onClick={open}>
+        상점 정보
       </Button>
-    </>
+    </div>
   );
 };
 

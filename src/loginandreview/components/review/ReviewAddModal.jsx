@@ -1,5 +1,5 @@
 import { useDisclosure } from "@mantine/hooks";
-import { Button, Modal, NumberInput, TextInput } from "@mantine/core";
+import { Button, Modal, NumberInput, Textarea } from "@mantine/core";
 
 const ReviewAddModal = ({
   rate,
@@ -20,7 +20,7 @@ const ReviewAddModal = ({
         onClose={close}
         title={situation == "추가" ? "리뷰 추가" : "리뷰 수정"}
       >
-        <TextInput
+        <Textarea
           label="내용"
           placeholder="내용을 입력해주세요"
           value={content}
@@ -43,7 +43,6 @@ const ReviewAddModal = ({
           }}
         />
         <Button
-          color="gray"
           fullWidth
           onClick={() => {
             if (situation == "추가") {
@@ -57,12 +56,7 @@ const ReviewAddModal = ({
           {situation == "추가" ? "추가하기" : "수정하기"}
         </Button>
       </Modal>
-
-      {/* <Button fullWidth onClick={() => modals.closeAll()} mt="md">
-        취소
-      </Button> */}
       <Button
-        color="gray"
         onClick={() => {
           setContent("");
           setRate(0);
