@@ -1,24 +1,22 @@
-import {Button, Fieldset, NumberInput, Rating, Text, TextInput, Image} from "@mantine/core";
-import { modals } from "@mantine/modals";
-import { useState } from "react";
+import { Button, Image, Rating } from "@mantine/core";
+
 import ReviewAddModal from "../../loginandreview/components/review/ReviewAddModal";
+import ProductReviewUpdateModal from "../../loginandreview/components/review/ProductReviewUpdateModal";
 
 const ProductReviewPage = ({
   reviews,
   buyerAddReview,
   delReview,
   buyerUpdate,
+  productId,
 }) => {
-  const [rate, setRate] = useState(0);
-  const [content, setContent] = useState("");
-
-  const addReview = async () => {
+  const addReview = async (rate, content) => {
     await buyerAddReview(rate, content);
   };
   const deleteReview = async (reviewId) => {
     await delReview(reviewId);
   };
-  const updateReview = async (reviewId) => {
+  const updateReview = async (reviewId, rate, content) => {
     await buyerUpdate(reviewId, rate, content);
   };
 
@@ -31,7 +29,7 @@ const ProductReviewPage = ({
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent:"space-between",
+                justifyContent: "space-between",
                 marginBottom: "10px",
                 border: "2px solid",
                 borderColor: "#efefef",
@@ -41,15 +39,15 @@ const ProductReviewPage = ({
               }}
             >
               <div>
-                <div style={{display:"flex"}}>
+                <div style={{ display: "flex" }}>
                   <div>
                     <Image
-                        src={review.buyerProfileImage}
-                        h={120}
-                        w={120}
-                        style={{marginRight:"30px"}}
-                        radius="lg"
-                        fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                      src={review.buyerProfileImage}
+                      h={120}
+                      w={120}
+                      style={{ marginRight: "30px" }}
+                      radius="lg"
+                      fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                     />
                   </div>
                   <div>
@@ -64,22 +62,19 @@ const ProductReviewPage = ({
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-end",
-                  gap:"5px"
+                  gap: "5px",
                 }}
               >
-                <ReviewAddModal
-                  rate={rate}
-                  setRate={setRate}
-                  content={content}
-                  setContent={setContent}
-                  addReview={addReview}
-                  situation={"수정"}
+                <ProductReviewUpdateModal
+                  review_id={review.id}
+                  review_rate={review.rate}
+                  review_content={review.content}
                   updateReview={updateReview}
-                  reviewId={review.id}
-                ></ReviewAddModal>
+                ></ProductReviewUpdateModal>
+
                 <div style={{ marginRight: "15px" }}></div>
                 <Button
-                color="black" 
+                  color="black"
                   variant="outline"
                   onClick={() => {
                     deleteReview(review.id);
@@ -92,17 +87,8 @@ const ProductReviewPage = ({
           </div>
         );
       })}
-      <div style={{ marginTop: "15px"}}></div>
-      <ReviewAddModal
-        rate={rate}
-        setRate={setRate}
-        content={content}
-        setContent={setContent}
-        addReview={addReview}
-        situation={"추가"}
-        updateReview={updateReview}
-        reviewId={-1}
-      ></ReviewAddModal>
+      <div style={{ marginTop: "15px" }}></div>
+      <ReviewAddModal addReview={addReview}></ReviewAddModal>
     </>
   );
 };

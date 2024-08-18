@@ -10,7 +10,7 @@ const SearchPage = () => {
 
   const [result, setResult] = useState(null);
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getSearchProducts = async (
     keyword,
@@ -19,9 +19,11 @@ const SearchPage = () => {
     page,
     size = 9
   ) => {
-    setIsLoading(true);
+    console.log("키워드 >> ", keyword);
+    setLoading(true);
     const data = await searchByRedis(keyword, sortBy, orderBy, page, size);
-    setIsLoading(false);
+    setLoading(false);
+    console.log(data);
     setProducts(data.data.content);
     setResult(data.data);
   };
@@ -36,7 +38,7 @@ const SearchPage = () => {
       products={products}
       param={param}
       getSearchProducts={getSearchProducts}
-      isLoading={isLoading}
+      loading={loading}
     ></SearchProductsForm>
   );
 };

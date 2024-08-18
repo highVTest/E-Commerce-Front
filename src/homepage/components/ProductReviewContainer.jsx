@@ -10,9 +10,9 @@ import ProductReviewPage from "../pages/ProductReviewPage";
 const ProdcutReviewContainer = ({ token, productId }) => {
   const [reviews, setReviews] = useState(null);
   const [click, setClick] = useState(false);
+
   const getReviews = async () => {
     const data = await getProductReviews(productId);
-    // console.log(data.data);
     setReviews(data.data);
   };
 
@@ -20,12 +20,11 @@ const ProdcutReviewContainer = ({ token, productId }) => {
     if (click == true) {
       return;
     }
-
     try {
       setClick(true);
       const data = await addReview(token, productId, rate, content);
       alert("리뷰가 생성됐습니다.");
-      window.location.reload();
+      await getReviews();
     } catch (e) {
       alert(e.response.data.errorMassage);
     }
@@ -49,7 +48,7 @@ const ProdcutReviewContainer = ({ token, productId }) => {
       );
 
       alert("리뷰가 수정되었습니다.");
-      window.location.reload();
+      await getReviews();
     } catch (e) {
       const msg = e.response.data.errorMessage;
       if (msg == "자기 리뷰가 아닙니다.") {
@@ -94,6 +93,7 @@ const ProdcutReviewContainer = ({ token, productId }) => {
       buyerAddReview={buyerAddReview}
       delReview={delReview}
       buyerUpdate={buyerUpdate}
+      productId={productId}
     ></ProductReviewPage>
   );
 };

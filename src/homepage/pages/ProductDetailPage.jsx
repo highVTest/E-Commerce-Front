@@ -65,11 +65,8 @@ const ProductDetailPage = () => {
     try {
       let data;
       if (favorite.indexOf(product?.id) == -1) {
-        console.log("123", favorite.indexOf(product?.id));
         data = await favoriteManagement(token, productId);
       } else {
-        console.log("987", favorite.indexOf(product?.id));
-
         data = await favoriteDelete(token, productId);
       }
 
@@ -131,30 +128,25 @@ const ProductDetailPage = () => {
   return (
     <CommonLayout>
       <h1>상품 페이지</h1>
-      <Fieldset> 
+      <Fieldset>
         <h2>상품 정보</h2>
-        {
-          product ? (
-              <ProductDetail
-                  product={product}
-                  favorite={favorite}
-                  favoriteChange={favoriteChange}
-                  addItemCart={addItemCart}
-                  role = {role}
-                  token = {token}
-                  productId = {productId}
-              />
-          ) : null
-        }
-        <hr style={{marginTop:"15px", marginBottom:"15px"}}/>
-        <div style={{textAlign:"left", marginBottom:"50px"}}>
+        {product ? (
+          <ProductDetail
+            product={product}
+            favorite={favorite}
+            favoriteChange={favoriteChange}
+            addItemCart={addItemCart}
+            role={role}
+            token={token}
+            productId={productId}
+          />
+        ) : null}
+        <hr style={{ marginTop: "15px", marginBottom: "15px" }} />
+        <div style={{ textAlign: "left", marginBottom: "50px" }}>
           <h2>사용 가능한 쿠폰</h2>
           <div className="product-list">
             {coupon !== null ? (
-              <div
-                className="product-item"
-                key={1}
-              >
+              <div className="product-item" key={1}>
                 <div className="image">
                   <Image
                     className="product-image"
@@ -164,28 +156,44 @@ const ProductDetailPage = () => {
                     fit="crop"
                     src={product?.productImage}
                     fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                    style={{ margin:"0" }}
+                    style={{ margin: "0" }}
                   />
                 </div>
-                <div className="product-info" style={{display:"flex", flexDirection:"column", gap:"10px"}}>
-                  <h2 style={{margin:"0"}}>{coupon.couponName}</h2>
+                <div
+                  className="product-info"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                  }}
+                >
+                  <h2 style={{ margin: "0" }}>{coupon.couponName}</h2>
                   {coupon.discountPolicy === "RATE" ? (
-                    <p style={{margin:"0"}}>할인율: {coupon.discount} %</p>
+                    <p style={{ margin: "0" }}>할인율: {coupon.discount} %</p>
                   ) : (
-                    <p style={{margin:"0"}}>가격 할인 : {coupon.discount} 원</p>
+                    <p style={{ margin: "0" }}>
+                      가격 할인 : {coupon.discount} 원
+                    </p>
                   )}
 
-                  <p style={{margin:"0"}}>남은 개수: {coupon.quantity} 개</p>
+                  <p style={{ margin: "0" }}>남은 개수: {coupon.quantity} 개</p>
                 </div>
-                <div className="coupon-actions" style={{display:"flex",justifyContent:"space-between", flexDirection:"column"}}>
-                  <p style={{margin:"0"}}>
+                <div
+                  className="coupon-actions"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                  }}
+                >
+                  <p style={{ margin: "0" }}>
                     만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
                     {coupon.expiredAt.split("-")[1]} 월{" "}
                     {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
                   </p>
                   {couponToBuyer === null ? (
                     <Button
-                    color="black" 
+                      color="black"
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                       onClick={issuedCouponFunc}
@@ -194,7 +202,7 @@ const ProductDetailPage = () => {
                     </Button>
                   ) : (
                     <Button
-                    color="black" 
+                      color="black"
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                     >
@@ -206,12 +214,12 @@ const ProductDetailPage = () => {
             ) : null}
           </div>
         </div>
-        <hr style={{marginTop:"15px", marginBottom:"15px"}}/>
-        <div style={{textAlign:"left", marginBottom:"50px"}}>
+        <hr style={{ marginTop: "15px", marginBottom: "15px" }} />
+        <div style={{ textAlign: "left", marginBottom: "50px" }}>
           <h2>상세 설명</h2>
-            <p>{product?.description}</p>
+          <p>{product?.description}</p>
         </div>
-        <hr style={{marginTop:"15px", marginBottom:"15px"}}/>
+        <hr style={{ marginTop: "15px", marginBottom: "15px" }} />
         <div>
           <h2>리뷰 리스트</h2>
           <ProdcutReviewContainer

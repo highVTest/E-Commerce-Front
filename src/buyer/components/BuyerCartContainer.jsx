@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  favoriteDelete,
   favoriteManagement,
   getFavorites,
 } from "../../api/v1/favorite/favorite";
@@ -10,6 +11,7 @@ import BuyerCartForm from "./BuyerCartForm";
 const BuyerCartContainer = () => {
   const [items, setItems] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -24,12 +26,9 @@ const BuyerCartContainer = () => {
 
   const getBuyerCart = async () => {
     const data = await getMyCart(token);
-
-    // console.log("장바구니 >> ", data.data);
-
+    setLoading(false);
     setItems(data.data);
-    // const dataCoupon = await getBuyerCouponList(token);
-    // console.log("쿠폰 >> ", dataCoupon.data);
+
     await getBuyerFavorites();
   };
 
@@ -44,7 +43,13 @@ const BuyerCartContainer = () => {
 
   const favoriteChange = async (productId) => {
     try {
-      const data = await favoriteManagement(token, productId);
+      let data;
+      if (favorites.indexOf(productId) == -1) {
+        data = await favoriteManagement(token, productId);
+      } else {
+        data = await favoriteDelete(token, productId);
+      }
+
       const msg = data.data.msg;
       if (
         msg == "찜 목록에서 삭제했습니다." ||
@@ -64,7 +69,6 @@ const BuyerCartContainer = () => {
   const buyerPayments = async (cartIdList, couponIdList) => {
     try {
       const data = await buyerPayment(token, cartIdList, couponIdList);
-      // console.log(data);
       alert(`총${cartIdList.length}건 주문이 완료됐습니다.`);
     } catch (e) {
       const status = e.response.data["errorCode"];
@@ -86,9 +90,9 @@ const BuyerCartContainer = () => {
   };
 
   const deleteItem = async (productId) => {
-    // console.log(token);
     const data = await deleteItemIntoCart(token, productId);
     alert("상품이 삭제됐습니다.");
+    getBuyerCart();
   };
 
   useEffect(() => {
@@ -103,6 +107,7 @@ const BuyerCartContainer = () => {
         favorites={favorites}
         favoriteChange={favoriteChange}
         deleteItem={deleteItem}
+        loading={loading}
       ></BuyerCartForm>
     </div>
   );

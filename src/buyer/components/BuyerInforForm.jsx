@@ -92,7 +92,7 @@ const BuyerInfoForm = ({
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <Button
-            color="black" 
+              color="black"
               autoContrast
               onClick={() => {
                 modals.open({
@@ -110,7 +110,7 @@ const BuyerInfoForm = ({
                           변경하기
                         </Button>
                         <Button
-                        color="black" 
+                          color="black"
                           fullWidth
                           onClick={() => modals.closeAll()}
                           mt="md"
@@ -126,32 +126,37 @@ const BuyerInfoForm = ({
               이미지 변경하기
             </Button>
 
-            <Button color="black" variant="outline" autoContrast onClick={handleImageDelete}>
+            <Button
+              color="black"
+              variant="outline"
+              autoContrast
+              onClick={handleImageDelete}
+            >
               이미지 삭제하기
             </Button>
           </div>
         </div>
         <div id="buyer-profile">
           <Stack>
-            <div class="profile-txt-wrapper">
-              <div class="profile-txt">
-                <p class="profile-txt-title">이메일</p>
-                <p class="profile-txt-data">{buyer?.email}</p>
+            <div className="profile-txt-wrapper">
+              <div className="profile-txt">
+                <p className="profile-txt-title">이메일</p>
+                <p className="profile-txt-data">{buyer?.email}</p>
               </div>
-              <div class="profile-txt">
-                <p class="profile-txt-title">닉네임</p>
-                <p class="profile-txt-data">{buyer?.nickname}</p>
+              <div className="profile-txt">
+                <p className="profile-txt-title">닉네임</p>
+                <p className="profile-txt-data">{buyer?.nickname}</p>
               </div>
-              <div class="profile-txt">
-                <p class="profile-txt-title">주소</p>
-                <p class="profile-txt-data">{buyer?.address}</p>
+              <div className="profile-txt">
+                <p className="profile-txt-title">주소</p>
+                <p className="profile-txt-data">{buyer?.address}</p>
               </div>
-              <div class="profile-txt">
-                <p class="profile-txt-title">번호</p>
-                <p class="profile-txt-data">{buyer?.phoneNumber}</p>
+              <div className="profile-txt">
+                <p className="profile-txt-title">번호</p>
+                <p className="profile-txt-data">{buyer?.phoneNumber}</p>
               </div>
             </div>
-            <Group class="buyer-profile-buttons">
+            <Group className="buyer-profile-buttons">
               <BuyerProfileModal
                 address={address}
                 setAddress={setAddress}
@@ -163,7 +168,7 @@ const BuyerInfoForm = ({
               ></BuyerProfileModal>
 
               <Button
-              color="black" 
+                color="black"
                 onClick={() => {
                   modals.open({
                     title: "프로필 수정",
@@ -192,8 +197,8 @@ const BuyerInfoForm = ({
                             변경하기
                           </Button>
                           <Button
-                          color="black" 
-                          variant="outline"
+                            color="black"
+                            variant="outline"
                             fullWidth
                             onClick={() => modals.closeAll()}
                             mt="md"
@@ -213,51 +218,31 @@ const BuyerInfoForm = ({
         </div>
       </div>
 
-      <div class="buyer-options">
+      <div className="buyer-options">
         <Link to="/buyer/cart">
-          <Button
-          color="black" 
-            fullWidth
-            variant="light"
-          >
+          <Button color="black" fullWidth variant="light">
             장바구니 바로가기
           </Button>
         </Link>
         <Link to="/orderDetails">
-          <Button
-          color="black" 
-            fullWidth
-            variant="light"
-          >
+          <Button color="black" fullWidth variant="light">
             주문 내역 보기
           </Button>
         </Link>
         <Link to="/buyer/favorite">
-          <Button
-          color="black" 
-            fullWidth
-            variant="light"
-          >
+          <Button color="black" fullWidth variant="light">
             찜 목록 바로가기
           </Button>
         </Link>
 
         <Link to="/buyer/coupon-list">
-          <Button
-          color="black" 
-            fullWidth
-            variant="light"
-          >
+          <Button color="black" fullWidth variant="light">
             쿠폰 목록 보기
           </Button>
         </Link>
         <Link to="/buyer/review-list">
-          <Button
-          color="black" 
-            fullWidth
-            variant="light"
-          >
-            내 댓글 목록 보기
+          <Button color="black" fullWidth variant="light">
+            내 리뷰 목록 보기
           </Button>
         </Link>
       </div>

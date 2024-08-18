@@ -3,7 +3,7 @@ import {
   Checkbox,
   Image,
   Fieldset,
-  NumberFormatter
+  NumberFormatter,
 } from "@mantine/core";
 import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -17,6 +17,7 @@ const BuyerCartForm = ({
   favorites,
   favoriteChange,
   deleteItem,
+  loading,
 }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [paymentData, setPaymentData] = useState([]);
@@ -68,171 +69,199 @@ const BuyerCartForm = ({
     setWait(true);
     await deleteItem(productId);
     setWait(false);
-    window.location.reload();
   };
 
   return (
     <>
       <h1>장바구니</h1>
-      {items.length != 0 ? (
-        items.map((shop) => {
-          return (
-            <div>
-              <h2>{shop.shopName}의 상품</h2>
-              {shop.items.map((item) => {
+      {loading ? (
+        <div>
+          <h1 style={{ textAlign: "center", marginTop: "200px" }}>
+            Loading...
+          </h1>
+        </div>
+      ) : (
+        <>
+          <div>
+            {items.length != 0 ? (
+              items.map((shop) => {
                 return (
-                  <div key={item.cartId}>
-                    <Fieldset
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        margin: 0,
-                        padding: "15px",
-                        marginBottom:"10px"
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "flex-start",
-                          alignItems: "center",
-                          gap: "20px",
-                        }}
-                      >
-                        <Checkbox color="black" onClick={() => setting(item)} />
-                        <Image
-                          radius="md"
-                          src={item.productImageUrl}
-                          h={120}
-                          w={120}
-                          fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                        />
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "flex-start",
-                            textAlign: "left",
-                            gap:"15px"
-                          }}
-                        >
-                          <div
+                  <div>
+                    <h2>{shop.shopName}의 상품</h2>
+                    {shop.items.map((item) => {
+                      return (
+                        <div key={item.cartId}>
+                          <Fieldset
                             style={{
+                              width: "100%",
                               display: "flex",
                               flexDirection: "row",
-                              justifyContent: "flex-start",
-                              alignItems: "center",
-                              textAlign: "left",
+                              justifyContent: "space-between",
+                              margin: 0,
+                              padding: "15px",
+                              marginBottom: "10px",
                             }}
                           >
-                            <h2 style={{margin:0}}>{item.productName}</h2>
-                            <div onClick={() => handleHeart(item.productId)}>
-                              {favorites.indexOf(item.productId) != -1 ? (
-                                <AiFillHeart
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "flex-start",
+                                alignItems: "center",
+                                gap: "20px",
+                              }}
+                            >
+                              <Checkbox
+                                color="black"
+                                onClick={() => setting(item)}
+                              />
+                              <Image
+                                radius="md"
+                                src={item.productImageUrl}
+                                h={120}
+                                w={120}
+                                fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                              />
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  justifyContent: "flex-start",
+                                  textAlign: "left",
+                                  gap: "15px",
+                                }}
+                              >
+                                <div
                                   style={{
-                                    color: "black",
-                                    fontSize: "20px",
-                                    marginLeft: "20px",
-                                    marginTop: "6px",
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "flex-start",
+                                    alignItems: "center",
+                                    textAlign: "left",
                                   }}
-                                />
-                              ) : (
-                                <AiOutlineHeart
-                                  style={{
-                                    fontSize: "20px",
-                                    marginLeft: "20px",
-                                    marginTop: "6px",
-                                  }}
-                                />
-                              )}
+                                >
+                                  <h2 style={{ margin: 0 }}>
+                                    {item.productName}
+                                  </h2>
+                                  <div
+                                    onClick={() => handleHeart(item.productId)}
+                                  >
+                                    {favorites.indexOf(item.productId) != -1 ? (
+                                      <AiFillHeart
+                                        style={{
+                                          color: "black",
+                                          fontSize: "20px",
+                                          marginLeft: "20px",
+                                          marginTop: "6px",
+                                        }}
+                                      />
+                                    ) : (
+                                      <AiOutlineHeart
+                                        style={{
+                                          fontSize: "20px",
+                                          marginLeft: "20px",
+                                          marginTop: "6px",
+                                        }}
+                                      />
+                                    )}
+                                  </div>
+                                </div>
+                                <div style={{ display: "flex" }}>
+                                  <p
+                                    style={{
+                                      margin: "0",
+                                      width: "100px",
+                                      fontWeight: "600",
+                                    }}
+                                  >
+                                    상품 가격
+                                  </p>
+                                  <NumberFormatter
+                                    thousandSeparator
+                                    value={item.productPrice}
+                                    suffix=" 원"
+                                  />
+                                </div>
+                                <div style={{ display: "flex" }}>
+                                  <p
+                                    style={{
+                                      margin: "0",
+                                      width: "100px",
+                                      fontWeight: "600",
+                                    }}
+                                  >
+                                    상품 수량
+                                  </p>
+                                  <p style={{ margin: "0" }}>
+                                    {item.productQuantity} 개
+                                  </p>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div style={{ display: "flex" }}>
-                            <p
+                            <div
                               style={{
-                                margin: "0",
-                                width: "100px",
-                                fontWeight: "600",
+                                display: "flex",
+                                justifyContent: "center",
+                                flexDirection: "column",
+                                gap: "5px",
                               }}
                             >
-                              상품 가격
-                            </p>
-                            <NumberFormatter thousandSeparator value={item.productPrice}suffix=" 원" />
-                          </div>
-                          <div style={{ display: "flex" }}>
-                            <p
-                              style={{
-                                margin: "0",
-                                width: "100px",
-                                fontWeight: "600",
-                              }}
-                            >
-                              상품 수량
-                            </p>
-                            <p style={{ margin: "0" }}>
-                              {item.productQuantity} 개
-                            </p>
-                          </div>
+                              <Link
+                                to={`/product/${item.productId}`}
+                                style={{ textDecoration: "none" }}
+                              >
+                                <Button color="black">상품 페이지로</Button>
+                              </Link>
+                              <Button
+                                color="black"
+                                onClick={() => {
+                                  itemDelete(item.productId);
+                                }}
+                              >
+                                삭제하기
+                              </Button>
+                            </div>
+                          </Fieldset>
                         </div>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          flexDirection: "column",
-                          gap: "5px",
-                        }}
-                      >
-                        <Link
-                          to={`/product/${item.productId}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <Button color="black" >상품 페이지로</Button>
-                        </Link>
-                        <Button
-                        color="black" 
-                          onClick={() => {
-                            itemDelete(item.productId);
-                          }}
-                        >
-                          삭제하기
-                        </Button>
-                      </div>
-                    </Fieldset>
+                      );
+                    })}
                   </div>
                 );
-              })}
-            </div>
-          );
-        })
-      ) : (
-        <div style={{ marginTop: "200px" }}>Loading..</div>
-      )}
+              })
+            ) : (
+              <div>
+                <h1 style={{ textAlign: "center", marginTop: "200px" }}>
+                  장바구니가 비었습니다.
+                </h1>
+              </div>
+            )}
+          </div>
 
-      {items.length != 0 ? (
-        <div
-          fluid
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            display: "flex",
-            gap:"30px",
-            background:"#efefef"
-          }}
-        >
-              <p fw={500}>선택한 상품 금액</p><NumberFormatter value={totalPrice} suffix=" 원" />
-              <p fw={500}>총 </p><p>{products.length}건</p>
+          {items.length != 0 ? (
+            <div
+              fluid
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                gap: "30px",
+                background: "#efefef",
+              }}
+            >
+              <p fw={500}>선택한 상품 금액</p>
+              <NumberFormatter value={totalPrice} suffix=" 원" />
+              <p fw={500}>총 </p>
+              <p>{products.length}건</p>
               <PaymentModal
                 totalPrice={totalPrice}
                 paymentData={paymentData}
                 token={token}
               />
-        </div>
-      ) : (
-        <div></div>
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </>
       )}
     </>
   );

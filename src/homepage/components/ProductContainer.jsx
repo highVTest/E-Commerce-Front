@@ -7,12 +7,12 @@ import { getAllProducts } from "../../api/v1/product/product";
 const ProductContainer = () => {
   const [products, setProducts] = useState([]);
   const [popularProducts, setPopularProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getProducts = async () => {
-    setIsLoading(true);
+    setLoading(true);
     const data = await getAllProducts(0, 9, "createdAt", "DESC");
-    setIsLoading(false);
+    setLoading(false);
     setProducts(data.data.content);
   };
 
@@ -30,15 +30,12 @@ const ProductContainer = () => {
   }, []);
   return (
     <>
-      <Container style={{width:"100%",marginTop:"20px", padding: "0"}}>
-
+      <Container style={{ width: "100%", marginTop: "20px", padding: "0" }}>
         <Center>
-          <SectionTitle
-            title="최신 상품 리스트"
-          />
+          <SectionTitle title="최신 상품 리스트" />
         </Center>
 
-        <ProductList products={products} isLoading={isLoading} />
+        <ProductList products={products} loading={loading} />
       </Container>
     </>
   );

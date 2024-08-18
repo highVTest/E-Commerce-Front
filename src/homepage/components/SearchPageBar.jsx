@@ -1,5 +1,6 @@
 import { Button, NativeSelect, TextInput } from "@mantine/core";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const SearchPageBar = ({ param, getSearchProducts }) => {
   const key = param.keyword;
@@ -10,7 +11,7 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
   const [asc, setAsc] = useState(`${sort[1]}`);
 
   const [wait, setWait] = useState(false);
-
+  const navigate = useNavigate();
   const searchKeyword = async () => {
     if (wait == true) {
       return;
@@ -40,13 +41,22 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
       dsc = "ASC";
     }
     setWait(true);
+    navigate(`/product/${keyword}/${order},${dsc}`);
     await getSearchProducts(keyword, order, dsc, 0, 9);
     setWait(false);
   };
 
   return (
     <>
-      <div style={{display: "flex",marginTop: "30px",gap:"10px",justifyContent: "space-between",width:"100%"}}>
+      <div
+        style={{
+          display: "flex",
+          marginTop: "30px",
+          gap: "10px",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
         <TextInput
           placeholder="검색어를 입력해주세요"
           value={keyword}
@@ -56,14 +66,15 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
           style={{ width: "100%" }}
         />
         <Button
-        color="black" 
-          style={{minWidth:"80px"}}
+          color="black"
+          style={{ minWidth: "80px" }}
           variant="filled"
           onClick={searchKeyword}
-        >검색
+        >
+          검색
         </Button>
         <NativeSelect
-        style={{minWidth:"120px"}}
+          style={{ minWidth: "120px" }}
           data={["검색 기준", "시간", "가격"]}
           value={orderBy}
           onChange={(e) => {
@@ -71,7 +82,7 @@ const SearchPageBar = ({ param, getSearchProducts }) => {
           }}
         />
         <NativeSelect
-        style={{minWidth:"120px"}}
+          style={{ minWidth: "120px" }}
           data={["정렬 기준", "오름차순", "내림차순"]}
           value={asc}
           onChange={(e) => {
