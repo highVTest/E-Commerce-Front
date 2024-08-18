@@ -1,6 +1,7 @@
 import { Button, Image, Rating } from "@mantine/core";
 
 import ReviewAddModal from "../../loginandreview/components/review/ReviewAddModal";
+import ProductReviewUpdateModal from "../../loginandreview/components/review/ProductReviewUpdateModal";
 
 const ProductReviewPage = ({
   reviews,
@@ -66,7 +67,9 @@ const ProductReviewPage = ({
               >
                 <ProductReviewUpdateModal
                   review_id={review.id}
-                  productId={productId}
+                  review_rate={review.rate}
+                  review_content={review.content}
+                  updateReview={updateReview}
                 ></ProductReviewUpdateModal>
 
                 <div style={{ marginRight: "15px" }}></div>

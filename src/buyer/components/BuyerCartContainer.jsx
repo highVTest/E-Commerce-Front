@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  favoriteDelete,
   favoriteManagement,
   getFavorites,
 } from "../../api/v1/favorite/favorite";
@@ -42,7 +43,13 @@ const BuyerCartContainer = () => {
 
   const favoriteChange = async (productId) => {
     try {
-      const data = await favoriteManagement(token, productId);
+      let data;
+      if (favorites.indexOf(productId) == -1) {
+        data = await favoriteManagement(token, productId);
+      } else {
+        data = await favoriteDelete(token, productId);
+      }
+
       const msg = data.data.msg;
       if (
         msg == "찜 목록에서 삭제했습니다." ||

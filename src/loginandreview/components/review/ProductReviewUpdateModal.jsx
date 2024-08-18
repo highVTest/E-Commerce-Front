@@ -2,12 +2,15 @@ import { Button, Modal, NumberInput, Textarea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 
-const ProductReviewUpdateModal = (review_id, productId) => {
+const ProductReviewUpdateModal = ({
+  review_id,
+  review_rate,
+  review_content,
+  updateReview,
+}) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [rate, setRate] = useState(review_id.review_rate);
-  const [content, setContent] = useState(review_id.review_content);
-  const token = localStorage.getItem("token");
-  // console.log("id >> ", review_id);
+  const [rate, setRate] = useState(review_rate);
+  const [content, setContent] = useState(review_content);
 
   return (
     <>
@@ -38,8 +41,7 @@ const ProductReviewUpdateModal = (review_id, productId) => {
           color="black"
           fullWidth
           onClick={async () => {
-            console.log("dd", review);
-            await updateReview(review.review.id, rate, content);
+            await updateReview(review_id, rate, content);
             close();
           }}
           mt="md"
@@ -50,9 +52,9 @@ const ProductReviewUpdateModal = (review_id, productId) => {
       <Button
         color="black"
         onClick={() => {
+          setRate(review_rate);
+          setContent(review_content);
           open();
-          console.log("리뷰", review_id);
-          console.log(productId);
         }}
       >
         리뷰 수정

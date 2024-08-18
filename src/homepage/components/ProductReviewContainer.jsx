@@ -32,7 +32,6 @@ const ProdcutReviewContainer = ({ token, productId }) => {
   };
 
   const buyerUpdate = async (reviewId, rate, content) => {
-    console.log("z");
     if (click == true) {
       return;
     }
