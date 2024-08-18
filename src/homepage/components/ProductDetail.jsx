@@ -132,7 +132,7 @@ const ProductDetail = ({
             style={{ marginTop: "18px", marginLeft: "10px" }}
           >
             {favorite.indexOf(product?.id) !== -1 ? (
-              <AiFillHeart style={{ color: "black" }} />
+              <AiFillHeart style={{ color: "black",fontSize: "20px"  }} />
             ) : (
               <AiOutlineHeart style={{ fontSize: "20px" }} />
             )}
