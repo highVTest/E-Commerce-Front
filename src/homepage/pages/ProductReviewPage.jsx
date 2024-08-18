@@ -1,24 +1,14 @@
-import {
-  Button,
-  Fieldset,
-  NumberInput,
-  Rating,
-  Text,
-  TextInput,
-  Image,
-} from "@mantine/core";
-import { modals } from "@mantine/modals";
-import { useState } from "react";
+import { Button, Image, Rating } from "@mantine/core";
+
 import ReviewAddModal from "../../loginandreview/components/review/ReviewAddModal";
-import ProductReviewUpdateModal from "../../loginandreview/components/review/ProductReviewUpdateModal";
 
 const ProductReviewPage = ({
   reviews,
   buyerAddReview,
   delReview,
   buyerUpdate,
+  productId,
 }) => {
-  console.log("리뷰들 ", reviews);
   const addReview = async (rate, content) => {
     await buyerAddReview(rate, content);
   };
@@ -28,6 +18,7 @@ const ProductReviewPage = ({
   const updateReview = async (reviewId, rate, content) => {
     await buyerUpdate(reviewId, rate, content);
   };
+
   return (
     <>
       {reviews?.map((review) => {
@@ -46,10 +37,24 @@ const ProductReviewPage = ({
                 textAlign: "left",
               }}
             >
-              <div style={{ marginTop: "10px" }}>
-                <Rating value={review.rate} fractions={2} readOnly />
-                <p>작성자 : {review.buyerName}</p>
-                <p style={{ marginLeft: "20px" }}>{review.content}</p>
+              <div>
+                <div style={{ display: "flex" }}>
+                  <div>
+                    <Image
+                      src={review.buyerProfileImage}
+                      h={120}
+                      w={120}
+                      style={{ marginRight: "30px" }}
+                      radius="lg"
+                      fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                    />
+                  </div>
+                  <div>
+                    <Rating value={review.rate} fractions={2} readOnly />
+                    <p>작성자 : {review.buyerName}</p>
+                    <p>{review.content}</p>
+                  </div>
+                </div>
               </div>
               <div
                 style={{
@@ -60,8 +65,8 @@ const ProductReviewPage = ({
                 }}
               >
                 <ProductReviewUpdateModal
-                  review={review}
-                  updateReview={updateReview}
+                  review_id={review.id}
+                  productId={productId}
                 ></ProductReviewUpdateModal>
 
                 <div style={{ marginRight: "15px" }}></div>

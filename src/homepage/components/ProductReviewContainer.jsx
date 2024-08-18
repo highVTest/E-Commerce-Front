@@ -20,7 +20,6 @@ const ProdcutReviewContainer = ({ token, productId }) => {
     if (click == true) {
       return;
     }
-
     try {
       setClick(true);
       const data = await addReview(token, productId, rate, content);
@@ -33,6 +32,7 @@ const ProdcutReviewContainer = ({ token, productId }) => {
   };
 
   const buyerUpdate = async (reviewId, rate, content) => {
+    console.log("z");
     if (click == true) {
       return;
     }
@@ -94,6 +94,7 @@ const ProdcutReviewContainer = ({ token, productId }) => {
       buyerAddReview={buyerAddReview}
       delReview={delReview}
       buyerUpdate={buyerUpdate}
+      productId={productId}
     ></ProductReviewPage>
   );
 };

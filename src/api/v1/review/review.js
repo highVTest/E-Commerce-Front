@@ -22,9 +22,16 @@ export const updateReview = async (token, productId, reviewId ,rate,content) => 
         "Content-Type" : "application/json"
     }
 });
-
-  
 };
+
+export const updateReview1 = async (token, productId, reviewId ,rate,content) => {
+    return await apiClient.put(`/reviews/${productId}/${reviewId}`, {rate,content}, {
+      headers : {
+          Authorization : `Bearer ${token}`,
+          "Content-Type" : "application/json"
+      }
+  });
+  };
 
 export const deleteReview = async (token, productId, reviewId) => {
     return await apiClient.delete(`/reviews/${productId}/${reviewId}`, {

@@ -35,7 +35,7 @@ const BuyerOrderListPage = () => {
           return (
             <>
               <Fieldset style={{margin:0,padding:"15px",marginTop:"10px"}}>
-                <h2>{order.orderMasterId} 번 주문 내역</h2>
+                <h2>주문 번호 : {order.orderMasterId} 번</h2>
                 {order.orderShopDetails.map((orderDetails) => {
                   return (
                     <>
