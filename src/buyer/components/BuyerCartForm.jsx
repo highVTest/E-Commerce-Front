@@ -102,7 +102,7 @@ const BuyerCartForm = ({
                           gap: "20px",
                         }}
                       >
-                        <Checkbox onClick={() => setting(item)} />
+                        <Checkbox color="black" onClick={() => setting(item)} />
                         <Image
                           radius="md"
                           src={item.productImageUrl}

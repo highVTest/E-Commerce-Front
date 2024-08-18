@@ -133,7 +133,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
                   style={{ display: "flex", alignItems: "center" }}
                 >
                   <div style={{ marginRight: "20px" }}>
-                    <Checkbox
+                    <Checkbox color="black"
                       onChange={() => {
                         setting(coupon);
                       }}
