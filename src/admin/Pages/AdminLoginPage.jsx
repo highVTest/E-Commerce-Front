@@ -4,7 +4,7 @@ import AdminLoginForm from "./AdminLoginForm.jsx";
 const AdminLoginPage = () => {
     return (
         <section className="login-section">
-            <h2>Admin Login</h2>
+            <h2 style={{textAlign:"left",width:"300px"}}>관리자 로그인</h2>
             <AdminLoginForm></AdminLoginForm>
         </section>
     );
