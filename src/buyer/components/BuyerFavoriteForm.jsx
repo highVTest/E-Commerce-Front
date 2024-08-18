@@ -18,6 +18,7 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
 
   return (
     <div style={{ width: "100%" }}>
+      <h1>찜 목록</h1>
       <Grid mt="30px" id="product-grid-list">
         {favorites.length != 0 ? (
           favorites.map((favorite) => {
