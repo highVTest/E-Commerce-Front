@@ -263,11 +263,12 @@ const OrderListPage = () => {
             <div
               style={{
                 display: "flex",
+                width:"100%",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <Text fw={1000} size="lg" mt="lg" style={{ width: "750px" }}>
+              <Text fw={1000} size="lg" mt="lg">
                 결제 및 환불 요청된 상품이 존재 하지 않습니다
               </Text>
             </div>
