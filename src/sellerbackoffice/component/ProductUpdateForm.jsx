@@ -60,7 +60,7 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button color="black" style={{ margin: "20px", float: "right" }}>
+              <Button color="black" fullWidth style={{ margin: "20px", float: "right" }}>
                 목록으로
               </Button>
             </Link>

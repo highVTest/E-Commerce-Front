@@ -122,7 +122,7 @@ const ProductCreateForm = ({ handleCreateProduct, imageUpload }) => {
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button color="black" style={{ marginTop: "20px" }}>
+              <Button color="black" fullWidth style={{ marginTop: "20px" }}>
                 목록으로
               </Button>
             </Link>
