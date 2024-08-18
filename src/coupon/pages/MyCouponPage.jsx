@@ -13,7 +13,7 @@ const MyCouponPage = () => {
 
   const getBuyerCoupon = async () => {
     const data = await getBuyerCouponList(token);
-    // console.log(data.data);
+    console.log(data.data);
     setCoupons(data.data);
   };
 
@@ -60,58 +60,65 @@ const MyCouponPage = () => {
           {coupons.map((coupon) => {
             return (
               // eslint-disable-next-line react/jsx-key
-              <Grid
-                style={{
-                  height: "280px",
-                  justifyContent: "center",
-                }}
-                key={coupon.couponId}
-              >
-                <Fieldset style={{ marginLeft: "20px", marginTop: "30px" }}>
-                  <Grid></Grid>
-                  <Group
-                    gap="xs"
-                    grow
-                    style={{ margin: "10px", width: "1080px", height: "200px" }}
-                  >
-                    <Grid.Col span={9}>
-                      <Stack align="flex-start" justify="center" gap="md">
-                        <Text fw={1000} size="xl">
-                          {coupon.couponName}{" "}
-                        </Text>
-                        {coupon.discountPolicy === "DISCOUNT_RATE" ? (
-                          <Text fw={800} size="lg">
-                            {coupon.discount} % 할인
-                          </Text>
-                        ) : (
-                          <Text fw={800} size="lg">
-                            {coupon.discount} 원 할인
-                          </Text>
-                        )}
-                        <Text fw={800} size="lg" mt="md">
-                          만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
-                          {coupon.expiredAt.split("-")[1]} 월{" "}
-                          {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
-                        </Text>
-                      </Stack>
-                    </Grid.Col>
-                    <Grid.Col span={2}>
-                      <Button
-                        color="gray"
-                        // fullWidth
-                        mt="md"
-                        radius="md"
-                        style={{ width: "100px", height: "50px" }}
-                        onClick={() => {
-                          getDeleteBuyerCoupon(coupon.couponId);
-                        }}
+              <>
+                {
+                  (coupon.isUsed === false)?
+                      <Grid
+                          style={{
+                            height: "280px",
+                            justifyContent: "center",
+                          }}
+                          key={coupon.couponId}
                       >
-                        삭제 하기
-                      </Button>
-                    </Grid.Col>
-                  </Group>
-                </Fieldset>
-              </Grid>
+                        <Fieldset style={{ marginLeft: "20px", marginTop: "30px" }}>
+                          <Grid></Grid>
+                          <Group
+                              gap="xs"
+                              grow
+                              style={{ margin: "10px", width: "1080px", height: "200px" }}
+                          >
+                            <Grid.Col span={9}>
+                              <Stack align="flex-start" justify="center" gap="md">
+                                <Text fw={1000} size="xl">
+                                  {coupon.couponName}{" "}
+                                </Text>
+                                {coupon.discountPolicy === "DISCOUNT_RATE" ? (
+                                    <Text fw={800} size="lg">
+                                      {coupon.discount} % 할인
+                                    </Text>
+                                ) : (
+                                    <Text fw={800} size="lg">
+                                      {coupon.discount} 원 할인
+                                    </Text>
+                                )}
+                                <Text fw={800} size="lg" mt="md">
+                                  만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
+                                  {coupon.expiredAt.split("-")[1]} 월{" "}
+                                  {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
+                                </Text>
+                              </Stack>
+                            </Grid.Col>
+                            <Grid.Col span={2}>
+                              <Button
+                                  color="gray"
+                                  // fullWidth
+                                  mt="md"
+                                  radius="md"
+                                  style={{ width: "100px", height: "50px" }}
+                                  onClick={() => {
+                                    getDeleteBuyerCoupon(coupon.couponId);
+                                  }}
+                              >
+                                삭제 하기
+                              </Button>
+                            </Grid.Col>
+                          </Group>
+                        </Fieldset>
+                      </Grid>:
+                      null
+                }
+              </>
+
             );
           })}
         </Stack>
