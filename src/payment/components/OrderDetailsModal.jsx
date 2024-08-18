@@ -145,7 +145,7 @@ function OrderDetailsModal({ orderShopDetails, orderMasterId }) {
                       <h2>{it.productName}</h2>
                       <h3>{it.productQuantity} 개</h3>
                       <h3>
-                        <NumberFormatter value={it.productPrice} suffix=" 원" />
+                        <NumberFormatter thousandSeparator value={it.productPrice} suffix=" 원" />
                       </h3>
                     </div>
                   </div>

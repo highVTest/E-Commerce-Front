@@ -160,7 +160,7 @@ const BuyerCartForm = ({
                             >
                               상품 가격
                             </p>
-                            <NumberFormatter value={item.productPrice}suffix=" 원" />
+                            <NumberFormatter thousandSeparator value={item.productPrice}suffix=" 원" />
                           </div>
                           <div style={{ display: "flex" }}>
                             <p
