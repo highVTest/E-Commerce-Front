@@ -54,6 +54,7 @@ const DaumPost = ({
         />
 
         <Button
+        color="black" 
           style={{ width: 100, marginLeft: "10px" }}
           fullWidth
           variant="filled"

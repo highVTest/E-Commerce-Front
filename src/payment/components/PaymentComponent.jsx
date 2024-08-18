@@ -119,62 +119,56 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   }, []);
 
   return (
-    <div style={{ margin: "10px" }}>
-      <Fieldset fw={1000} legend="사용 가능 쿠폰">
+    <div>
+      <Fieldset fw={600} legend="사용 가능 쿠폰">
         {coupons.map((coupon) => {
           return (
             <>
-              {
-                (coupon.isUsed === false) ?
-                    <Card
-                        shadow="sm"
-                        padding="xs"
-                        component="a"
-                        target="_blank"
-                        style={{ display: "flex", justifyContent: "space-between" }}
-                    >
-                      <div
-                          className="field-set"
-                          style={{ display: "flex", alignItems: "center" }}
-                      >
-                        <div style={{ marginRight: "20px" }}>
-                          <Checkbox
-                              onChange={() => {
-                                setting(coupon);
-                              }}
-                          />
-                        </div>
-                        <div style={{ width: "80%" }}>
-                          <Text fw={1000} size="xl" mt="md">
-                            {coupon.couponName}
-                          </Text>
-                          <Text fw={500} size="lg" mt="md">
-                            만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
-                            {coupon.expiredAt.split("-")[1]} 월{" "}
-                            {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
-                          </Text>
-                          {coupon.discountPolicy === "DISCOUNT_RATE" ? (
-                              <Text mt="md" c="dimmed" size="md">
-                                {coupon.discount} % 할인 쿠폰!!
-                              </Text>
-                          ) : (
-                              <Text mt="xs" c="dimmed" size="sm">
-                                {coupon.discount} 원 할인 쿠폰!!
-                              </Text>
-                          )}
-                        </div>
-                      </div>
-                    </Card>:
-                    null
+              <Card
+                shadow="sm"
+                padding="xs"
+                component="a"
+                target="_blank"
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <div
+                  className="field-set"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <div style={{ marginRight: "20px" }}>
+                    <Checkbox color="black"
+                      onChange={() => {
+                        setting(coupon);
+                      }}
+                    />
+                  </div>
+                  <div style={{ width: "80%" }}>
+                    <h1>{coupon.couponName}</h1>
+                    {coupon.discountPolicy === "DISCOUNT_RATE" ? (
+                      <h2 style={{color:"red"}}>
+                        {coupon.discount} % 할인 쿠폰!!
+                      </h2>
+                    ) : (
+                      <h2 style={{color:"red"}}>
+                        {coupon.discount} 원 할인 쿠폰!!
+                      </h2>
+                    )}
+                    <h3>
+                      만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
+                      {coupon.expiredAt.split("-")[1]} 월{" "}
+                      {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
+                    </h3>
+                  </div>
+                </div>
+              </Card>
 
-                }
             </>
           );
         })}
       </Fieldset>
-      <Fieldset disabled fw={1000}>
+      <Fieldset disabled fw={600} style={{marginTop:"5px"}}>
         <div className="payment-set">
-          <Text mt="xs" size="lg" fw={500}>
+          <Text mt="xs" size="lg" fw={600}>
             총 주문 금액
           </Text>
           <Text mt="xs" size="lg" fw={1000}>
@@ -182,18 +176,16 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
           </Text>
         </div>
       </Fieldset>
-      <div>
+      <div style={{display:"flex",justifyContent:"flex-end",gap:"5px",marginTop:"10px",marginRight:"2px"}}>
         <Button
-          color="gray"
+        color="black" 
           onClick={reqPayment}
-          style={{ margin: "10px", float: "right" }}
         >
           결제 하기
         </Button>
         <Button
-          color="gray"
+        color="black" 
           onClick={close}
-          style={{ margin: "10px", float: "right" }}
         >
           닫기
         </Button>

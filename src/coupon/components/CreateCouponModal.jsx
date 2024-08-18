@@ -213,11 +213,13 @@ function CreateCouponModal({ token, product }) {
         </Fieldset>
         <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end",gap:"10px",marginRight:"2px",marginTop:"10px"}}>
           <Button
+          color="black" 
             onClick={reqCreateCoupon}
           >
             쿠폰 등록 하기
           </Button>
           <Button
+          color="black" 
             variant="outline"
             onClick={close}
           >
@@ -226,7 +228,7 @@ function CreateCouponModal({ token, product }) {
         </div>
       </Modal>
 
-      <Button onClick={open}>
+      <Button color="black" onClick={open}>
         쿠폰 등록
       </Button>
     </>

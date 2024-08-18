@@ -1,15 +1,8 @@
-import {
-  Button,
-  Card,
-  Group,
-  Image,
-  SimpleGrid,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Card, Group, Image, Grid, Text, NumberFormatter } from "@mantine/core";
 import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import "../../index.css";
 
 const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
   const [wait, setWait] = useState(false);
@@ -24,63 +17,75 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
   };
 
   return (
-    <>
-      <SimpleGrid cols={3} style={{ paddingTop: 150 }}>
+    <div style={{ width: "100%" }}>
+      <h1>찜 목록</h1>
+      <Grid mt="30px" id="product-grid-list">
         {favorites.length != 0 ? (
           favorites.map((favorite) => {
             return (
-              <Card
-                key={favorite.productId}
-                shadow="sm"
-                padding="lg"
-                radius="md"
-                withBorder
+              <Link
+                to={`/product/${favorite.productId}`}
+                style={{ marginTop: 0, textDecoration: "none" }}
               >
-                <Card.Section>
-                  <Image
-                    radius="md"
-                    src={favorite.productImageUrl}
-                    h={160}
-                    fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                  />
-                </Card.Section>
-
-                <Stack
-                  // h={150}
-                  bg="var(--mantine-color-body)"
-                  align="stretch"
-                  justify="center"
-                  gap="md"
-                  mt="sm"
+                <Card
+                  key={favorite.productId}
+                  className="card"
+                  style={{ border: "1px solid #e2e2e2", borderRadius: "8px" }}
                 >
-                  <Text fw={500}>상품명 : {favorite.productName}</Text>
-
-                  <Group justify="space-between">
-                    <Text size="sm" c="dimmed">
-                      가격 : {favorite.productPrice}
-                    </Text>
-                    <div onClick={() => handleHeart(favorite.productId)}>
-                      <AiFillHeart style={{ color: "red", fontSize: "30px" }} />
+                  <div className="product-card" style={{ padding: "0" }}>
+                    <Image
+                      src={favorite.productImageUrl}
+                      alt="상품 이미지"
+                      fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                    />
+                    <h2>{favorite.productName}</h2>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        gap: "20px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "5px",
+                        }}
+                      >
+                        <p style={{ margin: "0" }}>가격 : </p>
+                        <NumberFormatter
+                          value={favorite.productPrice}
+                          thousandSeparator
+                          suffix="원"
+                        />
+                      </div>
+                      <div
+                        onClick={() => handleHeart(favorite.productId)}
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: "8px",
+                        }}
+                      >
+                        <AiFillHeart
+                          style={{ color: "black", fontSize: "20px" }}
+                        />
+                      </div>
                     </div>
-                  </Group>
-
-                  <Link
-                    to={`/product/${favorite.productId}`}
-                    style={{ marginTop: 0 }}
-                  >
-                    <Button color="gray" fullWidth mt="md" radius="md">
-                      상품 페이지 바로가기
-                    </Button>
-                  </Link>
-                </Stack>
-              </Card>
+                  </div>
+                </Card>
+              </Link>
             );
           })
         ) : (
           <div>Loading...</div>
         )}
-      </SimpleGrid>
-    </>
+      </Grid>
+    </div>
   );
 };
 

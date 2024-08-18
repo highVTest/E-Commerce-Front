@@ -46,9 +46,8 @@ function PaymentModal({ totalPrice, paymentData, token }) {
           />
           <TextInput label="배송지" placeholder={buyerData.address} mt="md" />
         </Fieldset>
-        <Fieldset legend="주문 상품" disabled fw={1000}>
+        <Fieldset legend="주문 상품" disabled fw={600}>
           {
-            // eslint-disable-next-line react/prop-types
             paymentData.map((item) => {
               return (
                 <Card
@@ -89,7 +88,7 @@ function PaymentModal({ totalPrice, paymentData, token }) {
         />
       </Modal>
 
-      <Button color="gray" onClick={open}>
+      <Button color="black" onClick={open}>
         결제 하기
       </Button>
     </>

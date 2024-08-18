@@ -105,14 +105,13 @@ const ProductDetail = ({
       style={{
         display: "flex",
         flexDirection: "coulmn",
-        marginLeft:"50px",
         marginTop:"20px",
-        gap:"60px"
       }}
     >
       <Image
         w={200}
         h={200}
+        radius={"8px"}
         src={product?.productImage}
         fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
       />
@@ -133,7 +132,7 @@ const ProductDetail = ({
             style={{ marginTop: "18px", marginLeft: "10px" }}
           >
             {favorite.indexOf(product?.id) !== -1 ? (
-              <AiFillHeart style={{ color: "red" }} />
+              <AiFillHeart style={{ color: "black",fontSize: "20px"  }} />
             ) : (
               <AiOutlineHeart style={{ fontSize: "20px" }} />
             )}
@@ -175,10 +174,10 @@ const ProductDetail = ({
             }}
           >
             {role === "BUYER" ? (
-              <Button type="submit">장바구니에 담기</Button>
+              <Button color="black" type="submit">장바구니에 담기</Button>
             ) : null}
             {role === "ADMIN" ? (
-              <Button type="submit" onClick={sanctionProductApply}>
+              <Button color="black" type="submit" onClick={sanctionProductApply}>
                 판매자 제재하기
               </Button>
             ) : null}

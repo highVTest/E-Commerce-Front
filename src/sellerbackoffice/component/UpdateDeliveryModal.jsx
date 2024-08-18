@@ -63,11 +63,11 @@ function UpdateDeliveryModal({token, shopId, orderMasterId}) {
                                       data={['주문 접수', '주문 취소', '상품 준비 중', "상품 배달 준비 중", "상품 배달 중", "상품 배달 완료"]}
                                       style={{width:"500px"}}
                                       onChange={(e) => orderStatusToEnum(e.currentTarget.value)}/>
-                        <Button style={{marginLeft: "10px", marginTop: "29px"}} color="grey" onClick={setUpdateProductsDelivery}>적용</Button>
+                        <Button color="black" style={{marginLeft: "10px", marginTop: "29px"}} onClick={setUpdateProductsDelivery}>적용</Button>
                     </div>
                 </div>
             </Modal>
-            <Button style={{marginLeft: "10px", width: "130px"}}  onClick={open}>배송 상태 변경</Button>
+            <Button color="black" style={{marginLeft: "10px", width: "130px"}}  onClick={open}>배송 상태 변경</Button>
     </>)
 }
 

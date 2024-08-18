@@ -1,4 +1,4 @@
-import { Card, Fieldset, Image, Text } from "@mantine/core";
+import { Card, Fieldset, Image, NumberFormatter, Text } from "@mantine/core";
 import "../css/BuyerOrderListPage.css";
 import { useEffect, useState } from "react";
 import { getBuyerOrders } from "../../api/v1/orders/orders.js";
@@ -27,63 +27,43 @@ const BuyerOrderListPage = () => {
     getBuyerOrderList();
   }, []);
 
-  //   if (!buyerOrder || !buyerOrder.length === 0) {
-  //     return <div>Loading...</div>;
-  //   }
-
   return (
     <>
+    <h1>주문 목록</h1>
       {buyerOrder.length != 0 ? (
         buyerOrder.map((order) => {
           return (
             <>
-              <Fieldset
-                legend={`${order.orderMasterId} 번 주문 내역`}
-                style={{ margin: "10px" }}
-              >
+              <Fieldset style={{margin:0,padding:"15px",marginTop:"10px"}}>
+                <h2>{order.orderMasterId} 번 주문 내역</h2>
                 {order.orderShopDetails.map((orderDetails) => {
                   return (
                     <>
-                      <Fieldset
-                        style={{ margin: "10px" }}
-                        legend={`${orderDetails.shopId} 번 상점`}
-                      >
+                      <Fieldset style={{marginTop:"10px",margin:0,padding:"15px"}}>
+                        <h3>{orderDetails.shopId} 번 상점</h3>
                         {orderDetails.productsOrders.map((productOrder) => {
                           return (
                             <>
-                              <Fieldset
-                                disabled
-                                fw={1000}
-                                style={{ margin: "10px" }}
-                              >
+                              <Fieldset style={{marginTop:"10px",margin:0,padding:"15px"}}>
                                 <div className="field-set">
-                                  <Card
-                                    shadow="none"
-                                    padding="lg"
-                                    component="a"
-                                  >
-                                    <Image
-                                      src={productOrder.productImageUrl}
-                                      h={100}
-                                      alt="No way!"
-                                      fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                                    />
-                                  </Card>
-                                  <div>
-                                    <Text fw={1000} size="lg" mt="md">
-                                      {productOrder.productName}
-                                    </Text>
-                                    <Text mt="xs" c="dimmed" size="sm">
-                                      {productOrder.productPrice} 원
-                                    </Text>
+                                  <Image
+                                    src={productOrder.productImageUrl}
+                                    h={120}
+                                    w={120}
+                                    style={{margin:0}}
+                                    alt="No way!"
+                                    fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                                  />
+                                  <div style={{marginLeft:"50px"}}>
+                                    <h2>{productOrder.productName}</h2>
+                                    <h3><NumberFormatter thousandSeparator value={productOrder.productPrice} suffix="원"/></h3>
                                   </div>
                                 </div>
                               </Fieldset>
                             </>
                           );
                         })}
-                        <div className="card">
-                          <div style={{ width: "80%" }}></div>
+                        <div style={{display:"flex",justifyContent:"flex-end",marginTop:"10px"}}>
                           <OrderDetailsModal
                             orderShopDetails={order.orderShopDetails}
                             orderMasterId={order.orderMasterId}

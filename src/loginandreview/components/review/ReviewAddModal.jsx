@@ -43,6 +43,7 @@ const ReviewAddModal = ({
           }}
         />
         <Button
+        color="black" 
           fullWidth
           onClick={() => {
             if (situation == "추가") {
@@ -57,6 +58,7 @@ const ReviewAddModal = ({
         </Button>
       </Modal>
       <Button
+      color="black" 
         onClick={() => {
           setContent("");
           setRate(0);

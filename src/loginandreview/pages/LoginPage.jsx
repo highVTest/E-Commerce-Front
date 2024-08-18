@@ -10,6 +10,7 @@ const LoginPage = () => {
       <LoginForm />
       <Link to="/login/register" className="reg">
         <Button
+        color="black" 
           style={{ width: 300 }}
           fullWidth
           variant="filled"

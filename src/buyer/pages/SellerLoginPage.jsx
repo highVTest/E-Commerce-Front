@@ -9,18 +9,12 @@ const SellerLoginPage = () => {
       <LoginForm></LoginForm>
 
       <Link to="/register/seller" className="reg">
-        <Button style={{ width: 300 }} fullWidth variant="filled">
+        <Button color="black"style={{ width: 300 }} fullWidth variant="filled">
           회원 가입
         </Button>
       </Link>
-      <Link to="/login/admin">
-        <Button
-          style={{ width: "300px" }}
-          color="gray"
-          fullWidth
-          type="submit"
-          radius="md"
-        >
+      <Link to="/login/admin" className="reg">
+        <Button style={{ width: "300px" }} color="gray" fullWidth type="submit">
           관리자 권한으로 로그인
         </Button>
       </Link>

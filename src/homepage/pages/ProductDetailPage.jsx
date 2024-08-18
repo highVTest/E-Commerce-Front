@@ -131,7 +131,7 @@ const ProductDetailPage = () => {
   return (
     <CommonLayout>
       <h1>상품 페이지</h1>
-      <Fieldset style={{marginTop:"30px"}}> 
+      <Fieldset> 
         <h2>상품 정보</h2>
         {
           product ? (
@@ -146,8 +146,8 @@ const ProductDetailPage = () => {
               />
           ) : null
         }
-        <hr style={{marginTop:"20px", marginBottom:"20px",width:"100%"}}/>
-        <div>
+        <hr style={{marginTop:"15px", marginBottom:"15px"}}/>
+        <div style={{textAlign:"left", marginBottom:"50px"}}>
           <h2>사용 가능한 쿠폰</h2>
           <div className="product-list">
             {coupon !== null ? (
@@ -185,6 +185,7 @@ const ProductDetailPage = () => {
                   </p>
                   {couponToBuyer === null ? (
                     <Button
+                    color="black" 
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                       onClick={issuedCouponFunc}
@@ -193,6 +194,7 @@ const ProductDetailPage = () => {
                     </Button>
                   ) : (
                     <Button
+                    color="black" 
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                     >
@@ -204,6 +206,7 @@ const ProductDetailPage = () => {
             ) : null}
           </div>
         </div>
+        <hr style={{marginTop:"15px", marginBottom:"15px"}}/>
         <div style={{textAlign:"left", marginBottom:"50px"}}>
           <h2>상세 설명</h2>
             <p>{product?.description}</p>

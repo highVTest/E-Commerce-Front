@@ -14,6 +14,7 @@ const ReviewList = ({reviews, removeReview, toggleReview}) => {
                    <p>productId: {review.productId}</p>
                    <p>completed: {review.complete ? "true" : "false"} </p>
                    <button
+                   color="black" 
                    onClick={() =>
                        toggleReview({
                            ...review,
@@ -24,7 +25,7 @@ const ReviewList = ({reviews, removeReview, toggleReview}) => {
                    완료
                </button>
 
-                   <button onClick={() => removeReview(review.id)}>삭제</button>
+                   <button color="black" onClick={() => removeReview(review.id)}>삭제</button>
                </li>
            ))}
        </ul>

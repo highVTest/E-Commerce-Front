@@ -60,8 +60,9 @@ const StatisticPages = () => {
                             data={productSales}
                             dataKey="productName"
                             type="stacked"
+                            withLegend
                             series={[
-                                {name: 'productQuantity', color: 'violet.6'},
+                                {name: 'productQuantity', color: 'gray'},
                             ]}
                         />
                     </div>

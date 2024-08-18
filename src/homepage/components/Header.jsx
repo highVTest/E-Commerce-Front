@@ -21,7 +21,7 @@ const Header = () => {
                 <Title order={1}>High-V</Title>
                 <Text size="lg" color="dimmed">혹시</Text>
                 <Box mt="md">
-                    <Button variant="outline" mr="sm">쓸 수 있어서</Button>
+                    <Button color="black" variant="outline" mr="sm">쓸 수 있어서</Button>
                     <Button>만들어놨슴돠</Button>
                 </Box>
             </Box>

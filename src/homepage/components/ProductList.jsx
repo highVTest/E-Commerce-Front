@@ -53,7 +53,7 @@ const ProductList = ({ products, isLoading }) => {
                         gap: "8px"
                       }}
                     >
-                      <AiFillHeart style={{ color: "red", fontSize: "20px" }} />
+                      <AiFillHeart style={{ color: "black", fontSize: "20px" }} />
                       <p style={{ margin: "0" }}>{product.likes}</p>
                     </div>
                   </div>

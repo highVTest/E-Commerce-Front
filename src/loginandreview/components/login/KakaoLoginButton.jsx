@@ -7,7 +7,7 @@ const KakaoLoginButton = () => {
         });
     };
     return (
-        <button onClick={loginWithKakao} style={{all: "unset"}}>
+        <button color="black" onClick={loginWithKakao} style={{all: "unset"}}>
             <img
                 src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
                 width="222"

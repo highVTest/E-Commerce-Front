@@ -57,7 +57,7 @@ const ShopCreateForm = ({ createShop, imageUpload }) => {
           name="File"
           style={{ width: "30%" }}
         />
-        <Button variant="filled" type="submit" style={{ width: "30%" }}>
+        <Button color="black" variant="filled" type="submit" style={{ width: "30%" }}>
           가게 생성하기
         </Button>
       </form>

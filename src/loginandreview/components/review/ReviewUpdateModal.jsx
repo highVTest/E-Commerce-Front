@@ -57,21 +57,15 @@ const ReviewUpdateModal = ({ token, productId, reviewId }) => {
             }
           }}
         />
-        <Button color="gray" fullWidth onClick={getUpdateReview} mt="md">
+        <Button color="black" fullWidth onClick={getUpdateReview} mt="md">
           수정 하기
         </Button>
       </Modal>
-
-      {/* <Button fullWidth onClick={() => modals.closeAll()} mt="md">
-        취소
-      </Button> */}
       <Button
-        color="grey"
-        style={{ width: "100px", height: "40px" }}
+      color="black" 
         onClick={() => {
           open();
         }}
-        radius="md"
       >
         리뷰 수정
       </Button>

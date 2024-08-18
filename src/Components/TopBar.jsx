@@ -55,10 +55,10 @@ function TopBar() {
         </div>
         {token === null && vaildRole() === null ? (
           <div className="button-container">
-            <Button onClick={buyerReload} variant="outline" color="black">
+            <Button color="black"onClick={buyerReload} variant="outline">
               로그인
             </Button>
-            <Button onClick={sellerReload} variant="outline" color="black">
+            <Button color="black"onClick={sellerReload} variant="outline">
               판매자 로그인
             </Button>
           </div>
@@ -73,7 +73,7 @@ function TopBar() {
                 >
                   마이 페이지
                 </Button>
-                <Button onClick={logout} variant="outline" color="black">
+                <Button color="black"onClick={logout} variant="outline">
                   로그아웃
                 </Button>
               </div>
@@ -95,7 +95,7 @@ function TopBar() {
                     관리자 페이지로 이동
                   </Button>
                 )}
-                <Button onClick={logout} variant="outline" color="black">
+                <Button color="black" onClick={logout} variant="outline" >
                   로그아웃
                 </Button>
               </div>

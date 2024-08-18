@@ -40,6 +40,7 @@ const SearchProductsForm = ({
 
       <div style={{ marginTop: "50px" }} className="display-center">
         <Pagination
+          color="black"
           value={activePage}
           onChange={setPage}
           total={result?.totalPages}

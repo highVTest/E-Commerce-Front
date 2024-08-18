@@ -92,6 +92,7 @@ const BuyerInfoForm = ({
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <Button
+            color="black" 
               autoContrast
               onClick={() => {
                 modals.open({
@@ -105,10 +106,11 @@ const BuyerInfoForm = ({
                           name="file"
                         />
                         <br />
-                        <Button fullWidth type="submit">
+                        <Button color="black" fullWidth type="submit">
                           변경하기
                         </Button>
                         <Button
+                        color="black" 
                           fullWidth
                           onClick={() => modals.closeAll()}
                           mt="md"
@@ -124,7 +126,7 @@ const BuyerInfoForm = ({
               이미지 변경하기
             </Button>
 
-            <Button variant="outline" autoContrast onClick={handleImageDelete}>
+            <Button color="black" variant="outline" autoContrast onClick={handleImageDelete}>
               이미지 삭제하기
             </Button>
           </div>
@@ -161,6 +163,7 @@ const BuyerInfoForm = ({
               ></BuyerProfileModal>
 
               <Button
+              color="black" 
                 onClick={() => {
                   modals.open({
                     title: "프로필 수정",
@@ -185,11 +188,12 @@ const BuyerInfoForm = ({
                             withAsterisk
                             name="confirmPW"
                           />
-                          <Button color="gray" fullWidth type="submit" mt="md">
+                          <Button color="black" fullWidth type="submit" mt="md">
                             변경하기
                           </Button>
                           <Button
-                            color="gray"
+                          color="black" 
+                          variant="outline"
                             fullWidth
                             onClick={() => modals.closeAll()}
                             mt="md"
@@ -212,6 +216,7 @@ const BuyerInfoForm = ({
       <div class="buyer-options">
         <Link to="/buyer/cart">
           <Button
+          color="black" 
             fullWidth
             variant="light"
           >
@@ -220,6 +225,7 @@ const BuyerInfoForm = ({
         </Link>
         <Link to="/orderDetails">
           <Button
+          color="black" 
             fullWidth
             variant="light"
           >
@@ -228,6 +234,7 @@ const BuyerInfoForm = ({
         </Link>
         <Link to="/buyer/favorite">
           <Button
+          color="black" 
             fullWidth
             variant="light"
           >
@@ -237,6 +244,7 @@ const BuyerInfoForm = ({
 
         <Link to="/buyer/coupon-list">
           <Button
+          color="black" 
             fullWidth
             variant="light"
           >
@@ -245,6 +253,7 @@ const BuyerInfoForm = ({
         </Link>
         <Link to="/buyer/review-list">
           <Button
+          color="black" 
             fullWidth
             variant="light"
           >
