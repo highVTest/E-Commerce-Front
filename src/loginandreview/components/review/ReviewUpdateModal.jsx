@@ -57,7 +57,7 @@ const ReviewUpdateModal = ({ token, productId, reviewId }) => {
             }
           }}
         />
-        <Button color="gray" fullWidth onClick={getUpdateReview} mt="md">
+        <Button fullWidth onClick={getUpdateReview} mt="md">
           수정 하기
         </Button>
       </Modal>
