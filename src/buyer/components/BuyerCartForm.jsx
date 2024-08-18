@@ -78,7 +78,7 @@ const BuyerCartForm = ({
         items.map((shop) => {
           return (
             <div>
-              <h2>{shop.shopId}번 가게의 상품</h2>
+              <h2>{shop.shopName}의 상품</h2>
               {shop.items.map((item) => {
                 return (
                   <div key={item.cartId}>

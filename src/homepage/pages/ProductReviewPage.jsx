@@ -21,6 +21,7 @@ const ProductReviewPage = ({
   const updateReview = async (reviewId) => {
     await buyerUpdate(reviewId, rate, content);
   };
+
   return (
     <>
       {reviews?.map((review) => {
@@ -39,10 +40,24 @@ const ProductReviewPage = ({
                 textAlign: "left",
               }}
             >
-              <div style={{marginTop:"10px"}}>
-                <Rating value={review.rate} fractions={2} readOnly />
-                <p>작성자 : {review.buyerName}</p>
-                <p style={{marginLeft:"20px"}}>{review.content}</p>
+              <div>
+                <div style={{display:"flex"}}>
+                  <div>
+                    <Image
+                        src={review.buyerProfileImage}
+                        h={120}
+                        w={120}
+                        style={{marginRight:"30px"}}
+                        radius="lg"
+                        fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                    />
+                  </div>
+                  <div>
+                    <Rating value={review.rate} fractions={2} readOnly />
+                    <p>작성자 : {review.buyerName}</p>
+                    <p>{review.content}</p>
+                  </div>
+                </div>
               </div>
               <div
                 style={{

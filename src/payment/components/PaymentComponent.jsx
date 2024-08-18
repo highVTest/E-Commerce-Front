@@ -124,44 +124,47 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
         {coupons.map((coupon) => {
           return (
             <>
-              <Card
-                shadow="sm"
-                padding="xs"
-                component="a"
-                target="_blank"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <div
-                  className="field-set"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <div style={{ marginRight: "20px" }}>
-                    <Checkbox color="black"
-                      onChange={() => {
-                        setting(coupon);
-                      }}
-                    />
-                  </div>
-                  <div style={{ width: "80%" }}>
-                    <h1>{coupon.couponName}</h1>
-                    {coupon.discountPolicy === "DISCOUNT_RATE" ? (
-                      <h2 style={{color:"red"}}>
-                        {coupon.discount} % 할인 쿠폰!!
-                      </h2>
-                    ) : (
-                      <h2 style={{color:"red"}}>
-                        {coupon.discount} 원 할인 쿠폰!!
-                      </h2>
-                    )}
-                    <h3>
-                      만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
-                      {coupon.expiredAt.split("-")[1]} 월{" "}
-                      {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
-                    </h3>
-                  </div>
-                </div>
-              </Card>
-
+              {
+                (coupon.isUsed === false) ?
+                    <Card
+                        shadow="sm"
+                        padding="xs"
+                        component="a"
+                        target="_blank"
+                        style={{ display: "flex", justifyContent: "space-between" }}
+                    >
+                      <div
+                          className="field-set"
+                          style={{ display: "flex", alignItems: "center" }}
+                      >
+                        <div style={{ marginRight: "20px" }}>
+                          <Checkbox color="black"
+                                    onChange={() => {
+                                      setting(coupon);
+                                    }}
+                          />
+                        </div>
+                        <div style={{ width: "80%" }}>
+                          <h1>{coupon.couponName}</h1>
+                          {coupon.discountPolicy === "DISCOUNT_RATE" ? (
+                              <h2 style={{color:"red"}}>
+                                {coupon.discount} % 할인 쿠폰!!
+                              </h2>
+                          ) : (
+                              <h2 style={{color:"red"}}>
+                                {coupon.discount} 원 할인 쿠폰!!
+                              </h2>
+                          )}
+                          <h3>
+                            만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
+                            {coupon.expiredAt.split("-")[1]} 월{" "}
+                            {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
+                          </h3>
+                        </div>
+                      </div>
+                    </Card>:
+                    null
+              }
             </>
           );
         })}

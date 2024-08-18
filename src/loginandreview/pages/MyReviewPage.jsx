@@ -18,6 +18,7 @@ const MyReviewPage = () => {
 
   const getMyReview = async () => {
     const data = await getBuyerReviews(token);
+    console.log(data.data)
     setReviews(data.data);
   };
 
@@ -28,7 +29,7 @@ const MyReviewPage = () => {
 
     setClick(true);
     try {
-      const data = await deleteReview(token, productId, reviewId);
+      await deleteReview(token, productId, reviewId);
       setClick(false);
       alert("리뷰 삭제가 완료됐습니다.");
       getMyReview();
@@ -40,7 +41,7 @@ const MyReviewPage = () => {
   useEffect(() => {
     getMyReview();
   }, []);
-
+  console.log(reviews)
   return (
     <>
       <h1 style={{marginBottom:"20px"}}>내 댓글 목록</h1>
