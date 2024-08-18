@@ -116,8 +116,8 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
   }, []);
 
   return (
-    <div style={{ margin: "10px" }}>
-      <Fieldset fw={1000} legend="사용 가능 쿠폰">
+    <div>
+      <Fieldset fw={600} legend="사용 가능 쿠폰">
         {coupons.map((coupon) => {
           return (
             <>
@@ -164,9 +164,9 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
           );
         })}
       </Fieldset>
-      <Fieldset disabled fw={1000}>
+      <Fieldset disabled fw={600} style={{marginTop:"5px"}}>
         <div className="payment-set">
-          <Text mt="xs" size="lg" fw={500}>
+          <Text mt="xs" size="lg" fw={600}>
             총 주문 금액
           </Text>
           <Text mt="xs" size="lg" fw={1000}>
@@ -174,18 +174,14 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
           </Text>
         </div>
       </Fieldset>
-      <div>
+      <div style={{display:"flex",justifyContent:"flex-end",gap:"5px",marginTop:"10px",marginRight:"2px"}}>
         <Button
-          color="gray"
           onClick={reqPayment}
-          style={{ margin: "10px", float: "right" }}
         >
           결제 하기
         </Button>
         <Button
-          color="gray"
           onClick={close}
-          style={{ margin: "10px", float: "right" }}
         >
           닫기
         </Button>

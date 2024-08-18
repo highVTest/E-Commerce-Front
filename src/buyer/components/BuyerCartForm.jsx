@@ -1,13 +1,9 @@
 import {
   Button,
   Checkbox,
-  Container,
-  Grid,
-  Group,
   Image,
-  Stack,
-  Text,
   Fieldset,
+  NumberFormatter
 } from "@mantine/core";
 import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -53,8 +49,6 @@ const BuyerCartForm = ({
     setWait(true);
     await favoriteChange(productId);
     setWait(false);
-
-    // console.log(productId);
   };
 
   const payment = async () => {
@@ -79,172 +73,165 @@ const BuyerCartForm = ({
 
   return (
     <>
-      <Text
-        size="xl"
-        fw={900}
-        variant="gradient"
-        gradient={{ from: "black", to: "blue", deg: 100 }}
-        style={{ textAlign: "center", fontSize: 50 }}
-      >
-        장바구니
-      </Text>
-      <ul>
-        {/* eslint-disable-next-line react/prop-types */}
-        {items.length != 0 ? (
-          items.map((shop) => {
-            return (
-              <Stack
-                // h={shop.items.length == 1 ? 250 : 370}
-                bg="var(--mantine-color-body)"
-                align="stretch"
-                justify="center"
-                gap="xs"
-                key={shop.shopId}
-                style={{ marginTop: "10px" }}
-              >
-                <Text
-                  size="xl"
-                  fw={900}
-                  variant="gradient"
-                  gradient={{ from: "red", to: "violet", deg: 90 }}
-                  style={{ textAlign: "center" }}
-                >
-                  {shop.shopId}번 가게의 상품
-                </Text>
-
-                {shop.items.map((item) => {
-                  return (
-                    <Grid
-                      key={item.cartId}
+      <h1>장바구니</h1>
+      {items.length != 0 ? (
+        items.map((shop) => {
+          return (
+            <div>
+              <h2>{shop.shopId}번 가게의 상품</h2>
+              {shop.items.map((item) => {
+                return (
+                  <div key={item.cartId}>
+                    <Fieldset
                       style={{
-                        width: "800px",
-                        backgroundColor: "beige",
-                        height: "280px",
-                        justifyContent: "center",
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        margin: 0,
+                        padding: "15px",
+                        marginBottom:"10px"
                       }}
                     >
-                      <Grid.Col span={1}>
-                        <Checkbox
-                          style={{ marginTop: "125px", marginLeft: "20px" }}
-                          onClick={() => setting(item)}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: "20px",
+                        }}
+                      >
+                        <Checkbox onClick={() => setting(item)} />
+                        <Image
+                          radius="md"
+                          src={item.productImageUrl}
+                          h={120}
+                          w={120}
+                          fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                         />
-                      </Grid.Col>
-                      <Fieldset style={{ marginTop: "20px" }}>
-                        <Group
-                          gap="xs"
-                          grow
+                        <div
                           style={{
-                            margin: "10px",
-                            width: "600px",
-                            height: "200px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "flex-start",
+                            textAlign: "left",
+                            gap:"15px"
                           }}
                         >
-                          <Image
-                            radius="md"
-                            src={item.productImageUrl}
-                            h={100}
-                            w={100}
-                            fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                          />
-                          <Stack align="stretch" justify="center" gap="md">
-                            <Group>
-                              <Text fw={500}>상품명 : {item.productName}</Text>
-                              <div onClick={() => handleHeart(item.productId)}>
-                                {favorites.indexOf(item.productId) != -1 ? (
-                                  <AiFillHeart
-                                    style={{
-                                      color: "red",
-                                      fontSize: "30px",
-                                      marginRight: "50px",
-                                    }}
-                                  />
-                                ) : (
-                                  <AiOutlineHeart
-                                    style={{
-                                      fontSize: "30px",
-                                      marginRight: "50px",
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </Group>
-
-                            <Text fw={500}>
-                              상품 가격 : {item.productPrice}
-                            </Text>
-                            <Text fw={500}>
-                              상품 수량 : {item.productQuantity}
-                            </Text>
-                          </Stack>
-
-                          <Button
-                            color="gray"
-                            // fullWidth
-                            mt="md"
-                            radius="md"
-                            style={{ height: 100 }}
-                            onClick={() => {
-                              itemDelete(item.productId);
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "flex-start",
+                              alignItems: "center",
+                              textAlign: "left",
                             }}
                           >
-                            삭제하기
-                          </Button>
-                          <Link to={`/product/${item.productId}`}>
-                            <Button
-                              color="gray"
-                              fullWidth
-                              mt="md"
-                              radius="md"
-                              style={{ height: 100 }}
+                            <h2 style={{margin:0}}>{item.productName}</h2>
+                            <div onClick={() => handleHeart(item.productId)}>
+                              {favorites.indexOf(item.productId) != -1 ? (
+                                <AiFillHeart
+                                  style={{
+                                    color: "red",
+                                    fontSize: "20px",
+                                    marginLeft: "20px",
+                                    marginTop: "6px",
+                                  }}
+                                />
+                              ) : (
+                                <AiOutlineHeart
+                                  style={{
+                                    fontSize: "20px",
+                                    marginLeft: "20px",
+                                    marginTop: "6px",
+                                  }}
+                                />
+                              )}
+                            </div>
+                          </div>
+                          <div style={{ display: "flex" }}>
+                            <p
+                              style={{
+                                margin: "0",
+                                width: "100px",
+                                fontWeight: "600",
+                              }}
                             >
-                              보러가기
-                            </Button>
-                          </Link>
-                        </Group>
-                      </Fieldset>
-                    </Grid>
-                  );
-                })}
-              </Stack>
-            );
-          })
-        ) : (
-          <div style={{ marginTop: "200px" }}>Loading..</div>
-        )}
-      </ul>
+                              상품 가격
+                            </p>
+                            <NumberFormatter value={item.productPrice}suffix=" 원" />
+                          </div>
+                          <div style={{ display: "flex" }}>
+                            <p
+                              style={{
+                                margin: "0",
+                                width: "100px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              상품 수량
+                            </p>
+                            <p style={{ margin: "0" }}>
+                              {item.productQuantity} 개
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          gap: "5px",
+                        }}
+                      >
+                        <Link
+                          to={`/product/${item.productId}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <Button>상품 페이지로</Button>
+                        </Link>
+                        <Button
+                          onClick={() => {
+                            itemDelete(item.productId);
+                          }}
+                        >
+                          삭제하기
+                        </Button>
+                      </div>
+                    </Fieldset>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })
+      ) : (
+        <div style={{ marginTop: "200px" }}>Loading..</div>
+      )}
 
       {items.length != 0 ? (
-        <Container
+        <div
           fluid
-          h={50}
-          bg="var(--mantine-color-blue-light)"
           style={{
             alignItems: "center",
             justifyContent: "center",
             display: "flex",
+            gap:"30px"
           }}
         >
-          <Grid style={{ width: 700, textAlign: "center" }}>
-            <Grid.Col span={6}>
-              <Text fw={500}>선택한 상품 금액 : {totalPrice}원</Text>
-            </Grid.Col>
-            <Grid.Col span={2}>
-              <Text fw={500}>총 {products.length}건</Text>
-            </Grid.Col>
-            <Grid.Col span={4}>
+              <p fw={500}>선택한 상품 금액</p><NumberFormatter value={totalPrice} suffix=" 원" />
+              <p fw={500}>총 </p><p>{products.length}건</p>
               <PaymentModal
                 totalPrice={totalPrice}
                 paymentData={paymentData}
                 token={token}
               />
-            </Grid.Col>
-          </Grid>
-        </Container>
+        </div>
       ) : (
         <div></div>
       )}
-
-      {/* <div style={{ height: 300 }}></div> */}
     </>
   );
 };
