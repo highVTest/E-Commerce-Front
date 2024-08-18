@@ -43,91 +43,118 @@ const MyReviewPage = () => {
 
   return (
     <>
-      <Text
-        size="xl"
-        fw={900}
-        variant="gradient"
-        gradient={{ from: "black", to: "blue", deg: 100 }}
-        style={{ textAlign: "center", fontSize: 50 }}
-      >
-        내 리뷰
-      </Text>
-      <ul>
-        <Stack
-          // h={shop.items.length == 1 ? 250 : 370}
-          bg="var(--mantine-color-body)"
-          align="stretch"
-          justify="center"
-          gap="xs"
-          style={{ marginTop: "10px" }}
-        >
-          {reviews.map((review) => {
-            return (
-              // eslint-disable-next-line react/jsx-key
-              <Grid
-                style={{
-                  backgroundColor: "beige",
-                  height: "280px",
-                  justifyContent: "center",
-                }}
-                key={review.id}
-              >
-                <Fieldset style={{ marginLeft: "20px", marginTop: "30px" }}>
-                  <Grid></Grid>
-                  <Group
-                    gap="xs"
-                    grow
-                    style={{ margin: "10px", width: "1080px", height: "200px" }}
+      <h1 style={{marginBottom:"20px"}}>내 댓글 목록</h1>
+        {reviews.map((review) => {
+          return (
+            <div key={review.id}>
+              <Fieldset style={{ margin: "0", padding: "15px",marginBottom:"10px" }}>
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      gap: "50px",
+                    }}
                   >
-                    <Grid.Col span={3}>
-                      <Image
-                        src={review.productImage}
-                        h={200}
-                        w={200}
-                        fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
-                      />
-                    </Grid.Col>
-                    <Grid.Col span={6}>
-                      <Stack align="flex-start" justify="center" gap="md">
-                        <Text fw={1000} size="xl">
-                          상품 명 : {review.productName}
-                        </Text>
-                        <Text fw={1000} size="xl">
-                          내가 작성한 리뷰 : {review.content}{" "}
-                        </Text>
-                        <Text fw={1000} size="lg">
-                          내가 준 평점 : {review.rate} 점
-                        </Text>
-                      </Stack>
-                    </Grid.Col>
-                    <Grid.Col span={1}>
-                      <Stack>
-                        <ReviewUpdateModal
-                          token={token}
-                          reviewId={review.id}
-                          productId={review.productId}
-                        />
-                        <Button
-                          color="gray"
-                          // fullWidth
-                          mt="md"
-                          radius="md"
-                          style={{ width: "100px", height: "40px" }}
-                          onClick={() => {
-                            delReview(review.productId, review.id);
+                    <Image
+                      src={review.productImage}
+                      h={120}
+                      w={120}
+                      radius={"8px"}
+                      fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        textAlign: "left",
+                        justifyContent: "space-between",
+                        width: "100%",
+                        marginTop:"15px",
+                        marginBottom:"15px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                        }}
+                      >
+                        <p
+                          style={{
+                            margin: "0",
+                            width: "100px",
+                            fontWeight: "600",
                           }}
                         >
-                          삭제 하기
-                        </Button>
-                      </Stack>
-                    </Grid.Col>
-                  </Group>
-                </Fieldset>
-              </Grid>
-            );
-          })}
-        </Stack>
-      </ul>
+                          상품명
+                        </p>
+                        <p style={{ margin: "0" }}>{review.productName}</p>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                        }}
+                      >
+                        <p
+                          style={{
+                            margin: "0",
+                            width: "100px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          리뷰
+                        </p>
+                        <p style={{ margin: "0" }}>{review.content}</p>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                        }}
+                      >
+                        <p
+                          style={{
+                            margin: "0",
+                            width: "100px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          평점
+                        </p>
+                        <p style={{ margin: "0" }}>{review.rate} 점</p>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent:"center",
+                        gap:"15px"
+
+                      }}
+                    >
+                      <ReviewUpdateModal
+                        token={token}
+                        reviewId={review.id}
+                        productId={review.productId}
+                      />
+                      <Button
+                        onClick={() => {
+                          delReview(review.productId, review.id);
+                        }}
+                      >
+                        삭제 하기
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Fieldset>
+            </div>
+          );
+        })}
     </>
   );
 };
