@@ -105,14 +105,13 @@ const ProductDetail = ({
       style={{
         display: "flex",
         flexDirection: "coulmn",
-        marginLeft:"50px",
         marginTop:"20px",
-        gap:"60px"
       }}
     >
       <Image
         w={200}
         h={200}
+        radius={"8px"}
         src={product?.productImage}
         fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
       />
