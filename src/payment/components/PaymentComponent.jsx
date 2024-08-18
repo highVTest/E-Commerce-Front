@@ -2,6 +2,7 @@ import { Button, Card, Checkbox, Fieldset, Image, Text } from "@mantine/core";
 import { buyerPayment } from "../../api/v1/orders/orders.js";
 import { getBuyerCouponList } from "../../api/v1/coupon/coupon.js";
 import React, { useEffect, useState } from "react";
+import productContainer from "../../homepage/components/ProductContainer.jsx";
 
 //totalPrice 제외
 function PaymentComponent({ token, paymentData, totalPrice, close }) {
@@ -106,11 +107,13 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
 
   const getBuyerCoupon = async () => {
     const data = await getBuyerCouponList(token);
+
     const filterData = data.data.filter((coupon) =>
-      productIdList.includes(coupon.productId)
+          productIdList.includes(coupon.productId)
     );
     setCoupons(filterData);
   };
+
   useEffect(() => {
     getBuyerCoupon();
   }, []);
@@ -121,45 +124,50 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
         {coupons.map((coupon) => {
           return (
             <>
-              <Card
-                shadow="sm"
-                padding="xs"
-                component="a"
-                target="_blank"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <div
-                  className="field-set"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <div style={{ marginRight: "20px" }}>
-                    <Checkbox
-                      onChange={() => {
-                        setting(coupon);
-                      }}
-                    />
-                  </div>
-                  <div style={{ width: "80%" }}>
-                    <Text fw={1000} size="xl" mt="md">
-                      {coupon.couponName}
-                    </Text>
-                    <Text fw={500} size="lg" mt="md">
-                      만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
-                      {coupon.expiredAt.split("-")[1]} 월{" "}
-                      {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
-                    </Text>
-                    {coupon.discountPolicy === "DISCOUNT_RATE" ? (
-                      <Text mt="md" c="dimmed" size="md">
-                        {coupon.discount} % 할인 쿠폰!!
-                      </Text>
-                    ) : (
-                      <Text mt="xs" c="dimmed" size="sm">
-                        {coupon.discount} 원 할인 쿠폰!!
-                      </Text>
-                    )}
-                  </div>
-                </div>
-              </Card>
+              {
+                (coupon.isUsed === false) ?
+                    <Card
+                        shadow="sm"
+                        padding="xs"
+                        component="a"
+                        target="_blank"
+                        style={{ display: "flex", justifyContent: "space-between" }}
+                    >
+                      <div
+                          className="field-set"
+                          style={{ display: "flex", alignItems: "center" }}
+                      >
+                        <div style={{ marginRight: "20px" }}>
+                          <Checkbox
+                              onChange={() => {
+                                setting(coupon);
+                              }}
+                          />
+                        </div>
+                        <div style={{ width: "80%" }}>
+                          <Text fw={1000} size="xl" mt="md">
+                            {coupon.couponName}
+                          </Text>
+                          <Text fw={500} size="lg" mt="md">
+                            만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
+                            {coupon.expiredAt.split("-")[1]} 월{" "}
+                            {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
+                          </Text>
+                          {coupon.discountPolicy === "DISCOUNT_RATE" ? (
+                              <Text mt="md" c="dimmed" size="md">
+                                {coupon.discount} % 할인 쿠폰!!
+                              </Text>
+                          ) : (
+                              <Text mt="xs" c="dimmed" size="sm">
+                                {coupon.discount} 원 할인 쿠폰!!
+                              </Text>
+                          )}
+                        </div>
+                      </div>
+                    </Card>:
+                    null
+
+                }
             </>
           );
         })}
