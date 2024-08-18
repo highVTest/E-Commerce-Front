@@ -1,16 +1,15 @@
-import { useDisclosure } from "@mantine/hooks";
 import { Button, Modal, NumberInput, Textarea } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 
-const ReviewAddModal = ({ addReview }) => {
+const ProductReviewUpdateModal = (review, updateReview) => {
   const [opened, { open, close }] = useDisclosure(false);
-
-  const [rate, setRate] = useState(0);
-  const [content, setContent] = useState("");
+  const [rate, setRate] = useState(review.rate);
+  const [content, setContent] = useState(review.content);
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="리뷰 추가">
+      <Modal opened={opened} onClose={close} title="리뷰 수정">
         <Textarea
           label="내용"
           placeholder="내용을 입력해주세요"
@@ -37,26 +36,24 @@ const ReviewAddModal = ({ addReview }) => {
           color="black"
           fullWidth
           onClick={async () => {
-            await addReview(rate, content);
+            await updateReview(review.id, rate, content);
             close();
           }}
           mt="md"
         >
-          추가하기
+          수정하기
         </Button>
       </Modal>
       <Button
         color="black"
         onClick={() => {
-          setContent("");
-          setRate(0);
           open();
         }}
       >
-        리뷰 추가
+        리뷰 수정
       </Button>
     </>
   );
 };
 
-export default ReviewAddModal;
+export default ProductReviewUpdateModal;

@@ -1,7 +1,16 @@
-import {Button, Fieldset, NumberInput, Rating, Text, TextInput, Image} from "@mantine/core";
+import {
+  Button,
+  Fieldset,
+  NumberInput,
+  Rating,
+  Text,
+  TextInput,
+  Image,
+} from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { useState } from "react";
 import ReviewAddModal from "../../loginandreview/components/review/ReviewAddModal";
+import ProductReviewUpdateModal from "../../loginandreview/components/review/ProductReviewUpdateModal";
 
 const ProductReviewPage = ({
   reviews,
@@ -9,16 +18,14 @@ const ProductReviewPage = ({
   delReview,
   buyerUpdate,
 }) => {
-  const [rate, setRate] = useState(0);
-  const [content, setContent] = useState("");
-
-  const addReview = async () => {
+  console.log("리뷰들 ", reviews);
+  const addReview = async (rate, content) => {
     await buyerAddReview(rate, content);
   };
   const deleteReview = async (reviewId) => {
     await delReview(reviewId);
   };
-  const updateReview = async (reviewId) => {
+  const updateReview = async (reviewId, rate, content) => {
     await buyerUpdate(reviewId, rate, content);
   };
   return (
@@ -30,7 +37,7 @@ const ProductReviewPage = ({
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent:"space-between",
+                justifyContent: "space-between",
                 marginBottom: "10px",
                 border: "2px solid",
                 borderColor: "#efefef",
@@ -39,32 +46,27 @@ const ProductReviewPage = ({
                 textAlign: "left",
               }}
             >
-              <div style={{marginTop:"10px"}}>
+              <div style={{ marginTop: "10px" }}>
                 <Rating value={review.rate} fractions={2} readOnly />
                 <p>작성자 : {review.buyerName}</p>
-                <p style={{marginLeft:"20px"}}>{review.content}</p>
+                <p style={{ marginLeft: "20px" }}>{review.content}</p>
               </div>
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-end",
-                  gap:"5px"
+                  gap: "5px",
                 }}
               >
-                <ReviewAddModal
-                  rate={rate}
-                  setRate={setRate}
-                  content={content}
-                  setContent={setContent}
-                  addReview={addReview}
-                  situation={"수정"}
+                <ProductReviewUpdateModal
+                  review={review}
                   updateReview={updateReview}
-                  reviewId={review.id}
-                ></ReviewAddModal>
+                ></ProductReviewUpdateModal>
+
                 <div style={{ marginRight: "15px" }}></div>
                 <Button
-                color="black" 
+                  color="black"
                   variant="outline"
                   onClick={() => {
                     deleteReview(review.id);
@@ -77,17 +79,8 @@ const ProductReviewPage = ({
           </div>
         );
       })}
-      <div style={{ marginTop: "15px"}}></div>
-      <ReviewAddModal
-        rate={rate}
-        setRate={setRate}
-        content={content}
-        setContent={setContent}
-        addReview={addReview}
-        situation={"추가"}
-        updateReview={updateReview}
-        reviewId={-1}
-      ></ReviewAddModal>
+      <div style={{ marginTop: "15px" }}></div>
+      <ReviewAddModal addReview={addReview}></ReviewAddModal>
     </>
   );
 };

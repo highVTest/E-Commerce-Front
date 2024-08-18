@@ -3,14 +3,28 @@ import { Button, Modal, NumberInput, TextInput } from "@mantine/core";
 import { useState } from "react";
 import { updateReview } from "../../../api/v1/review/review.js";
 
-const ReviewUpdateModal = ({ token, productId, reviewId }) => {
+const ReviewUpdateModal = ({
+  token,
+  productId,
+  reviewId,
+  review_content,
+  review_rate,
+  getMyReview,
+  productName,
+}) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [content, setContent] = useState("");
-  const [rate, setRate] = useState(0);
 
   const [click, setClick] = useState(false);
+  const [content, setContent] = useState(review_content);
+  const [rate, setRate] = useState(review_rate);
 
   const getUpdateReview = async () => {
+    if (productName == "") {
+      alert("삭제된 상품입니다.");
+      close();
+      return;
+    }
+
     if (content.length == 0) {
       alert("내용을 입력해주세요");
       return;
@@ -25,7 +39,8 @@ const ReviewUpdateModal = ({ token, productId, reviewId }) => {
       await updateReview(token, productId, reviewId, rate, content);
       alert("리뷰 수정이 완료 되었습니다");
       setClick(false);
-      window.location.reload();
+      await getMyReview();
+      close();
     } catch (e) {
       setClick(false);
       alert(e);
@@ -62,7 +77,7 @@ const ReviewUpdateModal = ({ token, productId, reviewId }) => {
         </Button>
       </Modal>
       <Button
-      color="black" 
+        color="black"
         onClick={() => {
           open();
         }}

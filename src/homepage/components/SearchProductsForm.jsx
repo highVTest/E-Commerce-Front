@@ -9,7 +9,7 @@ const SearchProductsForm = ({
   products,
   param,
   getSearchProducts,
-  isLoading,
+  loading,
 }) => {
   const key = param.keyword;
   const sort = param.orderby.split(",");
@@ -35,9 +35,8 @@ const SearchProductsForm = ({
         getSearchProducts={getSearchProducts}
       ></SearchPageBar>
       <Container>
-        <ProductList products={products} isLoading={isLoading}></ProductList>
+        <ProductList products={products} loading={loading}></ProductList>
       </Container>
-
       <div style={{ marginTop: "50px" }} className="display-center">
         <Pagination
           color="black"
