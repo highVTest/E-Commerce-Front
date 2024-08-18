@@ -1,6 +1,6 @@
 import "../css/PaymentModal.css";
 import { useDisclosure } from "@mantine/hooks";
-import { Button, Card, Fieldset, Image, Modal, Text } from "@mantine/core";
+import { Button, Card, Fieldset, Image, Modal, NumberFormatter, Text } from "@mantine/core";
 import RefundModal from "./RefundModal.jsx";
 import ExchangeModal from "./ExchangeModal.jsx";
 
@@ -104,7 +104,7 @@ function OrderDetailsModal({ orderShopDetails, orderMasterId }) {
         );
       default:
         return (
-          <Button color="gray" size="xs">
+          <Button  size="xs">
             환불 및 교환이 불가능 합니다
           </Button>
         );
@@ -120,7 +120,7 @@ function OrderDetailsModal({ orderShopDetails, orderMasterId }) {
         centered
         style={{ padding: "10px" }}
       >
-        <div className="order-status">
+        <div className="order-status" style={{display:"flex",justifyContent:"space-between"}}>
           <div>{setOrderStatus()}</div>
           <div className="order-circle" style={setColor()}></div>
           {exChangeRefundRequest()}
@@ -130,26 +130,23 @@ function OrderDetailsModal({ orderShopDetails, orderMasterId }) {
           orderShopDetails[0].productsOrders.map((it, i) => {
             return (
               <>
-                <Fieldset disabled fw={1000} key={i} style={{ margin: "10px" }}>
+                <Fieldset disabled fw={1000} key={i} style={{ padding:"15px",margin:"0",marginTop:"10px"}}>
                   <div className="field-set">
                     <Card shadow="none" padding="lg" component="a">
                       <Image
                         src={it.productImageUrl}
-                        h={100}
+                        h={120}
+                        w={120}
                         alt="No way!"
                         fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                       />
                     </Card>
                     <div>
-                      <Text fw={1000} size="lg" mt="md">
-                        {it.productName}
-                      </Text>
-                      <Text fw={1000} size="sm" mt="md">
-                        {it.productQuantity} 개
-                      </Text>
-                      <Text mt="lg" size="sm">
-                        {it.productPrice} 원
-                      </Text>
+                      <h2>{it.productName}</h2>
+                      <h3>{it.productQuantity} 개</h3>
+                      <h3>
+                        <NumberFormatter value={it.productPrice} suffix=" 원" />
+                      </h3>
                     </div>
                   </div>
                 </Fieldset>
@@ -159,7 +156,7 @@ function OrderDetailsModal({ orderShopDetails, orderMasterId }) {
         }
       </Modal>
 
-      <Button color="gray" onClick={open}>
+      <Button onClick={open}>
         주문 내역 상세 정보 보기
       </Button>
     </>
