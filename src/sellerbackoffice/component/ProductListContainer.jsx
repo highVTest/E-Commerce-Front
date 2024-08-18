@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProductList from "./ProductList";
+import ProductList from "./SellerProductList";
 
 import { deleteProduct, updateProduct } from "../../api/v1/product/product";
 import {

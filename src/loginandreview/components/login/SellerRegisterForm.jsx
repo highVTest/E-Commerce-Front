@@ -47,20 +47,15 @@ const SellerRegisterForm = () => {
     }, 1000);
   };
 
-  const navigate = useNavigate(); //로그인 후 지정한 주소로 이동 아마 메인페이지?
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
-    // console.log("버튼 누름");
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     const nickname = formData.get("nickname");
     const password = formData.get("password");
-    // const Email = formData.get("Email");
-    // const EmailAuth = formData.get("Email");
     const PhoneNumber = formData.get("PhoneNumber");
-    // const address = formData.get("address");
     const fullAddr = address + ` ${detailAddr}`;
-    // console.log(fullAddr);
 
     if (pass == false) {
       alert("이메일 인증을 완료 해주세요");
@@ -101,9 +96,7 @@ const SellerRegisterForm = () => {
 
   const authConfirm = async () => {
     try {
-      // console.log("dd>>", auth);
       const data = await verifyEmail(email, "SELLER", auth);
-      // console.log(data);
       if (data.data.isApproved == false) {
         alert("이메일 인증에 실패 했습니다.\n다시 시도해주세요");
       } else {
@@ -111,7 +104,6 @@ const SellerRegisterForm = () => {
         alert("이메일 인증에 성공했습니다.");
         setAuth("");
         setPass(true);
-        // clearInterval(timer);
         setIsOk(false);
       }
     } catch (e) {}
@@ -133,10 +125,7 @@ const SellerRegisterForm = () => {
       alert("이미지가 등록됐습니다.");
     } catch (e) {
       alert(e.response.data.errorMessage);
-      // alert(e.data.msg);
     }
-
-    // window.location.reload();
   };
 
   useEffect(() => {
@@ -149,18 +138,18 @@ const SellerRegisterForm = () => {
     <form className="login-form" onSubmit={handleSubmit}>
       <Stack gap="md">
         <TextInput
-          label="NICKNAME"
+          label="닉네임"
           placeholder="닉네임을 입력하세요"
           name="nickname"
         />
         <PasswordInput
-          label="PASSWORD"
+          label="비밀번호"
           placeholder="비밀번호를 입력하세요"
           name="password"
         />
         <div style={{ display: "flex" }}>
           <TextInput
-            label="EMAIL"
+            label="이메일"
             placeholder="이메일을 입력하세요"
             value={email}
             onChange={(e) => {
@@ -169,11 +158,9 @@ const SellerRegisterForm = () => {
             style={{ width: 500 }}
           />
           <Button
-            style={{ width: 100, marginTop: "30px" }}
+            style={{ width: 100, marginTop: "25px",marginLeft:"5px"}}
             fullWidth
             variant="filled"
-            color="grey"
-            radius="md"
             onClick={sendEamil}
             type="button"
           >
@@ -194,25 +181,23 @@ const SellerRegisterForm = () => {
                 style={{ width: 500 }}
               />
               <Button
-                style={{ width: 100, marginTop: "30px" }}
+                style={{ width: 100, marginTop: "25px",marginLeft:"5px"}}
                 fullWidth
                 variant="filled"
-                color="grey"
-                radius="md"
                 type="button"
                 onClick={authConfirm}
               >
                 확인
               </Button>
             </div>
-            <Text fw={700}>
+            <Text fw={700} style={{marginTop:"-15px"}}>
               남은 시간 : {authMin}분 {authSec}초
             </Text>
           </>
         ) : (
           <div style={{ display: "none" }}>
             <TextInput
-              label="EMAIL_AUTH"
+              label="인증번호"
               placeholder="인증번호를 입력하세요"
               value={auth}
               onChange={(e) => {
@@ -221,11 +206,9 @@ const SellerRegisterForm = () => {
               style={{ width: 500 }}
             />
             <Button
-              style={{ width: 100, marginTop: "30px" }}
+              style={{ width: 100, marginTop: "25px",marginLeft:"5px"}}
               fullWidth
               variant="filled"
-              color="grey"
-              radius="md"
               type="button"
               onClick={authConfirm}
             >
@@ -235,15 +218,10 @@ const SellerRegisterForm = () => {
         )}
 
         <TextInput
-          label="PHONENUMBER"
-          placeholder="전화번호를 입력하세요"
+          label="휴대전화번호"
+          placeholder="휴대전화번호를 입력하세요"
           name="PhoneNumber"
         />
-        {/* <TextInput
-          label="ADDRESS"
-          placeholder="주소를 입력하세요"
-          name="address"
-        /> */}
       </Stack>
       <div style={{ marginTop: "25px" }}>
         <DaumPost
@@ -256,12 +234,11 @@ const SellerRegisterForm = () => {
         ></DaumPost>
       </div>
       <Button
-        color="gray"
         fullWidth
         type="submit"
         style={{ marginTop: "15px" }}
       >
-        REGISTER
+        회원 가입
       </Button>
     </form>
   );
