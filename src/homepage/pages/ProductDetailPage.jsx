@@ -185,6 +185,7 @@ const ProductDetailPage = () => {
                   </p>
                   {couponToBuyer === null ? (
                     <Button
+                    color="black" 
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                       onClick={issuedCouponFunc}
@@ -193,6 +194,7 @@ const ProductDetailPage = () => {
                     </Button>
                   ) : (
                     <Button
+                    color="black" 
                       className="update-btn"
                       style={{ marginTop: "5px" }}
                     >

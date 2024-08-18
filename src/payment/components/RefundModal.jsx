@@ -63,6 +63,7 @@ function RefundModal({ orderMasterId, shopId }) {
         <div style={{ display: "flex" }}>
           <div style={{ width: "70%" }}></div>
           <Button
+          color="black" 
             onClick={reqReject}
             style={{ marginTop: "10px" }}
           >
@@ -71,7 +72,7 @@ function RefundModal({ orderMasterId, shopId }) {
         </div>
       </Modal>
 
-      <Button onClick={open}>
+      <Button color="black" onClick={open}>
         환불 요청
       </Button>
     </>

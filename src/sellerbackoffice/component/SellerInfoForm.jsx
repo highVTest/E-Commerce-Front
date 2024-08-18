@@ -104,6 +104,7 @@ const SellerInfoForm = ({
                   <div style={{display: "flex", padding:"0",flexDirection:"column",justifyContent: "space-around",gap:"5px"}}>
                     <Group>
                       <Button
+                      color="black" 
                         fullWidth
                         autoContrast
                         onClick={() => {
@@ -118,10 +119,11 @@ const SellerInfoForm = ({
                                     name="file"
                                   />
                                   <br />
-                                  <Button fullWidth type="submit">
+                                  <Button color="black" fullWidth type="submit">
                                     변경하기
                                   </Button>
                                   <Button
+                                  color="black" 
                                     variant="outline"
                                     fullWidth
                                     onClick={() => modals.closeAll()}
@@ -139,6 +141,7 @@ const SellerInfoForm = ({
                       </Button>
                     </Group>
                     <Button
+                    color="black" 
                       fullWidth
                       autoContrast
                       variant="outline"
@@ -232,6 +235,7 @@ const SellerInfoForm = ({
                       sellerUpdateInfo={sellerUpdateInfo}
                     ></ProfileModal>
                     <Button
+                    color="black" 
                       style={{ marginLeft: "25px" }}
                       onClick={() => {
                         modals.open({
@@ -257,10 +261,11 @@ const SellerInfoForm = ({
                                   withAsterisk
                                   name="confirmPW"
                                 />
-                                <Button color="gray" fullWidth type="submit">
+                                <Button color="black" fullWidth type="submit">
                                   변경하기
                                 </Button>
                                 <Button
+                                color="black" 
                                   fullWidth
                                   onClick={() => modals.closeAll()}
                                   mt="md"
@@ -297,6 +302,7 @@ const SellerInfoForm = ({
                     <div style={{display: "flex", padding:"0",flexDirection:"column",justifyContent: "space-around",gap:"5px"}}>
                       <Group>
                         <Button
+                        color="black" 
                           fullWidth
                           autoContrast
                           onClick={() => {
@@ -311,10 +317,11 @@ const SellerInfoForm = ({
                                       name="file"
                                     />
                                     <br />
-                                    <Button fullWidth type="submit">
+                                    <Button color="black" fullWidth type="submit">
                                       변경하기
                                     </Button>
                                     <Button
+                                    color="black" 
                                       fullWidth
                                       onClick={() => modals.closeAll()}
                                       mt="md"
@@ -333,6 +340,7 @@ const SellerInfoForm = ({
 
 
                     <Button
+                    color="black" 
                       fullWidth
                       autoContrast
                       variant="outline"
@@ -405,7 +413,7 @@ const SellerInfoForm = ({
                           setDesc(e.target.value);
                         }}
                       />
-                      <Button fullWidth type="submit">
+                      <Button color="black" fullWidth type="submit">
                         저장
                       </Button>
                     </form>

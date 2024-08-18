@@ -18,7 +18,7 @@ const SearchBar = () => {
                     sx={{ width: '100%', borderRadius: '40px' }}
                     style={{ width: 800 }}
                     rightSection={
-                        <Button variant="filled" size="xs" radius="lg" onClick={handleSearchClick}>
+                        <Button color="black" variant="filled" size="xs" radius="lg" onClick={handleSearchClick}>
                             검색
                         </Button>
                     }

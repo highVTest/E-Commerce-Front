@@ -9,7 +9,7 @@ const SellerLoginPage = () => {
       <LoginForm></LoginForm>
 
       <Link to="/register/seller" className="reg">
-        <Button style={{ width: 300 }} fullWidth variant="filled">
+        <Button color="black"style={{ width: 300 }} fullWidth variant="filled">
           회원 가입
         </Button>
       </Link>

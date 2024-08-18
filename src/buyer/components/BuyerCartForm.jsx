@@ -190,9 +190,10 @@ const BuyerCartForm = ({
                           to={`/product/${item.productId}`}
                           style={{ textDecoration: "none" }}
                         >
-                          <Button>상품 페이지로</Button>
+                          <Button color="black" >상품 페이지로</Button>
                         </Link>
                         <Button
+                        color="black" 
                           onClick={() => {
                             itemDelete(item.productId);
                           }}

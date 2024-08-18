@@ -52,6 +52,7 @@ const ProductList = ({
             <h1>상품 목록</h1>
               <Link to="/product-create">
                 <Button
+                color="black" 
                   className="top-bar-btn"
                   style={{ marginBottom: "10px" }}
                 >
@@ -94,6 +95,7 @@ const ProductList = ({
                     handleUpdateProduct={handleUpdateProduct}
                   />
                   <Button
+                  color="black" 
                     className="update-btn"
                     onClick={() => {
                       modals.open({
@@ -107,10 +109,10 @@ const ProductList = ({
                                 name="price"
                                 className="price"
                               />
-                              <Button type="submit">
+                              <Button color="black" type="submit">
                                 변경하기
                               </Button>
-                              <Button onClick={() => modals.closeAll()}>
+                              <Button color="black" onClick={() => modals.closeAll()}>
                                 취소
                               </Button>
                             </form>
@@ -122,6 +124,7 @@ const ProductList = ({
                     가격 수정
                   </Button>
                   <Button
+                  color="black" 
                     className="update-btn"
                     onClick={() => {
                       modals.open({
@@ -135,10 +138,11 @@ const ProductList = ({
                                 name="quantity"
                                 className="quantity"
                               />
-                              <Button fullWidth type="submit">
+                              <Button color="black" fullWidth type="submit">
                                 변경하기
                               </Button>
                               <Button
+                              color="black" 
                                 fullWidth
                                 onClick={() => modals.closeAll()}
                               >
@@ -154,6 +158,7 @@ const ProductList = ({
                   </Button>
                   <CreateCouponModal product={product} token={token} />
                   <Button
+                  color="black" 
                     variant="outline"
                     className="update-btn"
                     onClick={() => {
@@ -162,6 +167,7 @@ const ProductList = ({
                         children: (
                           <>
                             <Button
+                            color="black" 
                               fullWidth
                               onClick={() => {
                                 handleDelete(product.id);
@@ -170,6 +176,7 @@ const ProductList = ({
                               YES
                             </Button>
                             <Button
+                            color="black" 
                               fullWidth
                               variant="outline"
                               onClick={() => modals.closeAll()}

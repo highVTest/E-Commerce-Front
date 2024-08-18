@@ -40,7 +40,7 @@ const AdminLoginForm = () => {
               name="password"
             />
           </div>
-          <Button fullWidth type="submit">
+          <Button color="black" fullWidth type="submit">
             로그인
           </Button>
         </Stack>

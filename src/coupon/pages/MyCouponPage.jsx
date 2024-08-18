@@ -86,6 +86,8 @@ const MyCouponPage = () => {
               </Stack>
 
               <Button
+              color="black" 
+              variant="outline"
                 onClick={() => {
                   getDeleteBuyerCoupon(coupon.couponId);
                 }}

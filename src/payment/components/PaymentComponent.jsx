@@ -174,11 +174,13 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
       </Fieldset>
       <div style={{display:"flex",justifyContent:"flex-end",gap:"5px",marginTop:"10px",marginRight:"2px"}}>
         <Button
+        color="black" 
           onClick={reqPayment}
         >
           결제 하기
         </Button>
         <Button
+        color="black" 
           onClick={close}
         >
           닫기

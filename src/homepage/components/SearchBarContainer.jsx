@@ -47,6 +47,7 @@ const SearchBarContainer = () => {
           style={{ width: "100%" }}
         />
         <Button
+        color="black" 
           style={{minWidth:"80px"}}
           variant="filled"
           onClick={searchKeyword}

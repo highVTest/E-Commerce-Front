@@ -168,6 +168,7 @@ const RegisterForm = () => {
             style={{ width: 500 }}
           />
           <Button
+          color="black" 
             style={{ width: 100, marginTop: "24px",marginLeft:"5px" }}
             fullWidth
             variant="filled"
@@ -191,6 +192,7 @@ const RegisterForm = () => {
                 style={{ width: 500 }}
               />
               <Button
+              color="black" 
                 style={{ width: 100, marginTop: "25px",marginLeft:"5px" }}
                 fullWidth
                 variant="filled"
@@ -216,6 +218,7 @@ const RegisterForm = () => {
               style={{ width: 500 }}
             />
             <Button
+            color="black" 
               style={{ width: 100, marginTop: "25px",marginLeft:"5px" }}
               fullWidth
               variant="filled"
@@ -244,6 +247,7 @@ const RegisterForm = () => {
         ></DaumPost>
       </div>
       <Button
+      color="black" 
         fullWidth
         type="submit"
         style={{ marginTop: "25px" }}

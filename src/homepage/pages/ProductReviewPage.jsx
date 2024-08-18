@@ -64,6 +64,7 @@ const ProductReviewPage = ({
                 ></ReviewAddModal>
                 <div style={{ marginRight: "15px" }}></div>
                 <Button
+                color="black" 
                   variant="outline"
                   onClick={() => {
                     deleteReview(review.id);

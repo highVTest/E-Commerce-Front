@@ -174,10 +174,10 @@ const ProductDetail = ({
             }}
           >
             {role === "BUYER" ? (
-              <Button type="submit">장바구니에 담기</Button>
+              <Button color="black" type="submit">장바구니에 담기</Button>
             ) : null}
             {role === "ADMIN" ? (
-              <Button type="submit" onClick={sanctionProductApply}>
+              <Button color="black" type="submit" onClick={sanctionProductApply}>
                 판매자 제재하기
               </Button>
             ) : null}

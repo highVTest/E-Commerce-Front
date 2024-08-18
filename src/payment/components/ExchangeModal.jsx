@@ -62,7 +62,7 @@ function ExchangeModal({ orderMasterId, shopId }) {
         <div style={{ display: "flex" }}>
           <div style={{ width: "70%" }}></div>
           <Button
-            color="gray"
+            color="black"
             onClick={reqReject}
             style={{ marginTop: "10px" }}
           >
@@ -71,7 +71,7 @@ function ExchangeModal({ orderMasterId, shopId }) {
         </div>
       </Modal>
 
-      <Button color="gray" onClick={open}>
+      <Button color="black" onClick={open}>
         교환 요청
       </Button>
     </>

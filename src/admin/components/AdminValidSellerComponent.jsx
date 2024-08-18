@@ -171,7 +171,7 @@ const AdminValidSellerComponent = ({ token }) => {
                 </div>
               </div>
             </div>
-            <Button onClick={promote}>해당 판매자 승인하기</Button>
+            <Button color="black" onClick={promote}>해당 판매자 승인하기</Button>
           </div>
         </div>
       </div>

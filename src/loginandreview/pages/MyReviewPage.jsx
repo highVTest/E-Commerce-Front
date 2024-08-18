@@ -142,6 +142,7 @@ const MyReviewPage = () => {
                         productId={review.productId}
                       />
                       <Button
+                      color="black" 
                         onClick={() => {
                           delReview(review.productId, review.id);
                         }}

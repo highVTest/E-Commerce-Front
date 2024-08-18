@@ -84,7 +84,7 @@ const BuyerShopInfo = ({ product }) => {
           </div>
         </div>
       </Modal>
-      <Button onClick={open}>
+      <Button color="black" onClick={open}>
         상점 정보
       </Button>
     </div>

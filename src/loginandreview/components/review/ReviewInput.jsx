@@ -27,7 +27,7 @@ const ReviewInput = ({addReview}) => {
             />
 
 
-            <Button onClick={handleSubmit} style={{marginTop:"10px"}}> 리뷰 추가하기</Button>
+            <Button color="black" onClick={handleSubmit} style={{marginTop:"10px"}}> 리뷰 추가하기</Button>
 
 
     </>

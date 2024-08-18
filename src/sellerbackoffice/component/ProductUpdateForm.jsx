@@ -54,20 +54,20 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
                   minRows={8}
                   maxRows={8}
                 />
-                <Button color="gray" fullWidth type="submit">
+                <Button color="black" fullWidth type="submit">
                   저장
                 </Button>
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button color="gray" style={{ margin: "20px", float: "right" }}>
+              <Button color="black" style={{ margin: "20px", float: "right" }}>
                 목록으로
               </Button>
             </Link>
           </div>
         </div>
       </Modal>
-      <Button onClick={open} className="update-btn">
+      <Button color="black" onClick={open} className="update-btn">
         상품 수정
       </Button>
     </>

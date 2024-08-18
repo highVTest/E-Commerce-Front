@@ -62,10 +62,10 @@ const BlackListPage = () => {
           }}
         >
           <Link to="/admin/seller-accept">
-            <Button>승인 대기 판매자 관리</Button>
+            <Button color="black" >승인 대기 판매자 관리</Button>
           </Link>
           <Link to="/admin/black-list">
-            <Button>블랙 리스트 관리</Button>
+            <Button color="black" >블랙 리스트 관리</Button>
           </Link>
         </div>
       </div>

@@ -111,12 +111,12 @@ function OrderStatus() {
                     </div>
                 </Fieldset>
                 <div>
-                    <Button style={{margin: "10px", float: "right"}}>결제 하기</Button>
-                    <Button onClick={close} style={{margin: "10px", float: "right"}}>닫기</Button>
+                    <Button color="black" style={{margin: "10px", float: "right"}}>결제 하기</Button>
+                    <Button color="black" onClick={close} style={{margin: "10px", float: "right"}}>닫기</Button>
                 </div>
             </Modal>
 
-            <Button onClick={open}>결제 하기</Button>
+            <Button color="black" onClick={open}>결제 하기</Button>
         </>
     );
 }

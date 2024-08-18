@@ -51,7 +51,7 @@ const UploadPage = () => {
                    {previews}
                </SimpleGrid>
             </div>
-            <Button variant="filled"  fullWidth onClick={handleUpload}>
+            <Button color="black" variant="filled"  fullWidth onClick={handleUpload}>
                 Upload
             </Button>
         </section>

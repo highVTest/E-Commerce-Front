@@ -10,6 +10,7 @@ const RegisterPage = () => {
       <RegisterForm />
       <Link to="/login/buyer" className="reg">
         <Button
+        color="black" 
           style={{ width: 300 }}
           fullWidth
           variant="filled"

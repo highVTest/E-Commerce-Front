@@ -38,7 +38,7 @@ const LoginForm = () => {
             name="password"
           />
         </div>
-        <Button fullWidth type="submit" style={{marginTop:"10px"}}>
+        <Button color="black" fullWidth type="submit" style={{marginTop:"10px"}}>
           로그인
         </Button>
       </Stack>

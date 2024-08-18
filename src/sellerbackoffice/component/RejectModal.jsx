@@ -48,10 +48,10 @@ function RejectModal({token, data, shopId}) {
                 </div>
                 <div style={{display:"flex", alignItems:"center", margin:"10px"}}>
                     <div style={{width:"85%"}}></div>
-                    <Button  onClick={reqReject}>거절 요청</Button>
+                    <Button color="black" onClick={reqReject}>거절 요청</Button>
                 </div>
             </Modal>
-            <Button style={{marginLeft: "10px", width: "100px"}} variant="outline" onClick={open}>거절 하기</Button>
+            <Button color="black" style={{marginLeft: "10px", width: "100px"}} variant="outline" onClick={open}>거절 하기</Button>
         </>
     );
 }
