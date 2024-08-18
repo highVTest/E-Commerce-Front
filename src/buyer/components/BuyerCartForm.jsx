@@ -219,7 +219,8 @@ const BuyerCartForm = ({
             alignItems: "center",
             justifyContent: "center",
             display: "flex",
-            gap:"30px"
+            gap:"30px",
+            background:"#efefef"
           }}
         >
               <p fw={500}>선택한 상품 금액</p><NumberFormatter value={totalPrice} suffix=" 원" />
