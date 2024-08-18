@@ -2,6 +2,7 @@ import { Button, Card, Checkbox, Fieldset, Image, Text } from "@mantine/core";
 import { buyerPayment } from "../../api/v1/orders/orders.js";
 import { getBuyerCouponList } from "../../api/v1/coupon/coupon.js";
 import React, { useEffect, useState } from "react";
+import productContainer from "../../homepage/components/ProductContainer.jsx";
 
 //totalPrice 제외
 function PaymentComponent({ token, paymentData, totalPrice, close }) {
@@ -106,11 +107,13 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
 
   const getBuyerCoupon = async () => {
     const data = await getBuyerCouponList(token);
+
     const filterData = data.data.filter((coupon) =>
-      productIdList.includes(coupon.productId)
+          productIdList.includes(coupon.productId)
     );
     setCoupons(filterData);
   };
+
   useEffect(() => {
     getBuyerCoupon();
   }, []);
@@ -158,6 +161,7 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
                   </div>
                 </div>
               </Card>
+
             </>
           );
         })}

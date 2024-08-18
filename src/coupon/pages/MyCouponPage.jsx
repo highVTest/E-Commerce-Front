@@ -13,7 +13,7 @@ const MyCouponPage = () => {
 
   const getBuyerCoupon = async () => {
     const data = await getBuyerCouponList(token);
-    // console.log(data.data);
+    console.log(data.data);
     setCoupons(data.data);
   };
 
@@ -100,6 +100,7 @@ const MyCouponPage = () => {
           </div>
         );
       })}
+
     </>
   );
 };
