@@ -140,23 +140,21 @@ function PaymentComponent({ token, paymentData, totalPrice, close }) {
                     />
                   </div>
                   <div style={{ width: "80%" }}>
-                    <Text fw={1000} size="xl" mt="md">
-                      {coupon.couponName}
-                    </Text>
-                    <Text fw={500} size="lg" mt="md">
+                    <h1>{coupon.couponName}</h1>
+                    {coupon.discountPolicy === "DISCOUNT_RATE" ? (
+                      <h2 style={{color:"red"}}>
+                        {coupon.discount} % 할인 쿠폰!!
+                      </h2>
+                    ) : (
+                      <h2 style={{color:"red"}}>
+                        {coupon.discount} 원 할인 쿠폰!!
+                      </h2>
+                    )}
+                    <h3>
                       만료 시간 : {coupon.expiredAt.split("-")[0]} 년{" "}
                       {coupon.expiredAt.split("-")[1]} 월{" "}
                       {coupon.expiredAt.split("-")[2].slice(0, 2)} 일 까지
-                    </Text>
-                    {coupon.discountPolicy === "DISCOUNT_RATE" ? (
-                      <Text mt="md" c="dimmed" size="md">
-                        {coupon.discount} % 할인 쿠폰!!
-                      </Text>
-                    ) : (
-                      <Text mt="xs" c="dimmed" size="sm">
-                        {coupon.discount} 원 할인 쿠폰!!
-                      </Text>
-                    )}
+                    </h3>
                   </div>
                 </div>
               </Card>
