@@ -72,7 +72,7 @@ const BuyerFavoriteForm = ({ favorites, buyerChangeFavorite }) => {
                         }}
                       >
                         <AiFillHeart
-                          style={{ color: "red", fontSize: "20px" }}
+                          style={{ color: "black", fontSize: "20px" }}
                         />
                       </div>
                     </div>

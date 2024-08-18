@@ -133,7 +133,7 @@ const BuyerCartForm = ({
                               {favorites.indexOf(item.productId) != -1 ? (
                                 <AiFillHeart
                                   style={{
-                                    color: "red",
+                                    color: "black",
                                     fontSize: "20px",
                                     marginLeft: "20px",
                                     marginTop: "6px",
