@@ -24,16 +24,27 @@ const BuyerInfoForm = ({
   const [extraAddr, setExtraAddr] = useState("");
   const [detailAddr, setDetailAddr] = useState("");
 
+  const [click, setClick] = useState(false);
+
   const handleImageDelete = async () => {
+    if (click == true) {
+      return;
+    }
     if (buyer?.profileImage == "") {
       alert("삭제할 이미지가 없습니다.");
       return;
     }
+    setClick(true);
     await buyerChangeImage(null);
+    setClick(false);
   };
 
   const handleImageChange = async (e) => {
     e.preventDefault();
+    if (click == true) {
+      return;
+    }
+
     const formData = new FormData(e.currentTarget);
     const file = formData.get("file");
 
@@ -42,9 +53,17 @@ const BuyerInfoForm = ({
       return;
     }
 
-    await buyerChangeImage(file);
+    const sizeLimit = 1024 ** 2 * 5;
 
-    window.location.reload();
+    if (file.size > sizeLimit) {
+      alert("이미지는 5MB까지 가능합니다.");
+      return;
+    }
+    setClick(true);
+    await buyerChangeImage(file);
+    setClick(false);
+    modals.closeAll();
+    // window.location.reload();
   };
 
   const handleProfileChange = async (e) => {
@@ -65,13 +84,19 @@ const BuyerInfoForm = ({
   };
   const handlePasswordChange = async (e) => {
     e.preventDefault();
+    if (click == true) {
+      return;
+    }
+
     const formData = new FormData(e.currentTarget);
 
     const currentPW = formData.get("currentPW");
     const newPW = formData.get("newPW");
     const confirmPW = formData.get("confirmPW");
 
+    setClick(true);
     await buyerChangePassword(currentPW, newPW, confirmPW);
+    setClick(false);
   };
 
   return (
@@ -96,7 +121,7 @@ const BuyerInfoForm = ({
               autoContrast
               onClick={() => {
                 modals.open({
-                  title: "프로필 수정",
+                  title: "프로필 이미지 수정",
                   children: (
                     <>
                       <form onSubmit={handleImageChange}>

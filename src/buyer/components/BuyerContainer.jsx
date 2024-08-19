@@ -47,7 +47,8 @@ const BuyerContainer = () => {
           const dataImage = await uploadImage(token, file);
           imageUrl = dataImage.data.imageUrl;
         } catch (e) {
-          alert(data.data.msg);
+          if (e.response.data.errorMessage == "Maximum upload size exceeded")
+            alert("이미지는 최대 5MB까지 가능합니다.");
         }
       }
 
