@@ -93,7 +93,6 @@ const ProdcutReviewContainer = ({ token, productId }) => {
       buyerAddReview={buyerAddReview}
       delReview={delReview}
       buyerUpdate={buyerUpdate}
-      productId={productId}
     ></ProductReviewPage>
   );
 };

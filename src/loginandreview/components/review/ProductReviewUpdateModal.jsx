@@ -7,6 +7,7 @@ const ProductReviewUpdateModal = ({
   review_rate,
   review_content,
   updateReview,
+  reviewInfo,
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [rate, setRate] = useState(review_rate);
@@ -41,6 +42,7 @@ const ProductReviewUpdateModal = ({
           color="black"
           fullWidth
           onClick={async () => {
+            console.log(reviewInfo);
             await updateReview(review_id, rate, content);
             close();
           }}
