@@ -13,11 +13,11 @@ const CouponPage=()=>{
     const [couponData, setCouponData] = useState([]);
 
     if (!token) {
-        alert("No Token");
-        window.location.href = "/login/seller"
-    }else if(role !== "SELLER"){
+        window.location.href = "/login/seller";
+        alert("로그인을 해주세요");
+    } else if (role !== "SELLER") {
+        window.location.href = "/login/seller";
         alert("권한이 없습니다");
-        window.location.href = "/login/seller"
     }
 
     const getCoupon = async () => {
