@@ -34,6 +34,7 @@ const ProductCreateContainer = () => {
         alert("아직 판매자 승인이 안됐습니다.");
       } else {
         alert(message);
+        return "sameProduct";
       }
     }
   };
@@ -43,6 +44,10 @@ const ProductCreateContainer = () => {
       const data = await uploadImage(token, file);
       return data.data.imageUrl;
     } catch (e) {
+      if (e.response.data.errorMessage == "Maximum upload size exceeded") {
+        alert("이미지는 최대 5MB까지 가능합니다.");
+      }
+      return "None";
     }
   };
 

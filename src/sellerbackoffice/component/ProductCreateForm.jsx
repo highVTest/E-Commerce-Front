@@ -26,14 +26,10 @@ const ProductCreateForm = ({ handleCreateProduct, imageUpload }) => {
     if (name == "") {
       alert("상품명을 입력해주세요");
       return;
-    }
-
-    if (price <= 0) {
+    } else if (price <= 0) {
       alert("가격이 1원 보다 작을 수 없습니다.");
       return;
-    }
-
-    if (quantity <= 0) {
+    } else if (quantity <= 0) {
       alert("수량이 1개 보다 적을 수 없습니다.");
       return;
     }
@@ -41,17 +37,44 @@ const ProductCreateForm = ({ handleCreateProduct, imageUpload }) => {
     if (click == true) {
       return;
     }
-    setClick(true);
 
+    let response = "";
     if (file.size != 0) {
+      const sizeLimit = 1024 ** 2 * 5;
+      if (file.size > sizeLimit) {
+        alert("이미지는 5MB까지만 가능합니다.");
+        return;
+      }
+
       const imageUrl = await imageUpload(file);
 
-      await handleCreateProduct(name, price, quantity, description, imageUrl);
+      if (imageUrl == "None") {
+        return;
+      }
+      setClick(true);
+      response = await handleCreateProduct(
+        name,
+        price,
+        quantity,
+        description,
+        imageUrl
+      );
     } else {
-      await handleCreateProduct(name, price, quantity, description, "");
+      setClick(true);
+      response = await handleCreateProduct(
+        name,
+        price,
+        quantity,
+        description,
+        ""
+      );
     }
 
     setClick(false);
+
+    if (response == "sameProduct") {
+      return;
+    }
     window.location.href = "/product-list";
   };
 
