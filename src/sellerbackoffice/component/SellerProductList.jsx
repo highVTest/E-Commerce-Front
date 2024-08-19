@@ -2,7 +2,9 @@ import { Button, Image, Pagination, TextInput } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { Link } from "react-router-dom";
 import CreateCouponModal from "../../coupon/components/CreateCouponModal.jsx";
-import ProductUpdateForm from "./ProductUpdateForm.jsx";
+import ProductUpdateModal from "./modals/ProductUpdateModal.jsx";
+import QuantityChangeModal from "./modals/QuantityChangeModal.jsx";
+import PriceChangeModal from "./modals/PriceChangeModal.jsx";
 import SellerNavComponent from "./SellerNavComponent.jsx";
 import { useEffect, useState } from "react";
 
@@ -18,27 +20,8 @@ const ProductList = ({
 }) => {
   const [activePage, setPage] = useState(1);
 
-  const handlePrice = async (e, productId) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const price = formData.get("price");
-    await handleProductPrice(productId, Number(price));
-
-    modals.closeAll();
-  };
-
-  const handleQuantity = async (e, productId) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const quantity = formData.get("quantity");
-    await handleProductQuantity(productId, Number(quantity));
-
-    modals.closeAll();
-  };
-
   const handleDelete = async (productId) => {
     await handleDeleteProduct(productId);
-    // window.location.reload();
     modals.closeAll();
   };
 
@@ -100,6 +83,7 @@ const ProductList = ({
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
+                  width:"100%"
                 }}
               >
                 <div
@@ -107,25 +91,30 @@ const ProductList = ({
                   style={{
                     display: "flex",
                     flexDirection: "row",
-                    justifyContent: "flex-start",
+                    justifyContent: "space-between",
                     gap: "25px",
                   }}
                 >
-                  <h2 style={{ margin: "0" }}>{product.name}</h2>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      <p style={{ margin: "0" }}>가격 &emsp;</p>
-                      <p style={{ justifyContent: "flex-end", margin: "0" }}>
-                        {product.price} 원
-                      </p>
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      <p style={{ margin: "0" }}>수량 &emsp;</p>
-                      <p style={{ justifyContent: "flex-end", margin: "0" }}>
-                        {product.quantity} 개
-                      </p>
+                  <div>
+                    <h2 style={{ margin: "0" }}>{product.name}</h2>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <div style={{ display: "flex", flexDirection: "row" }}>
+                        <p style={{ margin: "0" }}>가격 &emsp;</p>
+                        <p style={{ justifyContent: "flex-end", margin: "0" }}>
+                          {product.price} 원
+                        </p>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "row" }}>
+                        <p style={{ margin: "0" }}>수량 &emsp;</p>
+                        <p style={{ justifyContent: "flex-end", margin: "0" }}>
+                          {product.quantity} 개
+                        </p>
+                      </div>
                     </div>
                   </div>
+                  <Link to={`/product/${product.id}`}>
+                    <Image w={40} h={40} src="/images/arrow.svg" />
+                  </Link>
                 </div>
                 <div
                   className="product-actions"
@@ -137,97 +126,18 @@ const ProductList = ({
                     marginTop: "10px",
                   }}
                 >
-                  <ProductUpdateForm
-                    productId={product.id}
+                  <ProductUpdateModal
+                    product={product}
                     handleUpdateProduct={handleUpdateProduct}
                   />
-                  <Button
-                    color="black"
-                    className="update-btn"
-                    onClick={() => {
-                      modals.open({
-                        title: "가격 수정",
-                        children: (
-                          <>
-                            <form onSubmit={(e) => handlePrice(e, product.id)}>
-                              <TextInput
-                                label="가격"
-                                placeholder="가격을 입력해주세요"
-                                name="price"
-                                className="price"
-                              />
-                              <div
-                                style={{
-                                  display: "flex",
-                                  gap: "10px",
-                                  marginTop: "10px",
-                                }}
-                              >
-                                <Button fullWidth color="black" type="submit">
-                                  변경하기
-                                </Button>
-                                <Button
-                                  color="black"
-                                  variant="outline"
-                                  fullWidth
-                                  onClick={() => modals.closeAll()}
-                                >
-                                  취소
-                                </Button>
-                              </div>
-                            </form>
-                          </>
-                        ),
-                      });
-                    }}
-                  >
-                    가격 수정
-                  </Button>
-                  <Button
-                    color="black"
-                    className="update-btn"
-                    onClick={() => {
-                      modals.open({
-                        title: "재고 수정",
-                        children: (
-                          <>
-                            <form
-                              onSubmit={(e) => handleQuantity(e, product.id)}
-                            >
-                              <TextInput
-                                label="수량"
-                                placeholder="수량을 입력해주세요"
-                                name="quantity"
-                                className="quantity"
-                              />
-
-                              <div
-                                style={{
-                                  display: "flex",
-                                  gap: "10px",
-                                  marginTop: "10px",
-                                }}
-                              >
-                                <Button color="black" fullWidth type="submit">
-                                  변경하기
-                                </Button>
-                                <Button
-                                  color="black"
-                                  fullWidth
-                                  variant="outline"
-                                  onClick={() => modals.closeAll()}
-                                >
-                                  취소
-                                </Button>
-                              </div>
-                            </form>
-                          </>
-                        ),
-                      });
-                    }}
-                  >
-                    수량 수정
-                  </Button>
+                  <QuantityChangeModal
+                    product={product}
+                    handleProductQuantity={handleProductQuantity}
+                  />
+                  <PriceChangeModal
+                    product={product}
+                    handleProductPrice={handleProductPrice}
+                  />
                   <CreateCouponModal product={product} token={token} />
                   <Button
                     color="black"

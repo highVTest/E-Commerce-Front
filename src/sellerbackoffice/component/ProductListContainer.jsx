@@ -16,17 +16,16 @@ const ProductListContainer = () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
   if (!token) {
+    window.location.href = "/login/seller";
     alert("No Token");
-    window.location.href = "/login/seller";
   } else if (role !== "SELLER") {
-    alert("권한이 없습니다");
     window.location.href = "/login/seller";
+    alert("권한이 없습니다");
   }
 
   const handleDeleteProduct = async (productId) => {
     try {
       await deleteProduct(token, productId);
-      alert("상품 삭제 완료!");
       getSellersAllProduct(0, 10);
     } catch (e) {
       const message = e.response.data["errorMessage"];
@@ -48,7 +47,6 @@ const ProductListContainer = () => {
   const handleUpdateProduct = async (productId, name, description) => {
     try {
       await updateProduct(token, productId, name, description);
-      alert("상품 수정 완료!");
       getSellersAllProduct(0, 10);
     } catch (e) {
       const message = e.response.data.errorMessage;
@@ -60,7 +58,6 @@ const ProductListContainer = () => {
     try {
       await changePrice(token, productId, price);
       getSellersAllProduct(0, 10);
-      alert("가격 수정 완료!");
     } catch (e) {
       const message = e.response.data["errorMessage"];
       alert(message);
@@ -71,7 +68,6 @@ const ProductListContainer = () => {
     try {
       await changeQuantity(token, productId, quantity);
       getSellersAllProduct(0, 10);
-      alert("수량 수정 완료!");
     } catch (e) {
       const message = e.response.data["errorMessage"];
       alert(message);
