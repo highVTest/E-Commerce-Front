@@ -8,7 +8,6 @@ const ProductReviewPage = ({
   buyerAddReview,
   delReview,
   buyerUpdate,
-  productId,
 }) => {
   const addReview = async (rate, content) => {
     await buyerAddReview(rate, content);
@@ -19,6 +18,8 @@ const ProductReviewPage = ({
   const updateReview = async (reviewId, rate, content) => {
     await buyerUpdate(reviewId, rate, content);
   };
+
+  const role = localStorage.getItem("role");
 
   return (
     <>
@@ -57,38 +58,16 @@ const ProductReviewPage = ({
                   </div>
                 </div>
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  gap: "5px",
-                }}
-              >
-                <ProductReviewUpdateModal
-                  review_id={review.id}
-                  review_rate={review.rate}
-                  review_content={review.content}
-                  updateReview={updateReview}
-                ></ProductReviewUpdateModal>
-
-                <div style={{ marginRight: "15px" }}></div>
-                <Button
-                  color="black"
-                  variant="outline"
-                  onClick={() => {
-                    deleteReview(review.id);
-                  }}
-                >
-                  리뷰 삭제
-                </Button>
-              </div>
             </div>
           </div>
         );
       })}
       <div style={{ marginTop: "15px" }}></div>
-      <ReviewAddModal addReview={addReview}></ReviewAddModal>
+      {role === "BUYER" ? (
+        <ReviewAddModal addReview={addReview}></ReviewAddModal>
+      ) : (
+        <div></div>
+      )}
     </>
   );
 };
