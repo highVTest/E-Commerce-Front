@@ -5,6 +5,16 @@ import {useEffect, useState} from "react";
 const MyCouponPage = () => {
   const [coupons, setCoupons] = useState([]);
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+
+  if (!token) {
+    window.location.href = "/login/buyer";
+    alert("로그인을 해주세요");
+  } else if (role !== "BUYER") {
+    window.location.href = "/login/buyer";
+    alert("권한이 없습니다");
+  }
 
   const [click, setClick] = useState(false);
 
@@ -37,6 +47,9 @@ const MyCouponPage = () => {
   return (
     <>
       <h1>쿠폰 목록</h1>
+      {
+        coupons.length > 0 ?
+      <>
       {coupons.map((coupon) => {
         return (
             <>
@@ -103,7 +116,13 @@ const MyCouponPage = () => {
             </>
         );
       })}
-
+        </>:
+            <div>
+              <h1 style={{textAlign: "center", marginTop: "200px"}}>
+                쿠폰 목록이 존재하지 않습니다
+              </h1>
+            </div>
+      }
     </>
   );
 };

@@ -1,21 +1,9 @@
-import { useDisclosure } from "@mantine/hooks";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import {
-  Modal,
-  Button,
-  TextInput,
-  Fieldset,
-  Card,
-  Image,
-  Text,
-  NativeSelect,
-  NumberInput,
-} from "@mantine/core";
+import {useDisclosure} from "@mantine/hooks";
+import {Button, Fieldset, Modal, NativeSelect, NumberInput, TextInput,} from "@mantine/core";
 import "../../payment/css/PaymentModal.css";
-import { useEffect, useState } from "react";
-import { DateInput } from "@mantine/dates";
-import { createCoupon, updateCoupon } from "../../api/v1/coupon/coupon.js";
+import {useState} from "react";
+import {DateInput} from "@mantine/dates";
+import {updateCoupon} from "../../api/v1/coupon/coupon.js";
 
 // eslint-disable-next-line react/prop-types
 function UpdateCouponModal({ token, coupon }) {

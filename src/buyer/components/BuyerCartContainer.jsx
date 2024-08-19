@@ -17,11 +17,11 @@ const BuyerCartContainer = () => {
   const role = localStorage.getItem("role");
 
   if (!token) {
+    window.location.href = "/login/buyer";
     alert("로그인을 해주세요");
-    window.location.href = "/login/buyer";
   } else if (role !== "BUYER") {
-    alert("권한이 없습니다");
     window.location.href = "/login/buyer";
+    alert("권한이 없습니다");
   }
 
   const getBuyerCart = async () => {

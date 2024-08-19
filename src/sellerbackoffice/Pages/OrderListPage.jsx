@@ -22,11 +22,11 @@ const OrderListPage = () => {
     const [error, setError] = useState(null);
 
     if (!token) {
+        window.location.href = "/login/seller";
         alert("로그인을 해주세요");
-        window.location.href = "/login/seller";
     } else if (role !== "SELLER") {
-        alert("권한이 없습니다");
         window.location.href = "/login/seller";
+        alert("권한이 없습니다");
     }
 
     const orderStatusToKorean = (orderStatus) => {
