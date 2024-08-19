@@ -60,8 +60,8 @@ const SellerContainer = () => {
   const sellerUpdateInfo = async (nickname, phoneNumber, address) => {
     try {
       await updateSellerInfo(token, nickname, phoneNumber, address);
+      await sellerGetMyInfo();
       alert("프로필 수정 완료!");
-      window.location.reload();
     } catch (e) {
       const message = e.response.data["errorMessage"];
       isReLogin(message);

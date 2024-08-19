@@ -29,10 +29,6 @@ const SellerInfoForm = ({
   desc,
   setDesc,
 }) => {
-  const [address, setAddress] = useState("");
-  const [extraAddr, setExtraAddr] = useState("");
-  const [detailAddr, setDetailAddr] = useState("");
-
   const handleUpdateShopInfo = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -302,13 +298,8 @@ const SellerInfoForm = ({
                     }}
                   >
                     <ProfileModal
-                      address={address}
-                      setAddress={setAddress}
-                      extraAddr={extraAddr}
-                      setExtraAddr={setExtraAddr}
-                      detailAddr={detailAddr}
-                      setDetailAddr={setDetailAddr}
                       sellerUpdateInfo={sellerUpdateInfo}
+                      sellerInfo={seller}
                     ></ProfileModal>
                     <Button
                       color="black"

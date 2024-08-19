@@ -20,10 +20,6 @@ const BuyerInfoForm = ({
   buyerChangeProfile,
   buyerChangePassword,
 }) => {
-  const [address, setAddress] = useState("");
-  const [extraAddr, setExtraAddr] = useState("");
-  const [detailAddr, setDetailAddr] = useState("");
-
   const [click, setClick] = useState(false);
 
   const handleImageDelete = async () => {
@@ -63,25 +59,8 @@ const BuyerInfoForm = ({
     await buyerChangeImage(file);
     setClick(false);
     modals.closeAll();
-    // window.location.reload();
   };
 
-  const handleProfileChange = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const nickname = formData.get("nickName");
-    const address = formData.get("address");
-    const phone = formData.get("phone");
-
-    if (nickname.length == 0) {
-      alert("닉네임을 입력해주세요!");
-      return;
-    }
-
-    await buyerChangeProfile(nickname, address, phone);
-    window.location.reload();
-  };
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     if (click == true) {
@@ -183,13 +162,8 @@ const BuyerInfoForm = ({
             </div>
             <Group className="buyer-profile-buttons">
               <BuyerProfileModal
-                address={address}
-                setAddress={setAddress}
-                extraAddr={extraAddr}
-                setExtraAddr={setExtraAddr}
-                detailAddr={detailAddr}
-                setDetailAddr={setDetailAddr}
                 buyerChangeProfile={buyerChangeProfile}
+                buyerInfo={buyer}
               ></BuyerProfileModal>
 
               <Button

@@ -1,30 +1,20 @@
 import { Button, Modal, TextInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import DaumPost from "../../Components/DaumPost";
+import { useState } from "react";
 
-const ProfileModal = ({
-  address,
-  setAddress,
-  setExtraAddr,
-  extraAddr,
-  detailAddr,
-  setDetailAddr,
-  sellerUpdateInfo,
-}) => {
+const ProfileModal = ({ sellerUpdateInfo, sellerInfo }) => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  const [address, setAddress] = useState(sellerInfo?.address);
+  const [nickName, setNickName] = useState(sellerInfo?.nickname);
+  const [phoneNumber, setPhoneNumber] = useState(sellerInfo?.phoneNumber);
+
   const handleSellerProfileChange = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
 
-    const nickname = formData.get("nickname");
-    const phoneNumber = formData.get("phoneNumber");
-    const fullAddr = address + ` ${detailAddr}`;
-
-    // console.log(nickname);
-    // console.log(phoneNumber);
-    // console.log(fullAddr);
-
-    await sellerUpdateInfo(nickname, phoneNumber, fullAddr);
+    await sellerUpdateInfo(nickName, phoneNumber, address);
+    close();
   };
 
   return (
@@ -35,11 +25,19 @@ const ProfileModal = ({
             label="닉네임"
             placeholder="닉네임을 입력해주세요"
             name="nickname"
+            value={nickName}
+            onChange={(e) => {
+              setNickName(e.target.value);
+            }}
           />
           <TextInput
             label="핸드폰번호"
             placeholder="핸드폰번호를 입력해주세요"
             name="phoneNumber"
+            value={phoneNumber}
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
           />
           <div
             style={{
@@ -47,14 +45,7 @@ const ProfileModal = ({
               marginBottom: "20px",
             }}
           >
-            <DaumPost
-              address={address}
-              setAddress={setAddress}
-              extraAddr={extraAddr}
-              setExtraAddr={setExtraAddr}
-              detailAddr={detailAddr}
-              setDetailAddr={setDetailAddr}
-            ></DaumPost>
+            <DaumPost address={address} setAddress={setAddress}></DaumPost>
           </div>
           <Button color="black" type="submit" fullWidth mt="md">
             변경
@@ -62,7 +53,15 @@ const ProfileModal = ({
         </form>
       </Modal>
 
-      <Button color="black" onClick={open}>
+      <Button
+        color="black"
+        onClick={() => {
+          setAddress(sellerInfo.address);
+          setNickName(sellerInfo.nickname);
+          setPhoneNumber(sellerInfo.phoneNumber);
+          open();
+        }}
+      >
         프로필 수정하기
       </Button>
     </>
