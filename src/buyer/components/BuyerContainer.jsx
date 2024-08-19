@@ -66,6 +66,8 @@ const BuyerContainer = () => {
     try {
       const data = await changeProfile(token, nickname, address, phoneNumber);
       setBuyer(data.data);
+      getBuyerDetail();
+      alert("프로필이 변경됐습니다.");
     } catch (e) {
       const status = e.response.data["errorCode"];
       const message = e.response.data["errorMessage"];
@@ -99,7 +101,7 @@ const BuyerContainer = () => {
     }
   };
   useEffect(() => {
-    getBuyerDetail(token);
+    getBuyerDetail();
   }, []);
 
   return (

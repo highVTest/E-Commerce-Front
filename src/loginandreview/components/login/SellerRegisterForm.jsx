@@ -14,8 +14,7 @@ const SellerRegisterForm = () => {
   const [pass, setPass] = useState(false);
 
   const [address, setAddress] = useState("");
-  const [extraAddr, setExtraAddr] = useState("");
-  const [detailAddr, setDetailAddr] = useState("");
+
   const [imageUrl, setImageUrl] = useState("");
   const [email, setEmail] = useState("");
   const [auth, setAuth] = useState("");
@@ -55,7 +54,7 @@ const SellerRegisterForm = () => {
     const nickname = formData.get("nickname");
     const password = formData.get("password");
     const PhoneNumber = formData.get("PhoneNumber");
-    const fullAddr = address + ` ${detailAddr}`;
+    const fullAddr = address;
 
     if (pass == false) {
       alert("이메일 인증을 완료 해주세요");
@@ -158,8 +157,8 @@ const SellerRegisterForm = () => {
             style={{ width: 500 }}
           />
           <Button
-          color="black" 
-            style={{ width: 100, marginTop: "25px",marginLeft:"5px"}}
+            color="black"
+            style={{ width: 100, marginTop: "25px", marginLeft: "5px" }}
             fullWidth
             variant="filled"
             onClick={sendEamil}
@@ -182,8 +181,8 @@ const SellerRegisterForm = () => {
                 style={{ width: 500 }}
               />
               <Button
-              color="black" 
-                style={{ width: 100, marginTop: "25px",marginLeft:"5px"}}
+                color="black"
+                style={{ width: 100, marginTop: "25px", marginLeft: "5px" }}
                 fullWidth
                 variant="filled"
                 type="button"
@@ -192,7 +191,7 @@ const SellerRegisterForm = () => {
                 확인
               </Button>
             </div>
-            <Text fw={700} style={{marginTop:"-15px"}}>
+            <Text fw={700} style={{ marginTop: "-15px" }}>
               남은 시간 : {authMin}분 {authSec}초
             </Text>
           </>
@@ -208,8 +207,8 @@ const SellerRegisterForm = () => {
               style={{ width: 500 }}
             />
             <Button
-            color="black" 
-              style={{ width: 100, marginTop: "25px",marginLeft:"5px"}}
+              color="black"
+              style={{ width: 100, marginTop: "25px", marginLeft: "5px" }}
               fullWidth
               variant="filled"
               type="button"
@@ -227,17 +226,10 @@ const SellerRegisterForm = () => {
         />
       </Stack>
       <div style={{ marginTop: "25px" }}>
-        <DaumPost
-          address={address}
-          setAddress={setAddress}
-          extraAddr={extraAddr}
-          setExtraAddr={setExtraAddr}
-          detailAddr={detailAddr}
-          setDetailAddr={setDetailAddr}
-        ></DaumPost>
+        <DaumPost address={address} setAddress={setAddress}></DaumPost>
       </div>
       <Button
-      color="black" 
+        color="black"
         fullWidth
         type="submit"
         style={{ marginTop: "15px" }}

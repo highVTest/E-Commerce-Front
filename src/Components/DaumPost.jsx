@@ -3,14 +3,7 @@ import React, { useState } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 // import style from "./DaumPost.module.css";
 
-const DaumPost = ({
-  address,
-  setAddress,
-  setExtraAddr,
-  extraAddr,
-  detailAddr,
-  setDetailAddr,
-}) => {
+const DaumPost = ({ address, setAddress }) => {
   const [zoneCode, setZoneCode] = useState("");
 
   const postcodeScriptUrl =
@@ -30,7 +23,7 @@ const DaumPost = ({
         extraAddress +=
           extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
-      setExtraAddr(extraAddress);
+      // setExtraAddr(extraAddress);
     }
 
     setAddress(fullAddress);
@@ -54,7 +47,7 @@ const DaumPost = ({
         />
 
         <Button
-        color="black" 
+          color="black"
           style={{ width: 100, marginLeft: "10px" }}
           fullWidth
           variant="filled"
@@ -66,7 +59,6 @@ const DaumPost = ({
       </div>
       <div style={{ marginTop: "15px" }}></div>
       <TextInput
-        disabled
         placeholder="주소"
         value={address}
         onChange={(e) => {
@@ -74,7 +66,7 @@ const DaumPost = ({
         }}
       />
       <div style={{ marginTop: "15px" }}></div>
-      <div style={{ display: "flex" }}>
+      {/* <div style={{ display: "flex" }}>
         <TextInput
           placeholder="상세주소"
           value={detailAddr}
@@ -91,7 +83,7 @@ const DaumPost = ({
             setExtraAddr(e.target.value);
           }}
         />
-      </div>
+      </div> */}
     </>
   );
 };
