@@ -120,7 +120,9 @@ function CreateCouponModal({ token, product }) {
 
   const handleDateChange = (value) => {
     if (value) {
-      const formattedDate = value.toISOString(); // ISO 8601 형식
+      value.setHours(23, 59, 59, 999);
+      const koreanTime = new Date(value + (9 * 60 * 60 * 1000));
+      const formattedDate = koreanTime.toISOString(); // ISO 8601 형식
       setExpiredAt(formattedDate);
     } else {
       setExpiredAt(null);

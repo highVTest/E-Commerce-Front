@@ -22,8 +22,9 @@ const ProductList = ({ products, loading }) => {
                   <Card>
                     <div className="product-card" style={{ padding: "0" }}>
                       <Image
-                        src={product.productImage}
+                        src={product.image}
                         alt="상품 이미지"
+                        style={{ width:"265px",height:"250px"}}
                         fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                       />
                       <h2>{product.name}</h2>

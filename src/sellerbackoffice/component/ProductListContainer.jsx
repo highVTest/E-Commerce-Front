@@ -30,7 +30,6 @@ const ProductListContainer = () => {
       getSellersAllProduct();
     } catch (e) {
       const message = e.response.data["errorMessage"];
-      //isReLogin(message);
       alert(message);
     }
   };
@@ -42,7 +41,6 @@ const ProductListContainer = () => {
       setResult(data.data);
     } catch (e) {
       const message = e.response.data["errorMessage"];
-      //isReLogin(message);
       alert(message);
     }
   };
@@ -64,7 +62,6 @@ const ProductListContainer = () => {
       alert("가격 수정 완료!");
     } catch (e) {
       const message = e.response.data["errorMessage"];
-      //isReLogin(message);
       alert(message);
     }
   };
@@ -75,7 +72,6 @@ const ProductListContainer = () => {
       alert("수량 수정 완료!");
     } catch (e) {
       const message = e.response.data["errorMessage"];
-      //isReLogin(message);
       alert(message);
     }
   };

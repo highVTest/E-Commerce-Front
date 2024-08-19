@@ -77,7 +77,7 @@ const OrderListPage = () => {
 
         }
     }
-    console.log(getEnum);
+
     const orderList = async () => {
         try {
             const shop = await getShopInfo(token);
@@ -85,7 +85,6 @@ const OrderListPage = () => {
             setShopId(shop.data.id)
             setPendingData(data.data);
         } catch (error) {
-            alert(error.response.data.errorMessage);
             setPendingData([])
         }
 
@@ -114,7 +113,7 @@ const OrderListPage = () => {
                     }}>
                         <h1>주문 상태 관리</h1>
                         <div style={{
-                            display: "fle:x",
+                            display: "flex",
                             alignItems: "center",
                             justifyContent: "flex-end",
                             marginTop: "10px",
@@ -127,7 +126,7 @@ const OrderListPage = () => {
                         </div>
                     </div>
 
-                    {pendingData.length >= 0 ? (
+                    {pendingData.length > 0 ? (
                         pendingData.map((data, index) => {
                             return (
                                 <div

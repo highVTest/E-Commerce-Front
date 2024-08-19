@@ -87,7 +87,9 @@ function UpdateCouponModal({ token, coupon }) {
 
   const handleDateChange = (value) => {
     if (value) {
-      const formattedDate = value.toISOString(); // ISO 8601 형식
+      value.setHours(23, 59, 59, 999);
+      const koreanTime = new Date(value + (9 * 60 * 60 * 1000));
+      const formattedDate = koreanTime.toISOString(); // ISO 8601 형식
       setExpiredAt(formattedDate);
     } else {
       setExpiredAt(null);
@@ -112,9 +114,9 @@ function UpdateCouponModal({ token, coupon }) {
             value={coupon.couponName}
           />
           <DateInput
-            valueFormat="DD/MM/YYYY HH:mm:ss"
-            label="만료 기한"
-            placeholder="만료 시간을 입력하세요"
+            valueFormat="DD/MM/YYYY"
+            label="만료 일자"
+            placeholder="쿠폰 만료일자를 입력하세요"
             onChange={handleDateChange}
           />
           <NativeSelect
