@@ -27,7 +27,7 @@ const ProductListContainer = () => {
     try {
       await deleteProduct(token, productId);
       alert("상품 삭제 완료!");
-      getSellersAllProduct();
+      getSellersAllProduct(0, 10);
     } catch (e) {
       const message = e.response.data["errorMessage"];
       alert(message);
@@ -49,9 +49,9 @@ const ProductListContainer = () => {
     try {
       await updateProduct(token, productId, name, description);
       alert("상품 수정 완료!");
+      getSellersAllProduct(0, 10);
     } catch (e) {
-      const message = e.response.data["errorMessage"];
-      isReLogin(message);
+      const message = e.response.data.errorMessage;
       alert(message);
     }
   };
@@ -59,6 +59,7 @@ const ProductListContainer = () => {
   const handleProductPrice = async (productId, price) => {
     try {
       await changePrice(token, productId, price);
+      getSellersAllProduct(0, 10);
       alert("가격 수정 완료!");
     } catch (e) {
       const message = e.response.data["errorMessage"];
@@ -69,6 +70,7 @@ const ProductListContainer = () => {
   const handleProductQuantity = async (productId, quantity) => {
     try {
       await changeQuantity(token, productId, quantity);
+      getSellersAllProduct(0, 10);
       alert("수량 수정 완료!");
     } catch (e) {
       const message = e.response.data["errorMessage"];

@@ -23,7 +23,7 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
     const description = formData.get("description");
 
     await handleUpdateProduct(productId, name, description);
-    window.location.reload();
+    close();
   };
 
   return (
@@ -60,7 +60,11 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
               </Stack>
             </form>
             <Link to="/product-list">
-              <Button color="black" fullWidth style={{ marginTop: "10px", float: "right" }}>
+              <Button
+                color="black"
+                fullWidth
+                style={{ marginTop: "10px", float: "right" }}
+              >
                 목록으로
               </Button>
             </Link>

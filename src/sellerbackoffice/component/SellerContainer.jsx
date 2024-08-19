@@ -34,6 +34,10 @@ const SellerContainer = () => {
       const data = await uploadImage(token, file);
       return data.data.imageUrl;
     } catch (e) {
+      if (e.response.data.errorMessage == "Maximum upload size exceeded") {
+        alert("이미지는 최대 5MB까지 가능합니다.");
+      }
+      return "None";
     }
   };
 
@@ -41,25 +45,20 @@ const SellerContainer = () => {
     try {
       const data = await updateSellerImage(token, imageUrl);
       alert(data.data.msg);
-      window.location.reload();
-    } catch (e) {
-    }
+      await sellerGetMyInfo();
+    } catch (e) {}
   };
 
   const updateShopInfoImage = async (imageUrl) => {
     try {
       const data = await updateShopImage(token, imageUrl);
       alert(data.data.msg);
-      window.location.reload();
-    } catch (e) {
-    }
+      await sellerGetShopInfo();
+    } catch (e) {}
   };
 
   const sellerUpdateInfo = async (nickname, phoneNumber, address) => {
     try {
-      // console.log(nickname);
-      // console.log(phoneNumber);
-      // console.log(address);
       await updateSellerInfo(token, nickname, phoneNumber, address);
       alert("프로필 수정 완료!");
       window.location.reload();
@@ -88,8 +87,6 @@ const SellerContainer = () => {
     confirmPassword
   ) => {
     try {
-      //   console.log(oldPassword);
-      //   console.log(newPassword);
       await changePassword(token, oldPassword, newPassword, confirmPassword);
       alert("비밀번호 수정 완료!");
       localStorage.removeItem("token");
