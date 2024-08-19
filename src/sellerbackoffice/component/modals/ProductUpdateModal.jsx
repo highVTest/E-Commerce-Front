@@ -3,18 +3,19 @@ import {
   Stack,
   Textarea,
   TextInput,
-  FileInput,
   Modal,
 } from "@mantine/core";
-import { useState } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import "../css/ProductForm.css";
-import SellerNavComponent from "../SellerNavComponent.jsx";
 import { useDisclosure } from "@mantine/hooks";
+import {useState}from "react";
 
-const ProductUpdateModal = ({ productId, handleUpdateProduct }) => {
+
+const ProductUpdateModal = ({ product, handleUpdateProduct }) => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  console.log(product)
+  const [name, setName] =useState([product.name]);
+  const [description, setDescription] =useState([product.description]);
 
   const handleProductSubmit = async (e) => {
     e.preventDefault();
@@ -22,53 +23,44 @@ const ProductUpdateModal = ({ productId, handleUpdateProduct }) => {
     const name = formData.get("name");
     const description = formData.get("description");
 
-    await handleUpdateProduct(productId, name, description);
+    await handleUpdateProduct(product.id, name,description);
     close();
   };
 
   return (
     <>
       <Modal
+        title="상품 정보 변경"
         className="product-container"
         opened={opened}
         onClose={close}
         size="lg"
       >
-        <div className="box">
-          <div className="form-area">
-            <h2>상품 정보 변경</h2>
-            <form className="product-form" onSubmit={handleProductSubmit}>
-              <Stack>
-                <TextInput
-                  label="상품명"
-                  placeholder="상품 이름을 입력하세요"
-                  name="name"
-                  className="input-field"
-                />
-                <Textarea
-                  label="상품 설명"
-                  placeholder="상품 설명을 입력하세요"
-                  name="description"
-                  className="input-field"
-                  autosize
-                  minRows={8}
-                  maxRows={8}
-                />
-                <Button color="black" fullWidth type="submit">
-                  저장
-                </Button>
-              </Stack>
-            </form>
-            <Link to="/product-list">
-              <Button
-                color="black"
-                fullWidth
-                style={{ marginTop: "10px", float: "right" }}
-              >
-                목록으로
+        <div>
+          <form onSubmit={handleProductSubmit}>
+            <Stack>
+              <TextInput
+                label="상품명"
+                placeholder="상품 이름을 입력하세요"
+                defaultValue={name}
+                name="name"
+                className="input-field"
+              />
+              <Textarea
+                label="상품 설명"
+                placeholder="상품 설명을 입력하세요"
+                defaultValue={description}
+                name="description"
+                className="input-field"
+                autosize
+                minRows={8}
+                maxRows={8}
+              />
+              <Button color="black" fullWidth type="submit">
+                저장
               </Button>
-            </Link>
-          </div>
+            </Stack>
+          </form>
         </div>
       </Modal>
       <Button color="black" onClick={open} className="update-btn">
