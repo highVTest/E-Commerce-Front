@@ -24,6 +24,13 @@ function UpdateCouponModal({ token, coupon }) {
   const [discount, setDiscount] = useState(coupon.discount);
   const [expiredAt, setExpiredAt] = useState(coupon.expiredAt);
   const [quantity, setQuantity] = useState(coupon.quantity);
+  const discountPolicyKorean = () => {
+    if(coupon.discountPolicy === "DISCOUNT_RATE"){
+      return "할인율 정책"
+    }else if(coupon.discountPolicy === "DISCOUNT_PRICE"){
+      return "가격 할인 설정"
+    }
+  }
 
   const handlerDiscountPolicy = () => {
     if (discountPolicy === "할인율 설정") {
@@ -109,18 +116,17 @@ function UpdateCouponModal({ token, coupon }) {
         <Fieldset legend="쿠폰 정보 등록" fw={500}>
           <TextInput
             label="쿠폰 이름"
-            placeholder="쿠폰 이름을 입력하세요"
             disabled
             value={coupon.couponName}
           />
           <DateInput
             valueFormat="DD/MM/YYYY"
             label="만료 일자"
-            placeholder="쿠폰 만료일자를 입력하세요"
+            placeholder={coupon.expiredAt.split('T')[0]}
             onChange={handleDateChange}
           />
           <NativeSelect
-            label="쿠폰 정책"
+            label={`쿠폰 정책 (이전 쿠폰 정책 : ${discountPolicyKorean()})`}
             data={["정책을 선택해 주세요", "할인율 설정", "가격 설정"]}
             onChange={(e) => {
               setDiscountPolicy(e.target.value);
