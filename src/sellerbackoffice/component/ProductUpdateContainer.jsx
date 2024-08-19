@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import ProductUpdateForm from "./ProductUpdateForm";
+import ProductUpdateModal from "./modals/ProductUpdateModal";
 
 import {
     updateProduct
@@ -41,10 +41,10 @@ const ProductUpdateContainer = () =>{
 
     return(
         <div>
-            <ProductUpdateForm
+            <ProductUpdateModal
                 handleUpdateProduct={handleUpdateProduct}
             >
-            </ProductUpdateForm>
+            </ProductUpdateModal>
         </div>
     );
 };

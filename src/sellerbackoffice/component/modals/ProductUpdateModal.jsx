@@ -9,11 +9,11 @@ import {
 import { useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import "./css/ProductForm.css";
-import SellerNavComponent from "./SellerNavComponent.jsx";
+import "../css/ProductForm.css";
+import SellerNavComponent from "../SellerNavComponent.jsx";
 import { useDisclosure } from "@mantine/hooks";
 
-const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
+const ProductUpdateModal = ({ productId, handleUpdateProduct }) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const handleProductSubmit = async (e) => {
@@ -78,4 +78,4 @@ const ProductUpdateForm = ({ productId, handleUpdateProduct }) => {
   );
 };
 
-export default ProductUpdateForm;
+export default ProductUpdateModal;

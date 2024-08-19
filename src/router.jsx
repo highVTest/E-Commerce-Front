@@ -18,7 +18,7 @@ import BuyerOrderListPage from "./payment/pages/BuyerOrderListPage.jsx";
 import ProductCreateContainer from "./sellerbackoffice/component/ProductCreateContainer.jsx";
 import ProductListContainer from "./sellerbackoffice/component/ProductListContainer.jsx";
 import ProductUpdateContainer from "./sellerbackoffice/component/ProductUpdateContainer.jsx";
-import ProductUpdateForm from "./sellerbackoffice/component/ProductUpdateForm.jsx";
+import ProductUpdateModal from "./sellerbackoffice/component/modals/ProductUpdateModal.jsx";
 import SellerContainer from "./sellerbackoffice/component/SellerContainer.jsx";
 import SearchPage from "./homepage/pages/SearchPage.jsx";
 import SellerRegisterPage from "./loginandreview/pages/SellerRegisterPage.jsx";
@@ -125,7 +125,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: <ProductUpdateForm></ProductUpdateForm>,
+        element: <ProductUpdateModal></ProductUpdateModal>,
       },
     ],
   },

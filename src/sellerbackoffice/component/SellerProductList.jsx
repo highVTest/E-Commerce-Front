@@ -2,7 +2,7 @@ import { Button, Image, Pagination, TextInput } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { Link } from "react-router-dom";
 import CreateCouponModal from "../../coupon/components/CreateCouponModal.jsx";
-import ProductUpdateForm from "./ProductUpdateForm.jsx";
+import ProductUpdateModal from "./modals/ProductUpdateModal.jsx";
 import SellerNavComponent from "./SellerNavComponent.jsx";
 import { useEffect, useState } from "react";
 
@@ -137,7 +137,7 @@ const ProductList = ({
                     marginTop: "10px",
                   }}
                 >
-                  <ProductUpdateForm
+                  <ProductUpdateModal
                     productId={product.id}
                     handleUpdateProduct={handleUpdateProduct}
                   />
