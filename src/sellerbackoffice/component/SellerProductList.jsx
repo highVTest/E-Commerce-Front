@@ -83,6 +83,7 @@ const ProductList = ({
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
+                  width:"100%"
                 }}
               >
                 <div
@@ -90,25 +91,30 @@ const ProductList = ({
                   style={{
                     display: "flex",
                     flexDirection: "row",
-                    justifyContent: "flex-start",
+                    justifyContent: "space-between",
                     gap: "25px",
                   }}
                 >
-                  <h2 style={{ margin: "0" }}>{product.name}</h2>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      <p style={{ margin: "0" }}>가격 &emsp;</p>
-                      <p style={{ justifyContent: "flex-end", margin: "0" }}>
-                        {product.price} 원
-                      </p>
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      <p style={{ margin: "0" }}>수량 &emsp;</p>
-                      <p style={{ justifyContent: "flex-end", margin: "0" }}>
-                        {product.quantity} 개
-                      </p>
+                  <div>
+                    <h2 style={{ margin: "0" }}>{product.name}</h2>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <div style={{ display: "flex", flexDirection: "row" }}>
+                        <p style={{ margin: "0" }}>가격 &emsp;</p>
+                        <p style={{ justifyContent: "flex-end", margin: "0" }}>
+                          {product.price} 원
+                        </p>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "row" }}>
+                        <p style={{ margin: "0" }}>수량 &emsp;</p>
+                        <p style={{ justifyContent: "flex-end", margin: "0" }}>
+                          {product.quantity} 개
+                        </p>
+                      </div>
                     </div>
                   </div>
+                  <Link to={`/product/${product.id}`}>
+                    <Image w={40} h={40} src="/images/arrow.svg" />
+                  </Link>
                 </div>
                 <div
                   className="product-actions"

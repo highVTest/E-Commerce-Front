@@ -12,8 +12,6 @@ import {useState}from "react";
 
 const ProductUpdateModal = ({ product, handleUpdateProduct }) => {
   const [opened, { open, close }] = useDisclosure(false);
-
-  console.log(product)
   const [name, setName] =useState([product.name]);
   const [description, setDescription] =useState([product.description]);
 
