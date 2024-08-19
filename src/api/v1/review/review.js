@@ -15,8 +15,8 @@ export const addReview = async (token,productId,rate,content) => {
     });
 }
 
-export const updateReview = async (token, productId, reviewId ,rate,content) => {
-  return await apiClient.put(`/reviews/${productId}/${reviewId}`, {rate,content}, {
+export const updateReview = async (token, reviewId ,rate,content) => {
+  return await apiClient.put(`/reviews/${reviewId}`, {rate,content}, {
     headers : {
         Authorization : `Bearer ${token}`,
         "Content-Type" : "application/json"
@@ -24,17 +24,9 @@ export const updateReview = async (token, productId, reviewId ,rate,content) => 
 });
 };
 
-export const updateReview1 = async (token, productId, reviewId ,rate,content) => {
-    return await apiClient.put(`/reviews/${productId}/${reviewId}`, {rate,content}, {
-      headers : {
-          Authorization : `Bearer ${token}`,
-          "Content-Type" : "application/json"
-      }
-  });
-  };
 
-export const deleteReview = async (token, productId, reviewId) => {
-    return await apiClient.delete(`/reviews/${productId}/${reviewId}`, {
+export const deleteReview = async (token, reviewId) => {
+    return await apiClient.delete(`/reviews/${reviewId}`, {
         headers : {
             Authorization : `Bearer ${token}`
         }

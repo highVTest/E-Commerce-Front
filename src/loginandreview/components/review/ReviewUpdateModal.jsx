@@ -5,12 +5,10 @@ import { updateReview } from "../../../api/v1/review/review.js";
 
 const ReviewUpdateModal = ({
   token,
-  productId,
   reviewId,
   review_content,
   review_rate,
   getMyReview,
-  productName,
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -19,12 +17,6 @@ const ReviewUpdateModal = ({
   const [rate, setRate] = useState(review_rate);
 
   const getUpdateReview = async () => {
-    if (productName == "") {
-      alert("삭제된 상품입니다.");
-      close();
-      return;
-    }
-
     if (content.length == 0) {
       alert("내용을 입력해주세요");
       return;
@@ -36,7 +28,7 @@ const ReviewUpdateModal = ({
 
     try {
       setClick(true);
-      await updateReview(token, productId, reviewId, rate, content);
+      await updateReview(token, reviewId, rate, content);
       alert("리뷰 수정이 완료 되었습니다");
       setClick(false);
       await getMyReview();

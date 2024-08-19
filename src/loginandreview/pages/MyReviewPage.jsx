@@ -22,25 +22,20 @@ const MyReviewPage = () => {
 
   const getMyReview = async () => {
     const data = await getBuyerReviews(token);
-    console.log(data.data)
+    console.log(data.data);
     setReviews(data.data);
 
     setLoading(false);
   };
 
-  const delReview = async (productId, reviewId, productName) => {
-    if (productName == "") {
-      alert("삭제된 상품입니다.");
-      return;
-    }
-
+  const delReview = async (reviewId) => {
     if (click == true) {
       return;
     }
 
     setClick(true);
     try {
-      await deleteReview(token, productId, reviewId);
+      await deleteReview(token, reviewId);
       setClick(false);
       alert("리뷰 삭제가 완료됐습니다.");
       getMyReview();
@@ -49,18 +44,14 @@ const MyReviewPage = () => {
     }
   };
 
-  const findProduct = (productId, productName) => {
-    if (productName == "") {
-      alert("삭제된 상품입니다.");
-      return;
-    }
+  const findProduct = (productId) => {
     navigate(`/product/${productId}`);
   };
 
   useEffect(() => {
     getMyReview();
   }, []);
-  console.log(reviews)
+
   return (
     <>
       <h1 style={{ marginBottom: "20px" }}>내 리뷰 목록</h1>
@@ -179,20 +170,14 @@ const MyReviewPage = () => {
                           <ReviewUpdateModal
                             token={token}
                             reviewId={review.id}
-                            productId={review.productId}
                             review_content={review.content}
                             review_rate={review.rate}
                             getMyReview={getMyReview}
-                            productName={review.productName}
                           />
                           <Button
                             color="black"
                             onClick={() => {
-                              delReview(
-                                review.productId,
-                                review.id,
-                                review.productName
-                              );
+                              delReview(review.id, review.productName);
                             }}
                           >
                             삭제 하기
