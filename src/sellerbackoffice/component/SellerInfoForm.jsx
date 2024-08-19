@@ -57,54 +57,94 @@ const SellerInfoForm = ({
     const formData = new FormData(e.currentTarget);
     const file = formData.get("file");
 
+    const sizeLimit = 1024 ** 2 * 5;
+
     if (file.size == 0) {
       alert("이미지를 선택해주세요");
+      return;
+    } else if (file.size > sizeLimit) {
+      alert("이미지는 5MB까지만 가능합니다.");
       return;
     }
 
     const image = await addImage(file);
+
+    if (image == "None") {
+      alert("z");
+      return;
+    }
+
     await updateShopInfoImage(image);
+    modals.closeAll();
   };
 
   const sellerImageUpdate = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const file = formData.get("file");
-
+    const sizeLimit = 1024 ** 2 * 5;
     if (file.size == 0) {
       alert("이미지를 선택해주세요");
+      return;
+    } else if (file.size > sizeLimit) {
+      alert("이미지는 5MB까지만 가능합니다.");
       return;
     }
 
     const image = await addImage(file);
+
+    if (image == "None") {
+      return;
+    }
+
     await updateSellerInfoImage(image);
+    modals.closeAll();
   };
 
   return (
     <div>
       <div className="seller">
         <SellerNavComponent />
-        <div className="sellerinfo-container" style={{width:"100%",marginLeft:"20px"}}>
+        <div
+          className="sellerinfo-container"
+          style={{ width: "100%", marginLeft: "20px" }}
+        >
           <h1>내정보 수정</h1>
-          <div style={{marginLeft:"15px"}}>
-            <div style={{width:"100%"}}>
+          <div style={{ marginLeft: "15px" }}>
+            <div style={{ width: "100%" }}>
               <h2>Seller Info</h2>
-              <div style={{ display: "flex", flexDirection:"row", alignItems:"center",margin:"15px", justifyContent:"space-between"}}>
-                <div className="image-container" >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  margin: "15px",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div className="image-container">
                   <Image
                     className="seller-img"
                     radius="md"
-                    style={{marginBottom:"5px"}}
+                    style={{ marginBottom: "5px" }}
                     h={120}
                     w={120}
                     fit="crop"
                     src={seller?.profileImage}
                     fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                   />
-                  <div style={{display: "flex", padding:"0",flexDirection:"column",justifyContent: "space-around",gap:"5px"}}>
+                  <div
+                    style={{
+                      display: "flex",
+                      padding: "0",
+                      flexDirection: "column",
+                      justifyContent: "space-around",
+                      gap: "5px",
+                    }}
+                  >
                     <Group>
                       <Button
-                      color="black" 
+                        color="black"
                         fullWidth
                         autoContrast
                         onClick={() => {
@@ -123,7 +163,7 @@ const SellerInfoForm = ({
                                     변경하기
                                   </Button>
                                   <Button
-                                  color="black" 
+                                    color="black"
                                     variant="outline"
                                     fullWidth
                                     onClick={() => modals.closeAll()}
@@ -141,36 +181,53 @@ const SellerInfoForm = ({
                       </Button>
                     </Group>
                     <Button
-                    color="black" 
+                      color="black"
                       fullWidth
                       autoContrast
                       variant="outline"
                       onClick={() => {
                         updateSellerInfoImage("");
-
                       }}
                     >
                       이미지 삭제
                     </Button>
                   </div>
                 </div>
-                <div style={{display:"flex",flexDirection:"column",justifyContent:"space-between",width:"100%",gap:"15px"}}>
-                  <div className="seller-info" >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    gap: "15px",
+                  }}
+                >
+                  <div className="seller-info">
                     <Stack
                       align="stretch"
                       justify="center"
-                      style={{marginLeft:"50px"}}
+                      style={{ marginLeft: "50px" }}
                     >
-                      <Grid style={{display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+                      <Grid
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                        }}
+                      >
                         <Grid.Col
                           span={4}
                           style={{ alignContent: "center", textAlign: "left" }}
-                        ><b>이름</b>
+                        >
+                          <b>이름</b>
                         </Grid.Col>
                         <Grid.Col span={8}>
                           <Container
                             fluid
-                            style={{ alignContent: "center",textAlign: "left",}}
+                            style={{
+                              alignContent: "center",
+                              textAlign: "left",
+                            }}
                           >
                             {seller.nickname}
                           </Container>
@@ -180,12 +237,16 @@ const SellerInfoForm = ({
                         <Grid.Col
                           span={4}
                           style={{ alignContent: "center", textAlign: "left" }}
-                        ><b>이메일</b>
+                        >
+                          <b>이메일</b>
                         </Grid.Col>
                         <Grid.Col span={8}>
                           <Container
                             fluid
-                            style={{alignContent: "center",textAlign: "left",}}
+                            style={{
+                              alignContent: "center",
+                              textAlign: "left",
+                            }}
                           >
                             {seller.email}
                           </Container>
@@ -195,12 +256,16 @@ const SellerInfoForm = ({
                         <Grid.Col
                           span={4}
                           style={{ alignContent: "center", textAlign: "left" }}
-                        ><b>전화번호</b>
+                        >
+                          <b>전화번호</b>
                         </Grid.Col>
                         <Grid.Col span={8}>
                           <Container
                             fluid
-                            style={{ alignContent: "center",textAlign: "left",}}
+                            style={{
+                              alignContent: "center",
+                              textAlign: "left",
+                            }}
                           >
                             {seller.phoneNumber}
                           </Container>
@@ -210,12 +275,16 @@ const SellerInfoForm = ({
                         <Grid.Col
                           span={4}
                           style={{ alignContent: "center", textAlign: "left" }}
-                        ><b>주소</b>
+                        >
+                          <b>주소</b>
                         </Grid.Col>
                         <Grid.Col span={8}>
                           <Container
                             fluid
-                            style={{alignContent: "center",textAlign: "left",}}
+                            style={{
+                              alignContent: "center",
+                              textAlign: "left",
+                            }}
                           >
                             {seller.address}
                           </Container>
@@ -224,7 +293,14 @@ const SellerInfoForm = ({
                     </Stack>
                   </div>
 
-                  <div className="info-container" style={{display:"flex", flexDirection:"row",justifyContent:"flex-end"}}>
+                  <div
+                    className="info-container"
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                    }}
+                  >
                     <ProfileModal
                       address={address}
                       setAddress={setAddress}
@@ -235,7 +311,7 @@ const SellerInfoForm = ({
                       sellerUpdateInfo={sellerUpdateInfo}
                     ></ProfileModal>
                     <Button
-                    color="black" 
+                      color="black"
                       style={{ marginLeft: "25px" }}
                       onClick={() => {
                         modals.open({
@@ -265,7 +341,7 @@ const SellerInfoForm = ({
                                   변경하기
                                 </Button>
                                 <Button
-                                color="black" 
+                                  color="black"
                                   fullWidth
                                   onClick={() => modals.closeAll()}
                                   mt="md"
@@ -282,65 +358,88 @@ const SellerInfoForm = ({
                     </Button>
                   </div>
                 </div>
-                </div>
+              </div>
             </div>
 
-            <div style={{width:"100%", marginTop:"50px"}}>
+            <div style={{ width: "100%", marginTop: "50px" }}>
               <h2>Shop Info</h2>
-              <div style={{ display: "flex", flexDirection:"row", alignItems:"center",margin:"15px", justifyContent:"space-between"}}>
-                <div className="image-container" style={{ display: "flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between"}}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  margin: "15px",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  className="image-container"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <Image
                     className="seller-img"
                     radius="md"
                     h={120}
                     w={120}
                     fit="crop"
-                    style={{marginBottom:"5px"}}
+                    style={{ marginBottom: "5px" }}
                     src={shop?.shopImage}
                     fallbackSrc="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg"
                   />
-                    <div style={{display: "flex", padding:"0",flexDirection:"column",justifyContent: "space-around",gap:"5px"}}>
-                      <Group>
-                        <Button
-                        color="black" 
-                          fullWidth
-                          autoContrast
-                          onClick={() => {
-                            modals.open({
-                              title: "가게 이미지 수정",
-                              children: (
-                                <>
-                                  <form onSubmit={shopImageUpdate}>
-                                    <FileInput
-                                      label="이미지"
-                                      placeholder="이미지를 선택해주세요"
-                                      name="file"
-                                    />
-                                    <br />
-                                    <Button color="black" fullWidth type="submit">
-                                      변경하기
-                                    </Button>
-                                    <Button
-                                    color="black" 
-                                      fullWidth
-                                      onClick={() => modals.closeAll()}
-                                      mt="md"
-                                    >
-                                      취소
-                                    </Button>
-                                  </form>
-                                </>
-                              ),
-                            });
-                          }}
-                        >
-                          이미지 변경
-                        </Button>
-                      </Group>
-
+                  <div
+                    style={{
+                      display: "flex",
+                      padding: "0",
+                      flexDirection: "column",
+                      justifyContent: "space-around",
+                      gap: "5px",
+                    }}
+                  >
+                    <Group>
+                      <Button
+                        color="black"
+                        fullWidth
+                        autoContrast
+                        onClick={() => {
+                          modals.open({
+                            title: "가게 이미지 수정",
+                            children: (
+                              <>
+                                <form onSubmit={shopImageUpdate}>
+                                  <FileInput
+                                    label="이미지"
+                                    placeholder="이미지를 선택해주세요"
+                                    name="file"
+                                  />
+                                  <br />
+                                  <Button color="black" fullWidth type="submit">
+                                    변경하기
+                                  </Button>
+                                  <Button
+                                    color="black"
+                                    fullWidth
+                                    onClick={() => modals.closeAll()}
+                                    mt="md"
+                                  >
+                                    취소
+                                  </Button>
+                                </form>
+                              </>
+                            ),
+                          });
+                        }}
+                      >
+                        이미지 변경
+                      </Button>
+                    </Group>
 
                     <Button
-                    color="black" 
+                      color="black"
                       fullWidth
                       autoContrast
                       variant="outline"
@@ -350,17 +449,12 @@ const SellerInfoForm = ({
                     >
                       이미지 삭제
                     </Button>
-                    </div>
                   </div>
+                </div>
 
-
-                <div  style={{ width: "100%" }}>
-                  <div className="shop-info" style={{marginLeft:"50px"}}>
-                    <Stack
-                      align="stretch"
-                      justify="center"
-                      gap="md"
-                    >
+                <div style={{ width: "100%" }}>
+                  <div className="shop-info" style={{ marginLeft: "50px" }}>
+                    <Stack align="stretch" justify="center" gap="md">
                       <Grid>
                         <Grid.Col
                           span={4}
@@ -371,7 +465,10 @@ const SellerInfoForm = ({
                         <Grid.Col span={8}>
                           <Container
                             fluid
-                            style={{alignContent: "center",textAlign: "left",}}
+                            style={{
+                              alignContent: "center",
+                              textAlign: "left",
+                            }}
                           >
                             {shop.name}
                           </Container>
@@ -387,7 +484,10 @@ const SellerInfoForm = ({
                         <Grid.Col span={8}>
                           <Container
                             fluid
-                            style={{alignContent: "center",textAlign: "left"}}
+                            style={{
+                              alignContent: "center",
+                              textAlign: "left",
+                            }}
                           >
                             {shop.rate}
                           </Container>
@@ -398,9 +498,11 @@ const SellerInfoForm = ({
                   <div>
                     <form
                       onSubmit={handleUpdateShopInfo}
-                      style={{marginLeft:"50px", marginTop:"20px"}}>
-
-                      <p style={{textAlign:"left"}}><b>상점 설명</b></p>
+                      style={{ marginLeft: "50px", marginTop: "20px" }}
+                    >
+                      <p style={{ textAlign: "left" }}>
+                        <b>상점 설명</b>
+                      </p>
                       <Textarea
                         placeholder="상점 설명을 입력하세요"
                         name="description"
